@@ -10,9 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado de la página actual
     let currentPage = 'home';
     
-    // Toggle menú móvil
+    // Variable para almacenar intervalos
+    let activeIntervals = [];
+    
+    // Toggle menú móvil con animación
     menuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        
+        if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('mobile-menu-enter');
+        } else {
+            mobileMenu.classList.remove('mobile-menu-enter');
+        }
+        
         const icon = menuBtn.querySelector('i');
         icon.classList.toggle('fa-bars');
         icon.classList.toggle('fa-times');
@@ -27,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Cerrar menú móvil si está abierto
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('mobile-menu-enter');
                 const icon = menuBtn.querySelector('i');
                 icon.classList.add('fa-bars');
                 icon.classList.remove('fa-times');
@@ -37,8 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Función para limpiar intervalos activos
+    function clearAllIntervals() {
+        activeIntervals.forEach(interval => {
+            clearInterval(interval);
+        });
+        activeIntervals = [];
+    }
+    
     // Función de navegación
     async function navigateTo(page) {
+        // Limpiar intervalos anteriores
+        clearAllIntervals();
+        
         // Actualizar clase activa en los enlaces
         navLinks.forEach(link => {
             if (link.dataset.page === page) {
@@ -69,15 +91,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Actualizar URL sin recargar
                 history.pushState({ page }, '', `#${page}`);
+                
+                // Scroll suave hacia arriba
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }, 300);
             
         } catch (error) {
             console.error('Error cargando la página:', error);
             content.innerHTML = `
                 <div class="container mx-auto px-4 py-20 text-center">
-                    <h2 class="text-3xl font-bold text-red-500 mb-4">Error 404</h2>
-                    <p class="text-gray-400 mb-8">La página que buscas no existe</p>
-                    <a href="#" data-page="home" class="nav-link bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                    <h2 class="text-3xl md:text-4xl font-bold text-red-500 mb-4">Error 404</h2>
+                    <p class="text-gray-400 mb-8 text-lg">La página que buscas no existe</p>
+                    <a href="#" data-page="home" class="nav-link bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
                         Volver al inicio
                     </a>
                 </div>
@@ -113,6 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scripts específicos de cada página
     function initHomePage() {
         console.log('Home page initialized');
+        
+        // Animación para elementos al hacer scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = rect.top <= window.innerHeight - 100;
+                
+                if (isVisible) {
+                    el.classList.add('opacity-100', 'translate-y-0');
+                    el.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Ejecutar una vez al cargar
     }
     
     function initTeamPage() {
@@ -165,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Si la fecha ya pasó, mostrar mensaje
             if (difference <= 0) {
-                countdownElement.textContent = '¡TORNEO INICIADO!';
+                countdownElement.innerHTML = '<span class="text-green-400 font-bold">¡TORNEO INICIADO!</span>';
                 countdownElement.classList.add('text-green-400');
                 clearInterval(intervalId);
                 return;
@@ -183,11 +228,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const formattedMinutes = String(minutes).padStart(2, '0');
             const formattedSeconds = String(seconds).padStart(2, '0');
             
-            // Actualizar el elemento del DOM
-            countdownElement.textContent = `${formattedDays}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`;
+            // Actualizar el elemento del DOM con formato responsive
+            countdownElement.innerHTML = `
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 text-xl md:text-4xl font-bold">
+                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                        <span class="text-cyan-400">${formattedDays}</span>
+                        <span class="text-xs md:text-sm block text-gray-400">Días</span>
+                    </div>
+                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                        <span class="text-cyan-400">${formattedHours}</span>
+                        <span class="text-xs md:text-sm block text-gray-400">Horas</span>
+                    </div>
+                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                        <span class="text-cyan-400">${formattedMinutes}</span>
+                        <span class="text-xs md:text-sm block text-gray-400">Min</span>
+                    </div>
+                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                        <span class="text-cyan-400">${formattedSeconds}</span>
+                        <span class="text-xs md:text-sm block text-gray-400">Seg</span>
+                    </div>
+                </div>
+            `;
             
-            // Efecto visual de actualización (opcional)
-            countdownElement.style.transform = 'scale(1.05)';
+            // Efecto visual de actualización
+            countdownElement.style.transform = 'scale(1.02)';
             setTimeout(() => {
                 countdownElement.style.transform = 'scale(1)';
             }, 200);
@@ -200,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const intervalId = setInterval(updateCountdown, 1000);
         
         // Guardar el interval ID para limpiarlo si es necesario
-        window.countdownInterval = intervalId;
+        activeIntervals.push(intervalId);
     }
     
     function initOrganigramaPage() {
@@ -258,8 +322,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        // Animación para los números de nivel (solo en desktop)
-        const levelIndicators = document.querySelectorAll('.absolute.w-12.h-12');
+        // Animación para los números de nivel
+        const levelIndicators = document.querySelectorAll('.level-indicator');
         levelIndicators.forEach(indicator => {
             indicator.addEventListener('mouseenter', () => {
                 indicator.style.transform = 'scale(1.2)';
@@ -270,34 +334,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 indicator.style.transform = 'scale(1)';
             });
         });
-        
-        // Efecto de conexión visual entre niveles
-        const sections = document.querySelectorAll('.organigrama-section');
-        sections.forEach((section, index) => {
-            section.addEventListener('mouseenter', () => {
-                // Resaltar la línea de tiempo al pasar sobre una sección
-                const timeline = document.querySelector('.absolute.left-1/2.w-1.h-full');
-                if (timeline) {
-                    timeline.style.background = 'linear-gradient(to bottom, #06b6d4, #a855f7)';
-                    timeline.style.transition = 'all 0.3s ease';
-                }
-            });
-        });
     }
     
     function initNewsPage() {
         console.log('News page initialized');
+        
+        // Animación para las tarjetas de noticias
+        const newsCards = document.querySelectorAll('.news-card');
+        newsCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
     }
     
     function initContactPage() {
         console.log('Contact page initialized');
+        
         const form = document.querySelector('form');
         if (form) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                alert('Mensaje enviado correctamente');
+                
+                // Animación de envío
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Enviando...';
+                btn.disabled = true;
+                
+                // Simular envío
+                setTimeout(() => {
+                    alert('¡Mensaje enviado correctamente! Te contactaremos pronto.');
+                    form.reset();
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 1500);
             });
         }
+        
+        // Validación en tiempo real
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.value.length > 0) {
+                    input.classList.add('border-green-500');
+                    input.classList.remove('border-red-500');
+                } else {
+                    input.classList.remove('border-green-500');
+                    input.classList.add('border-red-500');
+                }
+            });
+        });
     }
     
     // Manejar botones atrás/adelante del navegador
@@ -312,9 +404,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar página inicial basada en hash o home por defecto
     const initialPage = window.location.hash.replace('#', '') || 'home';
     navigateTo(initialPage);
+    
+    // Cerrar menú móvil al hacer click fuera
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.classList.contains('hidden') && 
+            !mobileMenu.contains(e.target) && 
+            !menuBtn.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('mobile-menu-enter');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        }
+    });
+    
+    // Manejar resize de ventana
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) { // md breakpoint
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('mobile-menu-enter');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
+    });
 });
 
-// Limpiar intervalos cuando se cambia de página (opcional, pero recomendado)
+// Limpiar intervalos cuando se cambia de página
 window.addEventListener('beforeunload', () => {
     if (window.countdownInterval) {
         clearInterval(window.countdownInterval);

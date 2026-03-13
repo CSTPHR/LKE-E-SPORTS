@@ -46,6 +46,107 @@
         .page-transition {
             transition: opacity 0.3s ease-in-out;
         }
+
+        /* Efecto de brillo dinámico para la imagen del logo */
+        @keyframes logoShine {
+            0% {
+                filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0)) brightness(1);
+            }
+            20% {
+                filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)) brightness(1.2);
+            }
+            40% {
+                filter: drop-shadow(0 0 25px rgba(6, 182, 212, 1)) brightness(1.3);
+            }
+            60% {
+                filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)) brightness(1.2);
+            }
+            80% {
+                filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.5)) brightness(1.1);
+            }
+            100% {
+                filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0)) brightness(1);
+            }
+        }
+
+        .logo-shine {
+            animation: logoShine 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto hover para el logo */
+        .logo-container:hover .logo-shine {
+            animation-duration: 1.5s;
+            transform: scale(1.05);
+        }
+
+        /* Efecto de brillo que recorre la imagen */
+        @keyframes lightTrail {
+            0% {
+                mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
+                -webkit-mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
+                mask-size: 200% 200%;
+                -webkit-mask-size: 200% 200%;
+                mask-position: 0% 0%;
+                -webkit-mask-position: 0% 0%;
+            }
+            100% {
+                mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
+                -webkit-mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
+                mask-size: 200% 200%;
+                -webkit-mask-size: 200% 200%;
+                mask-position: 100% 100%;
+                -webkit-mask-position: 100% 100%;
+            }
+        }
+
+        .logo-light-trail {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-light-trail::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                transparent 30%, 
+                rgba(6, 182, 212, 0.3) 45%, 
+                rgba(6, 182, 212, 0.5) 50%, 
+                rgba(6, 182, 212, 0.3) 55%, 
+                transparent 70%, 
+                transparent 100%);
+            animation: lightTrail 3s linear infinite;
+            pointer-events: none;
+        }
+
+        /* Versión móvil del logo */
+        @media (max-width: 768px) {
+            .logo-shine {
+                width: 80px;
+                height: 70px;
+            }
+        }
+
+        /* Animación para el menú móvil */
+        .mobile-menu-enter {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body class="bg-gradient-custom min-h-screen text-white">
@@ -54,9 +155,9 @@
     <nav class="bg-black/50 backdrop-blur-lg border-b border-cyan-500/30 fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="w-18 h-16 object-contain">
+                <!-- Logo con efecto dinámico (SOLO LA IMAGEN) -->
+                <div class="logo-container flex items-center">
+                    <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-24 h-20 md:w-32 md:h-28 lg:w-40 lg:h-36 object-contain">
                 </div>
 
                 <!-- Desktop Menu -->
@@ -77,7 +178,7 @@
                 </div>
 
                 <!-- Mobile menu button -->
-                <button class="md:hidden text-white text-2xl" id="menuBtn">
+                <button class="md:hidden text-white text-2xl focus:outline-none" id="menuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -85,54 +186,72 @@
 
         <!-- Mobile Menu -->
         <div class="md:hidden hidden" id="mobileMenu">
-            <div class="px-4 py-3 space-y-3 bg-black/90 backdrop-blur-lg">
-                <a href="#" data-page="home" class="nav-link block text-gray-300 hover:text-cyan-400 py-2">INICIO</a>
-                <a href="#" data-page="team" class="nav-link block text-gray-300 hover:text-cyan-400 py-2">EQUIPOS</a>
-                <a href="#" data-page="tournaments" class="nav-link block text-gray-300 hover:text-cyan-400 py-2">TORNEOS</a>
-                <a href="#" data-page="organigrama" class="nav-link block text-gray-300 hover:text-cyan-400 py-2">ORGANIGRAMA</a>
-                <a href="#" data-page="news" class="nav-link block text-gray-300 hover:text-cyan-400 py-2">NOTICIAS</a>
-                <a href="#" data-page="contact" class="nav-link block text-gray-300 hover:text-cyan-400 py-2">CONTACTO</a>
+            <div class="px-4 py-3 space-y-3 bg-black/90 backdrop-blur-lg border-t border-cyan-500/30">
+                <a href="#" data-page="home" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">INICIO</a>
+                <a href="#" data-page="team" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">EQUIPOS</a>
+                <a href="#" data-page="tournaments" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">TORNEOS</a>
+                <a href="#" data-page="organigrama" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">ORGANIGRAMA</a>
+                <a href="#" data-page="news" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">NOTICIAS</a>
+                <a href="#" data-page="contact" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">CONTACTO</a>
+                
+                <!-- Social Icons en móvil -->
+                <div class="flex space-x-6 pt-4 pb-2 justify-center border-t border-gray-800 mt-4">
+                    <a href="https://www.tiktok.com/@elekaesports" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/lke_esports" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/tfdHjg94u5" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-discord"></i></a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main id="content" class="pt-20 page-transition">
+    <main id="content" class="pt-20 page-transition min-h-screen">
         <!-- El contenido se cargará dinámicamente aquí -->
+        <div class="container mx-auto px-4 py-20 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6">
+                <span class="text-cyan-400">LKE</span>
+                <span class="text-white">ESPORTS</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8">Cargando contenido...</p>
+            <div class="animate-pulse-slow">
+                <i class="fas fa-spinner fa-spin text-4xl text-cyan-400"></i>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-black/80 border-t border-cyan-500/30 mt-auto">
         <div class="container mx-auto px-4 py-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
+                <div class="text-center md:text-left">
                     <h3 class="text-2xl font-black mb-4">
                         <span class="text-cyan-400">LKE</span>
                         <span class="text-white">ESPORTS</span>
                     </h3>
-                    <p class="text-gray-400">Organización Competitiva en Multijugador de Call of Duty: Mobile.</p>
+                    <p class="text-gray-400 text-sm md:text-base">Organización Competitiva en Multijugador de Call of Duty: Mobile.</p>
                 </div>
-                <div>
+                <div class="text-center md:text-left">
                     <h4 class="font-bold text-lg mb-4 text-cyan-400">Enlaces rápidos</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" data-page="team" class="hover:text-cyan-400 transition-colors">Nuestro equipo</a></li>
-                        <li><a href="#" data-page="tournaments" class="hover:text-cyan-400 transition-colors">Próximos torneos</a></li>
-                        <li><a href="#" data-page="organigrama" class="hover:text-cyan-400 transition-colors">Organigrama</a></li>
-                        <li><a href="#" data-page="news" class="hover:text-cyan-400 transition-colors">Noticias</a></li>
-                        <li><a href="#" data-page="contact" class="hover:text-cyan-400 transition-colors">Contacto</a></li>
+                        <li><a href="#" data-page="team" class="hover:text-cyan-400 transition-colors block md:inline-block">Nuestro equipo</a></li>
+                        <li><a href="#" data-page="tournaments" class="hover:text-cyan-400 transition-colors block md:inline-block">Próximos torneos</a></li>
+                        <li><a href="#" data-page="organigrama" class="hover:text-cyan-400 transition-colors block md:inline-block">Organigrama</a></li>
+                        <li><a href="#" data-page="news" class="hover:text-cyan-400 transition-colors block md:inline-block">Noticias</a></li>
+                        <li><a href="#" data-page="contact" class="hover:text-cyan-400 transition-colors block md:inline-block">Contacto</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="text-center md:text-left">
                     <h4 class="font-bold text-lg mb-4 text-cyan-400">Newsletter</h4>
-                    <p class="text-gray-400 mb-3">Recibe las últimas noticias</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Tu email" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 flex-1">
-                        <button class="bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded-r-lg transition-colors font-semibold">Suscribir</button>
+                    <p class="text-gray-400 mb-3 text-sm md:text-base">Recibe las últimas noticias</p>
+                    <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-2">
+                        <input type="email" placeholder="Tu email" class="bg-gray-800 text-white px-4 py-2 rounded-lg sm:rounded-l-lg sm:rounded-r-none md:rounded-lg lg:rounded-l-lg lg:rounded-r-none focus:outline-none focus:ring-2 focus:ring-cyan-400 flex-1">
+                        <button class="bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded-lg sm:rounded-r-lg sm:rounded-l-none md:rounded-lg lg:rounded-r-lg lg:rounded-l-none transition-colors font-semibold whitespace-nowrap">Suscribir</button>
                     </div>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-4 text-center text-gray-400">
-                <p>&copy; 2026 LKE E-SPORTS. Todos los derechos reservados. <br> Creado por WEZOPLAY / +584242618284</p>
+                <p class="text-sm md:text-base">&copy; 2026 LKE E-SPORTS. Todos los derechos reservados.</p>
+                <p class="text-xs md:text-sm mt-1">Creado por WEZOPLAY / +584242618284</p>
             </div>
         </div>
     </footer>
