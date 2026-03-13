@@ -135,6 +135,72 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function initTournamentsPage() {
         console.log('Tournaments page initialized');
+        
+        // Iniciar contador regresivo para el torneo principal
+        startCountdown();
+    }
+    
+    /**
+     * Función para iniciar el contador regresivo del torneo Xylon League
+     * Fecha objetivo: 23 de marzo 2026 - 22:00 (10:00 PM) hora Venezuela (UTC-4)
+     */
+    function startCountdown() {
+        // Buscar el elemento del contador
+        const countdownElement = document.querySelector('.countdown');
+        
+        // Si no existe el contador en la página actual, salir
+        if (!countdownElement) return;
+        
+        // Establecer la fecha objetivo: 23 de marzo 2026, 22:00 hora Venezuela
+        // Venezuela usa UTC-4 sin horario de verano
+        const targetDate = new Date('2026-03-23T22:00:00-04:00');
+        
+        // Función para actualizar el contador
+        function updateCountdown() {
+            // Obtener la fecha y hora actual en tiempo real
+            const now = new Date();
+            
+            // Calcular la diferencia en milisegundos
+            const difference = targetDate - now;
+            
+            // Si la fecha ya pasó, mostrar mensaje
+            if (difference <= 0) {
+                countdownElement.textContent = '¡TORNEO INICIADO!';
+                countdownElement.classList.add('text-green-400');
+                clearInterval(intervalId);
+                return;
+            }
+            
+            // Calcular días, horas, minutos y segundos
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            // Formatear el texto del contador con 2 dígitos para cada valor
+            const formattedDays = String(days).padStart(2, '0');
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+            
+            // Actualizar el elemento del DOM
+            countdownElement.textContent = `${formattedDays}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`;
+            
+            // Efecto visual de actualización (opcional)
+            countdownElement.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                countdownElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // Actualizar inmediatamente
+        updateCountdown();
+        
+        // Actualizar cada segundo
+        const intervalId = setInterval(updateCountdown, 1000);
+        
+        // Guardar el interval ID para limpiarlo si es necesario
+        window.countdownInterval = intervalId;
     }
     
     function initOrganigramaPage() {
@@ -246,4 +312,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar página inicial basada en hash o home por defecto
     const initialPage = window.location.hash.replace('#', '') || 'home';
     navigateTo(initialPage);
+});
+
+// Limpiar intervalos cuando se cambia de página (opcional, pero recomendado)
+window.addEventListener('beforeunload', () => {
+    if (window.countdownInterval) {
+        clearInterval(window.countdownInterval);
+    }
 });
