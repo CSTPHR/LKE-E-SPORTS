@@ -160,9 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
         animateOnScroll(); // Ejecutar una vez al cargar
     }
     
+    // ==================== PÁGINA DE EQUIPOS MEJORADA ====================
     function initTeamPage() {
         console.log('Team page initialized');
         
+        // 1. Efectos hover para las tarjetas de jugadores
         const playerCards = document.querySelectorAll('.player-card');
         playerCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -176,8 +178,132 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.zIndex = '1';
             });
         });
+        
+        // 2. Botón flotante "Volver arriba"
+        initScrollTopButton();
+        
+        // 3. Smooth scroll para enlaces rápidos de equipos
+        initTeamQuickLinks();
+        
+        // 4. Animación de entrada para las tarjetas
+        animateTeamCards();
+        
+        // 5. Detectar si hay un hash en la URL para scroll a equipo específico
+        handleTeamHash();
     }
     
+    // Función para el botón de volver arriba
+    function initScrollTopButton() {
+        // Crear el botón si no existe
+        let scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        if (!scrollTopBtn) {
+            scrollTopBtn = document.createElement('button');
+            scrollTopBtn.id = 'scrollTopBtn';
+            scrollTopBtn.className = 'fixed bottom-6 right-6 bg-cyan-500 hover:bg-cyan-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all opacity-0 invisible z-50';
+            scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up text-xl"></i>';
+            document.body.appendChild(scrollTopBtn);
+        }
+        
+        // Función para mostrar/ocultar según scroll
+        const toggleScrollTop = () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('show');
+                scrollTopBtn.style.opacity = '1';
+                scrollTopBtn.style.visibility = 'visible';
+            } else {
+                scrollTopBtn.classList.remove('show');
+                scrollTopBtn.style.opacity = '0';
+                scrollTopBtn.style.visibility = 'hidden';
+            }
+        };
+        
+        // Evento scroll
+        window.addEventListener('scroll', toggleScrollTop);
+        
+        // Evento click
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Ejecutar una vez al cargar
+        toggleScrollTop();
+    }
+    
+    // Función para smooth scroll en enlaces rápidos
+    function initTeamQuickLinks() {
+        const quickLinks = document.querySelectorAll('.team-quick-link');
+        
+        quickLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                
+                if (targetId && targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Calcular offset para el navbar fijo
+                        const navbarHeight = 80; // altura del navbar
+                        const targetPosition = targetElement.offsetTop - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Actualizar URL sin recargar
+                        history.pushState(null, '', targetId);
+                    }
+                }
+            });
+        });
+    }
+    
+    // Función para animar las tarjetas al cargar
+    function animateTeamCards() {
+        const cards = document.querySelectorAll('.player-card');
+        
+        cards.forEach((card, index) => {
+            // Estado inicial
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            // Animación escalonada
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 + (index * 50)); // 100ms, 150ms, 200ms, etc.
+        });
+    }
+    
+    // Función para manejar hash en URL (ej: #legacy)
+    function handleTeamHash() {
+        const hash = window.location.hash;
+        
+        if (hash && hash !== '#') {
+            // Pequeño delay para asegurar que el DOM esté cargado
+            setTimeout(() => {
+                const targetElement = document.querySelector(hash);
+                
+                if (targetElement) {
+                    const navbarHeight = 80;
+                    const targetPosition = targetElement.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 500);
+        }
+    }
+    
+    // ==================== TORNEOS ====================
     function initTournamentsPage() {
         console.log('Tournaments page initialized');
         
@@ -197,18 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!countdownElement) return;
         
         // Establecer la fecha objetivo: 23 de marzo 2026, 22:00 hora Venezuela
-        // Venezuela usa UTC-4 sin horario de verano
         const targetDate = new Date('2026-03-23T22:00:00-04:00');
         
         // Función para actualizar el contador
         function updateCountdown() {
-            // Obtener la fecha y hora actual en tiempo real
             const now = new Date();
-            
-            // Calcular la diferencia en milisegundos
             const difference = targetDate - now;
             
-            // Si la fecha ya pasó, mostrar mensaje
             if (difference <= 0) {
                 countdownElement.innerHTML = '<span class="text-green-400 font-bold">¡TORNEO INICIADO!</span>';
                 countdownElement.classList.add('text-green-400');
@@ -216,19 +337,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Calcular días, horas, minutos y segundos
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
             
-            // Formatear el texto del contador con 2 dígitos para cada valor
             const formattedDays = String(days).padStart(2, '0');
             const formattedHours = String(hours).padStart(2, '0');
             const formattedMinutes = String(minutes).padStart(2, '0');
             const formattedSeconds = String(seconds).padStart(2, '0');
             
-            // Actualizar el elemento del DOM con formato responsive
             countdownElement.innerHTML = `
                 <div class="flex flex-wrap justify-center gap-2 md:gap-4 text-xl md:text-4xl font-bold">
                     <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
@@ -250,30 +368,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             
-            // Efecto visual de actualización
             countdownElement.style.transform = 'scale(1.02)';
             setTimeout(() => {
                 countdownElement.style.transform = 'scale(1)';
             }, 200);
         }
         
-        // Actualizar inmediatamente
         updateCountdown();
-        
-        // Actualizar cada segundo
         const intervalId = setInterval(updateCountdown, 1000);
-        
-        // Guardar el interval ID para limpiarlo si es necesario
         activeIntervals.push(intervalId);
     }
     
+    // ==================== ORGANIGRAMA ====================
     function initOrganigramaPage() {
         console.log('Organigrama page initialized');
         
-        // Efectos hover mejorados para las tarjetas
         const staffCards = document.querySelectorAll('.staff-card');
         staffCards.forEach(card => {
-            // Efecto de entrada
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             
@@ -283,12 +394,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.transform = 'translateY(0)';
             }, 100);
             
-            // Hover effects
             card.addEventListener('mouseenter', () => {
                 card.classList.add('shadow-2xl', 'shadow-cyan-500/20');
                 card.style.transform = 'scale(1.05) translateY(-5px)';
                 
-                // Efecto de brillo en el icono
                 const icon = card.querySelector('.rounded-full');
                 if (icon) {
                     icon.style.transform = 'scale(1.1) rotate(5deg)';
@@ -307,7 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        // Animación para los badges de roles
         const roleBadges = document.querySelectorAll('.role-badge');
         roleBadges.forEach(badge => {
             badge.addEventListener('mouseenter', () => {
@@ -321,25 +429,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 badge.style.backgroundColor = 'transparent';
             });
         });
-        
-        // Animación para los números de nivel
-        const levelIndicators = document.querySelectorAll('.level-indicator');
-        levelIndicators.forEach(indicator => {
-            indicator.addEventListener('mouseenter', () => {
-                indicator.style.transform = 'scale(1.2)';
-                indicator.style.transition = 'all 0.3s ease';
-            });
-            
-            indicator.addEventListener('mouseleave', () => {
-                indicator.style.transform = 'scale(1)';
-            });
-        });
     }
     
+    // ==================== NOTICIAS ====================
     function initNewsPage() {
         console.log('News page initialized');
         
-        // Animación para las tarjetas de noticias
         const newsCards = document.querySelectorAll('.news-card');
         newsCards.forEach((card, index) => {
             card.style.opacity = '0';
@@ -353,6 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // ==================== CONTACTO ====================
     function initContactPage() {
         console.log('Contact page initialized');
         
@@ -361,13 +457,11 @@ document.addEventListener('DOMContentLoaded', () => {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                // Animación de envío
                 const btn = form.querySelector('button[type="submit"]');
                 const originalText = btn.textContent;
                 btn.textContent = 'Enviando...';
                 btn.disabled = true;
                 
-                // Simular envío
                 setTimeout(() => {
                     alert('¡Mensaje enviado correctamente! Te contactaremos pronto.');
                     form.reset();
@@ -377,7 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Validación en tiempo real
         const inputs = document.querySelectorAll('input, textarea');
         inputs.forEach(input => {
             input.addEventListener('input', () => {
@@ -420,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Manejar resize de ventana
     window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) { // md breakpoint
+        if (window.innerWidth >= 768) {
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('mobile-menu-enter');
