@@ -98,6 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'tournaments':
                 initTournamentsPage();
                 break;
+            case 'organigrama':
+                initOrganigramaPage();
+                break;
             case 'news':
                 initNewsPage();
                 break;
@@ -110,40 +113,118 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scripts específicos de cada página
     function initHomePage() {
         console.log('Home page initialized');
-        // Aquí puedes agregar animaciones específicas para el home
     }
     
     function initTeamPage() {
         console.log('Team page initialized');
-        // Animaciones para hover en cards de jugadores
+        
         const playerCards = document.querySelectorAll('.player-card');
         playerCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.classList.add('neon-border');
+                card.classList.add('neon-border', 'scale-105');
+                card.style.transition = 'all 0.3s ease';
+                card.style.zIndex = '10';
             });
+            
             card.addEventListener('mouseleave', () => {
-                card.classList.remove('neon-border');
+                card.classList.remove('neon-border', 'scale-105');
+                card.style.zIndex = '1';
             });
         });
     }
     
     function initTournamentsPage() {
         console.log('Tournaments page initialized');
-        // Contador regresivo para torneos
-        const countdowns = document.querySelectorAll('.countdown');
-        countdowns.forEach(countdown => {
-            // Lógica de countdown aquí
+    }
+    
+    function initOrganigramaPage() {
+        console.log('Organigrama page initialized');
+        
+        // Efectos hover mejorados para las tarjetas
+        const staffCards = document.querySelectorAll('.staff-card');
+        staffCards.forEach(card => {
+            // Efecto de entrada
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Hover effects
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-2xl', 'shadow-cyan-500/20');
+                card.style.transform = 'scale(1.05) translateY(-5px)';
+                
+                // Efecto de brillo en el icono
+                const icon = card.querySelector('.rounded-full');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.transition = 'all 0.3s ease';
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-2xl', 'shadow-cyan-500/20');
+                card.style.transform = 'scale(1) translateY(0)';
+                
+                const icon = card.querySelector('.rounded-full');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0)';
+                }
+            });
+        });
+        
+        // Animación para los badges de roles
+        const roleBadges = document.querySelectorAll('.role-badge');
+        roleBadges.forEach(badge => {
+            badge.addEventListener('mouseenter', () => {
+                badge.style.transform = 'scale(1.1)';
+                badge.style.backgroundColor = 'rgba(6, 182, 212, 0.3)';
+                badge.style.transition = 'all 0.2s ease';
+            });
+            
+            badge.addEventListener('mouseleave', () => {
+                badge.style.transform = 'scale(1)';
+                badge.style.backgroundColor = 'transparent';
+            });
+        });
+        
+        // Animación para los números de nivel (solo en desktop)
+        const levelIndicators = document.querySelectorAll('.absolute.w-12.h-12');
+        levelIndicators.forEach(indicator => {
+            indicator.addEventListener('mouseenter', () => {
+                indicator.style.transform = 'scale(1.2)';
+                indicator.style.transition = 'all 0.3s ease';
+            });
+            
+            indicator.addEventListener('mouseleave', () => {
+                indicator.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Efecto de conexión visual entre niveles
+        const sections = document.querySelectorAll('.organigrama-section');
+        sections.forEach((section, index) => {
+            section.addEventListener('mouseenter', () => {
+                // Resaltar la línea de tiempo al pasar sobre una sección
+                const timeline = document.querySelector('.absolute.left-1/2.w-1.h-full');
+                if (timeline) {
+                    timeline.style.background = 'linear-gradient(to bottom, #06b6d4, #a855f7)';
+                    timeline.style.transition = 'all 0.3s ease';
+                }
+            });
         });
     }
     
     function initNewsPage() {
         console.log('News page initialized');
-        // Efecto de carga para noticias
     }
     
     function initContactPage() {
         console.log('Contact page initialized');
-        // Validación de formulario
         const form = document.querySelector('form');
         if (form) {
             form.addEventListener('submit', (e) => {
@@ -165,13 +246,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar página inicial basada en hash o home por defecto
     const initialPage = window.location.hash.replace('#', '') || 'home';
     navigateTo(initialPage);
-    
-    // Efecto parallax en scroll
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
 });
