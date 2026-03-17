@@ -11,8 +11,6 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <!-- Columna izquierda - Texto -->
             <div class="text-center lg:text-left">
-                <!-- Badge ELIMINADO -->
-                
                 <!-- Título principal actualizado -->
                 <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6">
                     <span class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 delay-400 text-white">DOMINA EL</span>
@@ -41,34 +39,34 @@
             <!-- Columna derecha - Estadísticas -->
             <div class="mt-8 lg:mt-0">
                 <div class="grid grid-cols-2 gap-3 md:gap-6 max-w-md mx-auto lg:max-w-none">
-                    <!-- Torneos -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-400">
+                    <!-- ===== TARJETA 1: TORNEOS ===== -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-400" data-stat="tournaments">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
-                            <span class="counter" data-target="15">0</span>+
+                            +<span class="counter" data-target="15">0</span>
                         </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Torneos</div>
                     </div>
                     
-                    <!-- Jugadores -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-600">
+                    <!-- ===== TARJETA 2: JUGADORES ===== -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-600" data-stat="players">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
                             <span class="counter" data-target="89">0</span>
                         </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Jugadores</div>
                     </div>
                     
-                    <!-- Títulos -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-800">
+                    <!-- ===== TARJETA 3: TÍTULOS ===== -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-800" data-stat="titles">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
-                            <span class="counter" data-target="10">0</span>+
+                            +<span class="counter" data-target="10">0</span>
                         </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Títulos</div>
                     </div>
                     
-                    <!-- Seguidores -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-1000">
+                    <!-- ===== TARJETA 4: SEGUIDORES - CORREGIDA CON MISMO HOVER ===== -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-1000" data-stat="followers">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
-                            <span class="counter" data-target="2000">0</span>+
+                            +<span class="counter" data-target="2">0</span><span class="counter-suffix text-cyan-400">K</span>
                         </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Seguidores</div>
                     </div>
@@ -172,5 +170,27 @@
         .hover\:scale-105:hover {
             transform: scale(1.02);
         }
+    }
+    
+    /* Estilo unificado para el hover de todas las stats cards */
+    .stats-card {
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .stats-card:hover {
+        border-color: #22d3ee;
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+    }
+    
+    .stats-card:hover .text-cyan-400 {
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+    }
+    
+    /* Asegurar que el sufijo K herede los mismos estilos hover */
+    .stats-card:hover .counter-suffix {
+        color: #22d3ee;
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
     }
 </style>

@@ -1,8 +1,12 @@
-// main.js - Sistema de navegación dinámica para LKE E-SPORTS
-// VERSIÓN CORREGIDA: Hero reanimado y navegación funcionando
+// ============================================
+// MAIN.JS - SISTEMA DE NAVEGACIÓN DINÁMICA PARA LKE E-SPORTS
+// VERSIÓN DEFINITIVA CORREGIDA - HOVER UNIFICADO PARA TODAS LAS FICHAS
+// ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== MANEJO DEL SPLASH SCREEN =====
+    // ============================================
+    // SECCIÓN 1: MANEJO DEL SPLASH SCREEN
+    // ============================================
     const splashScreen = document.getElementById('splash-screen');
     const mainContent = document.getElementById('main-content');
     
@@ -57,7 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, minSplashTime + 500);
 
-    // Elementos del DOM
+    // ============================================
+    // SECCIÓN 2: ELEMENTOS DEL DOM Y ESTADO GLOBAL
+    // ============================================
     const content = document.getElementById('content');
     const mobileMenu = document.getElementById('mobileMenu');
     const menuBtn = document.getElementById('menuBtn');
@@ -72,7 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable para el observer de scroll reveal
     let scrollObserver = null;
     
-    // Toggle menú móvil
+    // ============================================
+    // SECCIÓN 3: MANEJO DEL MENÚ MÓVIL
+    // ============================================
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
@@ -107,6 +115,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Cerrar menú móvil al hacer click fuera
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.classList.contains('hidden') && 
+            !mobileMenu.contains(e.target) && 
+            !menuBtn.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('mobile-menu-enter');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        }
+    });
+    
+    // Manejar resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('mobile-menu-enter');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
+    });
+    
+    // ============================================
+    // SECCIÓN 4: FUNCIONES UTILITARIAS
+    // ============================================
+    
     // Limpiar intervalos
     function clearAllIntervals() {
         activeIntervals.forEach(interval => {
@@ -115,7 +153,31 @@ document.addEventListener('DOMContentLoaded', () => {
         activeIntervals = [];
     }
     
-    // ===== FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME =====
+    // Actualizar título de la página
+    function updatePageTitle(page) {
+        const titles = {
+            'home': 'LKE E-SPORTS | Inicio',
+            'team': 'LKE E-SPORTS | Equipos Competitivos',
+            'tournaments': 'LKE E-SPORTS | Torneos',
+            'organigrama': 'LKE E-SPORTS | Organigrama',
+            'news': 'LKE E-SPORTS | Noticias',
+            'contact': 'LKE E-SPORTS | Contacto'
+        };
+        document.title = titles[page] || 'LKE E-SPORTS';
+    }
+    
+    // Obtener página desde la URL
+    function getPageFromPath() {
+        const path = window.location.pathname;
+        if (path === '/' || path === '') return 'home';
+        const page = path.substring(1);
+        const validPages = ['home', 'team', 'tournaments', 'organigrama', 'news', 'contact'];
+        return validPages.includes(page) ? page : 'home';
+    }
+    
+    // ============================================
+    // SECCIÓN 5: FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME
+    // ============================================
     function resetHomeElements() {
         // Resetear hero elements
         const heroElements = document.querySelectorAll(
@@ -137,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Resetear stats cards
+        // Resetear stats cards - TODAS reciben el mismo tratamiento
         const statsCards = document.querySelectorAll('.stats-card');
         statsCards.forEach(card => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
@@ -155,10 +217,93 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
         });
         
-        console.log('Elementos del home reseteados');
+        console.log('Elementos del home reseteados - Stats cards:', statsCards.length);
     }
     
-    // ===== SCROLL REVEAL MEJORADO =====
+    // ============================================
+    // SECCIÓN 6: FUNCIÓN PARA APLICAR EFECTO NEON A STATS CARDS
+    // ============================================
+    function applyNeonEffectToStatsCards() {
+        const allStatsCards = document.querySelectorAll('.stats-card');
+        
+        allStatsCards.forEach((card, index) => {
+            // Aplicar efecto neon con un pequeño delay entre cada tarjeta
+            setTimeout(() => {
+                card.classList.add('neon-border');
+                
+                // Quitar el efecto después de 1 segundo
+                setTimeout(() => {
+                    card.classList.remove('neon-border');
+                }, 1000);
+            }, index * 150); // Delay de 150ms entre cada tarjeta para efecto cascada
+        });
+        
+        console.log('Efecto neon aplicado a', allStatsCards.length, 'stats cards');
+    }
+    
+    // ============================================
+    // SECCIÓN 7: FUNCIÓN PARA UNIFICAR COMPORTAMIENTO HOVER
+    // ============================================
+    function unifyStatsCardsHover() {
+        const statsCards = document.querySelectorAll('.stats-card');
+        
+        statsCards.forEach(card => {
+            // Remover cualquier evento hover previo
+            card.removeEventListener('mouseenter', handleStatsCardHover);
+            card.removeEventListener('mouseleave', handleStatsCardLeave);
+            
+            // Añadir nuevos eventos hover unificados
+            card.addEventListener('mouseenter', handleStatsCardHover);
+            card.addEventListener('mouseleave', handleStatsCardLeave);
+        });
+        
+        console.log('Hover unificado aplicado a', statsCards.length, 'stats cards');
+    }
+    
+    function handleStatsCardHover(e) {
+        const card = e.currentTarget;
+        card.style.transition = 'all 0.3s ease-in-out';
+        card.style.transform = 'scale(1.05)';
+        card.style.borderColor = '#22d3ee';
+        card.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+        card.style.boxShadow = '0 0 15px rgba(34, 211, 238, 0.3)';
+        
+        // Aplicar efecto al texto
+        const numberElement = card.querySelector('.text-cyan-400');
+        if (numberElement) {
+            numberElement.style.textShadow = '0 0 10px rgba(34, 211, 238, 0.5)';
+        }
+        
+        // Aplicar efecto al sufijo si existe
+        const suffixElement = card.querySelector('.counter-suffix');
+        if (suffixElement) {
+            suffixElement.style.color = '#22d3ee';
+            suffixElement.style.textShadow = '0 0 10px rgba(34, 211, 238, 0.5)';
+        }
+    }
+    
+    function handleStatsCardLeave(e) {
+        const card = e.currentTarget;
+        card.style.transform = '';
+        card.style.borderColor = '';
+        card.style.backgroundColor = '';
+        card.style.boxShadow = '';
+        
+        const numberElement = card.querySelector('.text-cyan-400');
+        if (numberElement) {
+            numberElement.style.textShadow = '';
+        }
+        
+        const suffixElement = card.querySelector('.counter-suffix');
+        if (suffixElement) {
+            suffixElement.style.color = '';
+            suffixElement.style.textShadow = '';
+        }
+    }
+    
+    // ============================================
+    // SECCIÓN 8: SCROLL REVEAL MEJORADO
+    // ============================================
     function initScrollReveal() {
         // Desconectar observer anterior
         if (scrollObserver) {
@@ -176,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Configuración del observer
         const observerOptions = {
-            threshold: 0.1, // 10% del elemento visible
+            threshold: 0.1,
             rootMargin: '0px'
         };
         
@@ -197,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         el.classList.contains('animate-from-bottom')) {
                         
                         el.style.animation = 'none';
-                        el.offsetHeight; // Forzar reflow
+                        el.offsetHeight;
                         
                         if (el.classList.contains('animate-from-top')) {
                             el.style.animation = 'slideFromTop 0.8s ease-out forwards';
@@ -210,55 +355,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                     
-                    // Efecto especial para stats cards
+                    // Efecto especial para stats cards - APLICAR A TODAS POR IGUAL
                     if (el.classList.contains('stats-card')) {
                         el.classList.add('neon-border');
                         setTimeout(() => {
                             el.classList.remove('neon-border');
                         }, 1000);
-                        
-                        // Reiniciar contadores si estamos en home
-                        if (window.counterManager) {
-                            window.counterManager.animateAll();
-                        }
-                    }
-                    
-                    console.log('Elemento visible:', el.className);
-                    
-                } else {
-                    // Cuando el elemento NO es visible, preparamos para reanimar
-                    const el = entry.target;
-                    
-                    // No ocultar elementos que ya no existen
-                    if (!document.body.contains(el)) return;
-                    
-                    // Aplicar clases de ocultamiento según el tipo
-                    if (el.classList.contains('stats-card') || 
-                        el.classList.contains('news-card') || 
-                        el.classList.contains('section-title') || 
-                        el.classList.contains('section-subtitle')) {
-                        
-                        el.classList.add('opacity-0', 'translate-y-[30px]');
-                    }
-                    
-                    if (el.classList.contains('animate-from-top')) {
-                        el.classList.add('opacity-0', 'translate-y-[-30px]');
-                        el.style.animation = 'none';
-                    }
-                    
-                    if (el.classList.contains('animate-from-left')) {
-                        el.classList.add('opacity-0', 'translate-x-[-50px]');
-                        el.style.animation = 'none';
-                    }
-                    
-                    if (el.classList.contains('animate-from-right')) {
-                        el.classList.add('opacity-0', 'translate-x-[50px]');
-                        el.style.animation = 'none';
-                    }
-                    
-                    if (el.classList.contains('animate-from-bottom')) {
-                        el.classList.add('opacity-0', 'translate-y-[30px]');
-                        el.style.animation = 'none';
                     }
                 }
             });
@@ -277,7 +379,9 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Scroll reveal inicializado con', revealElements.length, 'elementos');
     }
     
-    // ===== NAVEGACIÓN CORREGIDA =====
+    // ============================================
+    // SECCIÓN 9: FUNCIÓN PRINCIPAL DE NAVEGACIÓN
+    // ============================================
     async function navigateTo(page) {
         console.log('Navegando a:', page);
         
@@ -325,19 +429,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.style.opacity = '1';
                 currentPage = page;
                 
-                // IMPORTANTE: Resetear elementos si es home
+                // ===== TRATAMIENTO ESPECIAL PARA HOME =====
                 if (page === 'home') {
-                    // Pequeño delay para asegurar que el DOM se actualizó
                     setTimeout(() => {
                         resetHomeElements();
-                        // Inicializar scripts y observer
                         initializePageScripts(page);
                         initScrollReveal();
                         
-                        // Animar contadores
-                        if (window.counterManager) {
-                            window.counterManager.animateAll();
-                        }
+                        // UNIFICAR COMPORTAMIENTO HOVER DE STATS CARDS
+                        unifyStatsCardsHover();
+                        
+                        // FORZAR EL EFECTO NEON EN TODAS LAS STATS CARDS
+                        setTimeout(() => {
+                            applyNeonEffectToStatsCards();
+                            
+                            if (window.counterManager) {
+                                window.counterManager.animateAll();
+                            }
+                        }, 300);
+                        
                     }, 100);
                 } else {
                     initializePageScripts(page);
@@ -374,26 +484,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    function updatePageTitle(page) {
-        const titles = {
-            'home': 'LKE E-SPORTS | Inicio',
-            'team': 'LKE E-SPORTS | Equipos Competitivos',
-            'tournaments': 'LKE E-SPORTS | Torneos',
-            'organigrama': 'LKE E-SPORTS | Organigrama',
-            'news': 'LKE E-SPORTS | Noticias',
-            'contact': 'LKE E-SPORTS | Contacto'
-        };
-        document.title = titles[page] || 'LKE E-SPORTS';
-    }
-    
-    function getPageFromPath() {
-        const path = window.location.pathname;
-        if (path === '/' || path === '') return 'home';
-        const page = path.substring(1);
-        const validPages = ['home', 'team', 'tournaments', 'organigrama', 'news', 'contact'];
-        return validPages.includes(page) ? page : 'home';
-    }
-    
+    // ============================================
+    // SECCIÓN 10: INICIALIZADORES DE PÁGINAS
+    // ============================================
     function initializePageScripts(page) {
         switch(page) {
             case 'home':
@@ -421,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function initHomePage() {
         console.log('Home page initialized');
         
-        // Sistema de contadores sincronizados
+        // Sistema de contadores mejorado
         class CounterManager {
             constructor() {
                 this.counters = [];
@@ -432,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             init() {
-                this.counters = []; // Limpiar contadores anteriores
+                this.counters = [];
                 const counterElements = document.querySelectorAll('.counter');
                 
                 counterElements.forEach(counterEl => {
@@ -441,8 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.counters.push({
                         element: counterEl,
                         target: target,
-                        currentValue: 0,
-                        startTime: null
+                        currentValue: 0
                     });
                 });
                 
@@ -832,6 +924,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // ============================================
+    // SECCIÓN 11: INICIALIZACIÓN Y EVENTOS GLOBALES
+    // ============================================
+    
     // Manejar botones atrás/adelante
     window.addEventListener('popstate', (event) => {
         const page = getPageFromPath();
@@ -841,35 +937,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar página inicial
     const initialPage = getPageFromPath();
     navigateTo(initialPage);
-    
-    // Cerrar menú móvil al hacer click fuera
-    document.addEventListener('click', (e) => {
-        if (!mobileMenu.classList.contains('hidden') && 
-            !mobileMenu.contains(e.target) && 
-            !menuBtn.contains(e.target)) {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('mobile-menu-enter');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
-        }
-    });
-    
-    // Manejar resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) {
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('mobile-menu-enter');
-                const icon = menuBtn.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
-        }
-    });
 });
 
-// Limpiar al salir
+// ============================================
+// LIMPIEZA AL SALIR DE LA PÁGINA
+// ============================================
 window.addEventListener('beforeunload', () => {
     if (window.counterManager) {
         window.counterManager.destroy();
