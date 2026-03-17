@@ -1,6 +1,44 @@
 // main.js - Sistema de navegación dinámica para LKE E-SPORTS
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ===== MANEJO DEL SPLASH SCREEN =====
+    const splashScreen = document.getElementById('splash-screen');
+    const mainContent = document.getElementById('main-content');
+    
+    // Función para ocultar el splash screen con efecto profesional
+    function hideSplashScreen() {
+        // Asegurar que el contenido principal sea visible
+        mainContent.classList.add('visible');
+        
+        // Ocultar splash con transición suave
+        splashScreen.classList.add('hidden');
+        
+        // Remover del DOM después de la animación
+        setTimeout(() => {
+            splashScreen.style.display = 'none';
+        }, 800);
+    }
+    
+    // Mostrar splash por al menos 2 segundos (para apreciar la animación)
+    // pero máximo hasta que cargue todo
+    const minSplashTime = 2000; // 2 segundos mínimo
+    const startTime = Date.now();
+    
+    // Esperar a que todo el contenido esté cargado
+    window.addEventListener('load', () => {
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(0, minSplashTime - elapsedTime);
+        
+        setTimeout(hideSplashScreen, remainingTime);
+    });
+    
+    // Fallback: si todo carga muy rápido, asegurar mínimo tiempo
+    setTimeout(() => {
+        if (!splashScreen.classList.contains('hidden')) {
+            hideSplashScreen();
+        }
+    }, minSplashTime + 500);
+
     // Elementos del DOM
     const content = document.getElementById('content');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -14,19 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeIntervals = [];
     
     // Toggle menú móvil con animación
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        
-        if (!mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('mobile-menu-enter');
-        } else {
-            mobileMenu.classList.remove('mobile-menu-enter');
-        }
-        
-        const icon = menuBtn.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-    });
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('mobile-menu-enter');
+            } else {
+                mobileMenu.classList.remove('mobile-menu-enter');
+            }
+            
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    }
     
     // Cerrar menú móvil al hacer clic en un enlace
     navLinks.forEach(link => {
@@ -90,12 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 initializePageScripts(page);
                 
                 // Actualizar URL sin # y sin recargar la página
-                // Esto es clave: Usamos pushState para URLs limpias
                 if (page === 'home') {
-                    // Si es home, mostrar URL base
                     history.pushState({ page }, '', '/');
                 } else {
-                    // Para otras páginas, usar /page-name
                     history.pushState({ page }, '', `/${page}`);
                 }
                 
@@ -142,18 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function getPageFromPath() {
         const path = window.location.pathname;
         
-        // Si es la raíz, mostrar home
         if (path === '/' || path === '') {
             return 'home';
         }
         
-        // Eliminar la barra inicial y obtener el nombre de la página
-        const page = path.substring(1); // elimina el primer carácter '/'
-        
-        // Lista de páginas válidas
+        const page = path.substring(1);
         const validPages = ['home', 'team', 'tournaments', 'organigrama', 'news', 'contact'];
         
-        // Si la página es válida, devolverla, si no, devolver home
         return validPages.includes(page) ? page : 'home';
     }
     
@@ -185,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function initHomePage() {
         console.log('Home page initialized');
         
-        // Animación para elementos al hacer scroll
         const animateOnScroll = () => {
             const elements = document.querySelectorAll('.animate-on-scroll');
             elements.forEach(el => {
@@ -200,14 +231,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll(); // Ejecutar una vez al cargar
+        animateOnScroll();
     }
     
     // ==================== PÁGINA DE EQUIPOS MEJORADA ====================
     function initTeamPage() {
         console.log('Team page initialized');
         
-        // 1. Efectos hover para las tarjetas de jugadores
         const playerCards = document.querySelectorAll('.player-card');
         playerCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -222,22 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        // 2. Botón flotante "Volver arriba"
         initScrollTopButton();
-        
-        // 3. Smooth scroll para enlaces rápidos de equipos
         initTeamQuickLinks();
-        
-        // 4. Animación de entrada para las tarjetas
         animateTeamCards();
-        
-        // 5. Detectar si hay un hash en la URL para scroll a equipo específico
         handleTeamHash();
     }
     
-    // Función para el botón de volver arriba
     function initScrollTopButton() {
-        // Crear el botón si no existe
         let scrollTopBtn = document.getElementById('scrollTopBtn');
         
         if (!scrollTopBtn) {
@@ -248,7 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(scrollTopBtn);
         }
         
-        // Función para mostrar/ocultar según scroll
         const toggleScrollTop = () => {
             if (window.scrollY > 400) {
                 scrollTopBtn.classList.add('show');
@@ -261,10 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         
-        // Evento scroll
         window.addEventListener('scroll', toggleScrollTop);
         
-        // Evento click
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -272,11 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        // Ejecutar una vez al cargar
         toggleScrollTop();
     }
     
-    // Función para smooth scroll en enlaces rápidos
     function initTeamQuickLinks() {
         const quickLinks = document.querySelectorAll('.team-quick-link');
         
@@ -289,8 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        // Calcular offset para el navbar fijo
-                        const navbarHeight = 80; // altura del navbar
+                        const navbarHeight = 80;
                         const targetPosition = targetElement.offsetTop - navbarHeight;
                         
                         window.scrollTo({
@@ -298,8 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             behavior: 'smooth'
                         });
                         
-                        // Actualizar URL con hash para secciones internas
-                        // Esto SÍ usamos hash porque es dentro de la misma página
                         history.pushState(null, '', targetId);
                     }
                 }
@@ -307,30 +320,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Función para animar las tarjetas al cargar
     function animateTeamCards() {
         const cards = document.querySelectorAll('.player-card');
         
         cards.forEach((card, index) => {
-            // Estado inicial
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             
-            // Animación escalonada
             setTimeout(() => {
                 card.style.transition = 'all 0.5s ease';
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
-            }, 100 + (index * 50)); // 100ms, 150ms, 200ms, etc.
+            }, 100 + (index * 50));
         });
     }
     
-    // Función para manejar hash en URL (ej: #legacy)
     function handleTeamHash() {
         const hash = window.location.hash;
         
         if (hash && hash !== '#') {
-            // Pequeño delay para asegurar que el DOM esté cargado
             setTimeout(() => {
                 const targetElement = document.querySelector(hash);
                 
@@ -350,26 +358,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================== TORNEOS ====================
     function initTournamentsPage() {
         console.log('Tournaments page initialized');
-        
-        // Iniciar contador regresivo para el torneo principal
         startCountdown();
     }
     
-    /**
-     * Función para iniciar el contador regresivo del torneo Xylon League
-     * Fecha objetivo: 23 de marzo 2026 - 22:00 (10:00 PM) hora Venezuela (UTC-4)
-     */
     function startCountdown() {
-        // Buscar el elemento del contador
         const countdownElement = document.querySelector('.countdown');
         
-        // Si no existe el contador en la página actual, salir
         if (!countdownElement) return;
         
-        // Establecer la fecha objetivo: 23 de marzo 2026, 22:00 hora Venezuela
         const targetDate = new Date('2026-03-23T22:00:00-04:00');
         
-        // Función para actualizar el contador
         function updateCountdown() {
             const now = new Date();
             const difference = targetDate - now;
@@ -531,10 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Manejar botones atrás/adelante del navegador
     window.addEventListener('popstate', (event) => {
-        // Obtener la página desde el path actual
         const page = getPageFromPath();
-        
-        // Navegar a la página correspondiente
         navigateTo(page);
     });
     

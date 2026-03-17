@@ -13,6 +13,197 @@
             font-family: 'Montserrat', sans-serif;
         }
         
+        /* ===== SPLASH SCREEN STYLES ===== */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        #splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            text-align: center;
+            transform: scale(1);
+            animation: splashEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .splash-logo {
+            width: 180px;
+            height: 144px;
+            margin: 0 auto;
+            position: relative;
+            animation: logoFloat 2s ease-in-out infinite;
+        }
+
+        .splash-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+            animation: logoPulse 2s ease-in-out infinite;
+        }
+
+        .splash-title {
+            margin-top: 2rem;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #fff 0%, #22d3ee 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        .splash-subtitle {
+            color: #9ca3af;
+            font-size: 1rem;
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 2rem auto 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #06b6d4, #a855f7);
+            border-radius: 10px;
+            animation: progressLoad 2s ease-in-out forwards;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.7);
+        }
+
+        /* Efecto de partículas alrededor del logo */
+        .particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 220px;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #06b6d4;
+            border-radius: 50%;
+            animation: particleFloat 3s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 20%; right: 10%; animation-delay: 0.2s; }
+        .particle:nth-child(3) { bottom: 20%; right: 10%; animation-delay: 0.4s; }
+        .particle:nth-child(4) { bottom: 0; left: 50%; animation-delay: 0.6s; }
+        .particle:nth-child(5) { bottom: 20%; left: 10%; animation-delay: 0.8s; }
+        .particle:nth-child(6) { top: 20%; left: 10%; animation-delay: 1s; }
+
+        /* Animaciones del splash */
+        @keyframes splashEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 40px rgba(6, 182, 212, 0.9));
+            }
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes progressLoad {
+            0% {
+                width: 0%;
+            }
+            20% {
+                width: 30%;
+            }
+            50% {
+                width: 70%;
+            }
+            80% {
+                width: 90%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(10px, -10px) scale(1.5);
+                opacity: 1;
+                background: #a855f7;
+            }
+        }
+
+        /* Clases para el contenido principal */
         .glow-text {
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
@@ -74,7 +265,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Efecto hover para el logo */
         .logo-container:hover .logo-shine {
             animation-duration: 1.5s;
             transform: scale(1.05);
@@ -87,16 +277,24 @@
                 height: 80px;
             }
             
-            /* Forzar centrado del logo en móvil */
             .logo-container {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
                 margin: 0;
             }
+
+            .splash-logo {
+                width: 140px;
+                height: 112px;
+            }
+
+            .splash-title {
+                font-size: 1.8rem;
+            }
         }
 
-        /* Para tablets (entre 768px y 1024px) */
+        /* Para tablets */
         @media (min-width: 768px) and (max-width: 1024px) {
             .logo-container {
                 position: absolute;
@@ -131,136 +329,180 @@
                 align-items: center;
             }
             
-            /* El contenedor del logo ahora está centrado */
             .logo-container {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
             }
             
-            /* El botón del menú móvil se mantiene a la derecha */
             #menuBtn {
                 margin-left: auto;
                 z-index: 60;
             }
             
-            /* Espacio vacío a la izquierda para balancear */
             .navbar-left-space {
                 width: 40px;
                 visibility: hidden;
             }
         }
+
+        /* Ocultar contenido principal mientras carga el splash */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gradient-custom min-h-screen text-white">
-
-    <!-- Navbar -->
-    <nav class="bg-black/50 backdrop-blur-lg border-b border-cyan-500/30 fixed w-full z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-20">
-                <!-- Espacio vacío para balancear en móvil (solo visible en móvil) -->
-                <div class="navbar-left-space md:hidden"></div>
-                
-                <!-- Logo con efecto dinámico - CENTRADO EN MÓVIL Y TABLET -->
-                <div class="logo-container flex items-center">
-                    <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-24 h-20 md:w-32 md:h-28 lg:w-40 lg:h-36 object-contain">
-                </div>
-
-                <!-- Desktop Menu (oculto en móvil) -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#" data-page="home" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">INICIO</a>
-                    <a href="#" data-page="team" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">EQUIPOS</a>
-                    <a href="#" data-page="tournaments" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">TORNEOS</a>
-                    <a href="#" data-page="organigrama" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">ORGANIGRAMA</a>
-                    <a href="#" data-page="news" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">NOTICIAS</a>
-                    <a href="#" data-page="contact" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">CONTACTO</a>
-                </div>
-
-                <!-- Social Icons (solo desktop) -->
-                <div class="hidden md:flex space-x-4">
-                    <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-discord"></i></a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <button class="md:hidden text-white text-2xl focus:outline-none z-50" id="menuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <!-- Partículas decorativas -->
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden" id="mobileMenu">
-            <div class="px-4 py-3 space-y-3 bg-black/90 backdrop-blur-lg border-t border-cyan-500/30">
-                <a href="#" data-page="home" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">INICIO</a>
-                <a href="#" data-page="team" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">EQUIPOS</a>
-                <a href="#" data-page="tournaments" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">TORNEOS</a>
-                <a href="#" data-page="organigrama" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">ORGANIGRAMA</a>
-                <a href="#" data-page="news" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">NOTICIAS</a>
-                <a href="#" data-page="contact" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">CONTACTO</a>
-                
-                <!-- Social Icons en móvil -->
-                <div class="flex space-x-6 pt-4 pb-2 justify-center border-t border-gray-800 mt-4">
-                    <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-discord"></i></a>
-                </div>
+            
+            <!-- Logo con animación -->
+            <div class="splash-logo">
+                <img src="img/logo.png" alt="LKE E-SPORTS">
             </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="content" class="pt-20 page-transition min-h-screen">
-        <!-- El contenido se cargará dinámicamente aquí -->
-        <div class="container mx-auto px-4 py-20 text-center">
-            <h1 class="text-4xl md:text-6xl font-black mb-6">
-                <span class="text-cyan-400">LKE</span>
-                <span class="text-white">ESPORTS</span>
+            
+            <!-- Título animado -->
+            <h1 class="splash-title">
+                LKE E-SPORTS
             </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-8">Cargando contenido...</p>
-            <div class="animate-pulse-slow">
-                <i class="fas fa-spinner fa-spin text-4xl text-cyan-400"></i>
+            
+            <!-- Subtítulo -->
+            <p class="splash-subtitle">
+                DOMINA LA PARTIDA
+            </p>
+            
+            <!-- Barra de progreso -->
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <footer class="bg-black/80 border-t border-cyan-500/30 mt-auto">
-        <div class="container mx-auto px-4 py-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center md:text-left">
-                    <h3 class="text-2xl font-black mb-4">
-                        <span class="text-cyan-400">LKE</span>
-                        <span class="text-white">ESPORTS</span>
-                    </h3>
-                    <p class="text-gray-400 text-sm md:text-base">Organización Competitiva en Multijugador de Call of Duty: Mobile.</p>
+    <!-- CONTENIDO PRINCIPAL (envuelto en un div) -->
+    <div id="main-content">
+        <!-- Navbar -->
+        <nav class="bg-black/50 backdrop-blur-lg border-b border-cyan-500/30 fixed w-full z-50">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Espacio vacío para balancear en móvil -->
+                    <div class="navbar-left-space md:hidden"></div>
+                    
+                    <!-- Logo con efecto dinámico - CENTRADO EN MÓVIL Y TABLET -->
+                    <div class="logo-container flex items-center">
+                        <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-24 h-20 md:w-32 md:h-28 lg:w-40 lg:h-36 object-contain">
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#" data-page="home" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">INICIO</a>
+                        <a href="#" data-page="team" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">EQUIPOS</a>
+                        <a href="#" data-page="tournaments" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">TORNEOS</a>
+                        <a href="#" data-page="organigrama" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">ORGANIGRAMA</a>
+                        <a href="#" data-page="news" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">NOTICIAS</a>
+                        <a href="#" data-page="contact" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">CONTACTO</a>
+                    </div>
+
+                    <!-- Social Icons (solo desktop) -->
+                    <div class="hidden md:flex space-x-4">
+                        <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-discord"></i></a>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-white text-2xl focus:outline-none z-50" id="menuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
-                <div class="text-center md:text-left">
-                    <h4 class="font-bold text-lg mb-4 text-cyan-400">Enlaces rápidos</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" data-page="team" class="hover:text-cyan-400 transition-colors block md:inline-block">Nuestro equipo</a></li>
-                        <li><a href="#" data-page="tournaments" class="hover:text-cyan-400 transition-colors block md:inline-block">Próximos torneos</a></li>
-                        <li><a href="#" data-page="organigrama" class="hover:text-cyan-400 transition-colors block md:inline-block">Organigrama</a></li>
-                        <li><a href="#" data-page="news" class="hover:text-cyan-400 transition-colors block md:inline-block">Noticias</a></li>
-                        <li><a href="#" data-page="contact" class="hover:text-cyan-400 transition-colors block md:inline-block">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="text-center md:text-left">
-                    <h4 class="font-bold text-lg mb-4 text-cyan-400">Newsletter</h4>
-                    <p class="text-gray-400 mb-3 text-sm md:text-base">Recibe las últimas noticias</p>
-                    <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-2">
-                        <input type="email" placeholder="Tu email" class="bg-gray-800 text-white px-4 py-2 rounded-lg sm:rounded-l-lg sm:rounded-r-none md:rounded-lg lg:rounded-l-lg lg:rounded-r-none focus:outline-none focus:ring-2 focus:ring-cyan-400 flex-1">
-                        <button class="bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded-lg sm:rounded-r-lg sm:rounded-l-none md:rounded-lg lg:rounded-r-lg lg:rounded-l-none transition-colors font-semibold whitespace-nowrap">Suscribir</button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobileMenu">
+                <div class="px-4 py-3 space-y-3 bg-black/90 backdrop-blur-lg border-t border-cyan-500/30">
+                    <a href="#" data-page="home" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">INICIO</a>
+                    <a href="#" data-page="team" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">EQUIPOS</a>
+                    <a href="#" data-page="tournaments" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">TORNEOS</a>
+                    <a href="#" data-page="organigrama" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">ORGANIGRAMA</a>
+                    <a href="#" data-page="news" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">NOTICIAS</a>
+                    <a href="#" data-page="contact" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">CONTACTO</a>
+                    
+                    <!-- Social Icons en móvil -->
+                    <div class="flex space-x-6 pt-4 pb-2 justify-center border-t border-gray-800 mt-4">
+                        <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-discord"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-4 text-center text-gray-400">
-                <p class="text-sm md:text-base">&copy; 2026 LKE E-SPORTS. Todos los derechos reservados.</p>
-                <p class="text-xs md:text-sm mt-1">Creado por WEZOPLAY / +584242618284</p>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="content" class="pt-20 page-transition min-h-screen">
+            <!-- El contenido se cargará dinámicamente aquí -->
+            <div class="container mx-auto px-4 py-20 text-center">
+                <h1 class="text-4xl md:text-6xl font-black mb-6">
+                    <span class="text-cyan-400">LKE</span>
+                    <span class="text-white">ESPORTS</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8">Cargando contenido...</p>
+                <div class="animate-pulse-slow">
+                    <i class="fas fa-spinner fa-spin text-4xl text-cyan-400"></i>
+                </div>
             </div>
-        </div>
-    </footer>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-black/80 border-t border-cyan-500/30 mt-auto">
+            <div class="container mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-black mb-4">
+                            <span class="text-cyan-400">LKE</span>
+                            <span class="text-white">ESPORTS</span>
+                        </h3>
+                        <p class="text-gray-400 text-sm md:text-base">Organización Competitiva en Multijugador de Call of Duty: Mobile.</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h4 class="font-bold text-lg mb-4 text-cyan-400">Enlaces rápidos</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" data-page="team" class="hover:text-cyan-400 transition-colors block md:inline-block">Nuestro equipo</a></li>
+                            <li><a href="#" data-page="tournaments" class="hover:text-cyan-400 transition-colors block md:inline-block">Próximos torneos</a></li>
+                            <li><a href="#" data-page="organigrama" class="hover:text-cyan-400 transition-colors block md:inline-block">Organigrama</a></li>
+                            <li><a href="#" data-page="news" class="hover:text-cyan-400 transition-colors block md:inline-block">Noticias</a></li>
+                            <li><a href="#" data-page="contact" class="hover:text-cyan-400 transition-colors block md:inline-block">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h4 class="font-bold text-lg mb-4 text-cyan-400">Newsletter</h4>
+                        <p class="text-gray-400 mb-3 text-sm md:text-base">Recibe las últimas noticias</p>
+                        <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-2">
+                            <input type="email" placeholder="Tu email" class="bg-gray-800 text-white px-4 py-2 rounded-lg sm:rounded-l-lg sm:rounded-r-none md:rounded-lg lg:rounded-l-lg lg:rounded-r-none focus:outline-none focus:ring-2 focus:ring-cyan-400 flex-1">
+                            <button class="bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded-lg sm:rounded-r-lg sm:rounded-l-none md:rounded-lg lg:rounded-r-lg lg:rounded-l-none transition-colors font-semibold whitespace-nowrap">Suscribir</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-4 text-center text-gray-400">
+                    <p class="text-sm md:text-base">&copy; 2026 LKE E-SPORTS. Todos los derechos reservados.</p>
+                    <p class="text-xs md:text-sm mt-1">Creado por WEZOPLAY / +584242618284</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
