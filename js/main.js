@@ -1,6 +1,6 @@
 // ============================================
 // MAIN.JS - SISTEMA DE NAVEGACIÓN DINÁMICA PARA LKE E-SPORTS
-// VERSIÓN DEFINITIVA - SCROLL REVEAL MEJORADO CON REACTIVACIÓN
+// VERSIÓN DEFINITIVA - CONTADORES INTERACTIVOS CON SCROLL
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -78,6 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable para el observer de scroll reveal mejorado
     let enhancedScrollObserver = null;
     
+    // Variable para el intervalo de contadores (30 segundos)
+    let counterLoopInterval = null;
+    
     // ============================================
     // SECCIÓN 3: MANEJO DEL MENÚ MÓVIL
     // ============================================
@@ -151,6 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(interval);
         });
         activeIntervals = [];
+        
+        if (counterLoopInterval) {
+            clearInterval(counterLoopInterval);
+            counterLoopInterval = null;
+        }
     }
     
     // Actualizar título de la página
@@ -205,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
         });
         
-        // Resetear títulos de sección (incluyendo el nuevo formato)
+        // Resetear títulos de sección
         const sectionTitles = document.querySelectorAll('h2 span.animate-from-left, h2 span.animate-from-right, p.animate-from-bottom');
         sectionTitles.forEach(title => {
             title.classList.add('opacity-0');
@@ -311,7 +319,225 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 8: SCROLL REVEAL MEJORADO CON REACTIVACIÓN
+    // SECCIÓN 8: SISTEMA DE CONTADORES MEJORADO
+    // ============================================
+    class CounterManager {
+        constructor() {
+            this.counters = [];
+            this.animationDuration = 2000;
+            this.isRunning = false;
+            this.animationId = null;
+            this.countdownInterval = null;
+            this.hasAnimated = new WeakMap(); // Para rastrear qué contadores ya se animaron
+        }
+        
+        init() {
+            this.counters = [];
+            const counterElements = document.querySelectorAll('.counter');
+            
+            counterElements.forEach(counterEl => {
+                const target = parseInt(counterEl.dataset.target) || 0;
+                const parentCard = counterEl.closest('.stats-card');
+                
+                this.counters.push({
+                    element: counterEl,
+                    target: target,
+                    currentValue: 0,
+                    parentCard: parentCard
+                });
+                
+                // Inicializar el WeakMap para este contador
+                if (parentCard) {
+                    this.hasAnimated.set(parentCard, false);
+                }
+            });
+            
+            console.log('Contadores inicializados:', this.counters.length);
+        }
+        
+        async animateAll(force = false) {
+            this.stop();
+            
+            // Si no es forzado, verificar qué contadores ya se animaron
+            if (!force) {
+                // Solo animar contadores que no se hayan animado aún
+                const countersToAnimate = this.counters.filter(counter => {
+                    if (counter.parentCard) {
+                        return !this.hasAnimated.get(counter.parentCard);
+                    }
+                    return true;
+                });
+                
+                if (countersToAnimate.length === 0) {
+                    console.log('Todos los contadores ya fueron animados en este ciclo');
+                    return;
+                }
+            }
+            
+            // Resetear todos los contadores a 0
+            this.counters.forEach(counter => {
+                counter.currentValue = 0;
+                counter.element.textContent = '0';
+            });
+            
+            this.isRunning = true;
+            const startTime = performance.now();
+            
+            return new Promise((resolve) => {
+                const animate = (currentTime) => {
+                    if (!this.isRunning) return;
+                    
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / this.animationDuration, 1);
+                    
+                    let allFinished = true;
+                    
+                    this.counters.forEach(counter => {
+                        const value = Math.floor(progress * counter.target);
+                        
+                        if (value !== counter.currentValue) {
+                            counter.currentValue = value;
+                            counter.element.textContent = value;
+                            
+                            counter.element.classList.add('counter-update');
+                            setTimeout(() => {
+                                counter.element.classList.remove('counter-update');
+                            }, 300);
+                        }
+                        
+                        if (progress < 1) {
+                            allFinished = false;
+                        } else {
+                            counter.element.textContent = counter.target;
+                            
+                            // Marcar que este contador ya se animó
+                            if (counter.parentCard) {
+                                this.hasAnimated.set(counter.parentCard, true);
+                            }
+                        }
+                    });
+                    
+                    if (!allFinished) {
+                        this.animationId = requestAnimationFrame(animate);
+                    } else {
+                        console.log('Contadores finalizados');
+                        resolve();
+                    }
+                };
+                
+                this.animationId = requestAnimationFrame(animate);
+            });
+        }
+        
+        // Función para reiniciar contadores específicos por tarjeta
+        resetCounterForCard(card) {
+            // Marcar que esta tarjeta necesita animación nuevamente
+            this.hasAnimated.set(card, false);
+            
+            // Encontrar y animar solo los contadores de esta tarjeta
+            const countersInCard = this.counters.filter(counter => counter.parentCard === card);
+            
+            countersInCard.forEach(counter => {
+                counter.currentValue = 0;
+                counter.element.textContent = '0';
+            });
+            
+            // Animar solo estos contadores
+            if (countersInCard.length > 0) {
+                this.animateCounters(countersInCard);
+            }
+        }
+        
+        animateCounters(countersToAnimate) {
+            const startTime = performance.now();
+            
+            const animate = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / this.animationDuration, 1);
+                
+                let allFinished = true;
+                
+                countersToAnimate.forEach(counter => {
+                    const value = Math.floor(progress * counter.target);
+                    
+                    if (value !== counter.currentValue) {
+                        counter.currentValue = value;
+                        counter.element.textContent = value;
+                        
+                        counter.element.classList.add('counter-update');
+                        setTimeout(() => {
+                            counter.element.classList.remove('counter-update');
+                        }, 300);
+                    }
+                    
+                    if (progress < 1) {
+                        allFinished = false;
+                    } else {
+                        counter.element.textContent = counter.target;
+                        
+                        // Marcar que este contador ya se animó
+                        if (counter.parentCard) {
+                            this.hasAnimated.set(counter.parentCard, true);
+                        }
+                    }
+                });
+                
+                if (!allFinished) {
+                    this.animationId = requestAnimationFrame(animate);
+                }
+            };
+            
+            this.animationId = requestAnimationFrame(animate);
+        }
+        
+        // Reiniciar todos los contadores para que puedan volver a animarse
+        resetAllCounters() {
+            this.counters.forEach(counter => {
+                if (counter.parentCard) {
+                    this.hasAnimated.set(counter.parentCard, false);
+                }
+            });
+            console.log('Todos los contadores reseteados para nueva animación');
+        }
+        
+        stop() {
+            this.isRunning = false;
+            if (this.animationId) {
+                cancelAnimationFrame(this.animationId);
+                this.animationId = null;
+            }
+        }
+        
+        startLoop(intervalTime = 30000) {
+            // Animar inmediatamente
+            this.resetAllCounters();
+            this.animateAll(true);
+            
+            // Configurar intervalo de 30 segundos
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+            }
+            
+            this.countdownInterval = setInterval(() => {
+                console.log('Ciclo de 30 segundos: reiniciando contadores');
+                this.resetAllCounters();
+                this.animateAll(true);
+            }, intervalTime);
+            
+            console.log('Loop de contadores iniciado cada', intervalTime / 1000, 'segundos');
+        }
+        
+        destroy() {
+            this.stop();
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+                this.countdownInterval = null;
+            }
+        }
+    }
+    
+    // ============================================
+    // SECCIÓN 9: SCROLL REVEAL MEJORADO CON CONTADORES
     // ============================================
     function initEnhancedScrollReveal() {
         // Desconectar observer anterior
@@ -358,6 +584,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => {
                             el.classList.remove('neon-border');
                         }, 1000);
+                        
+                        // ===== REINICIAR CONTADOR DE ESTA TARJETA =====
+                        if (window.counterManager) {
+                            console.log('Reiniciando contador por scroll:', el);
+                            window.counterManager.resetCounterForCard(el);
+                        }
                     }
                     
                     // Forzar animación con estilo inline para los elementos de texto
@@ -424,7 +656,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 9: FUNCIÓN PRINCIPAL DE NAVEGACIÓN
+    // SECCIÓN 10: FUNCIÓN PRINCIPAL DE NAVEGACIÓN
     // ============================================
     async function navigateTo(page) {
         console.log('Navegando a:', page);
@@ -490,7 +722,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             applyNeonEffectToStatsCards();
                             
                             if (window.counterManager) {
-                                window.counterManager.animateAll();
+                                // Resetear todos los contadores y animar
+                                window.counterManager.resetAllCounters();
+                                window.counterManager.animateAll(true);
                             }
                         }, 300);
                         
@@ -535,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 10: INICIALIZADORES DE PÁGINAS
+    // SECCIÓN 11: INICIALIZADORES DE PÁGINAS
     // ============================================
     function initializePageScripts(page) {
         switch(page) {
@@ -564,118 +798,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function initHomePage() {
         console.log('Home page initialized');
         
-        // Sistema de contadores mejorado
-        class CounterManager {
-            constructor() {
-                this.counters = [];
-                this.animationDuration = 2000;
-                this.isRunning = false;
-                this.animationId = null;
-                this.countdownInterval = null;
-            }
-            
-            init() {
-                this.counters = [];
-                const counterElements = document.querySelectorAll('.counter');
-                
-                counterElements.forEach(counterEl => {
-                    const target = parseInt(counterEl.dataset.target) || 0;
-                    
-                    this.counters.push({
-                        element: counterEl,
-                        target: target,
-                        currentValue: 0
-                    });
-                });
-                
-                console.log('Contadores inicializados:', this.counters.length);
-            }
-            
-            async animateAll() {
-                this.stop();
-                
-                this.counters.forEach(counter => {
-                    counter.currentValue = 0;
-                    counter.element.textContent = '0';
-                });
-                
-                this.isRunning = true;
-                const startTime = performance.now();
-                
-                return new Promise((resolve) => {
-                    const animate = (currentTime) => {
-                        if (!this.isRunning) return;
-                        
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / this.animationDuration, 1);
-                        
-                        let allFinished = true;
-                        
-                        this.counters.forEach(counter => {
-                            const value = Math.floor(progress * counter.target);
-                            
-                            if (value !== counter.currentValue) {
-                                counter.currentValue = value;
-                                counter.element.textContent = value;
-                                
-                                counter.element.classList.add('counter-update');
-                                setTimeout(() => {
-                                    counter.element.classList.remove('counter-update');
-                                }, 300);
-                            }
-                            
-                            if (progress < 1) {
-                                allFinished = false;
-                            } else {
-                                counter.element.textContent = counter.target;
-                            }
-                        });
-                        
-                        if (!allFinished) {
-                            this.animationId = requestAnimationFrame(animate);
-                        } else {
-                            console.log('Contadores finalizados');
-                            resolve();
-                        }
-                    };
-                    
-                    this.animationId = requestAnimationFrame(animate);
-                });
-            }
-            
-            stop() {
-                this.isRunning = false;
-                if (this.animationId) {
-                    cancelAnimationFrame(this.animationId);
-                    this.animationId = null;
-                }
-            }
-            
-            startLoop(intervalTime = 30000) {
-                this.animateAll();
-                
-                if (this.countdownInterval) {
-                    clearInterval(this.countdownInterval);
-                }
-                
-                this.countdownInterval = setInterval(() => {
-                    this.animateAll();
-                }, intervalTime);
-            }
-            
-            destroy() {
-                this.stop();
-                if (this.countdownInterval) {
-                    clearInterval(this.countdownInterval);
-                    this.countdownInterval = null;
-                }
-            }
-        }
-        
-        // Inicializar contadores
+        // Inicializar contadores con el nuevo sistema mejorado
         const counterManager = new CounterManager();
         counterManager.init();
-        counterManager.startLoop(30000);
+        counterManager.startLoop(30000); // Loop cada 30 segundos
         
         window.counterManager = counterManager;
         
@@ -975,7 +1101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 11: INICIALIZACIÓN Y EVENTOS GLOBALES
+    // SECCIÓN 12: INICIALIZACIÓN Y EVENTOS GLOBALES
     // ============================================
     
     // Manejar botones atrás/adelante
