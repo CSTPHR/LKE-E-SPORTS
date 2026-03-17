@@ -195,7 +195,7 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* Efecto de brillo dinámico para el logo del navbar */
+        /* Efecto de brillo dinámico para el logo */
         @keyframes logoShine {
             0% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0)) brightness(1); }
             20% { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)) brightness(1.2); }
@@ -215,18 +215,32 @@
             transform: scale(1.05);
         }
 
-        /* ===== NAVBAR CORREGIDO ===== */
-        /* Desktop (por defecto) */
+        /* ===== NAVBAR CORREGIDO - VERSIÓN ROBUSTA ===== */
+        
+        /* Base (escritorio) */
+        .navbar-left-space {
+            display: none;
+        }
+        
         .logo-container {
             display: flex;
             align-items: center;
         }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .logo-shine {
-                width: 100px;
-                height: 80px;
+        
+        #menuBtn {
+            display: none;
+        }
+        
+        /* Detección de móvil por ancho y por presencia de táctil */
+        @media (max-width: 1024px) {
+            #menuBtn {
+                display: block;
+            }
+            
+            .navbar-left-space {
+                display: block;
+                width: 40px;
+                visibility: hidden;
             }
             
             .logo-container {
@@ -235,41 +249,61 @@
                 transform: translateX(-50%);
             }
             
+            /* Ocultar menú desktop y social icons */
+            .desktop-menu, .desktop-social {
+                display: none !important;
+            }
+        }
+        
+        /* Caso especial: "modo escritorio" en móvil (ancho grande pero táctil) */
+        @media (min-width: 1025px) and (pointer: coarse) {
             #menuBtn {
-                margin-left: auto;
-                z-index: 60;
+                display: block;
             }
             
             .navbar-left-space {
+                display: block;
                 width: 40px;
                 visibility: hidden;
             }
-        }
-
-        /* Tablets */
-        @media (min-width: 768px) and (max-width: 1024px) {
+            
             .logo-container {
-                position: static;
-                transform: none;
-                margin: 0;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
             }
             
-            nav .container {
-                display: flex;
-                justify-content: space-between;
+            .desktop-menu, .desktop-social {
+                display: none !important;
+            }
+            
+            /* Forzar que el menú móvil esté disponible */
+            .md\\:hidden {
+                display: block !important;
             }
         }
-
-        /* Fix para "opción escritorio" en móvil */
-        @media (min-width: 1025px) {
-            .logo-container {
-                position: static !important;
-                transform: none !important;
-                margin: 0 !important;
+        
+        /* Desktop verdadero */
+        @media (min-width: 1025px) and (pointer: fine) {
+            #menuBtn {
+                display: none;
             }
             
             .navbar-left-space {
                 display: none;
+            }
+            
+            .logo-container {
+                position: static;
+                transform: none;
+            }
+            
+            .desktop-menu {
+                display: flex !important;
+            }
+            
+            .desktop-social {
+                display: flex !important;
             }
         }
 
@@ -283,7 +317,7 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Contenido principal oculto hasta después del splash */
+        /* Contenido principal */
         #main-content {
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -293,7 +327,7 @@
             opacity: 1;
         }
 
-        /* Clases para animaciones de entrada (se aplican después del splash) */
+        /* Animaciones de entrada */
         .animate-ready .animate-from-top {
             animation: slideFromTop 0.8s ease-out forwards;
         }
@@ -380,15 +414,15 @@
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center h-20">
                     <!-- Espacio vacío para balancear en móvil -->
-                    <div class="navbar-left-space md:hidden"></div>
+                    <div class="navbar-left-space"></div>
                     
-                    <!-- Logo (corregido: ya no se superpone) -->
+                    <!-- Logo (centrado en móvil, izquierda en desktop) -->
                     <div class="logo-container">
                         <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-24 h-20 md:w-32 md:h-28 lg:w-40 lg:h-36 object-contain">
                     </div>
 
                     <!-- Desktop Menu -->
-                    <div class="hidden md:flex space-x-8">
+                    <div class="desktop-menu hidden space-x-8">
                         <a href="#" data-page="home" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">INICIO</a>
                         <a href="#" data-page="team" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">EQUIPOS</a>
                         <a href="#" data-page="tournaments" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">TORNEOS</a>
@@ -398,14 +432,14 @@
                     </div>
 
                     <!-- Social Icons (desktop) -->
-                    <div class="hidden md:flex space-x-4">
+                    <div class="desktop-social hidden space-x-4">
                         <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-tiktok"></i></a>
                         <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-instagram"></i></a>
                         <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-discord"></i></a>
                     </div>
 
                     <!-- Mobile menu button -->
-                    <button class="md:hidden text-white text-2xl focus:outline-none z-50" id="menuBtn">
+                    <button class="text-white text-2xl focus:outline-none z-50" id="menuBtn">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
