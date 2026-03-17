@@ -3,34 +3,41 @@
     <!-- Fondo animado -->
     <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black/80"></div>
     
-    <!-- Círculos animados - Ajustados para móvil -->
+    <!-- Círculos animados -->
     <div class="absolute top-20 left-10 w-32 h-32 md:w-64 md:h-64 bg-cyan-500/30 rounded-full filter blur-3xl animate-pulse"></div>
     <div class="absolute bottom-20 right-10 w-48 h-48 md:w-96 md:h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse-slow"></div>
     
     <div class="container mx-auto px-4 relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <!-- Columna izquierda - Texto -->
-            <div class="animate-float text-center lg:text-left">
-                <div class="inline-block bg-cyan-500/20 backdrop-blur-lg px-3 md:px-4 py-1.5 md:py-2 rounded-full mb-4 md:mb-6 border border-cyan-500/50">
-                    <span class="text-cyan-400 font-semibold text-sm md:text-base">🏆 LKE E-SPORTS</span>
+            <div class="text-center lg:text-left">
+                <!-- Badge -->
+                <div class="animate-from-top opacity-0 translate-y-[-30px] transition-all duration-700 delay-200">
+                    <div class="inline-block bg-cyan-500/20 backdrop-blur-lg px-3 md:px-4 py-1.5 md:py-2 rounded-full mb-4 md:mb-6 border border-cyan-500/50">
+                        <span class="text-cyan-400 font-semibold text-sm md:text-base">🏆 LKE E-SPORTS</span>
+                    </div>
                 </div>
                 
+                <!-- Título principal -->
                 <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6">
-                    <span class="text-white">DOMINA LA</span>
-                    <span class="text-cyan-400 block glow-text text-5xl sm:text-6xl md:text-7xl">PARTIDA</span>
+                    <span class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 delay-400 text-white">DOMINA LA</span>
+                    <span class="block">
+                        <span class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-600 text-cyan-400 glow-text text-5xl sm:text-6xl md:text-7xl">PARTIDA</span>
+                    </span>
                 </h1>
                 
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0 px-4 lg:px-0">
+                <!-- Párrafo -->
+                <p class="animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-800 text-gray-300 text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0 px-4 lg:px-0">
                     LKE E-SPORTS es una organización Competitiva en Multijugador de Call of Duty: Mobile. 
                     Competimos al más alto nivel y formamos a los mejores jugadores.
                 </p>
                 
                 <!-- Botones -->
                 <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start px-4 sm:px-0">
-                    <a href="#" data-page="team" class="nav-link bg-cyan-500 hover:bg-cyan-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-sm md:text-base text-center">
+                    <a href="#" data-page="team" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1000 bg-cyan-500 hover:bg-cyan-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-sm md:text-base text-center">
                         CONOCE AL EQUIPO
                     </a>
-                    <a href="#" data-page="tournaments" class="nav-link border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all text-sm md:text-base text-center">
+                    <a href="#" data-page="tournaments" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1200 border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all text-sm md:text-base text-center">
                         PRÓXIMOS TORNEOS
                     </a>
                 </div>
@@ -39,27 +46,35 @@
             <!-- Columna derecha - Estadísticas -->
             <div class="mt-8 lg:mt-0">
                 <div class="grid grid-cols-2 gap-3 md:gap-6 max-w-md mx-auto lg:max-w-none">
-                    <!-- Stats Card 1 -->
-                    <div class="bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105">
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">15+</div>
+                    <!-- Torneos -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-400">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
+                            <span class="counter" data-target="15">0</span>+
+                        </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Torneos</div>
                     </div>
                     
-                    <!-- Stats Card 2 -->
-                    <div class="bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105">
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">89</div>
+                    <!-- Jugadores -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-600">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
+                            <span class="counter" data-target="89">0</span>
+                        </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Jugadores</div>
                     </div>
                     
-                    <!-- Stats Card 3 -->
-                    <div class="bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105">
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">10+</div>
+                    <!-- Títulos -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-800">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
+                            <span class="counter" data-target="10">0</span>+
+                        </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Títulos</div>
                     </div>
                     
-                    <!-- Stats Card 4 -->
-                    <div class="bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105">
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">2K+</div>
+                    <!-- Seguidores -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 transition-all hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-1000">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
+                            <span class="counter" data-target="2000">0</span>+
+                        </div>
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Seguidores</div>
                     </div>
                 </div>
@@ -68,23 +83,23 @@
     </div>
 </section>
 
-<!-- Separador visual opcional -->
+<!-- Separador visual -->
 <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto my-8 md:my-12 rounded-full"></div>
 
 <!-- Últimas noticias -->
 <section class="py-12 md:py-20">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-black text-center mb-2 md:mb-4">
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-2 md:mb-4 opacity-0 translate-y-[30px] transition-all duration-700 section-title">
             <span class="text-white">ÚLTIMAS</span>
             <span class="text-cyan-400">NOTICIAS</span>
         </h2>
-        <p class="text-gray-400 text-sm md:text-base text-center mb-8 md:mb-12 max-w-2xl mx-auto px-4">
+        <p class="text-gray-400 text-sm md:text-base text-center mb-8 md:mb-12 max-w-2xl mx-auto px-4 opacity-0 translate-y-[30px] transition-all duration-700 delay-200 section-subtitle">
             Mantente al día con todas las novedades de LKE E-SPORTS
         </p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             <!-- Noticia 1 -->
-            <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105">
+            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700">
                 <div class="h-36 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-trophy text-4xl sm:text-5xl md:text-6xl text-cyan-400"></i>
                 </div>
@@ -101,7 +116,7 @@
             </div>
             
             <!-- Noticia 2 -->
-            <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105">
+            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200">
                 <div class="h-36 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-user-plus text-4xl sm:text-5xl md:text-6xl text-cyan-400"></i>
                 </div>
@@ -118,7 +133,7 @@
             </div>
             
             <!-- Noticia 3 -->
-            <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1">
+            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400">
                 <div class="h-36 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-calendar-alt text-4xl sm:text-5xl md:text-6xl text-cyan-400"></i>
                 </div>
@@ -137,9 +152,7 @@
     </div>
 </section>
 
-<!-- CSS adicional para mejor responsive -->
 <style>
-    /* Para textos largos */
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -154,18 +167,12 @@
         overflow: hidden;
     }
     
-    /* Ajustes para móviles muy pequeños */
     @media (max-width: 360px) {
         .glow-text {
             font-size: 2.5rem;
         }
-        
-        .stats-number {
-            font-size: 1.5rem;
-        }
     }
     
-    /* Mejora para hover en móviles */
     @media (max-width: 768px) {
         .hover\:scale-105:hover {
             transform: scale(1.02);

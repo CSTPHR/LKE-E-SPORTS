@@ -1,30 +1,49 @@
 // main.js - Sistema de navegación dinámica para LKE E-SPORTS
+// VERSIÓN CORREGIDA: Hero reanimado y navegación funcionando
 
 document.addEventListener('DOMContentLoaded', () => {
     // ===== MANEJO DEL SPLASH SCREEN =====
     const splashScreen = document.getElementById('splash-screen');
     const mainContent = document.getElementById('main-content');
     
-    // Función para ocultar el splash screen con efecto profesional
-    function hideSplashScreen() {
-        // Asegurar que el contenido principal sea visible
-        mainContent.classList.add('visible');
+    // Variable para controlar si las animaciones ya se ejecutaron
+    let animationsExecuted = false;
+    
+    // Función para ejecutar todas las animaciones después del splash
+    function executeAnimations() {
+        if (animationsExecuted) return;
+        animationsExecuted = true;
         
-        // Ocultar splash con transición suave
+        // Activar clase que dispara las animaciones CSS
+        document.body.classList.add('animate-ready');
+        
+        // Forzar reflow
+        void document.body.offsetHeight;
+        
+        // Inicializar contadores
+        if (window.counterManager) {
+            window.counterManager.animateAll();
+        }
+        
+        // Inicializar scroll reveal
+        initScrollReveal();
+    }
+    
+    // Función para ocultar el splash screen
+    function hideSplashScreen() {
+        mainContent.classList.add('visible');
         splashScreen.classList.add('hidden');
         
-        // Remover del DOM después de la animación
         setTimeout(() => {
             splashScreen.style.display = 'none';
+            executeAnimations();
         }, 800);
     }
     
-    // Mostrar splash por al menos 2 segundos (para apreciar la animación)
-    // pero máximo hasta que cargue todo
-    const minSplashTime = 2000; // 2 segundos mínimo
+    // Configuración del splash
+    const minSplashTime = 2500;
     const startTime = Date.now();
     
-    // Esperar a que todo el contenido esté cargado
     window.addEventListener('load', () => {
         const elapsedTime = Date.now() - startTime;
         const remainingTime = Math.max(0, minSplashTime - elapsedTime);
@@ -32,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(hideSplashScreen, remainingTime);
     });
     
-    // Fallback: si todo carga muy rápido, asegurar mínimo tiempo
     setTimeout(() => {
         if (!splashScreen.classList.contains('hidden')) {
             hideSplashScreen();
@@ -51,7 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable para almacenar intervalos
     let activeIntervals = [];
     
-    // Toggle menú móvil con animación
+    // Variable para el observer de scroll reveal
+    let scrollObserver = null;
+    
+    // Toggle menú móvil
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
@@ -74,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const page = link.dataset.page;
             
-            // Cerrar menú móvil si está abierto
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('mobile-menu-enter');
@@ -83,12 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.remove('fa-times');
             }
             
-            // Cambiar página
             navigateTo(page);
         });
     });
     
-    // Función para limpiar intervalos activos
+    // Limpiar intervalos
     function clearAllIntervals() {
         activeIntervals.forEach(interval => {
             clearInterval(interval);
@@ -96,12 +115,192 @@ document.addEventListener('DOMContentLoaded', () => {
         activeIntervals = [];
     }
     
-    // Función de navegación - SIN HASH (#)
+    // ===== FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME =====
+    function resetHomeElements() {
+        // Resetear hero elements
+        const heroElements = document.querySelectorAll(
+            '.animate-from-top, .animate-from-left, .animate-from-right, .animate-from-bottom'
+        );
+        
+        heroElements.forEach(el => {
+            if (el.classList.contains('animate-from-top')) {
+                el.classList.add('opacity-0', 'translate-y-[-30px]');
+            }
+            if (el.classList.contains('animate-from-left')) {
+                el.classList.add('opacity-0', 'translate-x-[-50px]');
+            }
+            if (el.classList.contains('animate-from-right')) {
+                el.classList.add('opacity-0', 'translate-x-[50px]');
+            }
+            if (el.classList.contains('animate-from-bottom')) {
+                el.classList.add('opacity-0', 'translate-y-[30px]');
+            }
+        });
+        
+        // Resetear stats cards
+        const statsCards = document.querySelectorAll('.stats-card');
+        statsCards.forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-[30px]');
+        });
+        
+        // Resetear títulos de sección
+        const sectionTitles = document.querySelectorAll('.section-title, .section-subtitle');
+        sectionTitles.forEach(title => {
+            title.classList.add('opacity-0', 'translate-y-[30px]');
+        });
+        
+        // Resetear news cards
+        const newsCards = document.querySelectorAll('.news-card');
+        newsCards.forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-[30px]');
+        });
+        
+        console.log('Elementos del home reseteados');
+    }
+    
+    // ===== SCROLL REVEAL MEJORADO =====
+    function initScrollReveal() {
+        // Desconectar observer anterior
+        if (scrollObserver) {
+            scrollObserver.disconnect();
+        }
+        
+        // Seleccionar TODOS los elementos que queremos reanimar
+        const revealElements = document.querySelectorAll(
+            '.stats-card, .news-card, .section-title, .section-subtitle, ' +
+            '.animate-from-top, .animate-from-left, .animate-from-right, .animate-from-bottom, ' +
+            '.glow-text, h1 span, p'
+        );
+        
+        console.log('Elementos a observar:', revealElements.length);
+        
+        // Configuración del observer
+        const observerOptions = {
+            threshold: 0.1, // 10% del elemento visible
+            rootMargin: '0px'
+        };
+        
+        // Callback del observer
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    
+                    // Remover clases que ocultan
+                    el.classList.remove('opacity-0', 'translate-y-[-30px]', 'translate-x-[-50px]', 
+                                      'translate-x-[50px]', 'translate-y-[30px]');
+                    
+                    // Si es el hero o texto principal, forzar animación
+                    if (el.classList.contains('animate-from-top') || 
+                        el.classList.contains('animate-from-left') || 
+                        el.classList.contains('animate-from-right') || 
+                        el.classList.contains('animate-from-bottom')) {
+                        
+                        el.style.animation = 'none';
+                        el.offsetHeight; // Forzar reflow
+                        
+                        if (el.classList.contains('animate-from-top')) {
+                            el.style.animation = 'slideFromTop 0.8s ease-out forwards';
+                        } else if (el.classList.contains('animate-from-left')) {
+                            el.style.animation = 'slideFromLeft 0.8s ease-out forwards';
+                        } else if (el.classList.contains('animate-from-right')) {
+                            el.style.animation = 'slideFromRight 0.8s ease-out forwards';
+                        } else if (el.classList.contains('animate-from-bottom')) {
+                            el.style.animation = 'slideFromBottom 0.8s ease-out forwards';
+                        }
+                    }
+                    
+                    // Efecto especial para stats cards
+                    if (el.classList.contains('stats-card')) {
+                        el.classList.add('neon-border');
+                        setTimeout(() => {
+                            el.classList.remove('neon-border');
+                        }, 1000);
+                        
+                        // Reiniciar contadores si estamos en home
+                        if (window.counterManager) {
+                            window.counterManager.animateAll();
+                        }
+                    }
+                    
+                    console.log('Elemento visible:', el.className);
+                    
+                } else {
+                    // Cuando el elemento NO es visible, preparamos para reanimar
+                    const el = entry.target;
+                    
+                    // No ocultar elementos que ya no existen
+                    if (!document.body.contains(el)) return;
+                    
+                    // Aplicar clases de ocultamiento según el tipo
+                    if (el.classList.contains('stats-card') || 
+                        el.classList.contains('news-card') || 
+                        el.classList.contains('section-title') || 
+                        el.classList.contains('section-subtitle')) {
+                        
+                        el.classList.add('opacity-0', 'translate-y-[30px]');
+                    }
+                    
+                    if (el.classList.contains('animate-from-top')) {
+                        el.classList.add('opacity-0', 'translate-y-[-30px]');
+                        el.style.animation = 'none';
+                    }
+                    
+                    if (el.classList.contains('animate-from-left')) {
+                        el.classList.add('opacity-0', 'translate-x-[-50px]');
+                        el.style.animation = 'none';
+                    }
+                    
+                    if (el.classList.contains('animate-from-right')) {
+                        el.classList.add('opacity-0', 'translate-x-[50px]');
+                        el.style.animation = 'none';
+                    }
+                    
+                    if (el.classList.contains('animate-from-bottom')) {
+                        el.classList.add('opacity-0', 'translate-y-[30px]');
+                        el.style.animation = 'none';
+                    }
+                }
+            });
+        };
+        
+        // Crear nuevo observer
+        scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+        
+        // Observar cada elemento
+        revealElements.forEach(el => {
+            if (el && document.body.contains(el)) {
+                scrollObserver.observe(el);
+            }
+        });
+        
+        console.log('Scroll reveal inicializado con', revealElements.length, 'elementos');
+    }
+    
+    // ===== NAVEGACIÓN CORREGIDA =====
     async function navigateTo(page) {
-        // Limpiar intervalos anteriores
+        console.log('Navegando a:', page);
+        
+        // Limpiar recursos anteriores
         clearAllIntervals();
         
-        // Actualizar clase activa en los enlaces
+        if (window.counterManager) {
+            window.counterManager.destroy();
+            window.counterManager = null;
+        }
+        
+        if (window.currentPageCleanup) {
+            window.currentPageCleanup();
+            window.currentPageCleanup = null;
+        }
+        
+        // Desconectar observer
+        if (scrollObserver) {
+            scrollObserver.disconnect();
+            scrollObserver = null;
+        }
+        
+        // Actualizar clases de navegación
         navLinks.forEach(link => {
             if (link.dataset.page === page) {
                 link.classList.add('text-cyan-400');
@@ -115,35 +314,49 @@ document.addEventListener('DOMContentLoaded', () => {
         // Efecto de transición
         content.style.opacity = '0';
         
-        // Cargar el contenido de la página
         try {
             const response = await fetch(`pages/${page}.html`);
             if (!response.ok) throw new Error('Página no encontrada');
             const html = await response.text();
             
             setTimeout(() => {
+                // Insertar nuevo contenido
                 content.innerHTML = html;
                 content.style.opacity = '1';
                 currentPage = page;
                 
-                // Inicializar scripts específicos de la página
-                initializePageScripts(page);
+                // IMPORTANTE: Resetear elementos si es home
+                if (page === 'home') {
+                    // Pequeño delay para asegurar que el DOM se actualizó
+                    setTimeout(() => {
+                        resetHomeElements();
+                        // Inicializar scripts y observer
+                        initializePageScripts(page);
+                        initScrollReveal();
+                        
+                        // Animar contadores
+                        if (window.counterManager) {
+                            window.counterManager.animateAll();
+                        }
+                    }, 100);
+                } else {
+                    initializePageScripts(page);
+                }
                 
-                // Actualizar URL sin # y sin recargar la página
+                // Actualizar URL
                 if (page === 'home') {
                     history.pushState({ page }, '', '/');
                 } else {
                     history.pushState({ page }, '', `/${page}`);
                 }
                 
-                // Actualizar el título de la página
                 updatePageTitle(page);
                 
-                // Scroll suave hacia arriba
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
+                
             }, 300);
             
         } catch (error) {
@@ -161,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Función para actualizar el título de la página
     function updatePageTitle(page) {
         const titles = {
             'home': 'LKE E-SPORTS | Inicio',
@@ -171,29 +383,21 @@ document.addEventListener('DOMContentLoaded', () => {
             'news': 'LKE E-SPORTS | Noticias',
             'contact': 'LKE E-SPORTS | Contacto'
         };
-        
         document.title = titles[page] || 'LKE E-SPORTS';
     }
     
-    // Función para obtener la página actual desde la URL
     function getPageFromPath() {
         const path = window.location.pathname;
-        
-        if (path === '/' || path === '') {
-            return 'home';
-        }
-        
+        if (path === '/' || path === '') return 'home';
         const page = path.substring(1);
         const validPages = ['home', 'team', 'tournaments', 'organigrama', 'news', 'contact'];
-        
         return validPages.includes(page) ? page : 'home';
     }
     
-    // Función para inicializar scripts específicos de cada página
     function initializePageScripts(page) {
         switch(page) {
             case 'home':
-                initHomePage();
+                window.currentPageCleanup = initHomePage();
                 break;
             case 'team':
                 initTeamPage();
@@ -213,28 +417,134 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Scripts específicos de cada página
+    // ==================== HOME ====================
     function initHomePage() {
         console.log('Home page initialized');
         
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const isVisible = rect.top <= window.innerHeight - 100;
+        // Sistema de contadores sincronizados
+        class CounterManager {
+            constructor() {
+                this.counters = [];
+                this.animationDuration = 2000;
+                this.isRunning = false;
+                this.animationId = null;
+                this.countdownInterval = null;
+            }
+            
+            init() {
+                this.counters = []; // Limpiar contadores anteriores
+                const counterElements = document.querySelectorAll('.counter');
                 
-                if (isVisible) {
-                    el.classList.add('opacity-100', 'translate-y-0');
-                    el.classList.remove('opacity-0', 'translate-y-10');
+                counterElements.forEach(counterEl => {
+                    const target = parseInt(counterEl.dataset.target) || 0;
+                    
+                    this.counters.push({
+                        element: counterEl,
+                        target: target,
+                        currentValue: 0,
+                        startTime: null
+                    });
+                });
+                
+                console.log('Contadores inicializados:', this.counters.length);
+            }
+            
+            async animateAll() {
+                this.stop();
+                
+                this.counters.forEach(counter => {
+                    counter.currentValue = 0;
+                    counter.element.textContent = '0';
+                });
+                
+                this.isRunning = true;
+                const startTime = performance.now();
+                
+                return new Promise((resolve) => {
+                    const animate = (currentTime) => {
+                        if (!this.isRunning) return;
+                        
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / this.animationDuration, 1);
+                        
+                        let allFinished = true;
+                        
+                        this.counters.forEach(counter => {
+                            const value = Math.floor(progress * counter.target);
+                            
+                            if (value !== counter.currentValue) {
+                                counter.currentValue = value;
+                                counter.element.textContent = value;
+                                
+                                counter.element.classList.add('counter-update');
+                                setTimeout(() => {
+                                    counter.element.classList.remove('counter-update');
+                                }, 300);
+                            }
+                            
+                            if (progress < 1) {
+                                allFinished = false;
+                            } else {
+                                counter.element.textContent = counter.target;
+                            }
+                        });
+                        
+                        if (!allFinished) {
+                            this.animationId = requestAnimationFrame(animate);
+                        } else {
+                            console.log('Contadores finalizados');
+                            resolve();
+                        }
+                    };
+                    
+                    this.animationId = requestAnimationFrame(animate);
+                });
+            }
+            
+            stop() {
+                this.isRunning = false;
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                    this.animationId = null;
                 }
-            });
-        };
+            }
+            
+            startLoop(intervalTime = 30000) {
+                this.animateAll();
+                
+                if (this.countdownInterval) {
+                    clearInterval(this.countdownInterval);
+                }
+                
+                this.countdownInterval = setInterval(() => {
+                    this.animateAll();
+                }, intervalTime);
+            }
+            
+            destroy() {
+                this.stop();
+                if (this.countdownInterval) {
+                    clearInterval(this.countdownInterval);
+                    this.countdownInterval = null;
+                }
+            }
+        }
         
-        window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll();
+        // Inicializar contadores
+        const counterManager = new CounterManager();
+        counterManager.init();
+        counterManager.startLoop(30000);
+        
+        window.counterManager = counterManager;
+        
+        return () => {
+            if (window.counterManager) {
+                window.counterManager.destroy();
+            }
+        };
     }
     
-    // ==================== PÁGINA DE EQUIPOS MEJORADA ====================
+    // ==================== TEAM ====================
     function initTeamPage() {
         console.log('Team page initialized');
         
@@ -409,11 +719,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `;
-            
-            countdownElement.style.transform = 'scale(1.02)';
-            setTimeout(() => {
-                countdownElement.style.transform = 'scale(1)';
-            }, 200);
         }
         
         updateCountdown();
@@ -527,13 +832,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Manejar botones atrás/adelante del navegador
+    // Manejar botones atrás/adelante
     window.addEventListener('popstate', (event) => {
         const page = getPageFromPath();
         navigateTo(page);
     });
     
-    // Cargar página inicial basada en el path de la URL
+    // Cargar página inicial
     const initialPage = getPageFromPath();
     navigateTo(initialPage);
     
@@ -550,7 +855,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Manejar resize de ventana
+    // Manejar resize
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) {
             if (!mobileMenu.classList.contains('hidden')) {
@@ -564,9 +869,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Limpiar intervalos cuando se cambia de página
+// Limpiar al salir
 window.addEventListener('beforeunload', () => {
-    if (window.countdownInterval) {
-        clearInterval(window.countdownInterval);
+    if (window.counterManager) {
+        window.counterManager.destroy();
     }
 });
