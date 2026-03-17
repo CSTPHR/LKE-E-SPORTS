@@ -63,7 +63,7 @@
                         <div class="text-gray-300 text-xs sm:text-sm md:text-base">Títulos</div>
                     </div>
                     
-                    <!-- ===== TARJETA 4: SEGUIDORES - CORREGIDA CON MISMO HOVER ===== -->
+                    <!-- ===== TARJETA 4: SEGUIDORES ===== -->
                     <div class="stats-card bg-white/5 backdrop-blur-lg p-4 md:p-6 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-1000" data-stat="followers">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1 md:mb-2">
                             +<span class="counter" data-target="2">0</span><span class="counter-suffix text-cyan-400">K</span>
@@ -79,20 +79,25 @@
 <!-- Separador visual -->
 <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto my-8 md:my-12 rounded-full"></div>
 
-<!-- Últimas noticias -->
+<!-- ===== Últimas noticias - TÍTULO MEJORADO CON EFECTO DE ENTRADA ===== -->
 <section class="py-12 md:py-20">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-black text-center mb-2 md:mb-4 opacity-0 translate-y-[30px] transition-all duration-700 section-title">
-            <span class="text-white">ÚLTIMAS</span>
-            <span class="text-cyan-400">NOTICIAS</span>
+        <!-- Título con efecto mejorado - MISMO QUE "DOMINA EL COMPETITIVO" -->
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-2 md:mb-4">
+            <span class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 text-white">ÚLTIMAS</span>
+            <span class="inline-block">
+                <span class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-200 text-cyan-400">NOTICIAS</span>
+            </span>
         </h2>
-        <p class="text-gray-400 text-sm md:text-base text-center mb-8 md:mb-12 max-w-2xl mx-auto px-4 opacity-0 translate-y-[30px] transition-all duration-700 delay-200 section-subtitle">
+        
+        <!-- Subtítulo con efecto de aparición -->
+        <p class="animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-400 text-gray-400 text-sm md:text-base text-center mb-8 md:mb-12 max-w-2xl mx-auto px-4">
             Mantente al día con todas las novedades de LKE E-SPORTS
         </p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             <!-- Noticia 1 -->
-            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700">
+            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700" data-news="1">
                 <div class="h-36 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-trophy text-4xl sm:text-5xl md:text-6xl text-cyan-400"></i>
                 </div>
@@ -109,7 +114,7 @@
             </div>
             
             <!-- Noticia 2 -->
-            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200">
+            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200" data-news="2">
                 <div class="h-36 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-user-plus text-4xl sm:text-5xl md:text-6xl text-cyan-400"></i>
                 </div>
@@ -126,7 +131,7 @@
             </div>
             
             <!-- Noticia 3 -->
-            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400">
+            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400" data-news="3">
                 <div class="h-36 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-calendar-alt text-4xl sm:text-5xl md:text-6xl text-cyan-400"></i>
                 </div>
@@ -192,5 +197,46 @@
     .stats-card:hover .counter-suffix {
         color: #22d3ee;
         text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+    }
+    
+    /* Animaciones personalizadas */
+    @keyframes slideFromLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideFromRight {
+        0% {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideFromBottom {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-from-left.visible,
+    .animate-from-right.visible,
+    .animate-from-bottom.visible {
+        opacity: 1;
+        transform: translate(0);
     }
 </style>

@@ -1,6 +1,6 @@
 // ============================================
 // MAIN.JS - SISTEMA DE NAVEGACIÓN DINÁMICA PARA LKE E-SPORTS
-// VERSIÓN DEFINITIVA CORREGIDA - HOVER UNIFICADO PARA TODAS LAS FICHAS
+// VERSIÓN DEFINITIVA - SCROLL REVEAL MEJORADO CON REACTIVACIÓN
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             window.counterManager.animateAll();
         }
         
-        // Inicializar scroll reveal
-        initScrollReveal();
+        // Inicializar scroll reveal mejorado
+        initEnhancedScrollReveal();
     }
     
     // Función para ocultar el splash screen
@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable para almacenar intervalos
     let activeIntervals = [];
     
-    // Variable para el observer de scroll reveal
-    let scrollObserver = null;
+    // Variable para el observer de scroll reveal mejorado
+    let enhancedScrollObserver = null;
     
     // ============================================
     // SECCIÓN 3: MANEJO DEL MENÚ MÓVIL
@@ -205,10 +205,19 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
         });
         
-        // Resetear títulos de sección
-        const sectionTitles = document.querySelectorAll('.section-title, .section-subtitle');
+        // Resetear títulos de sección (incluyendo el nuevo formato)
+        const sectionTitles = document.querySelectorAll('h2 span.animate-from-left, h2 span.animate-from-right, p.animate-from-bottom');
         sectionTitles.forEach(title => {
-            title.classList.add('opacity-0', 'translate-y-[30px]');
+            title.classList.add('opacity-0');
+            if (title.classList.contains('animate-from-left')) {
+                title.classList.add('translate-x-[-50px]');
+            }
+            if (title.classList.contains('animate-from-right')) {
+                title.classList.add('translate-x-[50px]');
+            }
+            if (title.classList.contains('animate-from-bottom')) {
+                title.classList.add('translate-y-[30px]');
+            }
         });
         
         // Resetear news cards
@@ -217,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
         });
         
-        console.log('Elementos del home reseteados - Stats cards:', statsCards.length);
+        console.log('Elementos del home reseteados');
     }
     
     // ============================================
@@ -302,51 +311,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 8: SCROLL REVEAL MEJORADO
+    // SECCIÓN 8: SCROLL REVEAL MEJORADO CON REACTIVACIÓN
     // ============================================
-    function initScrollReveal() {
+    function initEnhancedScrollReveal() {
         // Desconectar observer anterior
-        if (scrollObserver) {
-            scrollObserver.disconnect();
+        if (enhancedScrollObserver) {
+            enhancedScrollObserver.disconnect();
         }
         
-        // Seleccionar TODOS los elementos que queremos reanimar
-        const revealElements = document.querySelectorAll(
-            '.stats-card, .news-card, .section-title, .section-subtitle, ' +
-            '.animate-from-top, .animate-from-left, .animate-from-right, .animate-from-bottom, ' +
-            '.glow-text, h1 span, p'
+        // Seleccionar TODOS los elementos animables
+        const animatedElements = document.querySelectorAll(
+            '.stats-card, .news-card, ' +
+            '.animate-from-left, .animate-from-right, .animate-from-bottom, ' +
+            '.glow-text, h1 span, p, ' +
+            'h2 span.animate-from-left, h2 span.animate-from-right'
         );
         
-        console.log('Elementos a observar:', revealElements.length);
+        console.log('Elementos a observar (scroll reveal mejorado):', animatedElements.length);
         
-        // Configuración del observer
+        // Configuración del observer - threshold más bajo para detectar entrada/salida
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px'
+            threshold: 0.2, // Se activa cuando el 20% del elemento es visible
+            rootMargin: '0px 0px -50px 0px' // Margen negativo para activarse un poco antes
         };
         
-        // Callback del observer
+        // Callback del observer mejorado
         const observerCallback = (entries) => {
             entries.forEach(entry => {
+                const el = entry.target;
+                
                 if (entry.isIntersecting) {
-                    const el = entry.target;
+                    // ===== ELEMENTO ENTRA EN EL VIEWPORT =====
+                    console.log('Elemento visible:', el.className);
                     
                     // Remover clases que ocultan
                     el.classList.remove('opacity-0', 'translate-y-[-30px]', 'translate-x-[-50px]', 
                                       'translate-x-[50px]', 'translate-y-[30px]');
                     
-                    // Si es el hero o texto principal, forzar animación
-                    if (el.classList.contains('animate-from-top') || 
-                        el.classList.contains('animate-from-left') || 
+                    // Añadir clase visible para activar animaciones CSS
+                    el.classList.add('visible');
+                    
+                    // Aplicar animaciones específicas según el tipo
+                    if (el.classList.contains('stats-card')) {
+                        // Efecto neon para stats cards al hacer scroll
+                        el.classList.add('neon-border');
+                        setTimeout(() => {
+                            el.classList.remove('neon-border');
+                        }, 1000);
+                    }
+                    
+                    // Forzar animación con estilo inline para los elementos de texto
+                    if (el.classList.contains('animate-from-left') || 
                         el.classList.contains('animate-from-right') || 
                         el.classList.contains('animate-from-bottom')) {
                         
                         el.style.animation = 'none';
-                        el.offsetHeight;
+                        el.offsetHeight; // Forzar reflow
                         
-                        if (el.classList.contains('animate-from-top')) {
-                            el.style.animation = 'slideFromTop 0.8s ease-out forwards';
-                        } else if (el.classList.contains('animate-from-left')) {
+                        if (el.classList.contains('animate-from-left')) {
                             el.style.animation = 'slideFromLeft 0.8s ease-out forwards';
                         } else if (el.classList.contains('animate-from-right')) {
                             el.style.animation = 'slideFromRight 0.8s ease-out forwards';
@@ -355,28 +377,50 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                     
-                    // Efecto especial para stats cards - APLICAR A TODAS POR IGUAL
-                    if (el.classList.contains('stats-card')) {
-                        el.classList.add('neon-border');
-                        setTimeout(() => {
-                            el.classList.remove('neon-border');
-                        }, 1000);
+                } else {
+                    // ===== ELEMENTO SALE DEL VIEWPORT =====
+                    // REINICIAR PARA QUE VUELVA A ANIMARSE CUANDO REAPAREZCA
+                    if (el.classList.contains('animate-from-left') || 
+                        el.classList.contains('animate-from-right') || 
+                        el.classList.contains('animate-from-bottom') ||
+                        el.classList.contains('stats-card') ||
+                        el.classList.contains('news-card')) {
+                        
+                        // Quitar animaciones y clases
+                        el.style.animation = '';
+                        el.classList.remove('visible');
+                        
+                        // Restaurar clases de ocultamiento según el tipo
+                        if (el.classList.contains('animate-from-left')) {
+                            el.classList.add('opacity-0', 'translate-x-[-50px]');
+                        }
+                        if (el.classList.contains('animate-from-right')) {
+                            el.classList.add('opacity-0', 'translate-x-[50px]');
+                        }
+                        if (el.classList.contains('animate-from-bottom')) {
+                            el.classList.add('opacity-0', 'translate-y-[30px]');
+                        }
+                        if (el.classList.contains('stats-card') || el.classList.contains('news-card')) {
+                            el.classList.add('opacity-0', 'translate-y-[30px]');
+                        }
+                        
+                        console.log('Elemento reiniciado para nueva animación:', el.className);
                     }
                 }
             });
         };
         
-        // Crear nuevo observer
-        scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+        // Crear nuevo observer mejorado
+        enhancedScrollObserver = new IntersectionObserver(observerCallback, observerOptions);
         
         // Observar cada elemento
-        revealElements.forEach(el => {
+        animatedElements.forEach(el => {
             if (el && document.body.contains(el)) {
-                scrollObserver.observe(el);
+                enhancedScrollObserver.observe(el);
             }
         });
         
-        console.log('Scroll reveal inicializado con', revealElements.length, 'elementos');
+        console.log('Scroll reveal mejorado inicializado con', animatedElements.length, 'elementos');
     }
     
     // ============================================
@@ -398,10 +442,10 @@ document.addEventListener('DOMContentLoaded', () => {
             window.currentPageCleanup = null;
         }
         
-        // Desconectar observer
-        if (scrollObserver) {
-            scrollObserver.disconnect();
-            scrollObserver = null;
+        // Desconectar observer mejorado
+        if (enhancedScrollObserver) {
+            enhancedScrollObserver.disconnect();
+            enhancedScrollObserver = null;
         }
         
         // Actualizar clases de navegación
@@ -434,7 +478,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         resetHomeElements();
                         initializePageScripts(page);
-                        initScrollReveal();
+                        
+                        // Inicializar scroll reveal mejorado
+                        initEnhancedScrollReveal();
                         
                         // UNIFICAR COMPORTAMIENTO HOVER DE STATS CARDS
                         unifyStatsCardsHover();
@@ -451,6 +497,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 100);
                 } else {
                     initializePageScripts(page);
+                    // Inicializar scroll reveal mejorado para otras páginas
+                    initEnhancedScrollReveal();
                 }
                 
                 // Actualizar URL
@@ -481,6 +529,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             content.style.opacity = '1';
+            // Inicializar scroll reveal incluso en página de error
+            initEnhancedScrollReveal();
         }
     }
     
