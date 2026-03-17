@@ -8,7 +8,7 @@
     <div class="absolute bottom-20 right-10 w-48 h-48 md:w-96 md:h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse-slow opacity-30 md:opacity-100"></div>
     
     <div class="container mx-auto px-4 relative z-10">
-        <!-- ===== CAMBIO CRÍTICO: En móvil, las columnas se apilan ===== -->
+        <!-- En móvil, las columnas se apilan -->
         <div class="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             <!-- Columna izquierda - Texto -->
             <div class="text-center lg:text-left w-full">
@@ -80,7 +80,7 @@
 <!-- Separador visual -->
 <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto my-6 md:my-12 rounded-full"></div>
 
-<!-- ===== Últimas noticias ===== -->
+<!-- ===== Últimas noticias - CON IMAGEN EN LA PRIMERA TARJETA ===== -->
 <section class="py-8 md:py-20">
     <div class="container mx-auto px-4">
         <!-- Título -->
@@ -97,24 +97,45 @@
         </p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8">
-            <!-- Noticia 1 -->
-            <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700" data-news="1">
-                <div class="h-32 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
-                    <i class="fas fa-trophy text-3xl sm:text-4xl md:text-6xl text-cyan-400"></i>
-                </div>
-                <div class="p-3 md:p-6">
-                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2">Hace 3 horas</div>
-                    <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-2 line-clamp-2">¡Campeones de la Xylon League!</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm md:text-base mb-3 md:mb-4 line-clamp-2 md:line-clamp-3">
-                        LKE E-SPORTS se corona campeón de la Xylon League categoría Junior.
+            <!-- ===== NOTICIA 1: CAMPEONES XYLON LEAGUE (CON IMAGEN DE FONDO) ===== -->
+            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 group" data-news="1">
+                <!-- Imagen de fondo -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/win-xylon-lke.jpg');"></div>
+                
+                <!-- Overlay oscuro para mejorar legibilidad del texto -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 group-hover:from-black/80 group-hover:via-black/60 group-hover:to-black/40 transition-all duration-300"></div>
+                
+                <!-- Overlay con patrón de texto de la imagen (efecto visual) -->
+                <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: url('../images/win-xylon-lke.jpg'); background-size: cover; filter: blur(2px);"></div>
+                
+                <!-- Contenido de la tarjeta (sobrepuesto) -->
+                <div class="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[200px] sm:min-h-[220px] md:min-h-[250px]">
+                    <!-- Fecha/Hora -->
+                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2 font-semibold">🏆 Hace 3 horas</div>
+                    
+                    <!-- Título de la noticia -->
+                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2 drop-shadow-lg">
+                        ¡Campeones de la Xylon League!
+                    </h3>
+                    
+                    <!-- Descripción -->
+                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-3 md:mb-4 line-clamp-2 md:line-clamp-3 drop-shadow">
+                        LKE E-SPORTS se corona campeón de la Xylon League categoría Junior. ¡Primer lugar para el equipo!
                     </p>
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center">
+                    
+                    <!-- Enlace "Leer más" -->
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors">
                         Leer más <i class="fas fa-arrow-right ml-2 text-xs"></i>
                     </a>
                 </div>
+                
+                <!-- Badge de "CAMPEÓN" -->
+                <div class="absolute top-2 right-2 z-20 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                    🏆 CAMPEÓN
+                </div>
             </div>
             
-            <!-- Noticia 2 -->
+            <!-- ===== NOTICIA 2: NUEVO JUGADOR (SIN CAMBIOS) ===== -->
             <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200" data-news="2">
                 <div class="h-32 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-user-plus text-3xl sm:text-4xl md:text-6xl text-cyan-400"></i>
@@ -131,7 +152,7 @@
                 </div>
             </div>
             
-            <!-- Noticia 3 -->
+            <!-- ===== NOTICIA 3: PRÓXIMO TORNEO (SIN CAMBIOS) ===== -->
             <div class="news-card bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400" data-news="3">
                 <div class="h-32 sm:h-40 md:h-48 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 flex items-center justify-center">
                     <i class="fas fa-calendar-alt text-3xl sm:text-4xl md:text-6xl text-cyan-400"></i>
@@ -210,6 +231,11 @@
         .stats-card div:last-child {
             font-size: 0.7rem !important;
         }
+        
+        /* Ajustes para la tarjeta con imagen */
+        .news-card.relative {
+            min-height: 200px;
+        }
     }
     
     @media (max-width: 360px) {
@@ -227,6 +253,10 @@
         
         .stats-card {
             padding: 0.4rem !important;
+        }
+        
+        .news-card.relative {
+            min-height: 180px;
         }
     }
     
@@ -258,6 +288,24 @@
     .stats-card:hover .counter-suffix {
         color: #22d3ee;
         text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+    }
+    
+    /* Estilos específicos para la tarjeta con imagen */
+    .news-card.relative {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .news-card.relative .absolute.inset-0.bg-gradient-to-t {
+        transition: all 0.3s ease;
+    }
+    
+    .news-card.relative:hover .absolute.inset-0.bg-gradient-to-t {
+        background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.4), rgba(0,0,0,0.2));
     }
     
     /* Animaciones */
@@ -299,5 +347,14 @@
     .animate-from-bottom.visible {
         opacity: 1;
         transform: translate(0);
+    }
+    
+    /* Drop shadow para texto sobre imagen */
+    .drop-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .drop-shadow-lg {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
     }
 </style>
