@@ -215,9 +215,9 @@
             transform: scale(1.05);
         }
 
-        /* ===== NAVBAR CORREGIDO - VERSIÓN ROBUSTA ===== */
+        /* ===== NAVBAR CORREGIDO - MENÚ MÓVIL FUNCIONAL ===== */
         
-        /* Base (escritorio) */
+        /* Base - escritorio por defecto */
         .navbar-left-space {
             display: none;
         }
@@ -231,7 +231,19 @@
             display: none;
         }
         
-        /* Detección de móvil por ancho y por presencia de táctil */
+        .desktop-menu {
+            display: flex !important;
+        }
+        
+        .desktop-social {
+            display: flex !important;
+        }
+        
+        #mobileMenu {
+            display: none;
+        }
+        
+        /* Móvil y tablets */
         @media (max-width: 1024px) {
             #menuBtn {
                 display: block;
@@ -249,13 +261,24 @@
                 transform: translateX(-50%);
             }
             
-            /* Ocultar menú desktop y social icons */
-            .desktop-menu, .desktop-social {
+            .desktop-menu {
                 display: none !important;
+            }
+            
+            .desktop-social {
+                display: none !important;
+            }
+            
+            #mobileMenu {
+                display: none; /* Controlado por JS */
+            }
+            
+            #mobileMenu:not(.hidden) {
+                display: block;
             }
         }
         
-        /* Caso especial: "modo escritorio" en móvil (ancho grande pero táctil) */
+        /* Modo escritorio en móvil (táctil con pantalla grande) */
         @media (min-width: 1025px) and (pointer: coarse) {
             #menuBtn {
                 display: block;
@@ -273,13 +296,20 @@
                 transform: translateX(-50%);
             }
             
-            .desktop-menu, .desktop-social {
+            .desktop-menu {
                 display: none !important;
             }
             
-            /* Forzar que el menú móvil esté disponible */
-            .md\\:hidden {
-                display: block !important;
+            .desktop-social {
+                display: none !important;
+            }
+            
+            #mobileMenu {
+                display: none;
+            }
+            
+            #mobileMenu:not(.hidden) {
+                display: block;
             }
         }
         
@@ -304,6 +334,10 @@
             
             .desktop-social {
                 display: flex !important;
+            }
+            
+            #mobileMenu {
+                display: none !important;
             }
         }
 
@@ -416,13 +450,13 @@
                     <!-- Espacio vacío para balancear en móvil -->
                     <div class="navbar-left-space"></div>
                     
-                    <!-- Logo (centrado en móvil, izquierda en desktop) -->
+                    <!-- Logo -->
                     <div class="logo-container">
                         <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-24 h-20 md:w-32 md:h-28 lg:w-40 lg:h-36 object-contain">
                     </div>
 
                     <!-- Desktop Menu -->
-                    <div class="desktop-menu hidden space-x-8">
+                    <div class="desktop-menu space-x-8">
                         <a href="#" data-page="home" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">INICIO</a>
                         <a href="#" data-page="team" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">EQUIPOS</a>
                         <a href="#" data-page="tournaments" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">TORNEOS</a>
@@ -432,7 +466,7 @@
                     </div>
 
                     <!-- Social Icons (desktop) -->
-                    <div class="desktop-social hidden space-x-4">
+                    <div class="desktop-social space-x-4">
                         <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-tiktok"></i></a>
                         <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-instagram"></i></a>
                         <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-discord"></i></a>
@@ -446,7 +480,7 @@
             </div>
 
             <!-- Mobile Menu -->
-            <div class="md:hidden hidden" id="mobileMenu">
+            <div class="hidden" id="mobileMenu">
                 <div class="px-4 py-3 space-y-3 bg-black/90 backdrop-blur-lg border-t border-cyan-500/30">
                     <a href="#" data-page="home" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">INICIO</a>
                     <a href="#" data-page="team" class="nav-link block text-gray-300 hover:text-cyan-400 hover:pl-4 transition-all py-2 font-semibold">EQUIPOS</a>
