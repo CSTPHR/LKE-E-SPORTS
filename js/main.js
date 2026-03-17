@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activeIntervals = [];
     }
     
-    // Función de navegación
+    // Función de navegación - SIN HASH (#)
     async function navigateTo(page) {
         // Limpiar intervalos anteriores
         clearAllIntervals();
@@ -89,8 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Inicializar scripts específicos de la página
                 initializePageScripts(page);
                 
-                // Actualizar URL sin recargar
-                history.pushState({ page }, '', `#${page}`);
+                // Actualizar URL sin # y sin recargar la página
+                // Esto es clave: Usamos pushState para URLs limpias
+                if (page === 'home') {
+                    // Si es home, mostrar URL base
+                    history.pushState({ page }, '', '/');
+                } else {
+                    // Para otras páginas, usar /page-name
+                    history.pushState({ page }, '', `/${page}`);
+                }
+                
+                // Actualizar el título de la página
+                updatePageTitle(page);
                 
                 // Scroll suave hacia arriba
                 window.scrollTo({
@@ -112,6 +122,39 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             content.style.opacity = '1';
         }
+    }
+    
+    // Función para actualizar el título de la página
+    function updatePageTitle(page) {
+        const titles = {
+            'home': 'LKE E-SPORTS | Inicio',
+            'team': 'LKE E-SPORTS | Equipos Competitivos',
+            'tournaments': 'LKE E-SPORTS | Torneos',
+            'organigrama': 'LKE E-SPORTS | Organigrama',
+            'news': 'LKE E-SPORTS | Noticias',
+            'contact': 'LKE E-SPORTS | Contacto'
+        };
+        
+        document.title = titles[page] || 'LKE E-SPORTS';
+    }
+    
+    // Función para obtener la página actual desde la URL
+    function getPageFromPath() {
+        const path = window.location.pathname;
+        
+        // Si es la raíz, mostrar home
+        if (path === '/' || path === '') {
+            return 'home';
+        }
+        
+        // Eliminar la barra inicial y obtener el nombre de la página
+        const page = path.substring(1); // elimina el primer carácter '/'
+        
+        // Lista de páginas válidas
+        const validPages = ['home', 'team', 'tournaments', 'organigrama', 'news', 'contact'];
+        
+        // Si la página es válida, devolverla, si no, devolver home
+        return validPages.includes(page) ? page : 'home';
     }
     
     // Función para inicializar scripts específicos de cada página
@@ -255,7 +298,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             behavior: 'smooth'
                         });
                         
-                        // Actualizar URL sin recargar
+                        // Actualizar URL con hash para secciones internas
+                        // Esto SÍ usamos hash porque es dentro de la misma página
                         history.pushState(null, '', targetId);
                     }
                 }
@@ -487,15 +531,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Manejar botones atrás/adelante del navegador
     window.addEventListener('popstate', (event) => {
-        if (event.state && event.state.page) {
-            navigateTo(event.state.page);
-        } else {
-            navigateTo('home');
-        }
+        // Obtener la página desde el path actual
+        const page = getPageFromPath();
+        
+        // Navegar a la página correspondiente
+        navigateTo(page);
     });
     
-    // Cargar página inicial basada en hash o home por defecto
-    const initialPage = window.location.hash.replace('#', '') || 'home';
+    // Cargar página inicial basada en el path de la URL
+    const initialPage = getPageFromPath();
     navigateTo(initialPage);
     
     // Cerrar menú móvil al hacer click fuera

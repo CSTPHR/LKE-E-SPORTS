@@ -80,55 +80,29 @@
             transform: scale(1.05);
         }
 
-        /* Efecto de brillo que recorre la imagen */
-        @keyframes lightTrail {
-            0% {
-                mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
-                -webkit-mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
-                mask-size: 200% 200%;
-                -webkit-mask-size: 200% 200%;
-                mask-position: 0% 0%;
-                -webkit-mask-position: 0% 0%;
-            }
-            100% {
-                mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
-                -webkit-mask-image: linear-gradient(45deg, transparent 0%, transparent 40%, white 50%, transparent 60%, transparent 100%);
-                mask-size: 200% 200%;
-                -webkit-mask-size: 200% 200%;
-                mask-position: 100% 100%;
-                -webkit-mask-position: 100% 100%;
-            }
-        }
-
-        .logo-light-trail {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-light-trail::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                transparent 0%, 
-                transparent 30%, 
-                rgba(6, 182, 212, 0.3) 45%, 
-                rgba(6, 182, 212, 0.5) 50%, 
-                rgba(6, 182, 212, 0.3) 55%, 
-                transparent 70%, 
-                transparent 100%);
-            animation: lightTrail 3s linear infinite;
-            pointer-events: none;
-        }
-
-        /* Versión móvil del logo */
+        /* Versión móvil del logo - CENTRADO */
         @media (max-width: 768px) {
             .logo-shine {
-                width: 80px;
-                height: 70px;
+                width: 100px;
+                height: 80px;
+            }
+            
+            /* Forzar centrado del logo en móvil */
+            .logo-container {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+        }
+
+        /* Para tablets (entre 768px y 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .logo-container {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
             }
         }
 
@@ -147,6 +121,35 @@
                 transform: translateY(0);
             }
         }
+
+        /* Ajustes para el navbar en móvil */
+        @media (max-width: 768px) {
+            nav .container {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* El contenedor del logo ahora está centrado */
+            .logo-container {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            /* El botón del menú móvil se mantiene a la derecha */
+            #menuBtn {
+                margin-left: auto;
+                z-index: 60;
+            }
+            
+            /* Espacio vacío a la izquierda para balancear */
+            .navbar-left-space {
+                width: 40px;
+                visibility: hidden;
+            }
+        }
     </style>
 </head>
 <body class="bg-gradient-custom min-h-screen text-white">
@@ -155,12 +158,15 @@
     <nav class="bg-black/50 backdrop-blur-lg border-b border-cyan-500/30 fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo con efecto dinámico (SOLO LA IMAGEN) -->
+                <!-- Espacio vacío para balancear en móvil (solo visible en móvil) -->
+                <div class="navbar-left-space md:hidden"></div>
+                
+                <!-- Logo con efecto dinámico - CENTRADO EN MÓVIL Y TABLET -->
                 <div class="logo-container flex items-center">
                     <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-24 h-20 md:w-32 md:h-28 lg:w-40 lg:h-36 object-contain">
                 </div>
 
-                <!-- Desktop Menu -->
+                <!-- Desktop Menu (oculto en móvil) -->
                 <div class="hidden md:flex space-x-8">
                     <a href="#" data-page="home" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">INICIO</a>
                     <a href="#" data-page="team" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">EQUIPOS</a>
@@ -170,15 +176,15 @@
                     <a href="#" data-page="contact" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors font-semibold">CONTACTO</a>
                 </div>
 
-                <!-- Social Icons -->
+                <!-- Social Icons (solo desktop) -->
                 <div class="hidden md:flex space-x-4">
-                    <a href="https://www.tiktok.com/@elekaesports" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/lke_esports" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/tfdHjg94u5" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl"><i class="fab fa-discord"></i></a>
                 </div>
 
                 <!-- Mobile menu button -->
-                <button class="md:hidden text-white text-2xl focus:outline-none" id="menuBtn">
+                <button class="md:hidden text-white text-2xl focus:outline-none z-50" id="menuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -196,9 +202,9 @@
                 
                 <!-- Social Icons en móvil -->
                 <div class="flex space-x-6 pt-4 pb-2 justify-center border-t border-gray-800 mt-4">
-                    <a href="https://www.tiktok.com/@elekaesports" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/lke_esports" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/tfdHjg94u5" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.tiktok.com/@elekaesports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/lke_esports" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/tfdHjg94u5" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-2xl"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
         </div>
