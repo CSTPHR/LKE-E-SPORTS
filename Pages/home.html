@@ -26,7 +26,7 @@
                     Competimos al más alto nivel y formamos a los mejores jugadores.
                 </p>
                 
-                <!-- Botones -->
+                <!-- Botones - CORREGIDOS con data-page y clase nav-link -->
                 <div class="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center lg:justify-start px-2 sm:px-0">
                     <a href="#" data-page="team" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1000 bg-cyan-500 hover:bg-cyan-600 text-white px-4 md:px-8 py-2 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-xs sm:text-sm md:text-base text-center">
                         CONOCE AL EQUIPO
@@ -80,7 +80,7 @@
 <!-- Separador visual -->
 <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto my-6 md:my-12 rounded-full"></div>
 
-<!-- ===== Últimas noticias - CON IMAGEN EN TODAS LAS TARJETAS ===== -->
+<!-- ===== Últimas noticias - CON IMAGEN EN TODAS LAS TARJETAS Y TODA LA FICHA CLIQUEABLE ===== -->
 <section class="py-8 md:py-20">
     <div class="container mx-auto px-4">
         <!-- Título -->
@@ -98,7 +98,8 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8">
             <!-- ===== NOTICIA 1: CAMPEONES XYLON LEAGUE ===== -->
-            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 group" data-news="1">
+            <!-- Toda la tarjeta es cliqueable usando el sistema data-page -->
+            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 group cursor-pointer" data-news="1" data-page="news" role="link" tabindex="0">
                 <!-- Imagen de fondo -->
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/win-xylon-lke.jpg');"></div>
                 
@@ -123,8 +124,8 @@
                         LKE E-SPORTS se corona campeón de la Xylon League categoría Junior. ¡Primer lugar para el equipo!
                     </p>
                     
-                    <!-- Enlace "Leer más" -->
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors">
+                    <!-- Enlace "Leer más" - AHORA USA EL MISMO SISTEMA CON PREVENCIÓN DE PROPAGACIÓN -->
+                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors" onclick="event.stopPropagation();">
                         Leer más <i class="fas fa-arrow-right ml-2 text-xs"></i>
                     </a>
                 </div>
@@ -136,7 +137,8 @@
             </div>
             
             <!-- ===== NOTICIA 2: WEZOPLAY SPONSOR OFICIAL DE XOCHITL GAMING (CON IMAGEN) ===== -->
-            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200 group" data-news="2">
+            <!-- Toda la tarjeta es cliqueable usando el sistema data-page -->
+            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200 group cursor-pointer" data-news="2" data-page="news" role="link" tabindex="0">
                 <!-- Imagen de fondo -->
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/xg-wezoplay.png');"></div>
                 
@@ -177,8 +179,8 @@
                         #WezoEnLaChamps • #XGenPolonia
                     </div>
                     
-                    <!-- Enlace "Ver noticia" -->
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors">
+                    <!-- Enlace "Ver alianza" - PREVIENE PROPAGACIÓN -->
+                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors" onclick="event.stopPropagation();">
                         Ver alianza <i class="fas fa-arrow-right ml-2 text-xs"></i>
                     </a>
                 </div>
@@ -187,12 +189,11 @@
                 <div class="absolute top-2 right-2 z-20 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
                     🔥 EXCLUSIVA
                 </div>
-                
-                
             </div>
             
             <!-- ===== NOTICIA 3: PRÓXIMO TORNEO XYLON LEAGUE ===== -->
-            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400 group" data-news="3">
+            <!-- Toda la tarjeta es cliqueable usando el sistema data-page -->
+            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400 group cursor-pointer" data-news="3" data-page="news" role="link" tabindex="0">
                 <!-- Imagen de fondo -->
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/xylon-season2.jpg');"></div>
                 
@@ -214,10 +215,10 @@
                     
                     <!-- Descripción con información de la imagen -->
                     <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-1 drop-shadow">
-                        <span class="text-yellow-400 font-bold">🏆 JUNIOR EDITION</span>
+                        <span class="text-yellow-400 font-bold">🏆 AMATEUR EDITION</span>
                     </p>
                     <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-1 drop-shadow">
-                        Prize Pool: <span class="text-green-400 font-bold text-base">$50 USD</span>
+                        Prize Pool: <span class="text-green-400 font-bold text-base">$100 USD</span>
                     </p>
                     
                     <!-- Fecha del torneo -->
@@ -225,8 +226,8 @@
                         🗓️ 23 de Marzo, 2026
                     </p>
                     
-                    <!-- Enlace "Leer más" -->
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors">
+                    <!-- Enlace "Ver detalles" - PREVIENE PROPAGACIÓN -->
+                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors" onclick="event.stopPropagation();">
                         Ver detalles <i class="fas fa-arrow-right ml-2 text-xs"></i>
                     </a>
                 </div>
@@ -366,7 +367,7 @@
         min-height: 250px;
         display: flex;
         flex-direction: column;
-        cursor: pointer;
+        cursor: pointer; /* Indicador visual de que es cliqueable */
     }
     
     .news-card.relative .absolute.inset-0.bg-gradient-to-t {

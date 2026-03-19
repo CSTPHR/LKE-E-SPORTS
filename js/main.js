@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content');
     const mobileMenu = document.getElementById('mobileMenu');
     const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.querySelectorAll('.nav-link');
     
     // Estado de la página actual
     let currentPage = 'home';
@@ -82,7 +81,43 @@ document.addEventListener('DOMContentLoaded', () => {
     let counterLoopInterval = null;
     
     // ============================================
-    // SECCIÓN 3: MANEJO DEL MENÚ MÓVIL
+    // SECCIÓN 3: FUNCIÓN PARA ASIGNAR EVENT LISTENERS A NAVIGATION
+    // ============================================
+    function assignNavLinkListeners() {
+        // Seleccionar TODOS los elementos con clase nav-link (incluyendo los del home cargado dinámicamente)
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            // Remover event listeners previos para evitar duplicados
+            link.removeEventListener('click', handleNavClick);
+            // Agregar nuevo event listener
+            link.addEventListener('click', handleNavClick);
+        });
+        
+        console.log('Event listeners asignados a', navLinks.length, 'nav-links');
+    }
+    
+    // Manejador de clic para navegación
+    function handleNavClick(e) {
+        e.preventDefault();
+        const page = e.currentTarget.dataset.page;
+        
+        // Cerrar menú móvil si está abierto
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('mobile-menu-enter');
+            if (menuBtn) {
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
+        
+        navigateTo(page);
+    }
+    
+    // ============================================
+    // SECCIÓN 4: MANEJO DEL MENÚ MÓVIL
     // ============================================
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
@@ -100,27 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Cerrar menú móvil al hacer clic en un enlace
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const page = link.dataset.page;
-            
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('mobile-menu-enter');
-                const icon = menuBtn.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
-            
-            navigateTo(page);
-        });
-    });
-    
     // Cerrar menú móvil al hacer click fuera
     document.addEventListener('click', (e) => {
-        if (!mobileMenu.classList.contains('hidden') && 
+        if (mobileMenu && !mobileMenu.classList.contains('hidden') && 
             !mobileMenu.contains(e.target) && 
             !menuBtn.contains(e.target)) {
             mobileMenu.classList.add('hidden');
@@ -133,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Manejar resize
     window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= 768 && mobileMenu) {
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('mobile-menu-enter');
@@ -145,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // ============================================
-    // SECCIÓN 4: FUNCIONES UTILITARIAS
+    // SECCIÓN 5: FUNCIONES UTILITARIAS
     // ============================================
     
     // Limpiar intervalos
@@ -183,8 +200,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return validPages.includes(page) ? page : 'home';
     }
     
+    // Actualizar clases de navegación activas
+    function updateActiveNavLinks(page) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            if (link.dataset.page === page) {
+                link.classList.add('text-cyan-400');
+                link.classList.remove('text-gray-300');
+            } else {
+                link.classList.remove('text-cyan-400');
+                link.classList.add('text-gray-300');
+            }
+        });
+    }
+    
     // ============================================
-    // SECCIÓN 5: FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME
+    // SECCIÓN 6: FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME
     // ============================================
     function resetHomeElements() {
         // Resetear hero elements
@@ -238,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6: FUNCIÓN PARA APLICAR EFECTO NEON A STATS CARDS
+    // SECCIÓN 7: FUNCIÓN PARA APLICAR EFECTO NEON A STATS CARDS
     // ============================================
     function applyNeonEffectToStatsCards() {
         const allStatsCards = document.querySelectorAll('.stats-card');
@@ -259,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 7: FUNCIÓN PARA UNIFICAR COMPORTAMIENTO HOVER
+    // SECCIÓN 8: FUNCIÓN PARA UNIFICAR COMPORTAMIENTO HOVER
     // ============================================
     function unifyStatsCardsHover() {
         const statsCards = document.querySelectorAll('.stats-card');
@@ -319,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 8: SISTEMA DE CONTADORES MEJORADO
+    // SECCIÓN 9: SISTEMA DE CONTADORES MEJORADO
     // ============================================
     class CounterManager {
         constructor() {
@@ -537,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 9: SCROLL REVEAL MEJORADO CON CONTADORES
+    // SECCIÓN 10: SCROLL REVEAL MEJORADO CON CONTADORES
     // ============================================
     function initEnhancedScrollReveal() {
         // Desconectar observer anterior
@@ -656,7 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 10: FUNCIÓN PRINCIPAL DE NAVEGACIÓN
+    // SECCIÓN 11: FUNCIÓN PRINCIPAL DE NAVEGACIÓN
     // ============================================
     async function navigateTo(page) {
         console.log('Navegando a:', page);
@@ -680,17 +711,6 @@ document.addEventListener('DOMContentLoaded', () => {
             enhancedScrollObserver = null;
         }
         
-        // Actualizar clases de navegación
-        navLinks.forEach(link => {
-            if (link.dataset.page === page) {
-                link.classList.add('text-cyan-400');
-                link.classList.remove('text-gray-300');
-            } else {
-                link.classList.remove('text-cyan-400');
-                link.classList.add('text-gray-300');
-            }
-        });
-        
         // Efecto de transición
         content.style.opacity = '0';
         
@@ -704,6 +724,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.innerHTML = html;
                 content.style.opacity = '1';
                 currentPage = page;
+                
+                // ===== REASIGNAR EVENT LISTENERS A LOS NUEVOS NAV-LINKS =====
+                assignNavLinkListeners();
                 
                 // ===== TRATAMIENTO ESPECIAL PARA HOME =====
                 if (page === 'home') {
@@ -735,6 +758,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     initEnhancedScrollReveal();
                 }
                 
+                // Actualizar clases de navegación activas
+                updateActiveNavLinks(page);
+                
                 // Actualizar URL
                 if (page === 'home') {
                     history.pushState({ page }, '', '/');
@@ -763,13 +789,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             content.style.opacity = '1';
+            // Reasignar event listeners incluso en página de error
+            assignNavLinkListeners();
             // Inicializar scroll reveal incluso en página de error
             initEnhancedScrollReveal();
         }
     }
     
     // ============================================
-    // SECCIÓN 11: INICIALIZADORES DE PÁGINAS
+    // SECCIÓN 12: INICIALIZADORES DE PÁGINAS
     // ============================================
     function initializePageScripts(page) {
         switch(page) {
@@ -1101,8 +1129,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 12: INICIALIZACIÓN Y EVENTOS GLOBALES
+    // SECCIÓN 13: INICIALIZACIÓN Y EVENTOS GLOBALES
     // ============================================
+    
+    // Asignar event listeners a los nav-links iniciales
+    assignNavLinkListeners();
     
     // Manejar botones atrás/adelante
     window.addEventListener('popstate', (event) => {
@@ -1114,6 +1145,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialPage = getPageFromPath();
     navigateTo(initialPage);
 });
+
+// ============================================
+// SECCIÓN 14: SPLASH SCREEN - ACTUALIZACIÓN DE MARCADORES
+// ============================================
+function initSplashProgress() {
+    const progressFill = document.getElementById('progressFill');
+    const markers = {
+        init: document.getElementById('markerInit'),
+        load: document.getElementById('markerLoad'),
+        ready: document.getElementById('markerReady')
+    };
+    const loadingStatus = document.getElementById('loadingStatus');
+    
+    if (progressFill) {
+        // Observar cambios en el ancho de la barra de progreso
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'style') {
+                    const width = progressFill.style.width;
+                    
+                    // Actualizar marcadores según el progreso
+                    if (width) {
+                        const percent = parseInt(width);
+                        
+                        if (percent < 30) {
+                            markers.init.classList.add('active');
+                            markers.load.classList.remove('active');
+                            markers.ready.classList.remove('active');
+                            if (loadingStatus) loadingStatus.textContent = 'INICIALIZANDO SISTEMA';
+                        } else if (percent < 80) {
+                            markers.init.classList.remove('active');
+                            markers.load.classList.add('active');
+                            markers.ready.classList.remove('active');
+                            if (loadingStatus) loadingStatus.textContent = 'CARGANDO RECURSOS';
+                        } else {
+                            markers.init.classList.remove('active');
+                            markers.load.classList.remove('active');
+                            markers.ready.classList.add('active');
+                            if (loadingStatus) loadingStatus.textContent = 'PREPARANDO ARENA';
+                        }
+                    }
+                }
+            });
+        });
+        
+        observer.observe(progressFill, { attributes: true });
+    }
+}
+
+// Llamar a la función después de que el DOM esté listo
+document.addEventListener('DOMContentLoaded', initSplashProgress);
 
 // ============================================
 // LIMPIEZA AL SALIR DE LA PÁGINA

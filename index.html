@@ -7,26 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
         
         * {
             font-family: 'Montserrat', sans-serif;
         }
         
-        /* ===== SPLASH SCREEN ===== */
+        /* ===== SPLASH SCREEN REDISEÑADO - VERSIÓN ÉPICA E-SPORTS ===== */
         #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            background: radial-gradient(circle at 30% 50%, #1a1a2e 0%, #0f0c1f 50%, #030014 100%);
             z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
+            overflow: hidden;
         }
 
         #splash-screen.hidden {
@@ -34,133 +36,336 @@
             pointer-events: none;
         }
 
+        /* Efecto de escaneo digital */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(6, 182, 212, 0.05) 50%,
+                transparent 100%
+            );
+            animation: scanMove 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanMove {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Grid tecnológico */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridPulse 4s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
         .splash-content {
             text-align: center;
             transform: scale(1);
-            animation: splashEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: splashEntrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 10;
         }
 
+        /* Logo con efecto de energía - AHORA MÁS GRANDE Y PROTAGONISTA */
         .splash-logo {
-            width: 180px;
-            height: 144px;
+            width: 350px;
+            height: 280px;
             margin: 0 auto;
             position: relative;
-            animation: logoFloat 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(6, 182, 212, 0.8));
+            animation: logoEnergy 2s ease-in-out infinite;
+        }
+
+        .splash-logo::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            background: radial-gradient(circle at center, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
+            animation: logoPulse 2s ease-in-out infinite;
+            border-radius: 50%;
         }
 
         .splash-logo img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
-            animation: logoPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+            animation: logoGlitch 4s infinite;
         }
 
-        .splash-title {
-            margin-top: 2rem;
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            background: linear-gradient(135deg, #fff 0%, #22d3ee 50%, #fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: gradientMove 3s linear infinite;
+        /* Partículas alrededor del logo - MÁS PARTÍCULAS PARA MÁS IMPACTO */
+        .energy-particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            pointer-events: none;
         }
 
-        .splash-subtitle {
-            color: #9ca3af;
-            font-size: 1rem;
-            margin-top: 1rem;
-            letter-spacing: 2px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+        .energy-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #06b6d4;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #06b6d4, 0 0 40px #a855f7;
+            animation: energyOrbit 3s linear infinite;
         }
 
-        .progress-bar {
-            width: 200px;
-            height: 3px;
+        .energy-particle:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; }
+        .energy-particle:nth-child(2) { top: 15%; right: 15%; animation-delay: 0.2s; width: 8px; height: 8px; }
+        .energy-particle:nth-child(3) { bottom: 15%; right: 15%; animation-delay: 0.4s; width: 6px; height: 6px; }
+        .energy-particle:nth-child(4) { bottom: 0; left: 50%; animation-delay: 0.6s; width: 8px; height: 8px; }
+        .energy-particle:nth-child(5) { bottom: 15%; left: 15%; animation-delay: 0.8s; width: 6px; height: 6px; }
+        .energy-particle:nth-child(6) { top: 15%; left: 15%; animation-delay: 1s; width: 8px; height: 8px; }
+        .energy-particle:nth-child(7) { top: 30%; right: 5%; animation-delay: 1.2s; width: 6px; height: 6px; }
+        .energy-particle:nth-child(8) { bottom: 30%; left: 5%; animation-delay: 1.4s; width: 8px; height: 8px; }
+        .energy-particle:nth-child(9) { top: 45%; right: 0; animation-delay: 1.6s; width: 6px; height: 6px; }
+        .energy-particle:nth-child(10) { bottom: 45%; left: 0; animation-delay: 1.8s; width: 8px; height: 8px; }
+        .energy-particle:nth-child(11) { top: 5%; left: 30%; animation-delay: 2s; width: 6px; height: 6px; }
+        .energy-particle:nth-child(12) { bottom: 5%; right: 30%; animation-delay: 2.2s; width: 8px; height: 8px; }
+
+        @keyframes energyOrbit {
+            0% { transform: rotate(0deg) translateX(120px) rotate(0deg); opacity: 1; }
+            50% { transform: rotate(180deg) translateX(150px) rotate(-180deg); opacity: 0.8; background: #a855f7; }
+            100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); opacity: 1; }
+        }
+
+        /* Barra de progreso ÉPICA */
+        .progress-container {
+            width: 400px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            margin: 2rem auto 0;
             overflow: hidden;
             position: relative;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
         }
 
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #06b6d4, #a855f7);
+            background: linear-gradient(90deg, #06b6d4, #a855f7, #ec4899, #06b6d4);
+            background-size: 300% 100%;
             border-radius: 10px;
-            animation: progressLoad 2s ease-in-out forwards;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.7);
+            animation: 
+                progressLoad 2s ease-in-out forwards,
+                progressGlow 1.5s linear infinite;
+            position: relative;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.7);
         }
 
-        .particles {
+        .progress-fill::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 220px;
-            height: 220px;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: progressShine 1.5s linear infinite;
         }
 
-        .particle {
+        .progress-fill::after {
+            content: '';
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #06b6d4;
-            border-radius: 50%;
-            animation: particleFloat 3s ease-in-out infinite;
-        }
-
-        .particle:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; }
-        .particle:nth-child(2) { top: 20%; right: 10%; animation-delay: 0.2s; }
-        .particle:nth-child(3) { bottom: 20%; right: 10%; animation-delay: 0.4s; }
-        .particle:nth-child(4) { bottom: 0; left: 50%; animation-delay: 0.6s; }
-        .particle:nth-child(5) { bottom: 20%; left: 10%; animation-delay: 0.8s; }
-        .particle:nth-child(6) { top: 20%; left: 10%; animation-delay: 1s; }
-
-        @keyframes splashEntrance {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5)); }
-            50% { filter: drop-shadow(0 0 40px rgba(6, 182, 212, 0.9)); }
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: inherit;
+            filter: blur(10px);
+            opacity: 0.7;
+            animation: progressGlow 1.5s linear infinite;
         }
 
         @keyframes progressLoad {
             0% { width: 0%; }
             20% { width: 30%; }
-            50% { width: 70%; }
-            80% { width: 90%; }
+            40% { width: 60%; }
+            60% { width: 80%; }
+            80% { width: 95%; }
             100% { width: 100%; }
         }
 
-        @keyframes particleFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-            50% { transform: translate(10px, -10px) scale(1.5); opacity: 1; background: #a855f7; }
+        @keyframes progressGlow {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+            100% { filter: brightness(1); }
         }
 
-        /* ===== ESTILOS GENERALES ===== */
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Marcadores de progreso */
+        .progress-markers {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .progress-marker {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .progress-marker.active {
+            color: #22d3ee;
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+        }
+
+        .progress-marker::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 8px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        .progress-marker.active::before {
+            opacity: 1;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        /* Texto de carga con efecto */
+        .loading-text {
+            margin-top: 1.5rem;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .loading-dots span {
+            width: 4px;
+            height: 4px;
+            background: #22d3ee;
+            border-radius: 50%;
+            animation: loadingDot 1.4s infinite;
+        }
+
+        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes loadingDot {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+
+        /* Elementos decorativos */
+        .corner-element {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3));
+            animation: cornerPulse 2s ease-in-out infinite;
+        }
+
+        .corner-tl {
+            top: 30px;
+            left: 30px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-tr {
+            top: 30px;
+            right: 30px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-bl {
+            bottom: 30px;
+            left: 30px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-br {
+            bottom: 30px;
+            right: 30px;
+            border-left: none;
+            border-top: none;
+        }
+
+        @keyframes cornerPulse {
+            0%, 100% { border-color: rgba(6, 182, 212, 0.3); filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3)); }
+            50% { border-color: rgba(168, 85, 247, 0.6); filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6)); }
+        }
+
+        @keyframes splashEntrance {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes logoEnergy {
+            0%, 100% { filter: drop-shadow(0 0 40px rgba(6, 182, 212, 0.8)); }
+            50% { filter: drop-shadow(0 0 80px rgba(168, 85, 247, 1)); }
+        }
+
+        @keyframes logoGlitch {
+            0%, 100% { transform: skew(0deg); }
+            95% { transform: skew(0deg); }
+            96% { transform: skew(2deg); }
+            97% { transform: skew(-2deg); }
+            98% { transform: skew(1deg); }
+            99% { transform: skew(-1deg); }
+        }
+
+        /* ===== RESTO DE ESTILOS (se mantienen igual) ===== */
         .glow-text {
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
@@ -195,16 +400,6 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* Efecto de brillo dinámico para logos */
-        @keyframes logoShine {
-            0% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0)) brightness(1); }
-            20% { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)) brightness(1.2); }
-            40% { filter: drop-shadow(0 0 25px rgba(6, 182, 212, 1)) brightness(1.3); }
-            60% { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)) brightness(1.2); }
-            80% { filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.5)) brightness(1.1); }
-            100% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0)) brightness(1); }
-        }
-
         .logo-shine {
             animation: logoShine 3s ease-in-out infinite;
             transition: all 0.3s ease;
@@ -215,7 +410,6 @@
             transform: scale(1.05);
         }
 
-        /* Efecto específico para el logo del creador */
         .creator-logo {
             animation: logoShine 3s ease-in-out infinite;
             transition: all 0.3s ease;
@@ -228,9 +422,16 @@
             filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.8));
         }
 
+        @keyframes logoShine {
+            0% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0)) brightness(1); }
+            20% { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)) brightness(1.2); }
+            40% { filter: drop-shadow(0 0 25px rgba(6, 182, 212, 1)) brightness(1.3); }
+            60% { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)) brightness(1.2); }
+            80% { filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.5)) brightness(1.1); }
+            100% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0)) brightness(1); }
+        }
+
         /* ===== NAVBAR CORREGIDO ===== */
-        
-        /* Base - escritorio por defecto */
         .navbar-left-space {
             display: none;
         }
@@ -256,7 +457,6 @@
             display: none;
         }
         
-        /* Móvil y tablets */
         @media (max-width: 1024px) {
             #menuBtn {
                 display: block;
@@ -291,7 +491,6 @@
             }
         }
         
-        /* Modo escritorio en móvil (táctil con pantalla grande) */
         @media (min-width: 1025px) and (pointer: coarse) {
             #menuBtn {
                 display: block;
@@ -326,7 +525,6 @@
             }
         }
         
-        /* Desktop verdadero */
         @media (min-width: 1025px) and (pointer: fine) {
             #menuBtn {
                 display: none;
@@ -354,7 +552,6 @@
             }
         }
 
-        /* Animación menú móvil */
         .mobile-menu-enter {
             animation: slideDown 0.3s ease-out forwards;
         }
@@ -364,7 +561,6 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Contenido principal */
         #main-content {
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -374,7 +570,6 @@
             opacity: 1;
         }
 
-        /* Animaciones de entrada */
         .animate-ready .animate-from-top {
             animation: slideFromTop 0.8s ease-out forwards;
         }
@@ -411,7 +606,6 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Efecto de pulso para contadores */
         .counter-update {
             animation: numberPulse 0.3s ease-out;
         }
@@ -424,37 +618,67 @@
     </style>
 </head>
 <body class="bg-gradient-custom min-h-screen text-white">
-    <!-- SPLASH SCREEN -->
+    <!-- SPLASH SCREEN REDISEÑADO - SOLO LOGO IMPONENTE -->
     <div id="splash-screen">
+        <!-- Efectos de fondo -->
+        <div class="scan-line"></div>
+        <div class="grid-overlay"></div>
+        
+        <!-- Elementos decorativos de esquina -->
+        <div class="corner-element corner-tl"></div>
+        <div class="corner-element corner-tr"></div>
+        <div class="corner-element corner-bl"></div>
+        <div class="corner-element corner-br"></div>
+        
         <div class="splash-content">
-            <div class="particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
+            <!-- Partículas de energía alrededor del logo (AHORA MÁS PARTÍCULAS) -->
+            <div class="energy-particles">
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
+                <div class="energy-particle"></div>
             </div>
             
+            <!-- Logo LKE - MÁS GRANDE Y PROTAGONISTA (SIN TEXTO) -->
             <div class="splash-logo">
                 <img src="img/logo.png" alt="LKE E-SPORTS">
             </div>
             
-            <h1 class="splash-title">
-                LKE E-SPORTS
-            </h1>
-            
-            <p class="splash-subtitle">
-                DOMINA EL COMPETITIVO
-            </p>
-            
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
+            <!-- Barra de progreso ÉPICA con marcadores -->
+            <div class="progress-container">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <!-- Marcadores de progreso -->
+                <div class="progress-markers">
+                    <span class="progress-marker" id="markerInit">INICIANDO</span>
+                    <span class="progress-marker" id="markerLoad">CARGANDO</span>
+                    <span class="progress-marker" id="markerReady">LISTO</span>
+                </div>
+                
+                <!-- Texto de carga con animación -->
+                <div class="loading-text">
+                    <span id="loadingStatus">INICIALIZANDO SISTEMA</span>
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- CONTENIDO PRINCIPAL (se mantiene igual) -->
     <div id="main-content">
         <!-- Navbar -->
         <nav class="bg-black/50 backdrop-blur-lg border-b border-cyan-500/30 fixed w-full z-50">
@@ -539,11 +763,11 @@
                     <div class="text-center md:text-left">
                         <h4 class="font-bold text-lg mb-4 text-cyan-400">Enlaces rápidos</h4>
                         <ul class="space-y-2 text-gray-400">
-                            <li><a href="#" data-page="team" class="hover:text-cyan-400 transition-colors block md:inline-block">Nuestro equipo</a></li>
-                            <li><a href="#" data-page="tournaments" class="hover:text-cyan-400 transition-colors block md:inline-block">Próximos torneos</a></li>
-                            <li><a href="#" data-page="organigrama" class="hover:text-cyan-400 transition-colors block md:inline-block">Organigrama</a></li>
-                            <li><a href="#" data-page="news" class="hover:text-cyan-400 transition-colors block md:inline-block">Noticias</a></li>
-                            <li><a href="#" data-page="contact" class="hover:text-cyan-400 transition-colors block md:inline-block">Contacto</a></li>
+                            <li><a href="#" data-page="team" class="nav-link hover:text-cyan-400 transition-colors block md:inline-block">Nuestro equipo</a></li>
+                            <li><a href="#" data-page="tournaments" class="nav-link hover:text-cyan-400 transition-colors block md:inline-block">Próximos torneos</a></li>
+                            <li><a href="#" data-page="organigrama" class="nav-link hover:text-cyan-400 transition-colors block md:inline-block">Organigrama</a></li>
+                            <li><a href="#" data-page="news" class="nav-link hover:text-cyan-400 transition-colors block md:inline-block">Noticias</a></li>
+                            <li><a href="#" data-page="contact" class="nav-link hover:text-cyan-400 transition-colors block md:inline-block">Contacto</a></li>
                         </ul>
                     </div>
                     <div class="text-center md:text-left">

@@ -1,106 +1,450 @@
 <div class="container mx-auto px-4 py-8 md:py-16">
+    <!-- ===== HEADER CON ANIMACIONES ===== -->
     <div class="text-center mb-12 md:mb-16">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
-            <span class="text-white">PRÓXIMOS</span>
-            <span class="text-cyan-400">TORNEOS</span>
+            <span class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 text-white">PRÓXIMOS</span>
+            <span class="inline-block">
+                <span class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-200 text-cyan-400">TORNEOS</span>
+            </span>
         </h1>
-        <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto px-4">
+        <p class="animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-400 text-gray-400 text-lg md:text-xl max-w-3xl mx-auto px-4">
             Calendario de competiciones donde LKE E-SPORTS demostrará su talento
         </p>
     </div>
     
-    <!-- Torneos destacados -->
+    <!-- ===== TORNEOS DESTACADOS ===== -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
-        <!-- Torneo principal -->
-        <div class="col-span-1 lg:col-span-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-lg rounded-xl md:rounded-2xl p-6 md:p-8 border border-cyan-400">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-4 md:gap-6">
-                <div class="text-center lg:text-left">
-                    <span class="bg-red-500 text-white px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-bold mb-3 md:mb-4 inline-block">PRÓXIMAMENTE</span>
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2">Xylon League</h2>
-                    <p class="text-gray-300 text-base md:text-lg mb-4">Fase de grupos - Categoría Junior</p>
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 text-gray-300 text-sm md:text-base">
-                        <span><i class="fas fa-calendar text-cyan-400 mr-2"></i>23 marzo 2026</span>
-                        <span><i class="fas fa-map-marker-alt text-cyan-400 mr-2"></i>Online</span>
-                        <span><i class="fas fa-trophy text-cyan-400 mr-2"></i>$50 USD</span>
+        <!-- ===== TORNEO PRINCIPAL: XYLON LEAGUE (CON IMAGEN ÉPICA) ===== -->
+        <div class="col-span-1 lg:col-span-2 group relative rounded-xl md:rounded-2xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all duration-500 hover:scale-[1.01]">
+            <!-- Imagen de fondo -->
+            <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/xylon-season2.jpg');"></div>
+            
+            <!-- Overlay gradiente dinámico -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-transparent group-hover:from-black/90 group-hover:via-black/70 transition-all duration-500"></div>
+            
+            <!-- Overlay de patrón sutil -->
+            <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: url('../img/xylon-season2.jpg'); background-size: cover; filter: blur(4px);"></div>
+            
+            <!-- Efecto de escaneo sutil -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" style="background: linear-gradient(to bottom, transparent 0%, rgba(6, 182, 212, 0.2) 50%, transparent 100%); animation: scanMove 3s linear infinite;"></div>
+            
+            <!-- Contenido -->
+            <div class="relative z-10 p-6 md:p-8 lg:p-10">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8">
+                    <!-- Información izquierda -->
+                    <div class="text-center lg:text-left w-full lg:w-auto">
+                        <!-- Badge PRÓXIMAMENTE -->
+                        <span class="bg-red-500 text-white px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-bold mb-3 md:mb-4 inline-block animate-pulse">
+                            🏆 PRÓXIMAMENTE
+                        </span>
+                        
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 drop-shadow-lg">
+                            XYLON SEASON 2
+                        </h2>
+                        
+                        <p class="text-gray-200 text-base md:text-lg mb-2 drop-shadow font-semibold">
+                            <span class="text-yellow-400">AMATEUR EDITION</span>
+                        </p>
+                        
+                        <!-- Detalles del torneo -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 text-gray-200 text-sm md:text-base mb-4">
+                            <span class="bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-cyan-500/30">
+                                <i class="fas fa-calendar text-cyan-400 mr-2"></i>23 Marzo 2026
+                            </span>
+                            <span class="bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-cyan-500/30">
+                                <i class="fas fa-map-marker-alt text-cyan-400 mr-2"></i>Online
+                            </span>
+                            <span class="bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-cyan-500/30">
+                                <i class="fas fa-trophy text-cyan-400 mr-2"></i>$100 USD
+                            </span>
+                        </div>
+                        
+                        <!-- Prize Pool destacado -->
+                        <div class="flex items-center justify-center lg:justify-start gap-2 text-sm">
+                            <span class="text-green-400 font-bold">PRIZE POOL:</span>
+                            <span class="text-white font-black text-xl">$100 USD</span>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-4 lg:mt-0 w-full lg:w-auto">
-                    <div class="text-center">
-                        <!-- Ajustado el tamaño del contador para móvil -->
-                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-3 md:mb-4 countdown break-all">10d 08h 23m</div>
-                        <a href="#" class="bg-cyan-500 hover:bg-cyan-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold transition-all inline-block text-sm md:text-base w-full sm:w-auto">
-                            VER DETALLES
+                    
+                    <!-- Columna derecha -->
+                    <div class="w-full lg:w-auto text-center">
+                        <!-- Contador -->
+                        <div class="mb-4 md:mb-6">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-black text-cyan-400 countdown drop-shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                                10d 08h 23m
+                            </div>
+                            <p class="text-gray-400 text-xs md:text-sm mt-2">TIEMPO RESTANTE</p>
+                        </div>
+                        
+                        <!-- Botón -->
+                        <a href="#" data-page="tournaments" class="nav-link relative inline-block bg-cyan-500 hover:bg-cyan-600 text-white px-8 md:px-10 py-3 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-sm md:text-base overflow-hidden group/btn w-full sm:w-auto">
+                            <span class="relative z-10">VER DETALLES COMPLETOS</span>
+                            <span class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-500 skew-x-12"></span>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Torneo 2 -->
-        <div class="bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 border border-cyan-500/30 hover:scale-[1.02] transition-transform duration-300">
-            <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs md:text-sm font-bold mb-3 inline-block">PRÓXIMO</span>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">A la espera</h3>
-            <p class="text-gray-400 text-sm md:text-base mb-4">A la espera</p>
-            <div class="space-y-2 text-gray-300 text-sm md:text-base mb-4">
-                <p><i class="fas fa-calendar text-cyan-400 w-5 md:w-6"></i> A la espera</p>
-                <p><i class="fas fa-map-marker-alt text-cyan-400 w-5 md:w-6"></i> Online</p>
-                <p><i class="fas fa-trophy text-cyan-400 w-5 md:w-6"></i> A la espera</p>
+        <!-- ===== TORNEO 2 ===== -->
+        <div class="group relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02] bg-white/5 backdrop-blur-lg">
+            <div class="relative z-10 p-5 md:p-6">
+                <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs md:text-sm font-bold mb-3 inline-block border border-yellow-500/30">
+                    ⏳ PRÓXIMO
+                </span>
+                
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                    PRÓXIMO TORNEO
+                </h3>
+                
+                <p class="text-gray-400 text-sm md:text-base mb-4">
+                    Información próximamente
+                </p>
+                
+                <div class="space-y-2 text-gray-300 text-sm md:text-base mb-4">
+                    <p class="flex items-center">
+                        <i class="fas fa-calendar text-cyan-400 w-6"></i>
+                        <span class="text-gray-400">Por anunciar</span>
+                    </p>
+                    <p class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-cyan-400 w-6"></i>
+                        <span class="text-gray-400">Online</span>
+                    </p>
+                    <p class="flex items-center">
+                        <i class="fas fa-trophy text-cyan-400 w-6"></i>
+                        <span class="text-gray-400">Por anunciar</span>
+                    </p>
+                </div>
+                
+                <a href="#" data-page="tournaments" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-sm md:text-base inline-flex items-center transition-colors group/link">
+                    Ver detalles 
+                    <i class="fas fa-arrow-right ml-2 text-xs transform group-hover/link:translate-x-1 transition-transform"></i>
+                </a>
             </div>
-            <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold text-sm md:text-base inline-block">Ver detalles →</a>
+            <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/30 rounded-xl pointer-events-none transition-all duration-300"></div>
         </div>
         
-        <!-- Torneo 3 -->
-        <div class="bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 border border-cyan-500/30 hover:scale-[1.02] transition-transform duration-300">
-            <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs md:text-sm font-bold mb-3 inline-block">PRÓXIMO</span>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">A la espera</h3>
-            <p class="text-gray-400 text-sm md:text-base mb-4">A la espera</p>
-            <div class="space-y-2 text-gray-300 text-sm md:text-base mb-4">
-                <p><i class="fas fa-calendar text-cyan-400 w-5 md:w-6"></i> A la espera</p>
-                <p><i class="fas fa-map-marker-alt text-cyan-400 w-5 md:w-6"></i> Online</p>
-                <p><i class="fas fa-trophy text-cyan-400 w-5 md:w-6"></i> A la espera</p>
+        <!-- ===== TORNEO 3 ===== -->
+        <div class="group relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02] bg-white/5 backdrop-blur-lg">
+            <div class="relative z-10 p-5 md:p-6">
+                <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs md:text-sm font-bold mb-3 inline-block border border-yellow-500/30">
+                    ⏳ PRÓXIMO
+                </span>
+                
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                    PRÓXIMO TORNEO
+                </h3>
+                
+                <p class="text-gray-400 text-sm md:text-base mb-4">
+                    Información próximamente
+                </p>
+                
+                <div class="space-y-2 text-gray-300 text-sm md:text-base mb-4">
+                    <p class="flex items-center">
+                        <i class="fas fa-calendar text-cyan-400 w-6"></i>
+                        <span class="text-gray-400">Por anunciar</span>
+                    </p>
+                    <p class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-cyan-400 w-6"></i>
+                        <span class="text-gray-400">Online</span>
+                    </p>
+                    <p class="flex items-center">
+                        <i class="fas fa-trophy text-cyan-400 w-6"></i>
+                        <span class="text-gray-400">Por anunciar</span>
+                    </p>
+                </div>
+                
+                <a href="#" data-page="tournaments" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-sm md:text-base inline-flex items-center transition-colors group/link">
+                    Ver detalles 
+                    <i class="fas fa-arrow-right ml-2 text-xs transform group-hover/link:translate-x-1 transition-transform"></i>
+                </a>
             </div>
-            <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold text-sm md:text-base inline-block">Ver detalles →</a>
+            <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/30 rounded-xl pointer-events-none transition-all duration-300"></div>
         </div>
     </div>
     
-    <!-- Historial de torneos -->
-    <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8">
-        <span class="text-white">TORNEOS</span>
-        <span class="text-cyan-400">ANTERIORES</span>
-    </h2>
-    
-    <div class="space-y-3 md:space-y-4">
-        <div class="bg-white/5 backdrop-blur-lg rounded-lg p-3 md:p-4 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-3">
-            <div class="flex items-center space-x-3 md:space-x-4 w-full sm:w-auto">
-                <i class="fas fa-trophy text-xl md:text-2xl text-yellow-400"></i>
-                <div>
-                    <h3 class="font-bold text-white text-sm md:text-base">Xylon League - LKE E-SPORTS</h3>
-                    <p class="text-xs md:text-sm text-gray-400">Marzo 2026</p>
-                </div>
-            </div>
-            <span class="text-cyan-400 font-bold text-sm md:text-base">Campeones</span>
-        </div>
+    <!-- ===== TORNEOS ANTERIORES - ESTILO ÚLTIMAS NOTICIAS ===== -->
+    <div class="relative">
+        <!-- Título con animación -->
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10">
+            <span class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 text-white">TORNEOS</span>
+            <span class="inline-block">
+                <span class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-200 text-cyan-400">ANTERIORES</span>
+            </span>
+        </h2>
         
-        <div class="bg-white/5 backdrop-blur-lg rounded-lg p-3 md:p-4 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-3">
-            <div class="flex items-center space-x-3 md:space-x-4 w-full sm:w-auto">
-                <i class="fas fa-medal text-xl md:text-2xl text-gray-400"></i>
-                <div>
-                    <h3 class="font-bold text-white text-sm md:text-base">Liga Zero - LKE E-SPORTS</h3>
-                    <p class="text-xs md:text-sm text-gray-400">Marzo 2026</p>
+        <!-- Grid de 3 columnas como en Últimas Noticias -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8">
+            <!-- ===== FICHA 1: XYLON LEAGUE - CAMPEONES (CON IMAGEN DE PODIO) ===== -->
+            <div class="news-card group relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 cursor-pointer" data-tournament="1" data-page="tournaments" role="link" tabindex="0">
+                <!-- IMAGEN DE FONDO - CAMBIA ESTA URL POR TU IMAGEN DEL PODIO -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/win-xylon-lke.jpg');"></div>
+                
+                <!-- Overlay oscuro MEJORADO para que el texto resalte -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/40 group-hover:from-black/90 group-hover:via-black/70 group-hover:to-black/30 transition-all duration-300"></div>
+                
+                <!-- Overlay con patrón sutil de la imagen -->
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: url('../img/win-xylon-lke.jpg'); background-size: cover; filter: blur(3px);"></div>
+                
+                <!-- Contenido -->
+                <div class="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[200px] sm:min-h-[220px] md:min-h-[280px]">
+                    <!-- Badge de CAMPEÓN (más grande y vistoso) -->
+                    <div class="absolute top-2 right-2 z-20">
+                        <span class="bg-yellow-500 text-black text-xs md:text-sm font-bold px-3 py-1.5 rounded-full animate-pulse shadow-lg flex items-center gap-1">
+                            <i class="fas fa-crown text-xs"></i> CAMPEONES
+                        </span>
+                    </div>
+                    
+                    <!-- Fecha del torneo -->
+                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2 font-semibold flex items-center">
+                        <i class="fas fa-calendar-alt mr-1"></i> Marzo 2026
+                    </div>
+                    
+                    <!-- Título -->
+                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1 drop-shadow-lg">
+                        XYLON LEAGUE
+                    </h3>
+                    
+                    <!-- Equipo -->
+                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-2 drop-shadow font-medium">
+                        LKE E-SPORTS
+                    </p>
+                    
+                    <!-- Descripción del logro -->
+                    <p class="text-gray-300 text-xs sm:text-sm md:text-base mb-3 drop-shadow flex items-center flex-wrap gap-1">
+                        <span class="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded-full text-xs border border-yellow-500/30">
+                            1er Lugar
+                        </span>
+                        <span class="text-gray-400">•</span>
+                        <span class="text-gray-400">$50 USD</span>
+                    </p>
+                    
+                    <!-- Enlace "Ver más" -->
+                    <a href="#" data-page="tournaments" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors group/link" onclick="event.stopPropagation();">
+                        Ver detalles del torneo 
+                        <i class="fas fa-arrow-right ml-2 text-xs transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
                 </div>
             </div>
-            <span class="text-gray-400 font-bold text-sm md:text-base">2do Lugar</span>
-        </div>
-        
-        <div class="bg-white/5 backdrop-blur-lg rounded-lg p-3 md:p-4 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-3">
-            <div class="flex items-center space-x-3 md:space-x-4 w-full sm:w-auto">
-                <i class="fas fa-medal text-xl md:text-2xl text-gray-400"></i>
-                <div>
-                    <h3 class="font-bold text-white text-sm md:text-base">Liga Zero - LKE LEGACY</h3>
-                    <p class="text-xs md:text-sm text-gray-400">Marzo 2026</p>
+            
+            <!-- ===== FICHA 2: LIGA ZERO - LKE E-SPORTS (2DO LUGAR) ===== -->
+            <div class="news-card group relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200 cursor-pointer" data-tournament="2" data-page="tournaments" role="link" tabindex="0">
+                <!-- IMAGEN DE FONDO - CAMBIA ESTA URL POR TU IMAGEN DE PARTIDA/GAMEPLAY -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/liga-zero-lke.png');"></div>
+                
+                <!-- Overlay oscuro MEJORADO -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/40 group-hover:from-black/90 group-hover:via-black/70 group-hover:to-black/30 transition-all duration-300"></div>
+                
+                <!-- Overlay con patrón sutil -->
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: url('../img/liga-zero-lke.png'); background-size: cover; filter: blur(3px);"></div>
+                
+                <!-- Contenido -->
+                <div class="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[200px] sm:min-h-[220px] md:min-h-[280px]">
+                    <!-- Badge de SUBCAMPEÓN -->
+                    <div class="absolute top-2 right-2 z-20">
+                        <span class="bg-gray-600 text-white text-xs md:text-sm font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                            <i class="fas fa-medal text-xs"></i> 2DO LUGAR
+                        </span>
+                    </div>
+                    
+                    <!-- Fecha del torneo -->
+                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2 font-semibold flex items-center">
+                        <i class="fas fa-calendar-alt mr-1"></i> Marzo 2026
+                    </div>
+                    
+                    <!-- Título -->
+                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1 drop-shadow-lg">
+                        LIGA ZERO
+                    </h3>
+                    
+                    <!-- Equipo -->
+                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-2 drop-shadow font-medium">
+                        LKE E-SPORTS
+                    </p>
+                    
+                    <!-- Descripción del logro -->
+                    <p class="text-gray-300 text-xs sm:text-sm md:text-base mb-3 drop-shadow flex items-center flex-wrap gap-1">
+                        <span class="bg-gray-500/20 text-gray-300 px-2 py-0.5 rounded-full text-xs border border-gray-500/30">
+                            Subcampeones
+                        </span>
+                    </p>
+                    
+                    <!-- Enlace "Ver más" -->
+                    <a href="#" data-page="tournaments" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors group/link" onclick="event.stopPropagation();">
+                        Ver detalles del torneo 
+                        <i class="fas fa-arrow-right ml-2 text-xs transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
                 </div>
             </div>
-            <span class="text-gray-400 font-bold text-sm md:text-base">2do Lugar</span>
+            
+            <!-- ===== FICHA 3: LIGA ZERO - LKE LEGACY (2DO LUGAR) ===== -->
+            <div class="news-card group relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400 cursor-pointer" data-tournament="3" data-page="tournaments" role="link" tabindex="0">
+                <!-- IMAGEN DE FONDO - CAMBIA ESTA URL POR TU IMAGEN DE LEGACY/GAMEPLAY -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/liga-zero-legacy.jpg');"></div>
+                
+                <!-- Overlay oscuro MEJORADO -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/40 group-hover:from-black/90 group-hover:via-black/70 group-hover:to-black/30 transition-all duration-300"></div>
+                
+                <!-- Overlay con patrón sutil -->
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: url('../img/liga-zero-legacy.jpg'); background-size: cover; filter: blur(3px);"></div>
+                
+                <!-- Contenido -->
+                <div class="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[200px] sm:min-h-[220px] md:min-h-[280px]">
+                    <!-- Badge de SUBCAMPEÓN -->
+                    <div class="absolute top-2 right-2 z-20">
+                        <span class="bg-gray-600 text-white text-xs md:text-sm font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                            <i class="fas fa-medal text-xs"></i> 2DO LUGAR
+                        </span>
+                    </div>
+                    
+                    <!-- Fecha del torneo -->
+                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2 font-semibold flex items-center">
+                        <i class="fas fa-calendar-alt mr-1"></i> Marzo 2026
+                    </div>
+                    
+                    <!-- Título -->
+                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1 drop-shadow-lg">
+                        LIGA ZERO
+                    </h3>
+                    
+                    <!-- Equipo -->
+                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-2 drop-shadow font-medium">
+                        LKE LEGACY
+                    </p>
+                    
+                    <!-- Descripción del logro -->
+                    <p class="text-gray-300 text-xs sm:text-sm md:text-base mb-3 drop-shadow flex items-center flex-wrap gap-1">
+                        <span class="bg-gray-500/20 text-gray-300 px-2 py-0.5 rounded-full text-xs border border-gray-500/30">
+                            Subcampeones
+                        </span>
+                    </p>
+                    
+                    <!-- Enlace "Ver más" -->
+                    <a href="#" data-page="tournaments" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors group/link" onclick="event.stopPropagation();">
+                        Ver detalles del torneo 
+                        <i class="fas fa-arrow-right ml-2 text-xs transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Estilos específicos para torneos -->
+<style>
+    /* ===== ANIMACIONES PARA SCROLL REVEAL ===== */
+    .animate-from-left.visible,
+    .animate-from-right.visible,
+    .animate-from-bottom.visible,
+    .news-card.visible {
+        opacity: 1 !important;
+        transform: translate(0) !important;
+    }
+    
+    /* ===== EFECTO SCAN PARA LA TARJETA PRINCIPAL ===== */
+    @keyframes scanMove {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+    }
+    
+    /* ===== MEJORAS PARA EL CONTADOR ===== */
+    .countdown {
+        font-family: 'Bebas Neue', 'Montserrat', sans-serif;
+        letter-spacing: 2px;
+        text-shadow: 0 0 30px rgba(6, 182, 212, 0.7);
+        animation: countdownPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes countdownPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.9; }
+    }
+    
+    /* ===== ESTILOS PARA NEWS CARDS (copiados del home) ===== */
+    .news-card {
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        min-height: 280px;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .news-card .absolute.inset-0.bg-gradient-to-t {
+        transition: all 0.3s ease;
+    }
+    
+    .news-card:hover .absolute.inset-0.bg-gradient-to-t {
+        background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+    }
+    
+    /* Drop shadow para texto sobre imagen */
+    .drop-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .drop-shadow-lg {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+    }
+    
+    /* Líneas clamp para textos largos */
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* ===== AJUSTES RESPONSIVE CRÍTICOS ===== */
+    @media (max-width: 640px) {
+        .countdown {
+            font-size: 2rem !important;
+        }
+        
+        h1 span {
+            font-size: 2rem !important;
+        }
+        
+        h1 span.text-cyan-400 {
+            font-size: 2.2rem !important;
+        }
+        
+        .news-card {
+            min-height: 220px;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .countdown {
+            font-size: 1.5rem !important;
+        }
+        
+        h1 span,
+        h1 span.text-cyan-400 {
+            font-size: 1.5rem !important;
+        }
+        
+        .news-card {
+            min-height: 200px;
+        }
+    }
+    
+    /* ===== ANIMACIÓN PARA EL BOTÓN SHINE ===== */
+    .group\/btn {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .group\/btn span.absolute {
+        transition: transform 0.5s ease;
+    }
+    
+    /* ===== ESTILOS PARA LOS BADGES ===== */
+    .bg-yellow-500\/20 {
+        background-color: rgba(234, 179, 8, 0.2);
+    }
+    
+    .bg-gray-500\/20 {
+        background-color: rgba(107, 114, 128, 0.2);
+    }
+</style>
