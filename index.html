@@ -14,7 +14,7 @@
             font-family: 'Montserrat', sans-serif;
         }
         
-        /* ===== SPLASH SCREEN REDISEÑADO - VERSIÓN ÉPICA E-SPORTS ===== */
+        /* ===== SPLASH SCREEN REDISEÑADO - VERSIÓN RESPONSIVE ===== */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -68,7 +68,7 @@
             background-image: 
                 linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-size: min(50px, 8vw) min(50px, 8vw);
             animation: gridPulse 4s ease-in-out infinite;
             opacity: 0.3;
         }
@@ -84,25 +84,29 @@
             animation: splashEntrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             z-index: 10;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
         }
 
-        /* Logo con efecto de energía - AHORA MÁS GRANDE Y PROTAGONISTA */
+        /* Logo con efecto de energía - TOTALMENTE RESPONSIVE */
         .splash-logo {
-            width: 350px;
-            height: 280px;
+            width: min(70vw, 350px);
+            height: auto;
+            max-width: 350px;
             margin: 0 auto;
             position: relative;
-            filter: drop-shadow(0 0 40px rgba(6, 182, 212, 0.8));
+            filter: drop-shadow(0 0 min(40px, 8vw) rgba(6, 182, 212, 0.8));
             animation: logoEnergy 2s ease-in-out infinite;
         }
 
         .splash-logo::before {
             content: '';
             position: absolute;
-            top: -30px;
-            left: -30px;
-            right: -30px;
-            bottom: -30px;
+            top: -10%;
+            left: -10%;
+            right: -10%;
+            bottom: -10%;
             background: radial-gradient(circle at center, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
             animation: logoPulse 2s ease-in-out infinite;
             border-radius: 50%;
@@ -110,63 +114,75 @@
 
         .splash-logo img {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            height: auto;
             position: relative;
             z-index: 2;
             animation: logoGlitch 4s infinite;
         }
 
-        /* Partículas alrededor del logo - MÁS PARTÍCULAS PARA MÁS IMPACTO */
+        /* Partículas alrededor del logo - RADIOS RESPONSIVOS */
         .energy-particles {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 450px;
-            height: 450px;
+            width: min(80vw, 450px);
+            height: min(80vw, 450px);
             pointer-events: none;
         }
 
         .energy-particle {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: clamp(4px, 1.5vw, 8px);
+            height: clamp(4px, 1.5vw, 8px);
             background: #06b6d4;
             border-radius: 50%;
             box-shadow: 0 0 20px #06b6d4, 0 0 40px #a855f7;
             animation: energyOrbit 3s linear infinite;
         }
 
-        .energy-particle:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; }
-        .energy-particle:nth-child(2) { top: 15%; right: 15%; animation-delay: 0.2s; width: 8px; height: 8px; }
-        .energy-particle:nth-child(3) { bottom: 15%; right: 15%; animation-delay: 0.4s; width: 6px; height: 6px; }
-        .energy-particle:nth-child(4) { bottom: 0; left: 50%; animation-delay: 0.6s; width: 8px; height: 8px; }
-        .energy-particle:nth-child(5) { bottom: 15%; left: 15%; animation-delay: 0.8s; width: 6px; height: 6px; }
-        .energy-particle:nth-child(6) { top: 15%; left: 15%; animation-delay: 1s; width: 8px; height: 8px; }
-        .energy-particle:nth-child(7) { top: 30%; right: 5%; animation-delay: 1.2s; width: 6px; height: 6px; }
-        .energy-particle:nth-child(8) { bottom: 30%; left: 5%; animation-delay: 1.4s; width: 8px; height: 8px; }
-        .energy-particle:nth-child(9) { top: 45%; right: 0; animation-delay: 1.6s; width: 6px; height: 6px; }
-        .energy-particle:nth-child(10) { bottom: 45%; left: 0; animation-delay: 1.8s; width: 8px; height: 8px; }
-        .energy-particle:nth-child(11) { top: 5%; left: 30%; animation-delay: 2s; width: 6px; height: 6px; }
-        .energy-particle:nth-child(12) { bottom: 5%; right: 30%; animation-delay: 2.2s; width: 8px; height: 8px; }
+        /* Radios de órbita responsive usando vw */
+        .energy-particle:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; --orbit-radius: min(120px, 25vw); }
+        .energy-particle:nth-child(2) { top: 15%; right: 15%; animation-delay: 0.2s; --orbit-radius: min(150px, 30vw); }
+        .energy-particle:nth-child(3) { bottom: 15%; right: 15%; animation-delay: 0.4s; --orbit-radius: min(120px, 25vw); }
+        .energy-particle:nth-child(4) { bottom: 0; left: 50%; animation-delay: 0.6s; --orbit-radius: min(150px, 30vw); }
+        .energy-particle:nth-child(5) { bottom: 15%; left: 15%; animation-delay: 0.8s; --orbit-radius: min(120px, 25vw); }
+        .energy-particle:nth-child(6) { top: 15%; left: 15%; animation-delay: 1s; --orbit-radius: min(150px, 30vw); }
+        .energy-particle:nth-child(7) { top: 30%; right: 5%; animation-delay: 1.2s; --orbit-radius: min(100px, 20vw); }
+        .energy-particle:nth-child(8) { bottom: 30%; left: 5%; animation-delay: 1.4s; --orbit-radius: min(100px, 20vw); }
+        .energy-particle:nth-child(9) { top: 45%; right: 0; animation-delay: 1.6s; --orbit-radius: min(80px, 15vw); }
+        .energy-particle:nth-child(10) { bottom: 45%; left: 0; animation-delay: 1.8s; --orbit-radius: min(80px, 15vw); }
+        .energy-particle:nth-child(11) { top: 5%; left: 30%; animation-delay: 2s; --orbit-radius: min(90px, 18vw); }
+        .energy-particle:nth-child(12) { bottom: 5%; right: 30%; animation-delay: 2.2s; --orbit-radius: min(90px, 18vw); }
 
         @keyframes energyOrbit {
-            0% { transform: rotate(0deg) translateX(120px) rotate(0deg); opacity: 1; }
-            50% { transform: rotate(180deg) translateX(150px) rotate(-180deg); opacity: 0.8; background: #a855f7; }
-            100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); opacity: 1; }
+            0% { 
+                transform: rotate(0deg) translateX(var(--orbit-radius, min(120px, 25vw))) rotate(0deg); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: rotate(180deg) translateX(calc(var(--orbit-radius, min(120px, 25vw)) * 1.2)) rotate(-180deg); 
+                opacity: 0.8; 
+                background: #a855f7; 
+            }
+            100% { 
+                transform: rotate(360deg) translateX(var(--orbit-radius, min(120px, 25vw))) rotate(-360deg); 
+                opacity: 1; 
+            }
         }
 
-        /* Barra de progreso ÉPICA */
+        /* Barra de progreso ÉPICA - RESPONSIVE */
         .progress-container {
-            width: 400px;
-            margin: 3rem auto 0;
+            width: 100%;
+            max-width: 400px;
+            margin: clamp(1.5rem, 6vw, 3rem) auto 0;
             position: relative;
+            padding: 0 clamp(10px, 3vw, 20px);
         }
 
         .progress-track {
             width: 100%;
-            height: 6px;
+            height: clamp(4px, 1vw, 6px);
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
@@ -231,20 +247,22 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Marcadores de progreso */
+        /* Marcadores de progreso - RESPONSIVE */
         .progress-markers {
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
+            margin-top: clamp(8px, 2vw, 10px);
             color: rgba(255,255,255,0.5);
-            font-size: 0.75rem;
+            font-size: clamp(0.6rem, 2.5vw, 0.75rem);
             font-weight: 600;
             letter-spacing: 1px;
+            gap: clamp(5px, 2vw, 10px);
         }
 
         .progress-marker {
             position: relative;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
 
         .progress-marker.active {
@@ -269,17 +287,18 @@
             box-shadow: 0 0 10px currentColor;
         }
 
-        /* Texto de carga con efecto */
+        /* Texto de carga con efecto - RESPONSIVE */
         .loading-text {
-            margin-top: 1.5rem;
+            margin-top: clamp(1rem, 4vw, 1.5rem);
             color: #9ca3af;
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 3vw, 0.9rem);
             letter-spacing: 3px;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .loading-dots {
@@ -303,40 +322,40 @@
             30% { transform: translateY(-8px); opacity: 1; }
         }
 
-        /* Elementos decorativos */
+        /* Elementos decorativos - RESPONSIVE */
         .corner-element {
             position: absolute;
-            width: 120px;
-            height: 120px;
+            width: clamp(60px, 15vw, 120px);
+            height: clamp(60px, 15vw, 120px);
             border: 2px solid rgba(6, 182, 212, 0.3);
             filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3));
             animation: cornerPulse 2s ease-in-out infinite;
         }
 
         .corner-tl {
-            top: 30px;
-            left: 30px;
+            top: clamp(15px, 3vw, 30px);
+            left: clamp(15px, 3vw, 30px);
             border-right: none;
             border-bottom: none;
         }
 
         .corner-tr {
-            top: 30px;
-            right: 30px;
+            top: clamp(15px, 3vw, 30px);
+            right: clamp(15px, 3vw, 30px);
             border-left: none;
             border-bottom: none;
         }
 
         .corner-bl {
-            bottom: 30px;
-            left: 30px;
+            bottom: clamp(15px, 3vw, 30px);
+            left: clamp(15px, 3vw, 30px);
             border-right: none;
             border-top: none;
         }
 
         .corner-br {
-            bottom: 30px;
-            right: 30px;
+            bottom: clamp(15px, 3vw, 30px);
+            right: clamp(15px, 3vw, 30px);
             border-left: none;
             border-top: none;
         }
@@ -352,8 +371,8 @@
         }
 
         @keyframes logoEnergy {
-            0%, 100% { filter: drop-shadow(0 0 40px rgba(6, 182, 212, 0.8)); }
-            50% { filter: drop-shadow(0 0 80px rgba(168, 85, 247, 1)); }
+            0%, 100% { filter: drop-shadow(0 0 min(40px, 8vw) rgba(6, 182, 212, 0.8)); }
+            50% { filter: drop-shadow(0 0 min(80px, 15vw) rgba(168, 85, 247, 1)); }
         }
 
         @keyframes logoGlitch {
@@ -363,6 +382,31 @@
             97% { transform: skew(-2deg); }
             98% { transform: skew(1deg); }
             99% { transform: skew(-1deg); }
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+        }
+
+        /* Media queries específicas para móviles muy pequeños */
+        @media (max-width: 480px) {
+            .progress-markers {
+                font-size: 0.55rem;
+            }
+            
+            .progress-marker::before {
+                top: -12px;
+                height: 6px;
+            }
+            
+            .loading-text {
+                letter-spacing: 2px;
+            }
+            
+            .splash-logo {
+                width: min(65vw, 250px);
+            }
         }
 
         /* ===== RESTO DE ESTILOS (se mantienen igual) ===== */
@@ -618,7 +662,7 @@
     </style>
 </head>
 <body class="bg-gradient-custom min-h-screen text-white">
-    <!-- SPLASH SCREEN REDISEÑADO - SOLO LOGO IMPONENTE -->
+    <!-- SPLASH SCREEN REDISEÑADO - TOTALMENTE RESPONSIVE -->
     <div id="splash-screen">
         <!-- Efectos de fondo -->
         <div class="scan-line"></div>
@@ -631,7 +675,7 @@
         <div class="corner-element corner-br"></div>
         
         <div class="splash-content">
-            <!-- Partículas de energía alrededor del logo (AHORA MÁS PARTÍCULAS) -->
+            <!-- Partículas de energía alrededor del logo (AHORA RESPONSIVE) -->
             <div class="energy-particles">
                 <div class="energy-particle"></div>
                 <div class="energy-particle"></div>
@@ -647,12 +691,12 @@
                 <div class="energy-particle"></div>
             </div>
             
-            <!-- Logo LKE - MÁS GRANDE Y PROTAGONISTA (SIN TEXTO) -->
+            <!-- Logo LKE - TOTALMENTE RESPONSIVE (SIN TEXTO) -->
             <div class="splash-logo">
                 <img src="img/logo.png" alt="LKE E-SPORTS">
             </div>
             
-            <!-- Barra de progreso ÉPICA con marcadores -->
+            <!-- Barra de progreso ÉPICA con marcadores - RESPONSIVE -->
             <div class="progress-container">
                 <div class="progress-track">
                     <div class="progress-fill" id="progressFill"></div>

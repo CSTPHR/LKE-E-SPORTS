@@ -1,75 +1,76 @@
-<!-- Hero Section - CORREGIDO para evitar superposición en móvil -->
-<section class="relative overflow-hidden min-h-screen flex items-center py-8 sm:py-12 md:py-0">
+<!-- Hero Section - CON MÁS ALTURA VERTICAL PARA MEJOR SCROLL REVEAL -->
+<section class="relative overflow-hidden min-h-[90vh] md:min-h-[85vh] lg:min-h-screen flex items-center py-8 sm:py-12 md:py-16">
     <!-- Fondo animado -->
     <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black/80"></div>
     
-    <!-- Círculos animados - Reducidos en móvil -->
-    <div class="absolute top-20 left-10 w-32 h-32 md:w-64 md:h-64 bg-cyan-500/30 rounded-full filter blur-3xl animate-pulse opacity-30 md:opacity-100"></div>
-    <div class="absolute bottom-20 right-10 w-48 h-48 md:w-96 md:h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse-slow opacity-30 md:opacity-100"></div>
+    <!-- Círculos animados -->
+    <div class="absolute top-20 left-10 w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 bg-cyan-500/30 rounded-full filter blur-3xl animate-pulse opacity-20 md:opacity-30"></div>
+    <div class="absolute bottom-20 right-10 w-32 h-32 md:w-56 md:h-56 lg:w-96 lg:h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse-slow opacity-20 md:opacity-30"></div>
     
-    <div class="container mx-auto px-4 relative z-10">
-        <!-- En móvil, las columnas se apilan -->
-        <div class="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+    <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <div class="flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
             <!-- Columna izquierda - Texto -->
             <div class="text-center lg:text-left w-full">
-                <!-- Título principal -->
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 md:mb-6">
-                    <span class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 delay-400 text-white">DOMINA EL</span>
-                    <span class="block">
-                        <span class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-600 text-cyan-400 glow-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl">COMPETITIVO</span>
-                    </span>
-                </h1>
+                <!-- Título principal con tamaño controlado -->
+                <div class="mb-6 md:mb-8">
+                    <div class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 delay-400">
+                        <span class="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl block">DOMINA EL</span>
+                    </div>
+                    <div class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-600 mt-1 md:mt-2">
+                        <span class="text-cyan-400 glow-text font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl break-words">COMPETITIVO</span>
+                    </div>
+                </div>
                 
                 <!-- Párrafo -->
-                <p class="animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-800 text-gray-300 text-sm sm:text-base md:text-lg max-w-lg mx-auto lg:mx-0 px-2 sm:px-4 lg:px-0 mb-4 md:mb-8">
+                <p class="animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-800 text-gray-300 text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 px-4 sm:px-6 lg:px-0 mb-6 md:mb-8">
                     LKE E-SPORTS es una organización Competitiva en Multijugador de Call of Duty: Mobile. 
                     Competimos al más alto nivel y formamos a los mejores jugadores.
                 </p>
                 
-                <!-- Botones - CORREGIDOS con data-page y clase nav-link -->
-                <div class="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center lg:justify-start px-2 sm:px-0">
-                    <a href="#" data-page="team" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1000 bg-cyan-500 hover:bg-cyan-600 text-white px-4 md:px-8 py-2 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-xs sm:text-sm md:text-base text-center">
+                <!-- Botones -->
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start px-4 sm:px-0">
+                    <a href="#" data-page="team" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1000 bg-cyan-500 hover:bg-cyan-600 text-white px-5 md:px-8 py-2.5 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-sm sm:text-base text-center">
                         CONOCE AL EQUIPO
                     </a>
-                    <a href="#" data-page="tournaments" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1200 border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-4 md:px-8 py-2 md:py-4 rounded-lg font-bold transition-all text-xs sm:text-sm md:text-base text-center">
+                    <a href="#" data-page="tournaments" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1200 border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-5 md:px-8 py-2.5 md:py-4 rounded-lg font-bold transition-all text-sm sm:text-base text-center">
                         PRÓXIMOS TORNEOS
                     </a>
                 </div>
             </div>
             
-            <!-- Columna derecha - Estadísticas (en móvil va DEBAJO del texto) -->
-            <div class="w-full mt-4 sm:mt-6 lg:mt-0">
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 max-w-sm mx-auto lg:max-w-none">
-                    <!-- ===== TARJETA 1: TORNEOS ===== -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-3 sm:p-4 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-400" data-stat="tournaments">
-                        <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-cyan-400 mb-1">
+            <!-- Columna derecha - Estadísticas -->
+            <div class="w-full mt-8 md:mt-10 lg:mt-0">
+                <div class="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 max-w-md mx-auto lg:max-w-none">
+                    <!-- TARJETA 1: TORNEOS -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-400">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="15">0</span>
                         </div>
-                        <div class="text-gray-300 text-xs sm:text-sm md:text-base">Torneos</div>
+                        <div class="text-gray-300 text-xs sm:text-sm">Torneos</div>
                     </div>
                     
-                    <!-- ===== TARJETA 2: JUGADORES ===== -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-3 sm:p-4 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-600" data-stat="players">
-                        <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-cyan-400 mb-1">
+                    <!-- TARJETA 2: JUGADORES -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-600">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             <span class="counter" data-target="89">0</span>
                         </div>
-                        <div class="text-gray-300 text-xs sm:text-sm md:text-base">Jugadores</div>
+                        <div class="text-gray-300 text-xs sm:text-sm">Jugadores</div>
                     </div>
                     
-                    <!-- ===== TARJETA 3: TÍTULOS ===== -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-3 sm:p-4 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-800" data-stat="titles">
-                        <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-cyan-400 mb-1">
+                    <!-- TARJETA 3: TÍTULOS -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-800">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="10">0</span>
                         </div>
-                        <div class="text-gray-300 text-xs sm:text-sm md:text-base">Títulos</div>
+                        <div class="text-gray-300 text-xs sm:text-sm">Títulos</div>
                     </div>
                     
-                    <!-- ===== TARJETA 4: SEGUIDORES ===== -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-3 sm:p-4 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-1000" data-stat="followers">
-                        <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-cyan-400 mb-1">
-                            +<span class="counter" data-target="2">0</span><span class="counter-suffix text-cyan-400">K</span>
+                    <!-- TARJETA 4: SEGUIDORES -->
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-1000">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
+                            +<span class="counter" data-target="2">0</span><span class="counter-suffix">K</span>
                         </div>
-                        <div class="text-gray-300 text-xs sm:text-sm md:text-base">Seguidores</div>
+                        <div class="text-gray-300 text-xs sm:text-sm">Seguidores</div>
                     </div>
                 </div>
             </div>
@@ -77,165 +78,139 @@
     </div>
 </section>
 
-<!-- Separador visual -->
-<div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto my-6 md:my-12 rounded-full"></div>
 
-<!-- ===== Últimas noticias - CON IMAGEN EN TODAS LAS TARJETAS Y TODA LA FICHA CLIQUEABLE ===== -->
-<section class="py-8 md:py-20">
-    <div class="container mx-auto px-4">
-        <!-- Título -->
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-center mb-2 md:mb-4">
-            <span class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 text-white">ÚLTIMAS</span>
-            <span class="inline-block">
-                <span class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-200 text-cyan-400">NOTICIAS</span>
-            </span>
-        </h2>
+<!-- ===== Últimas noticias - CON EFECTOS SORPRENDENTES MEJORADOS ===== -->
+<section id="news-section" class="py-8 md:py-12 lg:py-16">
+    <div class="container mx-auto px-4 sm:px-6">
+        <!-- Título con efecto de entrada - AMBAS PALABRAS EN LA MISMA LÍNEA -->
+        <div class="text-center mb-6 md:mb-8 lg:mb-10">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
+                <div class="title-word-left-news opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl">ÚLTIMAS</span>
+                </div>
+                <div class="title-word-right-news opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-cyan-400 glow-text font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl">NOTICIAS</span>
+                </div>
+            </div>
+            <p class="subtitle-news text-gray-400 text-sm sm:text-base md:text-lg mt-2 max-w-2xl mx-auto opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);">
+                Mantente al día con todas las novedades de LKE E-SPORTS
+            </p>
+            <div class="title-line-news w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-4 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div>
+        </div>
         
-        <!-- Subtítulo -->
-        <p class="animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-400 text-gray-400 text-xs sm:text-sm md:text-base text-center mb-6 md:mb-12 max-w-2xl mx-auto px-4">
-            Mantente al día con todas las novedades de LKE E-SPORTS
-        </p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8">
-            <!-- ===== NOTICIA 1: CAMPEONES XYLON LEAGUE ===== -->
-            <!-- Toda la tarjeta es cliqueable usando el sistema data-page -->
-            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 group cursor-pointer" data-news="1" data-page="news" role="link" tabindex="0">
-                <!-- Imagen de fondo -->
-                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/win-xylon-lke.jpg');"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
+            <!-- NOTICIA 1: CAMPEONES XYLON LEAGUE - CON EFECTOS SORPRENDENTES -->
+            <div class="news-card scroll-reveal-card relative rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 opacity-0 translate-y-[40px] group cursor-pointer news-card-enhanced" data-news="1" data-page="news" role="link" tabindex="0">
+                <!-- Imagen de fondo con efecto de zoom al hover -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('../img/win-xylon-lke.jpg');"></div>
                 
-                <!-- Overlay oscuro para mejorar legibilidad del texto -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 group-hover:from-black/80 group-hover:via-black/60 group-hover:to-black/40 transition-all duration-300"></div>
+                <!-- Capa de gradiente mejorada con efecto de luz al hover -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60 group-hover:from-black/85 group-hover:via-black/70 group-hover:to-black/50 transition-all duration-500"></div>
                 
-                <!-- Overlay con patrón de texto de la imagen (efecto visual) -->
-                <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: url('../img/win-xylon-lke.jpg'); background-size: cover; filter: blur(2px);"></div>
+                <!-- Efecto de reflejo de luz (scanline) que aparece al hover -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
                 
-                <!-- Contenido de la tarjeta (sobrepuesto) -->
-                <div class="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[200px] sm:min-h-[220px] md:min-h-[250px]">
-                    <!-- Fecha/Hora -->
-                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2 font-semibold">🏆 Hace 3 horas</div>
-                    
-                    <!-- Título de la noticia -->
-                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2 drop-shadow-lg">
+                <!-- Contenido de la tarjeta -->
+                <div class="relative z-10 h-full flex flex-col justify-end p-4 sm:p-5 md:p-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px]">
+                    <div class="text-cyan-400 text-xs sm:text-sm mb-2 font-semibold flex items-center gap-2">
+                        <i class="fas fa-trophy text-yellow-400 animate-pulse"></i>
+                        <span>Hace 3 horas</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2 drop-shadow-lg group-hover:text-cyan-300 transition-colors duration-300 news-title-glitch">
                         ¡CAMPEONES DE LA XYLON LEAGUE!
                     </h3>
-                    
-                    <!-- Descripción -->
-                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-3 md:mb-4 line-clamp-2 md:line-clamp-3 drop-shadow">
+                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-3 line-clamp-2 md:line-clamp-3 drop-shadow">
                         LKE E-SPORTS se corona campeón de la Xylon League categoría Junior. ¡Primer lugar para el equipo!
                     </p>
-                    
-                    <!-- Enlace "Leer más" - AHORA USA EL MISMO SISTEMA CON PREVENCIÓN DE PROPAGACIÓN -->
-                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors" onclick="event.stopPropagation();">
-                        Leer más <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2" onclick="event.stopPropagation();">
+                        Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
                     </a>
                 </div>
                 
-                <!-- Badge de "CAMPEÓN" -->
-                <div class="absolute top-2 right-2 z-20 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                <!-- Badge con efecto de brillo mejorado -->
+                <div class="absolute top-2 right-2 z-20 bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
                     🏆 CAMPEÓN
                 </div>
+                
+                <!-- Efecto de destello al cargar (cámara flash) -->
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
-            <!-- ===== NOTICIA 2: WEZOPLAY SPONSOR OFICIAL DE XOCHITL GAMING (CON IMAGEN) ===== -->
-            <!-- Toda la tarjeta es cliqueable usando el sistema data-page -->
-            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 opacity-0 translate-y-[30px] transition-all duration-700 delay-200 group cursor-pointer" data-news="2" data-page="news" role="link" tabindex="0">
-                <!-- Imagen de fondo -->
-                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/xg-wezoplay.png');"></div>
+            <!-- NOTICIA 2: WEZOPLAY SPONSOR OFICIAL - CON EFECTOS SORPRENDENTES -->
+            <div class="news-card scroll-reveal-card relative rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 opacity-0 translate-y-[40px] delay-100 group cursor-pointer news-card-enhanced" data-news="2" data-page="news" role="link" tabindex="0">
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('../img/xg-wezoplay.png');"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60 group-hover:from-black/85 group-hover:via-black/70 group-hover:to-black/50 transition-all duration-500"></div>
                 
-                <!-- Overlay oscuro para mejorar legibilidad del texto -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60 group-hover:from-black/85 group-hover:via-black/70 group-hover:to-black/50 transition-all duration-300"></div>
+                <!-- Efecto de reflejo de luz -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
                 
-                <!-- Overlay con patrón de texto de la imagen (efecto visual) -->
-                <div class="absolute inset-0 opacity-15 mix-blend-overlay" style="background-image: url('../img/xg-wezoplay.png'); background-size: cover; filter: blur(3px);"></div>
-                
-                <!-- Contenido de la tarjeta (sobrepuesto) -->
-                <div class="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[200px] sm:min-h-[220px] md:min-h-[250px]">
-                    <!-- Fecha/Hora -->
-                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2 font-semibold">⚡ Hace 2 horas</div>
-                    
-                    <!-- Título de la noticia (IMPACTANTE) -->
-                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                <div class="relative z-10 h-full flex flex-col justify-end p-4 sm:p-5 md:p-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px]">
+                    <div class="text-cyan-400 text-xs sm:text-sm mb-2 font-semibold flex items-center gap-2">
+                        <i class="fas fa-bolt text-yellow-400"></i>
+                        <span>Hace 1 mes</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 drop-shadow-lg group-hover:text-purple-300 transition-colors duration-300 news-title-glitch">
                         ¡WEZOPLAY CONQUISTA LA CHAMPS!
                     </h3>
-                    
-                    <!-- Descripción MEJORADA - IMPACTANTE -->
                     <p class="text-gray-100 text-xs sm:text-sm md:text-base mb-2 drop-shadow font-medium">
                         El CEO de LKE E-SPORTS se convierte en <span class="text-yellow-400 font-bold">SPONSOR OFICIAL</span> de Xochitl Gaming.
                     </p>
-                    
-                    <!-- Detalles del equipo -->
                     <p class="text-gray-300 text-xs sm:text-sm md:text-base mb-2 drop-shadow">
                         <span class="text-cyan-400">Fabuloso • Legacy • Rehan • Piti • Yuji</span>
                     </p>
-                    
-                    <!-- Logro histórico -->
-                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-3 drop-shadow flex items-center">
-                        <span class="bg-purple-600 text-white text-xs font-bold px-2 py-0.5 rounded mr-2">¡HISTÓRICO!</span>
-                        Uno de los mejores 16 equipos de la World Championship 2025
+                    <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-3 drop-shadow flex items-center flex-wrap gap-1">
+                        <span class="bg-purple-600 text-white text-xs font-bold px-2 py-0.5 rounded animate-pulse">¡HISTÓRICO!</span>
+                        <span>Uno de los mejores 16 equipos de la World Championship 2025</span>
                     </p>
-                    
-                    <!-- Hashtag -->
-                    <div class="text-cyan-300 text-xs sm:text-sm mb-2 drop-shadow font-mono">
-                        #WezoEnLaChamps • #XGenPolonia
-                    </div>
-                    
-                    <!-- Enlace "Ver alianza" - PREVIENE PROPAGACIÓN -->
-                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors" onclick="event.stopPropagation();">
-                        Ver alianza <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2" onclick="event.stopPropagation();">
+                        Ver alianza <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
                     </a>
                 </div>
-                
-                <!-- Badge de "EXCLUSIVA" -->
-                <div class="absolute top-2 right-2 z-20 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                <div class="absolute top-2 right-2 z-20 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
                     🔥 EXCLUSIVA
                 </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
-            <!-- ===== NOTICIA 3: PRÓXIMO TORNEO XYLON LEAGUE ===== -->
-            <!-- Toda la tarjeta es cliqueable usando el sistema data-page -->
-            <div class="news-card relative rounded-xl overflow-hidden border border-cyan-500/30 hover:border-cyan-400 transition-all transform hover:scale-[1.02] md:hover:scale-105 sm:col-span-2 lg:col-span-1 opacity-0 translate-y-[30px] transition-all duration-700 delay-400 group cursor-pointer" data-news="3" data-page="news" role="link" tabindex="0">
-                <!-- Imagen de fondo -->
-                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../img/xylon-season2.jpg');"></div>
+            <!-- NOTICIA 3: PRÓXIMO TORNEO XYLON LEAGUE - CON EFECTOS SORPRENDENTES -->
+            <div class="news-card scroll-reveal-card relative rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 opacity-0 translate-y-[40px] delay-200 sm:col-span-2 lg:col-span-1 group cursor-pointer news-card-enhanced" data-news="3" data-page="news" role="link" tabindex="0">
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('../img/xylon-season2.jpg');"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60 group-hover:from-black/85 group-hover:via-black/70 group-hover:to-black/50 transition-all duration-500"></div>
                 
-                <!-- Overlay oscuro para mejorar legibilidad del texto -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 group-hover:from-black/80 group-hover:via-black/60 group-hover:to-black/40 transition-all duration-300"></div>
+                <!-- Efecto de reflejo de luz -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
                 
-                <!-- Overlay con patrón de texto de la imagen (efecto visual) -->
-                <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: url('../img/xylon-season2.jpg'); background-size: cover; filter: blur(2px);"></div>
-                
-                <!-- Contenido de la tarjeta (sobrepuesto) -->
-                <div class="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[200px] sm:min-h-[220px] md:min-h-[250px]">
-                    <!-- Fecha/Hora -->
-                    <div class="text-cyan-400 text-xs md:text-sm mb-1 md:mb-2 font-semibold">📅 Hace 1 hora</div>
-                    
-                    <!-- Título de la noticia -->
-                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2 drop-shadow-lg">
-                        XYLON SEASON 2: <br>¡VAMOS POR EL BICAMPEONATO!
+                <div class="relative z-10 h-full flex flex-col justify-end p-4 sm:p-5 md:p-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px]">
+                    <div class="text-cyan-400 text-xs sm:text-sm mb-2 font-semibold flex items-center gap-2">
+                        <i class="fas fa-calendar-alt text-green-400"></i>
+                        <span>Hace 1 hora</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2 drop-shadow-lg group-hover:text-green-300 transition-colors duration-300 news-title-glitch">
+                        XYLON LEAGUE - SEASON 2: ¡LKE EN AMATEUR!
                     </h3>
-                    
-                    <!-- Descripción con información de la imagen -->
                     <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-1 drop-shadow">
                         <span class="text-yellow-400 font-bold">🏆 AMATEUR EDITION</span>
                     </p>
                     <p class="text-gray-200 text-xs sm:text-sm md:text-base mb-1 drop-shadow">
-                        Prize Pool: <span class="text-green-400 font-bold text-base">$100 USD</span>
+                        Prize Pool: <span class="text-green-400 font-bold">$100 USD</span>
                     </p>
-                    
-                    <!-- Fecha del torneo -->
                     <p class="text-gray-300 text-xs sm:text-sm md:text-base mb-3 drop-shadow">
                         🗓️ 23 de Marzo, 2026
                     </p>
-                    
-                    <!-- Enlace "Ver detalles" - PREVIENE PROPAGACIÓN -->
-                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-colors" onclick="event.stopPropagation();">
-                        Ver detalles <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    <a href="#" data-page="news" class="nav-link text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm md:text-base inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2" onclick="event.stopPropagation();">
+                        Ver detalles <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
                     </a>
                 </div>
-                
-                <!-- Badge de "PRÓXIMO" -->
-                <div class="absolute top-2 right-2 z-20 bg-cyan-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                <div class="absolute top-2 right-2 z-20 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
                     ⏳ PRÓXIMO
                 </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
         </div>
     </div>
@@ -256,86 +231,45 @@
         overflow: hidden;
     }
     
-    /* ===== AJUSTES CRÍTICOS PARA MÓVIL ===== */
-    @media (max-width: 1023px) {
-        /* En tablets y móviles, las columnas se apilan verticalmente */
-        .flex-col {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Espacio entre texto y fichas */
-        .gap-6 {
-            gap: 1.5rem;
-        }
-        
-        /* Reducir tamaño del texto para evitar desbordamiento */
-        h1 span {
-            font-size: 2.5rem !important;
-            line-height: 1.2 !important;
-        }
-        
-        .glow-text {
-            font-size: 3rem !important;
-        }
+    .drop-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
     
-    @media (max-width: 640px) {
-        h1 span {
-            font-size: 2rem !important;
-        }
-        
-        .glow-text {
-            font-size: 2.5rem !important;
-        }
-        
-        .stats-card {
-            padding: 0.6rem !important;
-        }
-        
-        .stats-card .text-cyan-400 {
-            font-size: 1.5rem !important;
-        }
-        
-        .stats-card div:last-child {
-            font-size: 0.7rem !important;
-        }
-        
-        /* Ajustes para las tarjetas con imagen */
-        .news-card.relative {
-            min-height: 200px;
-        }
+    .drop-shadow-lg {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
     }
     
-    @media (max-width: 360px) {
-        h1 span {
-            font-size: 1.5rem !important;
-        }
-        
-        .glow-text {
-            font-size: 2rem !important;
-        }
-        
-        .stats-card .text-cyan-400 {
-            font-size: 1.25rem !important;
-        }
-        
-        .stats-card {
-            padding: 0.4rem !important;
-        }
-        
-        .news-card.relative {
-            min-height: 180px;
-        }
+    .glow-text {
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        display: inline-block;
+        word-break: break-word;
     }
     
-    @media (max-width: 768px) {
-        .hover\:scale-105:hover {
-            transform: scale(1.02);
-        }
+    /* Estilos para las animaciones del título de noticias */
+    .title-word-left-news.revealed,
+    .title-word-right-news.revealed,
+    .subtitle-news.revealed {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
     }
     
-    /* Estilo unificado para el hover de todas las stats cards */
+    .title-word-left-news.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .title-word-right-news.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .subtitle-news.revealed {
+        transform: translateY(0) !important;
+    }
+    
+    .title-line-news.revealed {
+        transform: scaleX(1) !important;
+    }
+    
+    /* Estilo unificado para hover de stats cards */
     .stats-card {
         transition: all 0.3s ease-in-out;
         position: relative;
@@ -354,12 +288,187 @@
         text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
     }
     
-    .stats-card:hover .counter-suffix {
-        color: #22d3ee;
-        text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+    /* ============================================ */
+    /* EFECTOS SORPRENDENTES PARA TARJETAS DE NOTICIAS */
+    /* ============================================ */
+    
+    /* Tarjeta base mejorada */
+    .news-card-enhanced {
+        position: relative;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
     }
     
-    /* Estilos específicos para las tarjetas con imagen */
+    /* Efecto de borde neón pulsante al hover */
+    .news-card-enhanced:hover {
+        border-color: #22d3ee;
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+        transform: translateY(-5px) scale(1.02);
+    }
+    
+    /* Efecto glitch en el título al hover */
+    .news-title-glitch {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .news-card-enhanced:hover .news-title-glitch {
+        animation: glitchText 0.3s ease-in-out;
+    }
+    
+    @keyframes glitchText {
+        0% {
+            text-shadow: -2px 0 cyan, 2px 0 magenta;
+            transform: skew(0deg);
+        }
+        25% {
+            text-shadow: -3px 0 cyan, 3px 0 magenta;
+            transform: skew(2deg);
+        }
+        50% {
+            text-shadow: -1px 0 cyan, 1px 0 magenta;
+            transform: skew(-1deg);
+        }
+        75% {
+            text-shadow: -2px 0 cyan, 2px 0 magenta;
+            transform: skew(1deg);
+        }
+        100% {
+            text-shadow: 0 0 cyan, 0 0 magenta;
+            transform: skew(0deg);
+        }
+    }
+    
+    /* Efecto de eco en la flecha al hacer hover sobre el enlace */
+    .news-arrow-icon {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .news-card-enhanced .nav-link:hover .news-arrow-icon {
+        animation: arrowEcho 0.6s ease-out;
+    }
+    
+    @keyframes arrowEcho {
+        0% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        50% {
+            transform: translateX(5px);
+            opacity: 0.7;
+        }
+        75% {
+            transform: translateX(-2px);
+            opacity: 0.9;
+        }
+        100% {
+            transform: translateX(3px);
+            opacity: 1;
+        }
+    }
+    
+    /* Efecto de data blast (múltiples flechas) al hacer click */
+    .news-card-enhanced .nav-link:active .news-arrow-icon {
+        animation: dataBlast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    @keyframes dataBlast {
+        0% {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+        30% {
+            transform: translateX(10px) scale(1.3);
+            opacity: 0;
+        }
+        60% {
+            transform: translateX(-5px) scale(0.8);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(3px) scale(1);
+            opacity: 1;
+        }
+    }
+    
+    /* Efecto de destello de cámara al cargar la tarjeta */
+    .camera-flash {
+        animation: cameraFlash 0.5s ease-out forwards;
+    }
+    
+    @keyframes cameraFlash {
+        0% {
+            opacity: 0;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+        30% {
+            opacity: 0.8;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+        70% {
+            opacity: 0.3;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 70%, rgba(255, 255, 255, 0) 100%);
+        }
+        100% {
+            opacity: 0;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+    }
+    
+    /* Efecto de brillo pulsante en los badges */
+    .news-card-enhanced .absolute.top-2.right-2 {
+        animation: badgePulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes badgePulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            transform: scale(1);
+        }
+        50% {
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+    }
+    
+    /* Efecto de gradiente animado en el borde al hover */
+    .news-card-enhanced:hover {
+        animation: borderPulse 1s ease-in-out infinite;
+    }
+    
+    @keyframes borderPulse {
+        0%, 100% {
+            border-color: rgba(34, 211, 238, 0.5);
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+        }
+        50% {
+            border-color: rgba(34, 211, 238, 1);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.6);
+        }
+    }
+    
+    /* Efecto de partículas al hover (opcional) */
+    .news-card-enhanced::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(34, 211, 238, 0.1) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 2;
+        border-radius: inherit;
+    }
+    
+    .news-card-enhanced:hover::before {
+        opacity: 1;
+    }
+    
+    /* Estilos para tarjetas de noticias base */
     .news-card.relative {
         position: relative;
         background-size: cover;
@@ -367,7 +476,7 @@
         min-height: 250px;
         display: flex;
         flex-direction: column;
-        cursor: pointer; /* Indicador visual de que es cliqueable */
+        cursor: pointer;
     }
     
     .news-card.relative .absolute.inset-0.bg-gradient-to-t {
@@ -378,40 +487,17 @@
         background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.4), rgba(0,0,0,0.2));
     }
     
-    /* Animaciones */
-    @keyframes slideFromLeft {
-        0% {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    /* SCROLL REVEAL ANIMATIONS SOLO PARA TARJETAS */
+    .scroll-reveal-card {
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    @keyframes slideFromRight {
-        0% {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    .scroll-reveal-card.revealed {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
     }
     
-    @keyframes slideFromBottom {
-        0% {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
+    /* Animaciones para los elementos iniciales del hero */
     .animate-from-left.visible,
     .animate-from-right.visible,
     .animate-from-bottom.visible {
@@ -419,17 +505,77 @@
         transform: translate(0);
     }
     
-    /* Drop shadow para texto sobre imagen */
-    .drop-shadow {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    .animate-from-left {
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    .drop-shadow-lg {
-        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+    .animate-from-right {
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    /* Efecto para el texto de los jugadores */
-    .text-cyan-400.font-medium {
-        letter-spacing: 0.5px;
+    .animate-from-bottom {
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Responsive */
+    @media (max-width: 640px) {
+        .stats-card {
+            padding: 0.75rem !important;
+        }
+        
+        .stats-card .text-cyan-400 {
+            font-size: 1.25rem !important;
+        }
+        
+        .news-card.relative {
+            min-height: 200px;
+        }
+        
+        .min-h-\[90vh\] {
+            min-height: 85vh;
+        }
+    }
+    
+    @media (min-width: 641px) and (max-width: 768px) {
+        .stats-card {
+            padding: 1rem !important;
+        }
+        
+        .stats-card .text-cyan-400 {
+            font-size: 1.5rem !important;
+        }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1023px) {
+        .stats-card {
+            padding: 1.25rem !important;
+        }
+        
+        .stats-card .text-cyan-400 {
+            font-size: 1.75rem !important;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .min-h-\[85vh\] {
+            min-height: 80vh;
+        }
+    }
+    
+    /* Ajuste para que en móviles no se desborde */
+    @media (max-width: 480px) {
+        .flex.justify-center.items-center {
+            gap: 0.5rem;
+        }
+        
+        .title-word-left-news span,
+        .title-word-right-news span {
+            font-size: 1.5rem !important;
+        }
+        
+        /* Ajustes para efectos en móviles */
+        .news-card-enhanced:hover {
+            transform: translateY(-3px) scale(1.01);
+        }
     }
 </style>

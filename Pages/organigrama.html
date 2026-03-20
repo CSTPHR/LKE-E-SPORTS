@@ -1,271 +1,884 @@
-<div class="container mx-auto px-4 py-16">
-    <!-- Header con efecto de gradiente -->
-    <div class="text-center mb-16 relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-3xl -z-10"></div>
-        <h1 class="text-5xl md:text-7xl font-black mb-4">
-            <span class="text-white">ORGANIGRAMA</span>
-            <span class="text-cyan-400">LKE</span>
-        </h1>
-        <p class="text-gray-400 text-xl max-w-3xl mx-auto">
+<div class="container mx-auto px-4 py-8 md:py-16">
+    <!-- ===== HEADER CON ANIMACIONES Y EFECTO SCROLL REVEAL ===== -->
+    <div class="text-center mb-12 md:mb-16" id="organigrama-header-section">
+        <div class="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
+            <div class="title-word-left-organigrama opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                <span class="text-white font-black text-4xl md:text-5xl lg:text-6xl">ORGANIGRAMA</span>
+            </div>
+            <div class="title-word-right-organigrama opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                <span class="text-cyan-400 glow-text font-black text-4xl md:text-5xl lg:text-6xl">LKE</span>
+            </div>
+        </div>
+        <p class="subtitle-organigrama text-gray-400 text-lg md:text-xl max-w-3xl mx-auto px-4 mt-4 opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);">
             Conoce a todo el staff que hace posible LKE E-SPORTS
         </p>
+        <div class="title-line-organigrama w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-4 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div>
     </div>
 
-    <!-- Fundador y CEO -->
-    <div class="organigrama-section mb-16">
-        <h2 class="text-3xl font-bold text-center mb-12">
-            <span class="text-white">FUNDADOR &</span>
-            <span class="text-cyan-400">CEO</span>
-        </h2>
+    <!-- ===== SECCIÓN 1: FUNDADOR Y CEO - CON EFECTO DE TÍTULO ANIMADO ===== -->
+    <div class="organigrama-section mb-16" id="ceo-section">
+        <!-- Título de sección con efecto animado -->
+        <div class="text-center mb-8 md:mb-12 section-title-container">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                <div class="section-title-left-ceo opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-2xl md:text-3xl">FUNDADOR &</span>
+                </div>
+                <div class="section-title-right-ceo opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-cyan-400 glow-text font-black text-2xl md:text-3xl">CEO</span>
+                </div>
+            </div>
+            <div class="section-title-line-ceo w-20 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-3 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+        </div>
+        
         <div class="max-w-md mx-auto">
-            <div class="staff-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl p-8 border border-cyan-500/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group">
-                <div class="relative">
-                    <div class="w-36 h-36 mx-auto mb-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-500">
-                        <i class="fas fa-crown text-5xl text-white"></i>
+            <div class="staff-card scroll-reveal-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center opacity-0 translate-y-[40px]">
+                <div class="relative w-32 h-32 md:w-36 md:h-36 mx-auto mb-4">
+                    <div class="w-full h-full rounded-full overflow-hidden border-4 border-cyan-500/50 group-hover:border-cyan-400 transition-all duration-500">
+                        <img src="img/organigrama/wezo.png" alt="WEZOPLAY - Fundador y CEO de LKE E-SPORTS" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                        </div>
                     </div>
-                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center animate-pulse">
-                        <i class="fas fa-star text-xs text-white"></i>
-                    </div>
+                    
                 </div>
-                <h3 class="text-3xl font-bold text-white text-center mb-2">WEZOPLAY</h3>
-                <p class="text-cyan-400 text-center mb-4 role-badge text-lg" data-role="Fundador y CEO">Fundador & CEO</p>
-                <div class="flex justify-center space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-twitch text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-twitter text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-youtube text-xl"></i></a>
+                <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-2 group-hover:text-cyan-400 transition-colors duration-300">WEZOPLAY</h3>
+                <p class="text-cyan-400 text-center mb-4 role-badge text-base md:text-lg" data-role="Fundador y CEO">Fundador & CEO</p>
+                <div class="flex justify-center space-x-4 mt-2">
+                    <a href="https://www.tiktok.com/@wezoplay" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-xl md:text-2xl"></i></a>
+                    <a href="https://www.instagram.com/wezoplay" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-xl md:text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-twitter text-xl md:text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-youtube text-xl md:text-2xl"></i></a>
                 </div>
+                <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                    <div class="data-stream opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
         </div>
     </div>
 
-    <!-- Nivel 2: Asistentes y Directores -->
-    <div class="grid lg:grid-cols-2 gap-8 mb-16">
-        <!-- Asistentes Ejecutivas -->
-        <div class="organigrama-section">
-            <h2 class="text-2xl font-bold text-center mb-8">
-                <span class="text-white">ASISTENTES</span>
-                <span class="text-cyan-400">EJECUTIVAS</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Andrea -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-user-tie text-3xl text-cyan-400"></i>
+    <!-- ===== SECCIÓN 2: ASISTENTES Y DIRECTORES ===== -->
+    <div class="grid lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
+        <!-- Asistentes Ejecutivas - CON EFECTO DE TÍTULO ANIMADO -->
+        <div class="organigrama-section" id="asistentes-section">
+            <div class="text-center mb-6 md:mb-8 section-title-container">
+                <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                    <div class="section-title-left-asistentes opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                        <span class="text-white font-black text-xl md:text-2xl">ASISTENTES</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Andrea</h3>
-                    <p class="text-cyan-400 text-sm role-badge" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
+                    <div class="section-title-right-asistentes opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                        <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">EJECUTIVAS</span>
+                    </div>
+                </div>
+                <div class="section-title-line-asistentes w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                <!-- Andrea -->
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-user-tie text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Andrea</h3>
+                    <p class="text-cyan-400 text-xs md:text-sm role-badge" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Mafy -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-user-tie text-3xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-user-tie text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Mafy</h3>
-                    <p class="text-cyan-400 text-sm role-badge" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Mafy</h3>
+                    <p class="text-cyan-400 text-xs md:text-sm role-badge" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Directoras de Operaciones -->
-        <div class="organigrama-section">
-            <h2 class="text-2xl font-bold text-center mb-8">
-                <span class="text-white">DIRECTORAS DE</span>
-                <span class="text-cyan-400">OPERACIONES</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Paola -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-chart-line text-3xl text-cyan-400"></i>
+        <!-- Directoras de Operaciones - CON EFECTO DE TÍTULO ANIMADO -->
+        <div class="organigrama-section" id="directoras-section">
+            <div class="text-center mb-6 md:mb-8 section-title-container">
+                <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                    <div class="section-title-left-directoras opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                        <span class="text-white font-black text-xl md:text-2xl">DIRECTORAS DE</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Paola</h3>
-                    <p class="text-cyan-400 text-sm role-badge" data-role="Directora de Operaciones">Directora de Operaciones</p>
+                    <div class="section-title-right-directoras opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                        <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">OPERACIONES</span>
+                    </div>
+                </div>
+                <div class="section-title-line-directoras w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                <!-- Paola -->
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-chart-line text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Paola</h3>
+                    <p class="text-cyan-400 text-xs md:text-sm role-badge" data-role="Directora de Operaciones">Directora de Operaciones</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Priss -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-chart-line text-3xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-chart-line text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Priss</h3>
-                    <p class="text-cyan-400 text-sm role-badge" data-role="Directora de Operaciones">Directora de Operaciones</p>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Priss</h3>
+                    <p class="text-cyan-400 text-xs md:text-sm role-badge" data-role="Directora de Operaciones">Directora de Operaciones</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Nivel 3: Coaches y Managers -->
-    <div class="mb-16">
-        <!-- Coaches y Analistas -->
-        <div class="organigrama-section mb-12">
-            <h2 class="text-2xl font-bold text-center mb-8">
-                <span class="text-white">COACHES &</span>
-                <span class="text-cyan-400">ANALISTAS</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Jimenez -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-chart-bar text-3xl text-cyan-400"></i>
+    <!-- ===== SECCIÓN 3: COACHES Y MANAGERS ===== -->
+    <div class="mb-12 md:mb-16">
+        <!-- Coaches y Analistas - CON EFECTO DE TÍTULO ANIMADO -->
+        <div class="organigrama-section mb-10 md:mb-12" id="coaches-section">
+            <div class="text-center mb-6 md:mb-8 section-title-container">
+                <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                    <div class="section-title-left-coaches opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                        <span class="text-white font-black text-xl md:text-2xl">COACHES &</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Jimenez</h3>
-                    <p class="text-cyan-400 text-sm role-badge" data-role="Coach / Analista">Coach / Analista</p>
+                    <div class="section-title-right-coaches opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                        <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">ANALISTAS</span>
+                    </div>
+                </div>
+                <div class="section-title-line-coaches w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Jimenez -->
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-chart-bar text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Jimenez</h3>
+                    <p class="text-cyan-400 text-xs md:text-sm role-badge" data-role="Coach / Analista">Coach / Analista</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- P57 -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-chart-bar text-3xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-chart-bar text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">P57</h3>
-                    <p class="text-cyan-400 text-sm role-badge" data-role="Coach / Analista">Coach / Analista</p>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">P57</h3>
+                    <p class="text-cyan-400 text-xs md:text-sm role-badge" data-role="Coach / Analista">Coach / Analista</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Anubis -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group md:col-span-2 lg:col-span-1">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-chart-bar text-3xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-chart-bar text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Anubis</h3>
-                    <p class="text-cyan-400 text-sm role-badge" data-role="Coach / Analista">Coach / Analista</p>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Anubis</h3>
+                    <p class="text-cyan-400 text-xs md:text-sm role-badge" data-role="Coach / Analista">Coach / Analista</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Managers por Equipo -->
-        <div class="organigrama-section">
-            <h2 class="text-2xl font-bold text-center mb-8">
-                <span class="text-white">MANAGERS</span>
-                <span class="text-cyan-400">POR EQUIPO</span>
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                <!-- Paola -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
-                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-users text-2xl text-cyan-400"></i>
+        <!-- Managers por Equipo - CON EFECTO DE TÍTULO ANIMADO -->
+        <div class="organigrama-section" id="managers-section">
+            <div class="text-center mb-6 md:mb-8 section-title-container">
+                <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                    <div class="section-title-left-managers opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                        <span class="text-white font-black text-xl md:text-2xl">MANAGERS</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Paola</h3>
-                    <p class="text-cyan-400 text-xs role-badge" data-role="Manager LKE">LKE E-SPORTS</p>
+                    <div class="section-title-right-managers opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                        <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">POR EQUIPO</span>
+                    </div>
+                </div>
+                <div class="section-title-line-managers w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+                <!-- Paola -->
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[220px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-users text-xl md:text-2xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Paola</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Manager LKE">LKE E-SPORTS</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Virginia -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
-                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-users text-2xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[220px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-users text-xl md:text-2xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Virginia</h3>
-                    <p class="text-cyan-400 text-xs role-badge" data-role="Manager LKE">LKE E-SPORTS</p>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Virginia</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Manager LKE">LKE E-SPORTS</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Mafy -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
-                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-users text-2xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[220px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-users text-xl md:text-2xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Mafy</h3>
-                    <p class="text-cyan-400 text-xs role-badge" data-role="Manager Legacy">LKE Legacy</p>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Mafy</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Manager Legacy">LKE Legacy</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Priss -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
-                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-users text-2xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[220px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-users text-xl md:text-2xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Priss</h3>
-                    <p class="text-cyan-400 text-xs role-badge" data-role="Manager NOVA">LKE NOVA</p>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Priss</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Manager NOVA">LKE NOVA</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Kloux -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
-                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-users text-2xl text-cyan-400"></i>
+                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[220px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                            <i class="fas fa-users text-xl md:text-2xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Kloux</h3>
-                    <p class="text-cyan-400 text-xs role-badge" data-role="Manager Secret">LKE Secret</p>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Kloux</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Manager Secret">LKE Secret</p>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Dirección Audiovisual -->
-    <div class="organigrama-section mb-16">
-        <h2 class="text-2xl font-bold text-center mb-8">
-            <span class="text-white">DIRECCIÓN</span>
-            <span class="text-cyan-400">AUDIOVISUAL</span>
-        </h2>
+    <!-- ===== SECCIÓN 4: DIRECCIÓN AUDIOVISUAL - CON EFECTO DE TÍTULO ANIMADO ===== -->
+    <div class="organigrama-section mb-12 md:mb-16" id="audiovisual-section">
+        <div class="text-center mb-6 md:mb-8 section-title-container">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                <div class="section-title-left-audiovisual opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-xl md:text-2xl">DIRECCIÓN</span>
+                </div>
+                <div class="section-title-right-audiovisual opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">AUDIOVISUAL</span>
+                </div>
+            </div>
+            <div class="section-title-line-audiovisual w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+        </div>
         <div class="max-w-sm mx-auto">
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-6 text-center hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300 group">
-                <div class="w-28 h-28 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-video text-3xl text-cyan-400"></i>
+            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                <div class="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-3 md:mb-4">
+                    <div class="w-full h-full rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-purple-500/50">
+                        <i class="fas fa-video text-2xl md:text-3xl text-cyan-400 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-1">Hxpe</h3>
-                <p class="text-cyan-400 role-badge" data-role="Director Audiovisual">Director Audiovisual</p>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Hxpe</h3>
+                <p class="text-cyan-400 text-sm md:text-base role-badge" data-role="Director Audiovisual">Director Audiovisual</p>
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
         </div>
     </div>
 
-    <!-- Creadores de Contenido -->
-    <div class="organigrama-section">
-        <h2 class="text-2xl font-bold text-center mb-8">
-            <span class="text-white">CREADORES DE</span>
-            <span class="text-cyan-400">CONTENIDO</span>
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            <!-- Malenia -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 group">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-camera text-xl text-white"></i>
+    <!-- ===== SECCIÓN 5: CREADORES DE CONTENIDO - CON EFECTO DE TÍTULO ANIMADO ===== -->
+    <div class="organigrama-section" id="creadores-section">
+        <div class="text-center mb-6 md:mb-8 section-title-container">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                <div class="section-title-left-creadores opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-xl md:text-2xl">CREADORES DE</span>
                 </div>
-                <h3 class="text-sm font-bold text-white mb-1">Malenia</h3>
-                <p class="text-cyan-400 text-xs role-badge" data-role="Creadora">Creadora</p>
+                <div class="section-title-right-creadores opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">CONTENIDO</span>
+                </div>
+            </div>
+            <div class="section-title-line-creadores w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+            <!-- Malenia -->
+            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[200px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                    <div class="w-full h-full rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                        <i class="fas fa-camera text-lg md:text-xl text-white"></i>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                </div>
+                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Malenia</h3>
+                <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Creadora">Creadora</p>
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- Izu -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 group">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-camera text-xl text-white"></i>
+            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[200px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                    <div class="w-full h-full rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                        <i class="fas fa-camera text-lg md:text-xl text-white"></i>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                 </div>
-                <h3 class="text-sm font-bold text-white mb-1">Izu</h3>
-                <p class="text-cyan-400 text-xs role-badge" data-role="Creador">Creador</p>
+                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Izu</h3>
+                <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Creador">Creador</p>
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- Jucxxo -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 group">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-camera text-xl text-white"></i>
+            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[200px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                    <div class="w-full h-full rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                        <i class="fas fa-camera text-lg md:text-xl text-white"></i>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                 </div>
-                <h3 class="text-sm font-bold text-white mb-1">Jucxxo</h3>
-                <p class="text-cyan-400 text-xs role-badge" data-role="Creador">Creador</p>
+                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Jucxxo</h3>
+                <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Creador">Creador</p>
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- Samantha -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 group">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-camera text-xl text-white"></i>
+            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[200px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                    <div class="w-full h-full rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                        <i class="fas fa-camera text-lg md:text-xl text-white"></i>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                 </div>
-                <h3 class="text-sm font-bold text-white mb-1">Samantha</h3>
-                <p class="text-cyan-400 text-xs role-badge" data-role="Creadora">Creadora</p>
+                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Samantha</h3>
+                <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Creadora">Creadora</p>
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- Lizz -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 group">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-camera text-xl text-white"></i>
+            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[200px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                    <div class="w-full h-full rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                        <i class="fas fa-camera text-lg md:text-xl text-white"></i>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                 </div>
-                <h3 class="text-sm font-bold text-white mb-1">Lizz</h3>
-                <p class="text-cyan-400 text-xs role-badge" data-role="Creadora">Creadora</p>
+                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Lizz</h3>
+                <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Creadora">Creadora</p>
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- ALFA -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-4 text-center hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 group">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-camera text-xl text-white"></i>
+            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[200px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
+                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                    <div class="w-full h-full rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                        <i class="fas fa-camera text-lg md:text-xl text-white"></i>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                 </div>
-                <h3 class="text-sm font-bold text-white mb-1">ALFA</h3>
-                <p class="text-cyan-400 text-xs role-badge" data-role="Creador">Creador</p>
+                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">ALFA</h3>
+                <p class="text-cyan-400 text-[10px] md:text-xs role-badge" data-role="Creador">Creador</p>
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Estilos específicos para la página de Organigrama con efectos de scroll reveal y títulos animados -->
+<style>
+    /* ===== ESTILOS PARA EL TÍTULO HEADER DE ORGANIGRAMA ===== */
+    .title-word-left-organigrama.revealed,
+    .title-word-right-organigrama.revealed,
+    .subtitle-organigrama.revealed {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
+    
+    .title-word-left-organigrama.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .title-word-right-organigrama.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .subtitle-organigrama.revealed {
+        transform: translateY(0) !important;
+    }
+    
+    .title-line-organigrama.revealed {
+        transform: scaleX(1) !important;
+    }
+    
+    /* ===== ESTILOS PARA LOS TÍTULOS DE SECCIÓN (EFECTO ARMONIZADO) ===== */
+    .section-title-left-ceo.revealed,
+    .section-title-right-ceo.revealed,
+    .section-title-line-ceo.revealed,
+    .section-title-left-asistentes.revealed,
+    .section-title-right-asistentes.revealed,
+    .section-title-line-asistentes.revealed,
+    .section-title-left-directoras.revealed,
+    .section-title-right-directoras.revealed,
+    .section-title-line-directoras.revealed,
+    .section-title-left-coaches.revealed,
+    .section-title-right-coaches.revealed,
+    .section-title-line-coaches.revealed,
+    .section-title-left-managers.revealed,
+    .section-title-right-managers.revealed,
+    .section-title-line-managers.revealed,
+    .section-title-left-audiovisual.revealed,
+    .section-title-right-audiovisual.revealed,
+    .section-title-line-audiovisual.revealed,
+    .section-title-left-creadores.revealed,
+    .section-title-right-creadores.revealed,
+    .section-title-line-creadores.revealed {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
+    
+    .section-title-left-ceo.revealed,
+    .section-title-left-asistentes.revealed,
+    .section-title-left-directoras.revealed,
+    .section-title-left-coaches.revealed,
+    .section-title-left-managers.revealed,
+    .section-title-left-audiovisual.revealed,
+    .section-title-left-creadores.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .section-title-right-ceo.revealed,
+    .section-title-right-asistentes.revealed,
+    .section-title-right-directoras.revealed,
+    .section-title-right-coaches.revealed,
+    .section-title-right-managers.revealed,
+    .section-title-right-audiovisual.revealed,
+    .section-title-right-creadores.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .section-title-line-ceo.revealed,
+    .section-title-line-asistentes.revealed,
+    .section-title-line-directoras.revealed,
+    .section-title-line-coaches.revealed,
+    .section-title-line-managers.revealed,
+    .section-title-line-audiovisual.revealed,
+    .section-title-line-creadores.revealed {
+        transform: scaleX(1) !important;
+    }
+    
+    /* ===== ESTILOS UNIFORMES PARA TODAS LAS FICHAS ===== */
+    .staff-card {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        backdrop-filter: blur(12px);
+    }
+    
+    /* Alturas uniformes por categoría */
+    .staff-card:not(.staff-card-ceo) {
+        min-height: 280px;
+    }
+    
+    /* Para las tarjetas pequeñas de managers */
+    .grid-cols-5 .staff-card,
+    .grid-cols-6 .staff-card {
+        min-height: 220px;
+    }
+    
+    /* Para las tarjetas de creadores de contenido */
+    .grid-cols-6 .staff-card {
+        min-height: 200px;
+    }
+    
+    /* ===== EFECTO DE ESCANEO LÁSER ===== */
+    .staff-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.15), transparent);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+        pointer-events: none;
+        z-index: 5;
+    }
+    
+    .staff-card:hover::before {
+        transform: translateX(100%);
+    }
+    
+    /* ===== EFECTO DE BRILLO PULSANTE EN EL BORDE ===== */
+    .staff-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0), rgba(168, 85, 247, 0), rgba(6, 182, 212, 0));
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+    
+    .staff-card:hover::after {
+        opacity: 1;
+        background: linear-gradient(135deg, #06b6d4, #a855f7, #06b6d4);
+        animation: borderPulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes borderPulse {
+        0%, 100% {
+            opacity: 0.6;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+    
+    /* ===== EFECTO DE GLITCH EN EL NOMBRE ===== */
+    .staff-card:hover h3 {
+        animation: glitchText 0.3s ease-in-out;
+    }
+    
+    @keyframes glitchText {
+        0% {
+            text-shadow: -1px 0 cyan, 1px 0 magenta;
+            transform: skew(0deg);
+        }
+        25% {
+            text-shadow: -2px 0 cyan, 2px 0 magenta;
+            transform: skew(1deg);
+        }
+        50% {
+            text-shadow: -1px 0 cyan, 1px 0 magenta;
+            transform: skew(-0.5deg);
+        }
+        75% {
+            text-shadow: -2px 0 cyan, 2px 0 magenta;
+            transform: skew(0.5deg);
+        }
+        100% {
+            text-shadow: 0 0 cyan, 0 0 magenta;
+            transform: skew(0deg);
+        }
+    }
+    
+    /* ===== EFECTO DE DATA STREAM (SOLO PARA EL CEO) ===== */
+    .data-stream {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 20px,
+            rgba(6, 182, 212, 0.05) 20px,
+            rgba(168, 85, 247, 0.05) 40px
+        );
+        animation: dataStreamMove 3s linear infinite;
+    }
+    
+    @keyframes dataStreamMove {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(100%);
+        }
+    }
+    
+    /* ===== ZOOM CENTRADO PARA ÍCONOS E IMÁGENES ===== */
+    .staff-card .relative .rounded-full {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .staff-card:hover .relative .rounded-full {
+        transform: scale(1.1);
+    }
+    
+    .staff-card-ceo:hover .relative .rounded-full img {
+        transform: scale(1.1);
+    }
+    
+    /* Efecto de pulso de energía alrededor del ícono */
+    .staff-card .relative .rounded-full::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, rgba(6, 182, 212, 0.3), transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+    
+    .staff-card:hover .relative .rounded-full::after {
+        opacity: 1;
+        animation: energyPulse 1s ease-out infinite;
+    }
+    
+    @keyframes energyPulse {
+        0% {
+            transform: scale(1);
+            opacity: 0.6;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+    
+    /* ===== FONDO CON GRADIENTE DINÁMICO ===== */
+    .staff-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    }
+    
+    .staff-card:hover {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(168, 85, 247, 0.05));
+    }
+    
+    /* ===== EFECTO DE SOMBRA FLOTANTE ===== */
+    .staff-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.3);
+    }
+    
+    /* ===== EFECTO DE BRILLO EN EL TEXTO DEL ROL ===== */
+    .role-badge {
+        transition: all 0.3s ease;
+        display: inline-block;
+        position: relative;
+    }
+    
+    .staff-card:hover .role-badge {
+        text-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+        letter-spacing: 0.5px;
+    }
+    
+    /* ===== EFECTO DE ESCALA EN EL ÍCONO ===== */
+    .staff-card .relative .rounded-full i {
+        transition: transform 0.3s ease;
+    }
+    
+    .staff-card:hover .relative .rounded-full i {
+        transform: scale(1.05);
+    }
+    
+    /* ===== EFECTO DE TEXTO CON GRADIENTE ===== */
+    .staff-card:hover h3 {
+        background: linear-gradient(135deg, #fff, #06b6d4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .staff-card h3 {
+        transition: all 0.3s ease;
+    }
+    
+    /* ===== SCROLL REVEAL PARA LAS FICHAS (EFECTO COMO EN ÚLTIMAS NOTICIAS) ===== */
+    .scroll-reveal-card {
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .scroll-reveal-card.revealed {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    
+    /* ===== EFECTO DE CÁMARA FLASH AL REVELAR ===== */
+    .camera-flash {
+        animation: cameraFlashEffect 0.5s ease-out forwards;
+    }
+    
+    @keyframes cameraFlashEffect {
+        0% {
+            opacity: 0;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+        30% {
+            opacity: 0.8;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+        70% {
+            opacity: 0.3;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 70%, rgba(255, 255, 255, 0) 100%);
+        }
+        100% {
+            opacity: 0;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+    }
+    
+    /* ===== EFECTO GLOW PARA EL TEXTO ===== */
+    .glow-text {
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        display: inline-block;
+        word-break: break-word;
+    }
+    
+    /* ===== RESPONSIVE AJUSTES ===== */
+    @media (max-width: 768px) {
+        .staff-card:not(.staff-card-ceo) {
+            min-height: 260px;
+        }
+        
+        .grid-cols-5 .staff-card,
+        .grid-cols-6 .staff-card {
+            min-height: 200px;
+        }
+        
+        .staff-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .staff-card:hover .relative .rounded-full {
+            transform: scale(1.05);
+        }
+        
+        .section-title-left-ceo span,
+        .section-title-right-ceo span,
+        .section-title-left-asistentes span,
+        .section-title-right-asistentes span,
+        .section-title-left-directoras span,
+        .section-title-right-directoras span,
+        .section-title-left-coaches span,
+        .section-title-right-coaches span,
+        .section-title-left-managers span,
+        .section-title-right-managers span,
+        .section-title-left-audiovisual span,
+        .section-title-right-audiovisual span,
+        .section-title-left-creadores span,
+        .section-title-right-creadores span {
+            font-size: 1.5rem !important;
+        }
+    }
+    
+    @media (max-width: 640px) {
+        .title-word-left-organigrama span,
+        .title-word-right-organigrama span {
+            font-size: 2rem !important;
+        }
+        
+        .staff-card:not(.staff-card-ceo) {
+            min-height: 240px;
+        }
+        
+        .grid-cols-5 .staff-card,
+        .grid-cols-6 .staff-card {
+            min-height: 180px;
+        }
+        
+        .staff-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .staff-card:hover .relative .rounded-full {
+            transform: scale(1.03);
+        }
+        
+        .section-title-left-ceo span,
+        .section-title-right-ceo span,
+        .section-title-left-asistentes span,
+        .section-title-right-asistentes span,
+        .section-title-left-directoras span,
+        .section-title-right-directoras span,
+        .section-title-left-coaches span,
+        .section-title-right-coaches span,
+        .section-title-left-managers span,
+        .section-title-right-managers span,
+        .section-title-left-audiovisual span,
+        .section-title-right-audiovisual span,
+        .section-title-left-creadores span,
+        .section-title-right-creadores span {
+            font-size: 1.2rem !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .title-word-left-organigrama span,
+        .title-word-right-organigrama span {
+            font-size: 1.8rem !important;
+        }
+        
+        .flex.justify-center.items-center {
+            gap: 0.5rem;
+        }
+        
+        .staff-card:not(.staff-card-ceo) {
+            min-height: 220px;
+        }
+        
+        .grid-cols-5 .staff-card,
+        .grid-cols-6 .staff-card {
+            min-height: 160px;
+        }
+        
+        .section-title-left-ceo span,
+        .section-title-right-ceo span,
+        .section-title-left-asistentes span,
+        .section-title-right-asistentes span,
+        .section-title-left-directoras span,
+        .section-title-right-directoras span,
+        .section-title-left-coaches span,
+        .section-title-right-coaches span,
+        .section-title-left-managers span,
+        .section-title-right-managers span,
+        .section-title-left-audiovisual span,
+        .section-title-right-audiovisual span,
+        .section-title-left-creadores span,
+        .section-title-right-creadores span {
+            font-size: 1rem !important;
+        }
+    }
+</style>

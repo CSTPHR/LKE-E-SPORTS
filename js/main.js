@@ -1,6 +1,7 @@
 // ============================================
 // MAIN.JS - SISTEMA DE NAVEGACIÓN DINÁMICA PARA LKE E-SPORTS
-// VERSIÓN DEFINITIVA - CONTADORES INTERACTIVOS CON SCROLL
+// VERSIÓN DEFINITIVA - CON HASH ROUTING Y EFECTOS COMPLETOS
+// INCLUYE ORGANIGRAMA CON EFECTOS DE TÍTULO ARMONIZADOS Y SCROLL REVEAL
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable para controlar si las animaciones ya se ejecutaron
     let animationsExecuted = false;
     
+    // Detectar si es dispositivo táctil para optimizar animaciones
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    
     // Función para ejecutar todas las animaciones después del splash
     function executeAnimations() {
         if (animationsExecuted) return;
@@ -24,13 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // Forzar reflow
         void document.body.offsetHeight;
         
-        // Inicializar contadores
-        if (window.counterManager) {
-            window.counterManager.animateAll();
-        }
+        // Inicializar contadores con delay para mejor rendimiento en tablets
+        setTimeout(() => {
+            if (window.counterManager) {
+                window.counterManager.animateAll();
+            }
+        }, 100);
         
         // Inicializar scroll reveal mejorado
         initEnhancedScrollReveal();
+        
+        // Inicializar efectos interactivos del título
+        initTitleEffects();
+        
+        // Inicializar scroll reveal para el título de noticias
+        initNewsTitleScrollReveal();
+        
+        // Inicializar efectos de cámara flash en noticias
+        initCameraFlashEffect();
+        
+        // Inicializar efecto de partículas en noticias
+        initParticleEffectOnNewsCards();
     }
     
     // Función para ocultar el splash screen
@@ -80,11 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable para el intervalo de contadores (30 segundos)
     let counterLoopInterval = null;
     
+    // Variable para el observer del título de noticias
+    let newsTitleObserver = null;
+    
+    // Variable para el observer del título de torneos anteriores
+    window.tournamentsTitleObserver = null;
+    
+    // Variable para el observer del título header de torneos
+    window.tournamentsHeaderTitleObserver = null;
+    
+    // Variable para el observer del título de organigrama
+    window.organigramaTitleObserver = null;
+    
+    // Variables para observers de organigrama
+    window.sectionTitleObservers = [];
+    window.organigramaCardObserver = null;
+    
     // ============================================
     // SECCIÓN 3: FUNCIÓN PARA ASIGNAR EVENT LISTENERS A NAVIGATION
     // ============================================
     function assignNavLinkListeners() {
-        // Seleccionar TODOS los elementos con clase nav-link (incluyendo los del home cargado dinámicamente)
+        // Seleccionar TODOS los elementos con clase nav-link
         const navLinks = document.querySelectorAll('.nav-link');
         
         navLinks.forEach(link => {
@@ -191,13 +225,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = titles[page] || 'LKE E-SPORTS';
     }
     
-    // Obtener página desde la URL
-    function getPageFromPath() {
-        const path = window.location.pathname;
-        if (path === '/' || path === '') return 'home';
-        const page = path.substring(1);
+    // Obtener página desde el hash de la URL
+    function getPageFromHash() {
+        const hash = window.location.hash.substring(1); // Remover el #
         const validPages = ['home', 'team', 'tournaments', 'organigrama', 'news', 'contact'];
-        return validPages.includes(page) ? page : 'home';
+        // Si no hay hash o es inválido, devolver 'home'
+        return validPages.includes(hash) ? hash : 'home';
     }
     
     // Actualizar clases de navegación activas
@@ -238,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Resetear stats cards - TODAS reciben el mismo tratamiento
+        // Resetear stats cards
         const statsCards = document.querySelectorAll('.stats-card');
         statsCards.forEach(card => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
@@ -265,7 +298,614 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
         });
         
+        // Resetear título de noticias
+        resetNewsTitleElements();
+        
         console.log('Elementos del home reseteados');
+    }
+    
+    // ============================================
+    // SECCIÓN 6.5: FUNCIONES PARA EL TÍTULO DE NOTICIAS CON SCROLL REVEAL
+    // ============================================
+    function resetNewsTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-news');
+        const titleRight = document.querySelector('.title-word-right-news');
+        const subtitle = document.querySelector('.subtitle-news');
+        const titleLine = document.querySelector('.title-line-news');
+        
+        if (titleLeft) {
+            titleLeft.classList.remove('revealed');
+            titleLeft.style.opacity = '0';
+            titleLeft.style.transform = 'translateX(-30px)';
+        }
+        if (titleRight) {
+            titleRight.classList.remove('revealed');
+            titleRight.style.opacity = '0';
+            titleRight.style.transform = 'translateX(30px)';
+        }
+        if (subtitle) {
+            subtitle.classList.remove('revealed');
+            subtitle.style.opacity = '0';
+            subtitle.style.transform = 'translateY(20px)';
+        }
+        if (titleLine) {
+            titleLine.classList.remove('revealed');
+            titleLine.style.transform = 'scaleX(0)';
+        }
+    }
+    
+    function revealNewsTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-news');
+        const titleRight = document.querySelector('.title-word-right-news');
+        const subtitle = document.querySelector('.subtitle-news');
+        const titleLine = document.querySelector('.title-line-news');
+        
+        if (titleLeft && !titleLeft.classList.contains('revealed')) {
+            titleLeft.classList.add('revealed');
+        }
+        if (titleRight && !titleRight.classList.contains('revealed')) {
+            titleRight.classList.add('revealed');
+        }
+        if (subtitle && !subtitle.classList.contains('revealed')) {
+            subtitle.classList.add('revealed');
+        }
+        if (titleLine && !titleLine.classList.contains('revealed')) {
+            titleLine.classList.add('revealed');
+        }
+    }
+    
+    function initNewsTitleScrollReveal() {
+        if (newsTitleObserver) {
+            newsTitleObserver.disconnect();
+        }
+        
+        const newsSection = document.getElementById('news-section');
+        
+        if (!newsSection) {
+            setTimeout(initNewsTitleScrollReveal, 500);
+            return;
+        }
+        
+        resetNewsTitleElements();
+        
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealNewsTitleElements();
+                } else {
+                    resetNewsTitleElements();
+                }
+            });
+        };
+        
+        newsTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
+        newsTitleObserver.observe(newsSection);
+        
+        const titleContainer = document.querySelector('.title-word-left-news')?.closest('.text-center');
+        if (titleContainer) {
+            newsTitleObserver.observe(titleContainer);
+        }
+        
+        setTimeout(() => {
+            if (newsSection && isElementInViewport(newsSection, 100)) {
+                revealNewsTitleElements();
+            }
+        }, 300);
+        
+        console.log('Scroll reveal para título de noticias inicializado');
+    }
+    
+    function isElementInViewport(el, offset = 100) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top <= windowHeight - offset;
+    }
+    
+    // ============================================
+    // SECCIÓN 6.6: EFECTOS MEJORADOS PARA NOTICIAS
+    // ============================================
+    
+    function initCameraFlashEffect() {
+        const newsCards = document.querySelectorAll('.news-card-enhanced');
+        
+        newsCards.forEach((card, index) => {
+            const flashElement = card.querySelector('.camera-flash');
+            if (flashElement) {
+                flashElement.classList.remove('camera-flash');
+                void flashElement.offsetWidth;
+                setTimeout(() => {
+                    flashElement.classList.add('camera-flash');
+                    setTimeout(() => {
+                        flashElement.classList.remove('camera-flash');
+                    }, 500);
+                }, index * 200);
+            }
+        });
+        
+        console.log('Efecto cámara flash inicializado en', newsCards.length, 'tarjetas');
+    }
+    
+    function initParticleEffectOnNewsCards() {
+        const newsCards = document.querySelectorAll('.news-card-enhanced');
+        
+        newsCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--x', `${x}%`);
+                card.style.setProperty('--y', `${y}%`);
+            });
+        });
+        
+        console.log('Efecto de partículas inicializado en', newsCards.length, 'tarjetas');
+    }
+    
+    function initDataBlastEffect() {
+        const newsLinks = document.querySelectorAll('.news-card-enhanced .nav-link');
+        
+        newsLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const arrowIcon = link.querySelector('.news-arrow-icon');
+                if (arrowIcon) {
+                    arrowIcon.style.animation = 'none';
+                    void arrowIcon.offsetWidth;
+                    arrowIcon.style.animation = 'dataBlast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    setTimeout(() => {
+                        if (arrowIcon) {
+                            arrowIcon.style.animation = '';
+                        }
+                    }, 400);
+                }
+            });
+        });
+        
+        console.log('Efecto Data Blast inicializado en', newsLinks.length, 'enlaces');
+    }
+    
+    // ============================================
+    // SECCIÓN 6.7: EFECTOS MEJORADOS PARA TORNEOS
+    // ============================================
+    
+    function initTournamentCameraFlash() {
+        const tournamentCards = document.querySelectorAll('.tournament-card-enhanced');
+        
+        tournamentCards.forEach((card, index) => {
+            const flashElement = card.querySelector('.camera-flash');
+            if (flashElement) {
+                flashElement.classList.remove('camera-flash');
+                void flashElement.offsetWidth;
+                setTimeout(() => {
+                    flashElement.classList.add('camera-flash');
+                    setTimeout(() => {
+                        flashElement.classList.remove('camera-flash');
+                    }, 500);
+                }, index * 200);
+            }
+        });
+        
+        console.log('Efecto cámara flash inicializado en', tournamentCards.length, 'tarjetas de torneos');
+    }
+    
+    function initTournamentParticleEffect() {
+        const tournamentCards = document.querySelectorAll('.tournament-card-enhanced');
+        
+        tournamentCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--x', `${x}%`);
+                card.style.setProperty('--y', `${y}%`);
+            });
+        });
+        
+        console.log('Efecto de partículas inicializado en', tournamentCards.length, 'tarjetas de torneos');
+    }
+    
+    function initTournamentDataBlast() {
+        const tournamentLinks = document.querySelectorAll('.tournament-card-enhanced .nav-link');
+        
+        tournamentLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const arrowIcon = link.querySelector('.tournament-arrow-icon');
+                if (arrowIcon) {
+                    arrowIcon.style.animation = 'none';
+                    void arrowIcon.offsetWidth;
+                    arrowIcon.style.animation = 'tournamentDataBlast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    setTimeout(() => {
+                        if (arrowIcon) {
+                            arrowIcon.style.animation = '';
+                        }
+                    }, 400);
+                }
+            });
+        });
+        
+        console.log('Efecto Data Blast inicializado en', tournamentLinks.length, 'enlaces de torneos');
+    }
+    
+    function initTournamentEffects() {
+        initTournamentCameraFlash();
+        initTournamentParticleEffect();
+        initTournamentDataBlast();
+    }
+    
+    // ============================================
+    // SECCIÓN 6.8: FUNCIONES PARA EL TÍTULO DE TORNEOS ANTERIORES
+    // ============================================
+    
+    function resetTournamentsTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-tournaments');
+        const titleRight = document.querySelector('.title-word-right-tournaments');
+        const subtitle = document.querySelector('.subtitle-tournaments');
+        const titleLine = document.querySelector('.title-line-tournaments');
+        
+        if (titleLeft) {
+            titleLeft.classList.remove('revealed');
+            titleLeft.style.opacity = '0';
+            titleLeft.style.transform = 'translateX(-30px)';
+        }
+        if (titleRight) {
+            titleRight.classList.remove('revealed');
+            titleRight.style.opacity = '0';
+            titleRight.style.transform = 'translateX(30px)';
+        }
+        if (subtitle) {
+            subtitle.classList.remove('revealed');
+            subtitle.style.opacity = '0';
+            subtitle.style.transform = 'translateY(20px)';
+        }
+        if (titleLine) {
+            titleLine.classList.remove('revealed');
+            titleLine.style.transform = 'scaleX(0)';
+        }
+    }
+    
+    function revealTournamentsTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-tournaments');
+        const titleRight = document.querySelector('.title-word-right-tournaments');
+        const subtitle = document.querySelector('.subtitle-tournaments');
+        const titleLine = document.querySelector('.title-line-tournaments');
+        
+        if (titleLeft && !titleLeft.classList.contains('revealed')) {
+            titleLeft.classList.add('revealed');
+        }
+        if (titleRight && !titleRight.classList.contains('revealed')) {
+            titleRight.classList.add('revealed');
+        }
+        if (subtitle && !subtitle.classList.contains('revealed')) {
+            subtitle.classList.add('revealed');
+        }
+        if (titleLine && !titleLine.classList.contains('revealed')) {
+            titleLine.classList.add('revealed');
+        }
+    }
+    
+    function initTournamentsTitleScrollReveal() {
+        if (window.tournamentsTitleObserver) {
+            window.tournamentsTitleObserver.disconnect();
+        }
+        
+        const tournamentsPastSection = document.getElementById('tournaments-past-section');
+        
+        if (!tournamentsPastSection) {
+            setTimeout(initTournamentsTitleScrollReveal, 500);
+            return;
+        }
+        
+        resetTournamentsTitleElements();
+        
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealTournamentsTitleElements();
+                } else {
+                    resetTournamentsTitleElements();
+                }
+            });
+        };
+        
+        window.tournamentsTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
+        window.tournamentsTitleObserver.observe(tournamentsPastSection);
+        
+        setTimeout(() => {
+            if (tournamentsPastSection && isElementInViewport(tournamentsPastSection, 100)) {
+                revealTournamentsTitleElements();
+            }
+        }, 300);
+        
+        console.log('Scroll reveal para título de torneos anteriores inicializado');
+    }
+    
+    // ============================================
+    // SECCIÓN 6.9: FUNCIONES PARA EL TÍTULO HEADER DE TORNEOS
+    // ============================================
+    
+    function resetTournamentsHeaderTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-tournaments-header');
+        const titleRight = document.querySelector('.title-word-right-tournaments-header');
+        const subtitle = document.querySelector('.subtitle-tournaments-header');
+        const titleLine = document.querySelector('.title-line-tournaments-header');
+        
+        if (titleLeft) {
+            titleLeft.classList.remove('revealed');
+            titleLeft.style.opacity = '0';
+            titleLeft.style.transform = 'translateX(-30px)';
+        }
+        if (titleRight) {
+            titleRight.classList.remove('revealed');
+            titleRight.style.opacity = '0';
+            titleRight.style.transform = 'translateX(30px)';
+        }
+        if (subtitle) {
+            subtitle.classList.remove('revealed');
+            subtitle.style.opacity = '0';
+            subtitle.style.transform = 'translateY(20px)';
+        }
+        if (titleLine) {
+            titleLine.classList.remove('revealed');
+            titleLine.style.transform = 'scaleX(0)';
+        }
+    }
+    
+    function revealTournamentsHeaderTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-tournaments-header');
+        const titleRight = document.querySelector('.title-word-right-tournaments-header');
+        const subtitle = document.querySelector('.subtitle-tournaments-header');
+        const titleLine = document.querySelector('.title-line-tournaments-header');
+        
+        if (titleLeft && !titleLeft.classList.contains('revealed')) {
+            titleLeft.classList.add('revealed');
+        }
+        if (titleRight && !titleRight.classList.contains('revealed')) {
+            titleRight.classList.add('revealed');
+        }
+        if (subtitle && !subtitle.classList.contains('revealed')) {
+            subtitle.classList.add('revealed');
+        }
+        if (titleLine && !titleLine.classList.contains('revealed')) {
+            titleLine.classList.add('revealed');
+        }
+    }
+    
+    function initTournamentsHeaderTitleScrollReveal() {
+        if (window.tournamentsHeaderTitleObserver) {
+            window.tournamentsHeaderTitleObserver.disconnect();
+        }
+        
+        const tournamentsHeaderSection = document.getElementById('tournaments-header-section');
+        
+        if (!tournamentsHeaderSection) {
+            setTimeout(initTournamentsHeaderTitleScrollReveal, 500);
+            return;
+        }
+        
+        resetTournamentsHeaderTitleElements();
+        
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealTournamentsHeaderTitleElements();
+                } else {
+                    resetTournamentsHeaderTitleElements();
+                }
+            });
+        };
+        
+        window.tournamentsHeaderTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
+        window.tournamentsHeaderTitleObserver.observe(tournamentsHeaderSection);
+        
+        setTimeout(() => {
+            if (tournamentsHeaderSection && isElementInViewport(tournamentsHeaderSection, 100)) {
+                revealTournamentsHeaderTitleElements();
+            }
+        }, 300);
+        
+        console.log('Scroll reveal para título header de torneos inicializado');
+    }
+    
+    // ============================================
+    // SECCIÓN 6.10: FUNCIONES PARA EL TÍTULO DE ORGANIGRAMA CON SCROLL REVEAL
+    // ============================================
+    
+    function resetOrganigramaTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-organigrama');
+        const titleRight = document.querySelector('.title-word-right-organigrama');
+        const subtitle = document.querySelector('.subtitle-organigrama');
+        const titleLine = document.querySelector('.title-line-organigrama');
+        
+        if (titleLeft) {
+            titleLeft.classList.remove('revealed');
+            titleLeft.style.opacity = '0';
+            titleLeft.style.transform = 'translateX(-30px)';
+        }
+        if (titleRight) {
+            titleRight.classList.remove('revealed');
+            titleRight.style.opacity = '0';
+            titleRight.style.transform = 'translateX(30px)';
+        }
+        if (subtitle) {
+            subtitle.classList.remove('revealed');
+            subtitle.style.opacity = '0';
+            subtitle.style.transform = 'translateY(20px)';
+        }
+        if (titleLine) {
+            titleLine.classList.remove('revealed');
+            titleLine.style.transform = 'scaleX(0)';
+        }
+    }
+    
+    function revealOrganigramaTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-organigrama');
+        const titleRight = document.querySelector('.title-word-right-organigrama');
+        const subtitle = document.querySelector('.subtitle-organigrama');
+        const titleLine = document.querySelector('.title-line-organigrama');
+        
+        if (titleLeft && !titleLeft.classList.contains('revealed')) {
+            titleLeft.classList.add('revealed');
+        }
+        if (titleRight && !titleRight.classList.contains('revealed')) {
+            titleRight.classList.add('revealed');
+        }
+        if (subtitle && !subtitle.classList.contains('revealed')) {
+            subtitle.classList.add('revealed');
+        }
+        if (titleLine && !titleLine.classList.contains('revealed')) {
+            titleLine.classList.add('revealed');
+        }
+    }
+    
+    function initOrganigramaTitleScrollReveal() {
+        if (window.organigramaTitleObserver) {
+            window.organigramaTitleObserver.disconnect();
+        }
+        
+        const organigramaHeaderSection = document.getElementById('organigrama-header-section');
+        
+        if (!organigramaHeaderSection) {
+            setTimeout(initOrganigramaTitleScrollReveal, 500);
+            return;
+        }
+        
+        resetOrganigramaTitleElements();
+        
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealOrganigramaTitleElements();
+                } else {
+                    resetOrganigramaTitleElements();
+                }
+            });
+        };
+        
+        window.organigramaTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
+        window.organigramaTitleObserver.observe(organigramaHeaderSection);
+        
+        setTimeout(() => {
+            if (organigramaHeaderSection && isElementInViewport(organigramaHeaderSection, 100)) {
+                revealOrganigramaTitleElements();
+            }
+        }, 300);
+        
+        console.log('Scroll reveal para título de organigrama inicializado');
+    }
+    
+    // ============================================
+    // SECCIÓN 6.11: FUNCIONES PARA LOS TÍTULOS DE SECCIÓN DEL ORGANIGRAMA
+    // ============================================
+    
+    function initOrganigramaSectionTitlesScrollReveal() {
+        // Limpiar observers anteriores
+        if (window.sectionTitleObservers) {
+            window.sectionTitleObservers.forEach(observer => observer.disconnect());
+            window.sectionTitleObservers = [];
+        }
+        
+        // Lista de todas las secciones con sus respectivos elementos de título
+        const sections = [
+            { id: 'ceo-section', leftClass: '.section-title-left-ceo', rightClass: '.section-title-right-ceo', lineClass: '.section-title-line-ceo' },
+            { id: 'asistentes-section', leftClass: '.section-title-left-asistentes', rightClass: '.section-title-right-asistentes', lineClass: '.section-title-line-asistentes' },
+            { id: 'directoras-section', leftClass: '.section-title-left-directoras', rightClass: '.section-title-right-directoras', lineClass: '.section-title-line-directoras' },
+            { id: 'coaches-section', leftClass: '.section-title-left-coaches', rightClass: '.section-title-right-coaches', lineClass: '.section-title-line-coaches' },
+            { id: 'managers-section', leftClass: '.section-title-left-managers', rightClass: '.section-title-right-managers', lineClass: '.section-title-line-managers' },
+            { id: 'audiovisual-section', leftClass: '.section-title-left-audiovisual', rightClass: '.section-title-right-audiovisual', lineClass: '.section-title-line-audiovisual' },
+            { id: 'creadores-section', leftClass: '.section-title-left-creadores', rightClass: '.section-title-right-creadores', lineClass: '.section-title-line-creadores' }
+        ];
+        
+        sections.forEach(section => {
+            const sectionElement = document.getElementById(section.id);
+            if (!sectionElement) return;
+            
+            const leftElement = document.querySelector(section.leftClass);
+            const rightElement = document.querySelector(section.rightClass);
+            const lineElement = document.querySelector(section.lineClass);
+            
+            if (!leftElement && !rightElement && !lineElement) return;
+            
+            // Resetear elementos
+            if (leftElement) {
+                leftElement.classList.remove('revealed');
+                leftElement.style.opacity = '0';
+                leftElement.style.transform = 'translateX(-30px)';
+            }
+            if (rightElement) {
+                rightElement.classList.remove('revealed');
+                rightElement.style.opacity = '0';
+                rightElement.style.transform = 'translateX(30px)';
+            }
+            if (lineElement) {
+                lineElement.classList.remove('revealed');
+                lineElement.style.transform = 'scaleX(0)';
+            }
+            
+            // Configurar observer
+            const observerOptions = {
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Revelar los elementos
+                        if (leftElement && !leftElement.classList.contains('revealed')) {
+                            leftElement.classList.add('revealed');
+                        }
+                        if (rightElement && !rightElement.classList.contains('revealed')) {
+                            rightElement.classList.add('revealed');
+                        }
+                        if (lineElement && !lineElement.classList.contains('revealed')) {
+                            lineElement.classList.add('revealed');
+                        }
+                    } else {
+                        // Resetear cuando sale del viewport
+                        if (leftElement) {
+                            leftElement.classList.remove('revealed');
+                            leftElement.style.opacity = '0';
+                            leftElement.style.transform = 'translateX(-30px)';
+                        }
+                        if (rightElement) {
+                            rightElement.classList.remove('revealed');
+                            rightElement.style.opacity = '0';
+                            rightElement.style.transform = 'translateX(30px)';
+                        }
+                        if (lineElement) {
+                            lineElement.classList.remove('revealed');
+                            lineElement.style.transform = 'scaleX(0)';
+                        }
+                    }
+                });
+            };
+            
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            observer.observe(sectionElement);
+            
+            window.sectionTitleObservers.push(observer);
+        });
+        
+        console.log('Scroll reveal para títulos de sección de organigrama inicializado');
     }
     
     // ============================================
@@ -275,15 +915,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const allStatsCards = document.querySelectorAll('.stats-card');
         
         allStatsCards.forEach((card, index) => {
-            // Aplicar efecto neon con un pequeño delay entre cada tarjeta
             setTimeout(() => {
                 card.classList.add('neon-border');
-                
-                // Quitar el efecto después de 1 segundo
                 setTimeout(() => {
                     card.classList.remove('neon-border');
                 }, 1000);
-            }, index * 150); // Delay de 150ms entre cada tarjeta para efecto cascada
+            }, index * 150);
         });
         
         console.log('Efecto neon aplicado a', allStatsCards.length, 'stats cards');
@@ -296,11 +933,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const statsCards = document.querySelectorAll('.stats-card');
         
         statsCards.forEach(card => {
-            // Remover cualquier evento hover previo
             card.removeEventListener('mouseenter', handleStatsCardHover);
             card.removeEventListener('mouseleave', handleStatsCardLeave);
-            
-            // Añadir nuevos eventos hover unificados
             card.addEventListener('mouseenter', handleStatsCardHover);
             card.addEventListener('mouseleave', handleStatsCardLeave);
         });
@@ -316,13 +950,11 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         card.style.boxShadow = '0 0 15px rgba(34, 211, 238, 0.3)';
         
-        // Aplicar efecto al texto
         const numberElement = card.querySelector('.text-cyan-400');
         if (numberElement) {
             numberElement.style.textShadow = '0 0 10px rgba(34, 211, 238, 0.5)';
         }
         
-        // Aplicar efecto al sufijo si existe
         const suffixElement = card.querySelector('.counter-suffix');
         if (suffixElement) {
             suffixElement.style.color = '#22d3ee';
@@ -359,7 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.isRunning = false;
             this.animationId = null;
             this.countdownInterval = null;
-            this.hasAnimated = new WeakMap(); // Para rastrear qué contadores ya se animaron
+            this.hasAnimated = new WeakMap();
         }
         
         init() {
@@ -377,7 +1009,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     parentCard: parentCard
                 });
                 
-                // Inicializar el WeakMap para este contador
                 if (parentCard) {
                     this.hasAnimated.set(parentCard, false);
                 }
@@ -389,9 +1020,7 @@ document.addEventListener('DOMContentLoaded', () => {
         async animateAll(force = false) {
             this.stop();
             
-            // Si no es forzado, verificar qué contadores ya se animaron
             if (!force) {
-                // Solo animar contadores que no se hayan animado aún
                 const countersToAnimate = this.counters.filter(counter => {
                     if (counter.parentCard) {
                         return !this.hasAnimated.get(counter.parentCard);
@@ -405,7 +1034,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            // Resetear todos los contadores a 0
             this.counters.forEach(counter => {
                 counter.currentValue = 0;
                 counter.element.textContent = '0';
@@ -440,8 +1068,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             allFinished = false;
                         } else {
                             counter.element.textContent = counter.target;
-                            
-                            // Marcar que este contador ya se animó
                             if (counter.parentCard) {
                                 this.hasAnimated.set(counter.parentCard, true);
                             }
@@ -460,12 +1086,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Función para reiniciar contadores específicos por tarjeta
         resetCounterForCard(card) {
-            // Marcar que esta tarjeta necesita animación nuevamente
             this.hasAnimated.set(card, false);
-            
-            // Encontrar y animar solo los contadores de esta tarjeta
             const countersInCard = this.counters.filter(counter => counter.parentCard === card);
             
             countersInCard.forEach(counter => {
@@ -473,7 +1095,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 counter.element.textContent = '0';
             });
             
-            // Animar solo estos contadores
             if (countersInCard.length > 0) {
                 this.animateCounters(countersInCard);
             }
@@ -505,8 +1126,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         allFinished = false;
                     } else {
                         counter.element.textContent = counter.target;
-                        
-                        // Marcar que este contador ya se animó
                         if (counter.parentCard) {
                             this.hasAnimated.set(counter.parentCard, true);
                         }
@@ -521,7 +1140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.animationId = requestAnimationFrame(animate);
         }
         
-        // Reiniciar todos los contadores para que puedan volver a animarse
         resetAllCounters() {
             this.counters.forEach(counter => {
                 if (counter.parentCard) {
@@ -540,11 +1158,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         startLoop(intervalTime = 30000) {
-            // Animar inmediatamente
             this.resetAllCounters();
             this.animateAll(true);
             
-            // Configurar intervalo de 30 segundos
             if (this.countdownInterval) {
                 clearInterval(this.countdownInterval);
             }
@@ -568,92 +1184,112 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 10: SCROLL REVEAL MEJORADO CON CONTADORES
+    // SECCIÓN 10: SCROLL REVEAL MEJORADO
     // ============================================
     function initEnhancedScrollReveal() {
-        // Desconectar observer anterior
         if (enhancedScrollObserver) {
             enhancedScrollObserver.disconnect();
         }
         
-        // Seleccionar TODOS los elementos animables
         const animatedElements = document.querySelectorAll(
-            '.stats-card, .news-card, ' +
+            '.stats-card, .news-card, .tournament-card-enhanced, .staff-card, ' +
             '.animate-from-left, .animate-from-right, .animate-from-bottom, ' +
             '.glow-text, h1 span, p, ' +
             'h2 span.animate-from-left, h2 span.animate-from-right'
         );
         
-        console.log('Elementos a observar (scroll reveal mejorado):', animatedElements.length);
+        console.log('Elementos a observar:', animatedElements.length);
         
-        // Configuración del observer - threshold más bajo para detectar entrada/salida
         const observerOptions = {
-            threshold: 0.2, // Se activa cuando el 20% del elemento es visible
-            rootMargin: '0px 0px -50px 0px' // Margen negativo para activarse un poco antes
+            threshold: isTouchDevice ? 0.15 : 0.2,
+            rootMargin: '0px 0px -30px 0px'
         };
         
-        // Callback del observer mejorado
         const observerCallback = (entries) => {
             entries.forEach(entry => {
                 const el = entry.target;
                 
                 if (entry.isIntersecting) {
-                    // ===== ELEMENTO ENTRA EN EL VIEWPORT =====
-                    console.log('Elemento visible:', el.className);
-                    
-                    // Remover clases que ocultan
                     el.classList.remove('opacity-0', 'translate-y-[-30px]', 'translate-x-[-50px]', 
                                       'translate-x-[50px]', 'translate-y-[30px]');
-                    
-                    // Añadir clase visible para activar animaciones CSS
                     el.classList.add('visible');
                     
-                    // Aplicar animaciones específicas según el tipo
                     if (el.classList.contains('stats-card')) {
-                        // Efecto neon para stats cards al hacer scroll
                         el.classList.add('neon-border');
                         setTimeout(() => {
                             el.classList.remove('neon-border');
                         }, 1000);
                         
-                        // ===== REINICIAR CONTADOR DE ESTA TARJETA =====
                         if (window.counterManager) {
-                            console.log('Reiniciando contador por scroll:', el);
                             window.counterManager.resetCounterForCard(el);
                         }
                     }
                     
-                    // Forzar animación con estilo inline para los elementos de texto
+                    if (el.classList.contains('staff-card') && !el.classList.contains('revealed')) {
+                        setTimeout(() => {
+                            el.classList.add('revealed');
+                            const flashElement = el.querySelector('.camera-flash');
+                            if (flashElement) {
+                                flashElement.classList.add('camera-flash');
+                                setTimeout(() => {
+                                    flashElement.classList.remove('camera-flash');
+                                }, 500);
+                            }
+                        }, 100);
+                    }
+                    
+                    if (el.classList.contains('news-card-enhanced') && !el.classList.contains('revealed')) {
+                        const flashElement = el.querySelector('.camera-flash');
+                        if (flashElement) {
+                            setTimeout(() => {
+                                flashElement.classList.add('camera-flash');
+                                setTimeout(() => {
+                                    flashElement.classList.remove('camera-flash');
+                                }, 500);
+                            }, 200);
+                        }
+                    }
+                    
+                    if (el.classList.contains('tournament-card-enhanced') && !el.classList.contains('revealed')) {
+                        const flashElement = el.querySelector('.camera-flash');
+                        if (flashElement) {
+                            setTimeout(() => {
+                                flashElement.classList.add('camera-flash');
+                                setTimeout(() => {
+                                    flashElement.classList.remove('camera-flash');
+                                }, 500);
+                            }, 200);
+                        }
+                    }
+                    
                     if (el.classList.contains('animate-from-left') || 
                         el.classList.contains('animate-from-right') || 
                         el.classList.contains('animate-from-bottom')) {
                         
                         el.style.animation = 'none';
-                        el.offsetHeight; // Forzar reflow
+                        el.offsetHeight;
                         
                         if (el.classList.contains('animate-from-left')) {
-                            el.style.animation = 'slideFromLeft 0.8s ease-out forwards';
+                            el.style.animation = 'slideFromLeft 0.6s ease-out forwards';
                         } else if (el.classList.contains('animate-from-right')) {
-                            el.style.animation = 'slideFromRight 0.8s ease-out forwards';
+                            el.style.animation = 'slideFromRight 0.6s ease-out forwards';
                         } else if (el.classList.contains('animate-from-bottom')) {
-                            el.style.animation = 'slideFromBottom 0.8s ease-out forwards';
+                            el.style.animation = 'slideFromBottom 0.6s ease-out forwards';
                         }
                     }
                     
                 } else {
-                    // ===== ELEMENTO SALE DEL VIEWPORT =====
-                    // REINICIAR PARA QUE VUELVA A ANIMARSE CUANDO REAPAREZCA
                     if (el.classList.contains('animate-from-left') || 
                         el.classList.contains('animate-from-right') || 
                         el.classList.contains('animate-from-bottom') ||
                         el.classList.contains('stats-card') ||
-                        el.classList.contains('news-card')) {
+                        el.classList.contains('news-card') ||
+                        el.classList.contains('tournament-card-enhanced') ||
+                        el.classList.contains('staff-card')) {
                         
-                        // Quitar animaciones y clases
                         el.style.animation = '';
                         el.classList.remove('visible');
                         
-                        // Restaurar clases de ocultamiento según el tipo
                         if (el.classList.contains('animate-from-left')) {
                             el.classList.add('opacity-0', 'translate-x-[-50px]');
                         }
@@ -663,27 +1299,100 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (el.classList.contains('animate-from-bottom')) {
                             el.classList.add('opacity-0', 'translate-y-[30px]');
                         }
-                        if (el.classList.contains('stats-card') || el.classList.contains('news-card')) {
+                        if (el.classList.contains('stats-card') || el.classList.contains('news-card') || 
+                            el.classList.contains('tournament-card-enhanced') || el.classList.contains('staff-card')) {
                             el.classList.add('opacity-0', 'translate-y-[30px]');
                         }
-                        
-                        console.log('Elemento reiniciado para nueva animación:', el.className);
                     }
                 }
             });
         };
         
-        // Crear nuevo observer mejorado
         enhancedScrollObserver = new IntersectionObserver(observerCallback, observerOptions);
         
-        // Observar cada elemento
-        animatedElements.forEach(el => {
-            if (el && document.body.contains(el)) {
-                enhancedScrollObserver.observe(el);
-            }
-        });
+        setTimeout(() => {
+            animatedElements.forEach(el => {
+                if (el && document.body.contains(el)) {
+                    enhancedScrollObserver.observe(el);
+                }
+            });
+        }, 100);
         
         console.log('Scroll reveal mejorado inicializado con', animatedElements.length, 'elementos');
+    }
+    
+    // ============================================
+    // SECCIÓN 10.5: EFECTOS INTERACTIVOS DEL TÍTULO
+    // ============================================
+    function initTitleEffects() {
+        const titleLeft = document.querySelector('.title-word-left');
+        const titleRight = document.querySelector('.title-word-right');
+        const subtitle = document.querySelector('.subtitle-text');
+        const titleLine = document.querySelector('.title-line');
+        
+        setTimeout(() => {
+            if (titleLeft) {
+                titleLeft.classList.add('opacity-100', 'translate-x-0');
+                titleLeft.classList.remove('opacity-0', 'translate-x-[-30px]');
+            }
+            if (titleRight) {
+                titleRight.classList.add('opacity-100', 'translate-x-0');
+                titleRight.classList.remove('opacity-0', 'translate-x-[30px]');
+            }
+        }, 200);
+        
+        setTimeout(() => {
+            if (subtitle) {
+                subtitle.classList.add('opacity-100', 'translate-y-0');
+                subtitle.classList.remove('opacity-0', 'translate-y-[20px]');
+            }
+        }, 600);
+        
+        setTimeout(() => {
+            if (titleLine) {
+                titleLine.classList.add('animated');
+            }
+        }, 900);
+        
+        const newsCards = document.querySelectorAll('.news-card');
+        newsCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'all 0.3s ease';
+            });
+        });
+        
+        function revealCardsOnScroll() {
+            const revealCards = document.querySelectorAll('.scroll-reveal-card');
+            
+            revealCards.forEach((el, index) => {
+                if (isElementInViewport(el, 120) && !el.classList.contains('revealed')) {
+                    setTimeout(() => {
+                        el.classList.add('revealed');
+                        const flashElement = el.querySelector('.camera-flash');
+                        if (flashElement) {
+                            flashElement.classList.add('camera-flash');
+                            setTimeout(() => {
+                                flashElement.classList.remove('camera-flash');
+                            }, 500);
+                        }
+                    }, index * 150);
+                }
+            });
+        }
+        
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(revealCardsOnScroll, 100);
+        });
+        
+        setTimeout(revealCardsOnScroll, 500);
+        
+        window.addEventListener('load', function() {
+            setTimeout(revealCardsOnScroll, 300);
+        });
     }
     
     // ============================================
@@ -692,7 +1401,6 @@ document.addEventListener('DOMContentLoaded', () => {
     async function navigateTo(page) {
         console.log('Navegando a:', page);
         
-        // Limpiar recursos anteriores
         clearAllIntervals();
         
         if (window.counterManager) {
@@ -705,13 +1413,42 @@ document.addEventListener('DOMContentLoaded', () => {
             window.currentPageCleanup = null;
         }
         
-        // Desconectar observer mejorado
         if (enhancedScrollObserver) {
             enhancedScrollObserver.disconnect();
             enhancedScrollObserver = null;
         }
         
-        // Efecto de transición
+        if (newsTitleObserver) {
+            newsTitleObserver.disconnect();
+            newsTitleObserver = null;
+        }
+        
+        if (window.tournamentsTitleObserver) {
+            window.tournamentsTitleObserver.disconnect();
+            window.tournamentsTitleObserver = null;
+        }
+        
+        if (window.tournamentsHeaderTitleObserver) {
+            window.tournamentsHeaderTitleObserver.disconnect();
+            window.tournamentsHeaderTitleObserver = null;
+        }
+        
+        if (window.organigramaTitleObserver) {
+            window.organigramaTitleObserver.disconnect();
+            window.organigramaTitleObserver = null;
+        }
+        
+        // Limpiar observers de organigrama
+        if (window.sectionTitleObservers) {
+            window.sectionTitleObservers.forEach(observer => observer.disconnect());
+            window.sectionTitleObservers = [];
+        }
+        
+        if (window.organigramaCardObserver) {
+            window.organigramaCardObserver.disconnect();
+            window.organigramaCardObserver = null;
+        }
+        
         content.style.opacity = '0';
         
         try {
@@ -720,53 +1457,48 @@ document.addEventListener('DOMContentLoaded', () => {
             const html = await response.text();
             
             setTimeout(() => {
-                // Insertar nuevo contenido
                 content.innerHTML = html;
                 content.style.opacity = '1';
                 currentPage = page;
                 
-                // ===== REASIGNAR EVENT LISTENERS A LOS NUEVOS NAV-LINKS =====
                 assignNavLinkListeners();
                 
-                // ===== TRATAMIENTO ESPECIAL PARA HOME =====
                 if (page === 'home') {
                     setTimeout(() => {
                         resetHomeElements();
                         initializePageScripts(page);
-                        
-                        // Inicializar scroll reveal mejorado
                         initEnhancedScrollReveal();
-                        
-                        // UNIFICAR COMPORTAMIENTO HOVER DE STATS CARDS
+                        initTitleEffects();
+                        initNewsTitleScrollReveal();
                         unifyStatsCardsHover();
+                        initCameraFlashEffect();
+                        initParticleEffectOnNewsCards();
+                        initDataBlastEffect();
                         
-                        // FORZAR EL EFECTO NEON EN TODAS LAS STATS CARDS
                         setTimeout(() => {
                             applyNeonEffectToStatsCards();
-                            
                             if (window.counterManager) {
-                                // Resetear todos los contadores y animar
                                 window.counterManager.resetAllCounters();
                                 window.counterManager.animateAll(true);
                             }
                         }, 300);
-                        
+                    }, 100);
+                } else if (page === 'organigrama') {
+                    setTimeout(() => {
+                        initializePageScripts(page);
+                        initEnhancedScrollReveal();
+                        initOrganigramaTitleScrollReveal();
+                        initOrganigramaSectionTitlesScrollReveal();
                     }, 100);
                 } else {
                     initializePageScripts(page);
-                    // Inicializar scroll reveal mejorado para otras páginas
                     initEnhancedScrollReveal();
                 }
                 
-                // Actualizar clases de navegación activas
                 updateActiveNavLinks(page);
                 
-                // Actualizar URL
-                if (page === 'home') {
-                    history.pushState({ page }, '', '/');
-                } else {
-                    history.pushState({ page }, '', `/${page}`);
-                }
+                // ACTUALIZAR EL HASH EN LA URL
+                window.location.hash = page;
                 
                 updatePageTitle(page);
                 
@@ -789,10 +1521,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             content.style.opacity = '1';
-            // Reasignar event listeners incluso en página de error
             assignNavLinkListeners();
-            // Inicializar scroll reveal incluso en página de error
             initEnhancedScrollReveal();
+            window.location.hash = 'home';
         }
     }
     
@@ -826,10 +1557,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function initHomePage() {
         console.log('Home page initialized');
         
-        // Inicializar contadores con el nuevo sistema mejorado
         const counterManager = new CounterManager();
         counterManager.init();
-        counterManager.startLoop(30000); // Loop cada 30 segundos
+        
+        const loopInterval = isTouchDevice ? 45000 : 30000;
+        counterManager.startLoop(loopInterval);
         
         window.counterManager = counterManager;
         
@@ -964,24 +1696,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================== TORNEOS ====================
     function initTournamentsPage() {
         console.log('Tournaments page initialized');
-        startCountdown();
+        
+        setTimeout(() => {
+            startCountdown();
+        }, 100);
+        
+        setTimeout(() => {
+            initTournamentsHeaderTitleScrollReveal();
+        }, 200);
+        
+        setTimeout(() => {
+            initTournamentsTitleScrollReveal();
+        }, 250);
+        
+        setTimeout(() => {
+            initTournamentEffects();
+            
+            const tournamentRevealCards = document.querySelectorAll('.scroll-reveal-card');
+            tournamentRevealCards.forEach((card, index) => {
+                if (isElementInViewport(card, 120) && !card.classList.contains('revealed')) {
+                    setTimeout(() => {
+                        card.classList.add('revealed');
+                        
+                        const flashElement = card.querySelector('.camera-flash');
+                        if (flashElement) {
+                            flashElement.classList.add('camera-flash');
+                            setTimeout(() => {
+                                flashElement.classList.remove('camera-flash');
+                            }, 500);
+                        }
+                    }, index * 150);
+                }
+            });
+        }, 300);
     }
     
     function startCountdown() {
         const countdownElement = document.querySelector('.countdown');
         
-        if (!countdownElement) return;
+        if (!countdownElement) {
+            console.log('Elemento .countdown no encontrado');
+            return;
+        }
+        
+        if (!countdownElement.parentNode) {
+            console.log('Elemento .countdown no está en el DOM');
+            return;
+        }
         
         const targetDate = new Date('2026-03-23T22:00:00-04:00');
         
+        if (isNaN(targetDate.getTime())) {
+            console.error('Fecha objetivo inválida');
+            countdownElement.innerHTML = '<span class="text-red-400 font-bold">FECHA NO DISPONIBLE</span>';
+            return;
+        }
+        
+        if (window.countdownIntervalId) {
+            clearInterval(window.countdownIntervalId);
+            window.countdownIntervalId = null;
+        }
+        
         function updateCountdown() {
+            if (!countdownElement || !countdownElement.parentNode) {
+                if (window.countdownIntervalId) {
+                    clearInterval(window.countdownIntervalId);
+                    window.countdownIntervalId = null;
+                }
+                return;
+            }
+            
             const now = new Date();
             const difference = targetDate - now;
             
             if (difference <= 0) {
-                countdownElement.innerHTML = '<span class="text-green-400 font-bold">¡TORNEO INICIADO!</span>';
-                countdownElement.classList.add('text-green-400');
-                clearInterval(intervalId);
+                countdownElement.innerHTML = '<span class="text-green-400 font-bold text-2xl md:text-3xl">¡TORNEO INICIADO!</span>';
+                if (window.countdownIntervalId) {
+                    clearInterval(window.countdownIntervalId);
+                    window.countdownIntervalId = null;
+                }
                 return;
             }
             
@@ -995,56 +1788,120 @@ document.addEventListener('DOMContentLoaded', () => {
             const formattedMinutes = String(minutes).padStart(2, '0');
             const formattedSeconds = String(seconds).padStart(2, '0');
             
-            countdownElement.innerHTML = `
-                <div class="flex flex-wrap justify-center gap-2 md:gap-4 text-xl md:text-4xl font-bold">
-                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
-                        <span class="text-cyan-400">${formattedDays}</span>
-                        <span class="text-xs md:text-sm block text-gray-400">Días</span>
+            if (countdownElement.parentNode) {
+                countdownElement.innerHTML = `
+                    <div class="flex flex-wrap justify-center gap-2 md:gap-4 text-xl md:text-4xl font-bold">
+                        <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                            <span class="text-cyan-400">${formattedDays}</span>
+                            <span class="text-xs md:text-sm block text-gray-400">Días</span>
+                        </div>
+                        <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                            <span class="text-cyan-400">${formattedHours}</span>
+                            <span class="text-xs md:text-sm block text-gray-400">Horas</span>
+                        </div>
+                        <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                            <span class="text-cyan-400">${formattedMinutes}</span>
+                            <span class="text-xs md:text-sm block text-gray-400">Min</span>
+                        </div>
+                        <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
+                            <span class="text-cyan-400">${formattedSeconds}</span>
+                            <span class="text-xs md:text-sm block text-gray-400">Seg</span>
+                        </div>
                     </div>
-                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
-                        <span class="text-cyan-400">${formattedHours}</span>
-                        <span class="text-xs md:text-sm block text-gray-400">Horas</span>
-                    </div>
-                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
-                        <span class="text-cyan-400">${formattedMinutes}</span>
-                        <span class="text-xs md:text-sm block text-gray-400">Min</span>
-                    </div>
-                    <div class="bg-black/50 px-3 py-2 md:px-6 md:py-4 rounded-lg neon-border">
-                        <span class="text-cyan-400">${formattedSeconds}</span>
-                        <span class="text-xs md:text-sm block text-gray-400">Seg</span>
-                    </div>
-                </div>
-            `;
+                `;
+            }
         }
         
         updateCountdown();
-        const intervalId = setInterval(updateCountdown, 1000);
-        activeIntervals.push(intervalId);
+        
+        window.countdownIntervalId = setInterval(updateCountdown, 1000);
+        activeIntervals.push(window.countdownIntervalId);
+        
+        console.log('Countdown iniciado correctamente');
     }
     
     // ==================== ORGANIGRAMA ====================
     function initOrganigramaPage() {
         console.log('Organigrama page initialized');
         
+        // Inicializar scroll reveal para el título principal de organigrama
+        initOrganigramaTitleScrollReveal();
+        
+        // Inicializar scroll reveal para los títulos de sección
+        initOrganigramaSectionTitlesScrollReveal();
+        
         const staffCards = document.querySelectorAll('.staff-card');
-        staffCards.forEach(card => {
+        
+        // Configurar observer para las fichas (scroll reveal como en Últimas Noticias)
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -30px 0px'
+        };
+        
+        const revealCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+                    const card = entry.target;
+                    const index = Array.from(staffCards).indexOf(card);
+                    
+                    setTimeout(() => {
+                        card.classList.add('revealed');
+                        const flashElement = card.querySelector('.camera-flash');
+                        if (flashElement) {
+                            flashElement.classList.add('camera-flash');
+                            setTimeout(() => {
+                                flashElement.classList.remove('camera-flash');
+                            }, 500);
+                        }
+                    }, index * 100);
+                }
+            });
+        };
+        
+        if (window.organigramaCardObserver) {
+            window.organigramaCardObserver.disconnect();
+        }
+        
+        window.organigramaCardObserver = new IntersectionObserver(revealCallback, observerOptions);
+        
+        // Agregar clase scroll-reveal-card y configurar eventos
+        staffCards.forEach((card, index) => {
+            card.classList.add('scroll-reveal-card');
             card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
+            card.style.transform = 'translateY(40px)';
             
-            setTimeout(() => {
-                card.style.transition = 'all 0.5s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 100);
+            // Observar la tarjeta
+            window.organigramaCardObserver.observe(card);
             
+            // Verificar si ya está visible al cargar
+            if (isElementInViewport(card, 120)) {
+                setTimeout(() => {
+                    card.classList.add('revealed');
+                    const flashElement = card.querySelector('.camera-flash');
+                    if (flashElement) {
+                        flashElement.classList.add('camera-flash');
+                        setTimeout(() => {
+                            flashElement.classList.remove('camera-flash');
+                        }, 500);
+                    }
+                }, index * 100);
+            }
+            
+            // Eventos hover (sin inclinación - solo zoom centrado)
             card.addEventListener('mouseenter', () => {
                 card.classList.add('shadow-2xl', 'shadow-cyan-500/20');
-                card.style.transform = 'scale(1.05) translateY(-5px)';
+                card.style.transform = 'scale(1.03) translateY(-5px)';
                 
                 const icon = card.querySelector('.rounded-full');
                 if (icon) {
-                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.transform = 'scale(1.1)';
                     icon.style.transition = 'all 0.3s ease';
+                }
+                
+                const ceoImage = card.querySelector('img');
+                if (ceoImage) {
+                    ceoImage.style.transform = 'scale(1.1)';
+                    ceoImage.style.transition = 'all 0.3s ease';
                 }
             });
             
@@ -1054,11 +1911,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const icon = card.querySelector('.rounded-full');
                 if (icon) {
-                    icon.style.transform = 'scale(1) rotate(0)';
+                    icon.style.transform = 'scale(1)';
+                }
+                
+                const ceoImage = card.querySelector('img');
+                if (ceoImage) {
+                    ceoImage.style.transform = 'scale(1)';
                 }
             });
         });
         
+        // Efectos para role badges
         const roleBadges = document.querySelectorAll('.role-badge');
         roleBadges.forEach(badge => {
             badge.addEventListener('mouseenter', () => {
@@ -1072,6 +1935,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 badge.style.backgroundColor = 'transparent';
             });
         });
+        
+        console.log('Organigrama page initialized with', staffCards.length, 'staff cards');
     }
     
     // ==================== NOTICIAS ====================
@@ -1087,8 +1952,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.transition = 'all 0.5s ease';
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
+                
+                const flashElement = card.querySelector('.camera-flash');
+                if (flashElement) {
+                    setTimeout(() => {
+                        flashElement.classList.add('camera-flash');
+                        setTimeout(() => {
+                            flashElement.classList.remove('camera-flash');
+                        }, 500);
+                    }, 200);
+                }
             }, 100 * index);
         });
+        
+        initParticleEffectOnNewsCards();
+        initDataBlastEffect();
     }
     
     // ==================== CONTACTO ====================
@@ -1132,17 +2010,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // SECCIÓN 13: INICIALIZACIÓN Y EVENTOS GLOBALES
     // ============================================
     
-    // Asignar event listeners a los nav-links iniciales
     assignNavLinkListeners();
     
-    // Manejar botones atrás/adelante
-    window.addEventListener('popstate', (event) => {
-        const page = getPageFromPath();
+    // Manejar cambios en el hash (para botones atrás/adelante)
+    window.addEventListener('hashchange', () => {
+        const page = getPageFromHash();
         navigateTo(page);
     });
     
-    // Cargar página inicial
-    const initialPage = getPageFromPath();
+    // Cargar página inicial desde el hash
+    const initialPage = getPageFromHash();
     navigateTo(initialPage);
 });
 
@@ -1159,30 +2036,28 @@ function initSplashProgress() {
     const loadingStatus = document.getElementById('loadingStatus');
     
     if (progressFill) {
-        // Observar cambios en el ancho de la barra de progreso
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.attributeName === 'style') {
                     const width = progressFill.style.width;
                     
-                    // Actualizar marcadores según el progreso
                     if (width) {
                         const percent = parseInt(width);
                         
                         if (percent < 30) {
-                            markers.init.classList.add('active');
-                            markers.load.classList.remove('active');
-                            markers.ready.classList.remove('active');
+                            if (markers.init) markers.init.classList.add('active');
+                            if (markers.load) markers.load.classList.remove('active');
+                            if (markers.ready) markers.ready.classList.remove('active');
                             if (loadingStatus) loadingStatus.textContent = 'INICIALIZANDO SISTEMA';
                         } else if (percent < 80) {
-                            markers.init.classList.remove('active');
-                            markers.load.classList.add('active');
-                            markers.ready.classList.remove('active');
+                            if (markers.init) markers.init.classList.remove('active');
+                            if (markers.load) markers.load.classList.add('active');
+                            if (markers.ready) markers.ready.classList.remove('active');
                             if (loadingStatus) loadingStatus.textContent = 'CARGANDO RECURSOS';
                         } else {
-                            markers.init.classList.remove('active');
-                            markers.load.classList.remove('active');
-                            markers.ready.classList.add('active');
+                            if (markers.init) markers.init.classList.remove('active');
+                            if (markers.load) markers.load.classList.remove('active');
+                            if (markers.ready) markers.ready.classList.add('active');
                             if (loadingStatus) loadingStatus.textContent = 'PREPARANDO ARENA';
                         }
                     }
@@ -1194,7 +2069,6 @@ function initSplashProgress() {
     }
 }
 
-// Llamar a la función después de que el DOM esté listo
 document.addEventListener('DOMContentLoaded', initSplashProgress);
 
 // ============================================
@@ -1203,5 +2077,17 @@ document.addEventListener('DOMContentLoaded', initSplashProgress);
 window.addEventListener('beforeunload', () => {
     if (window.counterManager) {
         window.counterManager.destroy();
+    }
+    if (window.countdownIntervalId) {
+        clearInterval(window.countdownIntervalId);
+        window.countdownIntervalId = null;
+    }
+    if (window.organigramaCardObserver) {
+        window.organigramaCardObserver.disconnect();
+        window.organigramaCardObserver = null;
+    }
+    if (window.sectionTitleObservers) {
+        window.sectionTitleObservers.forEach(observer => observer.disconnect());
+        window.sectionTitleObservers = [];
     }
 });
