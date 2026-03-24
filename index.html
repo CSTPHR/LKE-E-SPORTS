@@ -14,7 +14,7 @@
             font-family: 'Montserrat', sans-serif;
         }
         
-        /* ===== SPLASH SCREEN REDISEÑADO - VERSIÓN RESPONSIVE ===== */
+        /* ===== SPLASH SCREEN REDISEÑADO - VERSIÓN DELICADA Y RESPONSIVE ===== */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -36,7 +36,7 @@
             pointer-events: none;
         }
 
-        /* Efecto de escaneo digital */
+        /* Efecto de escaneo digital - MÁS SUTIL */
         .scan-line {
             position: absolute;
             top: 0;
@@ -46,10 +46,10 @@
             background: linear-gradient(
                 to bottom,
                 transparent 0%,
-                rgba(6, 182, 212, 0.05) 50%,
+                rgba(6, 182, 212, 0.03) 50%,
                 transparent 100%
             );
-            animation: scanMove 3s linear infinite;
+            animation: scanMove 4s linear infinite;
             pointer-events: none;
         }
 
@@ -58,7 +58,7 @@
             100% { transform: translateY(100%); }
         }
 
-        /* Grid tecnológico */
+        /* Grid tecnológico - MÁS SUTIL */
         .grid-overlay {
             position: absolute;
             top: 0;
@@ -66,49 +66,49 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
-            background-size: min(50px, 8vw) min(50px, 8vw);
-            animation: gridPulse 4s ease-in-out infinite;
-            opacity: 0.3;
+                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+            background-size: min(40px, 6vw) min(40px, 6vw);
+            animation: gridPulse 5s ease-in-out infinite;
+            opacity: 0.2;
         }
 
         @keyframes gridPulse {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.25; }
         }
 
         .splash-content {
             text-align: center;
             transform: scale(1);
-            animation: splashEntrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: splashEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             z-index: 10;
             width: 90%;
-            max-width: 600px;
-            padding: 20px;
+            max-width: 400px;
+            padding: 15px;
         }
 
-        /* Logo con efecto de energía - TOTALMENTE RESPONSIVE */
+        /* Logo con efecto de energía - MÁS PEQUEÑO Y DELICADO */
         .splash-logo {
-            width: min(70vw, 350px);
+            width: min(40vw, 160px);
             height: auto;
-            max-width: 350px;
+            max-width: 160px;
             margin: 0 auto;
             position: relative;
-            filter: drop-shadow(0 0 min(40px, 8vw) rgba(6, 182, 212, 0.8));
-            animation: logoEnergy 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 min(15px, 3vw) rgba(6, 182, 212, 0.5));
+            animation: logoEnergy 3s ease-in-out infinite;
         }
 
         .splash-logo::before {
             content: '';
             position: absolute;
-            top: -10%;
-            left: -10%;
-            right: -10%;
-            bottom: -10%;
-            background: radial-gradient(circle at center, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
-            animation: logoPulse 2s ease-in-out infinite;
+            top: -5%;
+            left: -5%;
+            right: -5%;
+            bottom: -5%;
+            background: radial-gradient(circle at center, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+            animation: logoPulse 3s ease-in-out infinite;
             border-radius: 50%;
         }
 
@@ -120,87 +120,82 @@
             animation: logoGlitch 4s infinite;
         }
 
-        /* Partículas alrededor del logo - RADIOS RESPONSIVOS */
+        /* Partículas alrededor del logo - MENOS CANTIDAD Y MÁS PEQUEÑAS */
         .energy-particles {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: min(80vw, 450px);
-            height: min(80vw, 450px);
+            width: min(50vw, 220px);
+            height: min(50vw, 220px);
             pointer-events: none;
         }
 
         .energy-particle {
             position: absolute;
-            width: clamp(4px, 1.5vw, 8px);
-            height: clamp(4px, 1.5vw, 8px);
+            width: clamp(2px, 1vw, 4px);
+            height: clamp(2px, 1vw, 4px);
             background: #06b6d4;
             border-radius: 50%;
-            box-shadow: 0 0 20px #06b6d4, 0 0 40px #a855f7;
-            animation: energyOrbit 3s linear infinite;
+            box-shadow: 0 0 8px #06b6d4;
+            animation: energyOrbit 4s linear infinite;
+            opacity: 0.6;
         }
 
-        /* Radios de órbita responsive usando vw */
-        .energy-particle:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; --orbit-radius: min(120px, 25vw); }
-        .energy-particle:nth-child(2) { top: 15%; right: 15%; animation-delay: 0.2s; --orbit-radius: min(150px, 30vw); }
-        .energy-particle:nth-child(3) { bottom: 15%; right: 15%; animation-delay: 0.4s; --orbit-radius: min(120px, 25vw); }
-        .energy-particle:nth-child(4) { bottom: 0; left: 50%; animation-delay: 0.6s; --orbit-radius: min(150px, 30vw); }
-        .energy-particle:nth-child(5) { bottom: 15%; left: 15%; animation-delay: 0.8s; --orbit-radius: min(120px, 25vw); }
-        .energy-particle:nth-child(6) { top: 15%; left: 15%; animation-delay: 1s; --orbit-radius: min(150px, 30vw); }
-        .energy-particle:nth-child(7) { top: 30%; right: 5%; animation-delay: 1.2s; --orbit-radius: min(100px, 20vw); }
-        .energy-particle:nth-child(8) { bottom: 30%; left: 5%; animation-delay: 1.4s; --orbit-radius: min(100px, 20vw); }
-        .energy-particle:nth-child(9) { top: 45%; right: 0; animation-delay: 1.6s; --orbit-radius: min(80px, 15vw); }
-        .energy-particle:nth-child(10) { bottom: 45%; left: 0; animation-delay: 1.8s; --orbit-radius: min(80px, 15vw); }
-        .energy-particle:nth-child(11) { top: 5%; left: 30%; animation-delay: 2s; --orbit-radius: min(90px, 18vw); }
-        .energy-particle:nth-child(12) { bottom: 5%; right: 30%; animation-delay: 2.2s; --orbit-radius: min(90px, 18vw); }
+        /* Radios de órbita más pequeños */
+        .energy-particle:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; --orbit-radius: min(70px, 15vw); }
+        .energy-particle:nth-child(2) { top: 15%; right: 15%; animation-delay: 0.3s; --orbit-radius: min(85px, 18vw); }
+        .energy-particle:nth-child(3) { bottom: 15%; right: 15%; animation-delay: 0.6s; --orbit-radius: min(70px, 15vw); }
+        .energy-particle:nth-child(4) { bottom: 0; left: 50%; animation-delay: 0.9s; --orbit-radius: min(85px, 18vw); }
+        .energy-particle:nth-child(5) { bottom: 15%; left: 15%; animation-delay: 1.2s; --orbit-radius: min(70px, 15vw); }
+        .energy-particle:nth-child(6) { top: 15%; left: 15%; animation-delay: 1.5s; --orbit-radius: min(85px, 18vw); }
+        .energy-particle:nth-child(7) { top: 30%; right: 5%; animation-delay: 1.8s; --orbit-radius: min(55px, 12vw); opacity: 0.4; }
+        .energy-particle:nth-child(8) { bottom: 30%; left: 5%; animation-delay: 2.1s; --orbit-radius: min(55px, 12vw); opacity: 0.4; }
 
         @keyframes energyOrbit {
             0% { 
-                transform: rotate(0deg) translateX(var(--orbit-radius, min(120px, 25vw))) rotate(0deg); 
-                opacity: 1; 
+                transform: rotate(0deg) translateX(var(--orbit-radius, min(70px, 15vw))) rotate(0deg); 
+                opacity: 0.6; 
             }
             50% { 
-                transform: rotate(180deg) translateX(calc(var(--orbit-radius, min(120px, 25vw)) * 1.2)) rotate(-180deg); 
-                opacity: 0.8; 
+                transform: rotate(180deg) translateX(calc(var(--orbit-radius, min(70px, 15vw)) * 1.1)) rotate(-180deg); 
+                opacity: 0.4; 
                 background: #a855f7; 
             }
             100% { 
-                transform: rotate(360deg) translateX(var(--orbit-radius, min(120px, 25vw))) rotate(-360deg); 
-                opacity: 1; 
+                transform: rotate(360deg) translateX(var(--orbit-radius, min(70px, 15vw))) rotate(-360deg); 
+                opacity: 0.6; 
             }
         }
 
-        /* Barra de progreso ÉPICA - RESPONSIVE */
+        /* Barra de progreso DELICADA - MÁS FINA */
         .progress-container {
             width: 100%;
-            max-width: 400px;
-            margin: clamp(1.5rem, 6vw, 3rem) auto 0;
+            max-width: 280px;
+            margin: clamp(1rem, 4vw, 1.8rem) auto 0;
             position: relative;
-            padding: 0 clamp(10px, 3vw, 20px);
+            padding: 0 clamp(8px, 2vw, 15px);
         }
 
         .progress-track {
             width: 100%;
-            height: clamp(4px, 1vw, 6px);
+            height: clamp(2px, 0.6vw, 3px);
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
         }
 
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #06b6d4, #a855f7, #ec4899, #06b6d4);
-            background-size: 300% 100%;
+            background: linear-gradient(90deg, #06b6d4, #a855f7, #06b6d4);
+            background-size: 200% 100%;
             border-radius: 10px;
             animation: 
                 progressLoad 2s ease-in-out forwards,
-                progressGlow 1.5s linear infinite;
+                progressGlow 2s linear infinite;
             position: relative;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.7);
         }
 
         .progress-fill::before {
@@ -210,21 +205,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: progressShine 1.5s linear infinite;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background: inherit;
-            filter: blur(10px);
-            opacity: 0.7;
-            animation: progressGlow 1.5s linear infinite;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: progressShine 2s linear infinite;
         }
 
         @keyframes progressLoad {
@@ -238,7 +220,7 @@
 
         @keyframes progressGlow {
             0% { filter: brightness(1); }
-            50% { filter: brightness(1.3); }
+            50% { filter: brightness(1.15); }
             100% { filter: brightness(1); }
         }
 
@@ -247,16 +229,16 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Marcadores de progreso - RESPONSIVE */
+        /* Marcadores de progreso - MÁS PEQUEÑOS */
         .progress-markers {
             display: flex;
             justify-content: space-between;
-            margin-top: clamp(8px, 2vw, 10px);
-            color: rgba(255,255,255,0.5);
-            font-size: clamp(0.6rem, 2.5vw, 0.75rem);
-            font-weight: 600;
-            letter-spacing: 1px;
-            gap: clamp(5px, 2vw, 10px);
+            margin-top: clamp(5px, 1.5vw, 8px);
+            color: rgba(255,255,255,0.4);
+            font-size: clamp(0.5rem, 2vw, 0.65rem);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            gap: clamp(4px, 1.5vw, 8px);
         }
 
         .progress-marker {
@@ -267,48 +249,47 @@
 
         .progress-marker.active {
             color: #22d3ee;
-            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+            text-shadow: 0 0 5px rgba(34, 211, 238, 0.5);
         }
 
         .progress-marker::before {
             content: '';
             position: absolute;
-            top: -16px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 2px;
-            height: 8px;
+            width: 1px;
+            height: 5px;
             background: currentColor;
             opacity: 0.3;
         }
 
         .progress-marker.active::before {
             opacity: 1;
-            box-shadow: 0 0 10px currentColor;
         }
 
-        /* Texto de carga con efecto - RESPONSIVE */
+        /* Texto de carga - MÁS DELICADO */
         .loading-text {
-            margin-top: clamp(1rem, 4vw, 1.5rem);
+            margin-top: clamp(0.8rem, 3vw, 1rem);
             color: #9ca3af;
-            font-size: clamp(0.7rem, 3vw, 0.9rem);
-            letter-spacing: 3px;
+            font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+            letter-spacing: 2px;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .loading-dots {
             display: flex;
-            gap: 4px;
+            gap: 3px;
         }
 
         .loading-dots span {
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             background: #22d3ee;
             border-radius: 50%;
             animation: loadingDot 1.4s infinite;
@@ -318,95 +299,168 @@
         .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
 
         @keyframes loadingDot {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
-            30% { transform: translateY(-8px); opacity: 1; }
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-5px); opacity: 1; }
         }
 
-        /* Elementos decorativos - RESPONSIVE */
+        /* Elementos decorativos - MÁS SUTILES Y PEQUEÑOS */
         .corner-element {
             position: absolute;
-            width: clamp(60px, 15vw, 120px);
-            height: clamp(60px, 15vw, 120px);
-            border: 2px solid rgba(6, 182, 212, 0.3);
-            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3));
-            animation: cornerPulse 2s ease-in-out infinite;
+            width: clamp(30px, 8vw, 60px);
+            height: clamp(30px, 8vw, 60px);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.2));
+            animation: cornerPulse 3s ease-in-out infinite;
         }
 
         .corner-tl {
-            top: clamp(15px, 3vw, 30px);
-            left: clamp(15px, 3vw, 30px);
+            top: clamp(10px, 2vw, 20px);
+            left: clamp(10px, 2vw, 20px);
             border-right: none;
             border-bottom: none;
         }
 
         .corner-tr {
-            top: clamp(15px, 3vw, 30px);
-            right: clamp(15px, 3vw, 30px);
+            top: clamp(10px, 2vw, 20px);
+            right: clamp(10px, 2vw, 20px);
             border-left: none;
             border-bottom: none;
         }
 
         .corner-bl {
-            bottom: clamp(15px, 3vw, 30px);
-            left: clamp(15px, 3vw, 30px);
+            bottom: clamp(10px, 2vw, 20px);
+            left: clamp(10px, 2vw, 20px);
             border-right: none;
             border-top: none;
         }
 
         .corner-br {
-            bottom: clamp(15px, 3vw, 30px);
-            right: clamp(15px, 3vw, 30px);
+            bottom: clamp(10px, 2vw, 20px);
+            right: clamp(10px, 2vw, 20px);
             border-left: none;
             border-top: none;
         }
 
         @keyframes cornerPulse {
-            0%, 100% { border-color: rgba(6, 182, 212, 0.3); filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3)); }
-            50% { border-color: rgba(168, 85, 247, 0.6); filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6)); }
+            0%, 100% { border-color: rgba(6, 182, 212, 0.25); }
+            50% { border-color: rgba(168, 85, 247, 0.4); }
         }
 
         @keyframes splashEntrance {
-            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+            0% { opacity: 0; transform: scale(0.9) translateY(15px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         @keyframes logoEnergy {
-            0%, 100% { filter: drop-shadow(0 0 min(40px, 8vw) rgba(6, 182, 212, 0.8)); }
-            50% { filter: drop-shadow(0 0 min(80px, 15vw) rgba(168, 85, 247, 1)); }
+            0%, 100% { filter: drop-shadow(0 0 min(12px, 2.5vw) rgba(6, 182, 212, 0.6)); }
+            50% { filter: drop-shadow(0 0 min(20px, 4vw) rgba(168, 85, 247, 0.8)); }
         }
 
         @keyframes logoGlitch {
             0%, 100% { transform: skew(0deg); }
-            95% { transform: skew(0deg); }
-            96% { transform: skew(2deg); }
-            97% { transform: skew(-2deg); }
-            98% { transform: skew(1deg); }
-            99% { transform: skew(-1deg); }
+            96% { transform: skew(0deg); }
+            97% { transform: skew(1deg); }
+            98% { transform: skew(-1deg); }
+            99% { transform: skew(0.5deg); }
         }
 
         @keyframes logoPulse {
-            0%, 100% { transform: scale(1); opacity: 0.4; }
-            50% { transform: scale(1.1); opacity: 0.6; }
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.5; }
         }
 
-        /* Media queries específicas para móviles muy pequeños */
+        /* Media queries específicas para móviles */
         @media (max-width: 480px) {
+            .splash-logo {
+                width: min(35vw, 120px);
+                max-width: 120px;
+            }
+            
             .progress-markers {
-                font-size: 0.55rem;
+                font-size: 0.5rem;
             }
             
             .progress-marker::before {
-                top: -12px;
-                height: 6px;
+                top: -8px;
+                height: 4px;
             }
             
             .loading-text {
-                letter-spacing: 2px;
+                letter-spacing: 1.5px;
             }
             
-            .splash-logo {
-                width: min(65vw, 250px);
+            .energy-particles {
+                width: min(45vw, 180px);
+                height: min(45vw, 180px);
             }
+            
+            .splash-content {
+                max-width: 320px;
+                padding: 10px;
+            }
+            
+            .progress-container {
+                max-width: 240px;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .splash-logo {
+                width: min(30vw, 140px);
+                max-width: 140px;
+            }
+            
+            .progress-container {
+                max-width: 260px;
+            }
+        }
+
+        /* ===== ANIMACIONES MEJORADAS PARA EL HERO ===== */
+        .animate-from-left, .animate-from-right, .animate-from-bottom {
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-from-left.visible, .animate-from-right.visible, .animate-from-bottom.visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        @keyframes slideFromLeft {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideFromRight {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideFromBottom {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideFromTop {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animación para stats cards */
+        .animate-stats-card {
+            animation: slideFromBottom 0.6s ease-out forwards;
+        }
+
+        /* Clases de entrada para el hero */
+        .animate-enter-left {
+            animation: slideFromLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .animate-enter-right {
+            animation: slideFromRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .animate-enter-bottom {
+            animation: slideFromBottom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
         /* ===== RESTO DE ESTILOS (se mantienen igual) ===== */
@@ -630,26 +684,6 @@
             animation: slideFromBottom 0.8s ease-out forwards;
         }
 
-        @keyframes slideFromTop {
-            0% { opacity: 0; transform: translateY(-30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slideFromLeft {
-            0% { opacity: 0; transform: translateX(-50px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes slideFromRight {
-            0% { opacity: 0; transform: translateX(50px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes slideFromBottom {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
         .counter-update {
             animation: numberPulse 0.3s ease-out;
         }
@@ -662,20 +696,20 @@
     </style>
 </head>
 <body class="bg-gradient-custom min-h-screen text-white">
-    <!-- SPLASH SCREEN REDISEÑADO - TOTALMENTE RESPONSIVE -->
+    <!-- SPLASH SCREEN REDISEÑADO - VERSIÓN DELICADA Y RESPONSIVE -->
     <div id="splash-screen">
         <!-- Efectos de fondo -->
         <div class="scan-line"></div>
         <div class="grid-overlay"></div>
         
-        <!-- Elementos decorativos de esquina -->
+        <!-- Elementos decorativos de esquina - MÁS SUTILES -->
         <div class="corner-element corner-tl"></div>
         <div class="corner-element corner-tr"></div>
         <div class="corner-element corner-bl"></div>
         <div class="corner-element corner-br"></div>
         
         <div class="splash-content">
-            <!-- Partículas de energía alrededor del logo (AHORA RESPONSIVE) -->
+            <!-- Partículas de energía alrededor del logo - MENOS CANTIDAD Y MÁS PEQUEÑAS -->
             <div class="energy-particles">
                 <div class="energy-particle"></div>
                 <div class="energy-particle"></div>
@@ -685,18 +719,14 @@
                 <div class="energy-particle"></div>
                 <div class="energy-particle"></div>
                 <div class="energy-particle"></div>
-                <div class="energy-particle"></div>
-                <div class="energy-particle"></div>
-                <div class="energy-particle"></div>
-                <div class="energy-particle"></div>
             </div>
             
-            <!-- Logo LKE - TOTALMENTE RESPONSIVE (SIN TEXTO) -->
+            <!-- Logo LKE - TAMAÑO REDUCIDO Y DELICADO -->
             <div class="splash-logo">
                 <img src="img/logo.png" alt="LKE E-SPORTS">
             </div>
             
-            <!-- Barra de progreso ÉPICA con marcadores - RESPONSIVE -->
+            <!-- Barra de progreso DELICADA con marcadores -->
             <div class="progress-container">
                 <div class="progress-track">
                     <div class="progress-fill" id="progressFill"></div>
@@ -711,7 +741,7 @@
                 
                 <!-- Texto de carga con animación -->
                 <div class="loading-text">
-                    <span id="loadingStatus">INICIALIZANDO SISTEMA</span>
+                    <span id="loadingStatus">INICIALIZANDO</span>
                     <div class="loading-dots">
                         <span></span>
                         <span></span>
@@ -722,7 +752,7 @@
         </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL (se mantiene igual) -->
+    <!-- CONTENIDO PRINCIPAL -->
     <div id="main-content">
         <!-- Navbar -->
         <nav class="bg-black/50 backdrop-blur-lg border-b border-cyan-500/30 fixed w-full z-50">
@@ -733,7 +763,7 @@
                     
                     <!-- Logo LKE -->
                     <div class="logo-container">
-                        <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-24 h-20 md:w-32 md:h-28 lg:w-40 lg:h-36 object-contain">
+                        <img src="img/logo.png" alt="LKE E-SPORTS Logo" class="logo-shine w-20 h-16 md:w-28 md:h-24 lg:w-32 lg:h-28 object-contain">
                     </div>
 
                     <!-- Desktop Menu -->
@@ -832,7 +862,7 @@
                         
                         <!-- Logo del creador con enlace y efecto shine -->
                         <a href="https://www.tiktok.com/@wezoplay" target="_blank" class="mt-3 inline-block" title="Visita el TikTok de WEZOPLAY">
-                            <img src="img/logo-wezo.png" alt="WEZOPLAY" class="creator-logo w-12 h-12 md:w-16 md:h-16 object-contain">
+                            <img src="img/logo-wezo.png" alt="WEZOPLAY" class="creator-logo w-10 h-10 md:w-12 md:h-12 object-contain">
                         </a>
                     </div>
                 </div>

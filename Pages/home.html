@@ -1,5 +1,5 @@
-<!-- Hero Section - CON MÁS ALTURA VERTICAL PARA MEJOR SCROLL REVEAL -->
-<section class="relative overflow-hidden min-h-[90vh] md:min-h-[85vh] lg:min-h-screen flex items-center py-8 sm:py-12 md:py-16">
+<!-- Hero Section - CON EFECTO DE TÍTULO ESTILO TORNEOS (SCROLL REVEAL ARMONIZADO) -->
+<section class="relative overflow-hidden min-h-[90vh] md:min-h-[85vh] lg:min-h-screen flex items-center py-8 sm:py-12 md:py-16" id="home-hero-section">
     <!-- Fondo animado -->
     <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black/80"></div>
     
@@ -8,31 +8,37 @@
     <div class="absolute bottom-20 right-10 w-32 h-32 md:w-56 md:h-56 lg:w-96 lg:h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse-slow opacity-20 md:opacity-30"></div>
     
     <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <!-- Grid que se comporta como columna en tablets y dos columnas en desktop (desde 1024px) -->
         <div class="flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
-            <!-- Columna izquierda - Texto -->
+            <!-- Columna izquierda - Texto con NUEVO EFECTO DE TÍTULO ESTILO TORNEOS -->
             <div class="text-center lg:text-left w-full">
-                <!-- Título principal con tamaño controlado -->
-                <div class="mb-6 md:mb-8">
-                    <div class="animate-from-left inline-block opacity-0 translate-x-[-50px] transition-all duration-700 delay-400">
-                        <span class="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl block">DOMINA EL</span>
+                <!-- TÍTULO PRINCIPAL CON EFECTO ARMONIZADO ESTILO TORNEOS (SCROLL REVEAL) -->
+                <div class="mb-2 md:mb-3"> <!-- MODIFICADO: antes mb-6 md:mb-8 -->
+                    <!-- Primera línea: DOMINA EL (animación desde izquierda) -->
+                    <div class="title-word-left-hero opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                        <span class="text-white font-black block text-center lg:text-left hero-title-line1 leading-tight">DOMINA EL</span> <!-- MODIFICADO: agregado leading-tight -->
                     </div>
-                    <div class="animate-from-right inline-block opacity-0 translate-x-[50px] transition-all duration-700 delay-600 mt-1 md:mt-2">
-                        <span class="text-cyan-400 glow-text font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl break-words">COMPETITIVO</span>
+                    <!-- Segunda línea: COMPETITIVO (animación desde derecha con efecto glow) -->
+                    <div class="title-word-right-hero opacity-0 transition-all duration-700 delay-200 -mt-1 md:-mt-2" style="transform: translateX(30px);"> <!-- MODIFICADO: agregado margen negativo -->
+                        <span class="text-cyan-400 glow-text font-black block text-center lg:text-left hero-title-line2 whitespace-nowrap lg:whitespace-normal break-words leading-tight" id="competitivo-word">COMPETITIVO</span> <!-- MODIFICADO: agregado leading-tight -->
                     </div>
                 </div>
                 
-                <!-- Párrafo -->
-                <p class="animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-800 text-gray-300 text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 px-4 sm:px-6 lg:px-0 mb-6 md:mb-8">
+                <!-- Línea decorativa inferior (estilo torneos) -->
+                <div class="title-line-hero w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto lg:mx-0 mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div> <!-- MODIFICADO: antes mt-4 -->
+                
+                <!-- Párrafo con animación desde abajo -->
+                <p class="subtitle-hero text-gray-300 text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 px-4 sm:px-6 lg:px-0 mt-4 mb-6 md:mb-8 opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);"> <!-- MODIFICADO: antes mt-6 -->
                     LKE E-SPORTS es una organización Competitiva en Multijugador de Call of Duty: Mobile. 
                     Competimos al más alto nivel y formamos a los mejores jugadores.
                 </p>
                 
                 <!-- Botones -->
                 <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start px-4 sm:px-0">
-                    <a href="#" data-page="team" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1000 bg-cyan-500 hover:bg-cyan-600 text-white px-5 md:px-8 py-2.5 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-sm sm:text-base text-center">
+                    <a href="#" data-page="team" class="nav-link bg-cyan-500 hover:bg-cyan-600 text-white px-5 md:px-8 py-2.5 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-sm sm:text-base text-center">
                         CONOCE AL EQUIPO
                     </a>
-                    <a href="#" data-page="tournaments" class="nav-link animate-from-bottom opacity-0 translate-y-[30px] transition-all duration-700 delay-1200 border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-5 md:px-8 py-2.5 md:py-4 rounded-lg font-bold transition-all text-sm sm:text-base text-center">
+                    <a href="#" data-page="tournaments" class="nav-link border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-5 md:px-8 py-2.5 md:py-4 rounded-lg font-bold transition-all text-sm sm:text-base text-center">
                         PRÓXIMOS TORNEOS
                     </a>
                 </div>
@@ -42,7 +48,7 @@
             <div class="w-full mt-8 md:mt-10 lg:mt-0">
                 <div class="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 max-w-md mx-auto lg:max-w-none">
                     <!-- TARJETA 1: TORNEOS -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-400">
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="15">0</span>
                         </div>
@@ -50,7 +56,7 @@
                     </div>
                     
                     <!-- TARJETA 2: JUGADORES -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-600">
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             <span class="counter" data-target="89">0</span>
                         </div>
@@ -58,7 +64,7 @@
                     </div>
                     
                     <!-- TARJETA 3: TÍTULOS -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-800">
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="10">0</span>
                         </div>
@@ -66,7 +72,7 @@
                     </div>
                     
                     <!-- TARJETA 4: SEGUIDORES -->
-                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px] delay-1000">
+                    <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="2">0</span><span class="counter-suffix">K</span>
                         </div>
@@ -208,7 +214,7 @@
                     </a>
                 </div>
                 <div class="absolute top-2 right-2 z-20 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
-                    ⏳ PRÓXIMO
+                    ⚡ EN CURSO
                 </div>
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
@@ -217,6 +223,82 @@
 </section>
 
 <style>
+    /* ===== ESTILOS PARA EL NUEVO EFECTO DE TÍTULO ESTILO TORNEOS EN HERO ===== */
+    
+    /* Animaciones para el título del hero (estilo torneos) */
+    .title-word-left-hero.revealed,
+    .title-word-right-hero.revealed,
+    .subtitle-hero.revealed {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
+    
+    .title-word-left-hero.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .title-word-right-hero.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .subtitle-hero.revealed {
+        transform: translateY(0) !important;
+    }
+    
+    .title-line-hero.revealed {
+        transform: scaleX(1) !important;
+    }
+    
+    /* Ajuste adicional para reducir espacio entre DOMINA EL y COMPETITIVO */
+    .hero-title-line1,
+    .hero-title-line2 {
+        line-height: 1.1 !important; /* Reduce la altura de línea para acercar las palabras */
+    }
+    
+    /* Ajuste responsive para móviles */
+    @media (max-width: 768px) {
+        .title-word-right-hero {
+            margin-top: -0.25rem !important; /* Margen negativo sutil en móvil */
+        }
+    }
+    
+    /* Efecto glitch en el título al hover (estilo torneos) */
+    .hero-title-line2 {
+        position: relative;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    
+    /* Animación glitch para activación automática */
+    @keyframes heroGlitch {
+        0% {
+            text-shadow: -2px 0 cyan, 2px 0 magenta;
+            transform: skew(0deg);
+        }
+        25% {
+            text-shadow: -3px 0 cyan, 3px 0 magenta;
+            transform: skew(2deg);
+        }
+        50% {
+            text-shadow: -1px 0 cyan, 1px 0 magenta;
+            transform: skew(-1deg);
+        }
+        75% {
+            text-shadow: -2px 0 cyan, 2px 0 magenta;
+            transform: skew(1deg);
+        }
+        100% {
+            text-shadow: 0 0 cyan, 0 0 magenta;
+            transform: skew(0deg);
+        }
+    }
+    
+    /* Efecto hover también mantiene el glitch */
+    .title-word-right-hero:hover .hero-title-line2 {
+        animation: heroGlitch 0.3s ease-in-out;
+    }
+    
+    /* ===== ESTILOS EXISTENTES (se mantienen) ===== */
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -517,20 +599,155 @@
         transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    /* Responsive */
+    /* ============================================ */
+    /* TAMAÑOS DE FUENTE RESPONSIVOS PARA EL TÍTULO */
+    /* ============================================ */
+    
+    /* Mobile pequeño (hasta 480px) */
+    @media (max-width: 480px) {
+        .hero-title-line1 {
+            font-size: 1.75rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 2rem !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.125rem !important;
+        }
+    }
+    
+    /* Mobile (481px - 640px) */
+    @media (min-width: 481px) and (max-width: 640px) {
+        .hero-title-line1 {
+            font-size: 2rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 2.5rem !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.25rem !important;
+        }
+    }
+    
+    /* Tablets portrait (641px - 768px) */
+    @media (min-width: 641px) and (max-width: 768px) {
+        .hero-title-line1 {
+            font-size: 2.5rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 3rem !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.375rem !important;
+        }
+    }
+    
+    /* Tablets landscape (769px - 1023px) */
+    @media (min-width: 769px) and (max-width: 1023px) {
+        .hero-title-line1 {
+            font-size: 3rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 3.5rem !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.5rem !important;
+        }
+    }
+    
+    /* Desktop pequeño (1024px - 1279px) - Aquí se activa el grid de dos columnas */
+    @media (min-width: 1024px) and (max-width: 1279px) {
+        .hero-title-line1 {
+            font-size: 3rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 3.5rem !important;
+            white-space: normal !important;
+            word-break: keep-all !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.5rem !important;
+        }
+        /* Ajuste para que las stats cards no sean demasiado grandes */
+        .stats-card {
+            padding: 1rem !important;
+        }
+        .stats-card .text-cyan-400 {
+            font-size: 1.75rem !important;
+        }
+    }
+    
+    /* Desktop mediano (1280px - 1439px) */
+    @media (min-width: 1280px) and (max-width: 1439px) {
+        .hero-title-line1 {
+            font-size: 3.5rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 4rem !important;
+            white-space: nowrap !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.5rem !important;
+        }
+        .stats-card {
+            padding: 1.25rem !important;
+        }
+        .stats-card .text-cyan-400 {
+            font-size: 2rem !important;
+        }
+    }
+    
+    /* Desktop grande (1440px - 1919px) */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+        .hero-title-line1 {
+            font-size: 4rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 4.5rem !important;
+            white-space: nowrap !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.5rem !important;
+        }
+        .stats-card {
+            padding: 1.5rem !important;
+        }
+        .stats-card .text-cyan-400 {
+            font-size: 2.25rem !important;
+        }
+    }
+    
+    /* Desktop extra grande (1920px en adelante) */
+    @media (min-width: 1920px) {
+        .hero-title-line1 {
+            font-size: 5rem !important;
+        }
+        .hero-title-line2 {
+            font-size: 5.5rem !important;
+            white-space: nowrap !important;
+        }
+        .title-word-right-hero {
+            margin-top: -0.75rem !important;
+        }
+        .stats-card {
+            padding: 1.75rem !important;
+        }
+        .stats-card .text-cyan-400 {
+            font-size: 2.5rem !important;
+        }
+    }
+    
+    /* Ajustes para las stats cards en todos los tamaños */
     @media (max-width: 640px) {
         .stats-card {
             padding: 0.75rem !important;
         }
-        
         .stats-card .text-cyan-400 {
             font-size: 1.25rem !important;
         }
-        
         .news-card.relative {
             min-height: 200px;
         }
-        
         .min-h-\[90vh\] {
             min-height: 85vh;
         }
@@ -540,7 +757,6 @@
         .stats-card {
             padding: 1rem !important;
         }
-        
         .stats-card .text-cyan-400 {
             font-size: 1.5rem !important;
         }
@@ -550,7 +766,6 @@
         .stats-card {
             padding: 1.25rem !important;
         }
-        
         .stats-card .text-cyan-400 {
             font-size: 1.75rem !important;
         }
@@ -573,9 +788,9 @@
             font-size: 1.5rem !important;
         }
         
-        /* Ajustes para efectos en móviles */
         .news-card-enhanced:hover {
             transform: translateY(-3px) scale(1.01);
         }
     }
+    
 </style>

@@ -2,6 +2,10 @@
 // MAIN.JS - SISTEMA DE NAVEGACIÓN DINÁMICA PARA LKE E-SPORTS
 // VERSIÓN DEFINITIVA - CON HASH ROUTING Y EFECTOS COMPLETOS
 // INCLUYE ORGANIGRAMA CON EFECTOS DE TÍTULO ARMONIZADOS Y SCROLL REVEAL
+// NUEVO: EFECTO DE TÍTULO ESTILO TORNEOS PARA EL HERO (DOMINA EL COMPETITIVO)
+// NUEVO: EVENTO PERSONALIZADO PARA ACTIVAR GLITCH EN COMPETITIVO CUANDO SE REINICIAN LOS CONTADORES
+// NUEVO: EFECTO FLASH AL HACER SCROLL EN TARJETAS DE NOTICIAS (REPETIBLE Y CON MEJOR VISIBILIDAD)
+// MODIFICADO: CORRECCIÓN DE DOBLE REINICIO DE CONTADORES
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,48 +21,244 @@ document.addEventListener('DOMContentLoaded', () => {
     // Detectar si es dispositivo táctil para optimizar animaciones
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     
+    // ============================================
+    // FUNCIÓN PARA ACTIVAR GLITCH EN LA PALABRA COMPETITIVO
+    // ============================================
+    function triggerCompetitivoGlitch() {
+        // Buscar el elemento por ID o por clase si no tiene ID
+        let competitivoWord = document.getElementById('competitivo-word');
+        
+        // Si no encuentra por ID, buscar por la clase y el texto
+        if (!competitivoWord) {
+            const possibleElements = document.querySelectorAll('.hero-title-line2');
+            for (let el of possibleElements) {
+                if (el.textContent.trim() === 'COMPETITIVO') {
+                    competitivoWord = el;
+                    break;
+                }
+            }
+        }
+        
+        if (competitivoWord) {
+            // Remover cualquier animación previa
+            competitivoWord.style.animation = 'none';
+            // Forzar reflow
+            void competitivoWord.offsetWidth;
+            // Aplicar la animación glitch
+            competitivoWord.style.animation = 'heroGlitch 0.3s ease-in-out';
+            // Limpiar después de que termine
+            setTimeout(() => {
+                if (competitivoWord) {
+                    competitivoWord.style.animation = '';
+                }
+            }, 300);
+            console.log('Glitch activado en COMPETITIVO');
+        } else {
+            console.log('Elemento COMPETITIVO no encontrado para glitch');
+        }
+    }
+    
+    // ============================================
+    // FUNCIÓN PARA ACTIVAR FLASH EN TARJETAS DE NOTICIAS AL HACER SCROLL
+    // MODIFICADA: Flash cuando la tarjeta está completamente visible y repetible
+    // ============================================
+    function initNewsCardsFlashOnScroll() {
+        const newsCards = document.querySelectorAll('.news-card-enhanced');
+        
+        if (newsCards.length === 0) {
+            console.log('No se encontraron tarjetas de noticias para el efecto flash');
+            return;
+        }
+        
+        // Configurar observer para detectar cuando las tarjetas entran al viewport
+        // threshold: 0.9 significa que se activa cuando el 90% de la tarjeta es visible
+        // Esto asegura que el flash ocurra cuando la tarjeta está casi completamente visible
+        const observerOptions = {
+            threshold: 0.85, // Activado cuando el 85% de la tarjeta está visible (casi completamente)
+            rootMargin: '0px 0px 0px 0px' // Sin margen adicional
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                // Si la tarjeta está entrando al viewport (visible con el threshold establecido)
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    
+                    // Buscar el elemento flash dentro de la tarjeta
+                    const flashElement = card.querySelector('.camera-flash');
+                    if (flashElement) {
+                        // Remover clase anterior para reiniciar animación
+                        flashElement.classList.remove('camera-flash');
+                        // Forzar reflow para reiniciar la animación
+                        void flashElement.offsetWidth;
+                        // Agregar clase para activar animación
+                        flashElement.classList.add('camera-flash');
+                        // Limpiar clase después de que termine la animación
+                        setTimeout(() => {
+                            if (flashElement) {
+                                flashElement.classList.remove('camera-flash');
+                            }
+                        }, 500);
+                    }
+                    
+                    console.log('Flash activado en tarjeta de noticias al hacer scroll');
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        
+        // Observar cada tarjeta
+        newsCards.forEach(card => {
+            observer.observe(card);
+        });
+        
+        console.log('Flash on scroll inicializado en', newsCards.length, 'tarjetas de noticias (repetible, activación al 85% visible)');
+        
+        // Guardar referencia para limpiar después
+        window.newsCardsFlashObserver = observer;
+    }
+    
+    // Función para limpiar el observer de flash
+    function cleanupNewsCardsFlashObserver() {
+        if (window.newsCardsFlashObserver) {
+            window.newsCardsFlashObserver.disconnect();
+            window.newsCardsFlashObserver = null;
+            console.log('Observer de flash en noticias limpiado');
+        }
+    }
+    
     // Función para ejecutar todas las animaciones después del splash
     function executeAnimations() {
         if (animationsExecuted) return;
         animationsExecuted = true;
         
-        // Activar clase que dispara las animaciones CSS
-        document.body.classList.add('animate-ready');
+        // Asegurar que el main content está visible antes de animar
+        mainContent.classList.add('visible');
         
-        // Forzar reflow
+        // FORZAR REFLOW para asegurar que los elementos estén listos
         void document.body.offsetHeight;
         
-        // Inicializar contadores con delay para mejor rendimiento en tablets
+        // ACTIVAR TODAS LAS ANIMACIONES DE ENTRADA DEL HERO
         setTimeout(() => {
-            if (window.counterManager) {
-                window.counterManager.animateAll();
+            // Animación para las palabras del título "DOMINA EL COMPETITIVO" (nuevo estilo)
+            const titleLeft = document.querySelector('.title-word-left-hero');
+            const titleRight = document.querySelector('.title-word-right-hero');
+            const subtitle = document.querySelector('.subtitle-hero');
+            const titleLine = document.querySelector('.title-line-hero');
+            
+            // Animar el título izquierdo (DOMINA EL)
+            if (titleLeft) {
+                titleLeft.classList.add('revealed');
+                titleLeft.style.opacity = '1';
+                titleLeft.style.transform = 'translateX(0)';
             }
-        }, 100);
-        
-        // Inicializar scroll reveal mejorado
-        initEnhancedScrollReveal();
-        
-        // Inicializar efectos interactivos del título
-        initTitleEffects();
-        
-        // Inicializar scroll reveal para el título de noticias
-        initNewsTitleScrollReveal();
-        
-        // Inicializar efectos de cámara flash en noticias
-        initCameraFlashEffect();
-        
-        // Inicializar efecto de partículas en noticias
-        initParticleEffectOnNewsCards();
+            
+            // Animar el título derecho (COMPETITIVO) con delay
+            setTimeout(() => {
+                if (titleRight) {
+                    titleRight.classList.add('revealed');
+                    titleRight.style.opacity = '1';
+                    titleRight.style.transform = 'translateX(0)';
+                }
+            }, 150);
+            
+            // Animar el subtítulo (párrafo)
+            setTimeout(() => {
+                if (subtitle) {
+                    subtitle.classList.add('revealed');
+                    subtitle.style.opacity = '1';
+                    subtitle.style.transform = 'translateY(0)';
+                }
+            }, 400);
+            
+            // Animar la línea decorativa
+            setTimeout(() => {
+                if (titleLine) {
+                    titleLine.classList.add('revealed');
+                    titleLine.style.transform = 'scaleX(1)';
+                }
+            }, 600);
+            
+            // Animar los botones
+            const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
+            setTimeout(() => {
+                buttons.forEach((btn, index) => {
+                    setTimeout(() => {
+                        btn.classList.remove('opacity-0', 'translate-y-[30px]');
+                        btn.classList.add('visible', 'animate-enter-bottom');
+                        btn.style.opacity = '1';
+                        btn.style.transform = 'translateY(0)';
+                    }, index * 150);
+                });
+            }, 800);
+            
+            // Animar las tarjetas de estadísticas
+            const statsCards = document.querySelectorAll('.stats-card');
+            statsCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.remove('opacity-0', 'translate-y-[30px]');
+                    card.classList.add('visible', 'animate-stats-card');
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    
+                    // Aplicar efecto neon
+                    card.classList.add('neon-border');
+                    setTimeout(() => {
+                        card.classList.remove('neon-border');
+                    }, 1000);
+                }, 800 + (index * 100));
+            });
+            
+            // Activar clase que dispara las animaciones CSS
+            document.body.classList.add('animate-ready');
+            
+            // Inicializar contadores (SOLO INICIALIZAR, NO ANIMAR AÚN)
+            setTimeout(() => {
+                if (window.counterManager) {
+                    window.counterManager.init(); // Reinicializar contadores
+                    // IMPORTANTE: NO llamamos a animateAll aquí para evitar doble animación
+                    // La animación se ejecutará en initHomePage cuando la página esté completamente cargada
+                }
+            }, 1200);
+            
+            // Inicializar scroll reveal mejorado
+            initEnhancedScrollReveal();
+            
+            // Inicializar efectos interactivos del título
+            initTitleEffects();
+            
+            // Inicializar scroll reveal para el título de noticias
+            initNewsTitleScrollReveal();
+            
+            // NUEVO: Inicializar scroll reveal para el título del hero (estilo torneos)
+            initHeroTitleScrollReveal();
+            
+            // NUEVO: Inicializar efecto flash al hacer scroll en tarjetas de noticias
+            initNewsCardsFlashOnScroll();
+            
+            // Inicializar efecto de partículas en noticias
+            initParticleEffectOnNewsCards();
+            
+            // Aplicar efecto unificado a las stats cards
+            unifyStatsCardsHover();
+            
+        }, 100); // Pequeño delay para asegurar que el DOM está listo
     }
     
     // Función para ocultar el splash screen
     function hideSplashScreen() {
+        // Asegurar que main content está visible pero con opacidad 0
         mainContent.classList.add('visible');
         splashScreen.classList.add('hidden');
         
+        // Ejecutar animaciones después de que el splash desaparezca
+        setTimeout(() => {
+            executeAnimations();
+        }, 50);
+        
         setTimeout(() => {
             splashScreen.style.display = 'none';
-            executeAnimations();
         }, 800);
     }
     
@@ -100,6 +300,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Variable para el observer del título de noticias
     let newsTitleObserver = null;
+    
+    // NUEVO: Variable para el observer del título del hero
+    let heroTitleObserver = null;
     
     // Variable para el observer del título de torneos anteriores
     window.tournamentsTitleObserver = null;
@@ -251,30 +454,66 @@ document.addEventListener('DOMContentLoaded', () => {
     // SECCIÓN 6: FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME
     // ============================================
     function resetHomeElements() {
-        // Resetear hero elements
-        const heroElements = document.querySelectorAll(
-            '.animate-from-top, .animate-from-left, .animate-from-right, .animate-from-bottom'
-        );
+        // Resetear hero elements (nuevo estilo)
+        const titleLeft = document.querySelector('.title-word-left-hero');
+        const titleRight = document.querySelector('.title-word-right-hero');
+        const subtitle = document.querySelector('.subtitle-hero');
+        const titleLine = document.querySelector('.title-line-hero');
         
-        heroElements.forEach(el => {
-            if (el.classList.contains('animate-from-top')) {
-                el.classList.add('opacity-0', 'translate-y-[-30px]');
-            }
-            if (el.classList.contains('animate-from-left')) {
-                el.classList.add('opacity-0', 'translate-x-[-50px]');
-            }
-            if (el.classList.contains('animate-from-right')) {
-                el.classList.add('opacity-0', 'translate-x-[50px]');
-            }
-            if (el.classList.contains('animate-from-bottom')) {
-                el.classList.add('opacity-0', 'translate-y-[30px]');
-            }
+        // Resetear título izquierdo
+        if (titleLeft) {
+            titleLeft.classList.remove('revealed');
+            titleLeft.style.opacity = '0';
+            titleLeft.style.transform = 'translateX(-30px)';
+        }
+        
+        // Resetear título derecho
+        if (titleRight) {
+            titleRight.classList.remove('revealed');
+            titleRight.style.opacity = '0';
+            titleRight.style.transform = 'translateX(30px)';
+        }
+        
+        // Resetear párrafo
+        if (subtitle) {
+            subtitle.classList.remove('revealed');
+            subtitle.style.opacity = '0';
+            subtitle.style.transform = 'translateY(20px)';
+        }
+        
+        // Resetear línea decorativa
+        if (titleLine) {
+            titleLine.classList.remove('revealed');
+            titleLine.style.transform = 'scaleX(0)';
+        }
+        
+        // Resetear botones
+        const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
+        buttons.forEach(btn => {
+            btn.classList.remove('visible', 'animate-enter-bottom');
+            btn.classList.add('opacity-0', 'translate-y-[30px]');
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(30px)';
         });
         
-        // Resetear stats cards
+        // Resetear stats cards - NO ELIMINAR LAS CLASES, SOLO RESETEAR LOS ESTILOS INLINE
         const statsCards = document.querySelectorAll('.stats-card');
         statsCards.forEach(card => {
+            // Remover clases de visibilidad pero mantener las clases base
+            card.classList.remove('visible', 'animate-stats-card');
+            // Agregar clases de estado inicial
             card.classList.add('opacity-0', 'translate-y-[30px]');
+            // Resetear estilos inline
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            // Limpiar cualquier estilo inline residual
+            card.style.transition = '';
+        });
+        
+        // Resetear los valores de los contadores a 0
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            counter.textContent = '0';
         });
         
         // Resetear títulos de sección
@@ -400,35 +639,105 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Scroll reveal para título de noticias inicializado');
     }
     
-    function isElementInViewport(el, offset = 100) {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top <= windowHeight - offset;
+    // ============================================
+    // SECCIÓN 6.6: NUEVA FUNCIÓN PARA EL TÍTULO DEL HERO ESTILO TORNEOS
+    // ============================================
+    function resetHeroTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-hero');
+        const titleRight = document.querySelector('.title-word-right-hero');
+        const subtitle = document.querySelector('.subtitle-hero');
+        const titleLine = document.querySelector('.title-line-hero');
+        
+        if (titleLeft) {
+            titleLeft.classList.remove('revealed');
+            titleLeft.style.opacity = '0';
+            titleLeft.style.transform = 'translateX(-30px)';
+        }
+        if (titleRight) {
+            titleRight.classList.remove('revealed');
+            titleRight.style.opacity = '0';
+            titleRight.style.transform = 'translateX(30px)';
+        }
+        if (subtitle) {
+            subtitle.classList.remove('revealed');
+            subtitle.style.opacity = '0';
+            subtitle.style.transform = 'translateY(20px)';
+        }
+        if (titleLine) {
+            titleLine.classList.remove('revealed');
+            titleLine.style.transform = 'scaleX(0)';
+        }
     }
     
-    // ============================================
-    // SECCIÓN 6.6: EFECTOS MEJORADOS PARA NOTICIAS
-    // ============================================
-    
-    function initCameraFlashEffect() {
-        const newsCards = document.querySelectorAll('.news-card-enhanced');
+    function revealHeroTitleElements() {
+        const titleLeft = document.querySelector('.title-word-left-hero');
+        const titleRight = document.querySelector('.title-word-right-hero');
+        const subtitle = document.querySelector('.subtitle-hero');
+        const titleLine = document.querySelector('.title-line-hero');
         
-        newsCards.forEach((card, index) => {
-            const flashElement = card.querySelector('.camera-flash');
-            if (flashElement) {
-                flashElement.classList.remove('camera-flash');
-                void flashElement.offsetWidth;
-                setTimeout(() => {
-                    flashElement.classList.add('camera-flash');
-                    setTimeout(() => {
-                        flashElement.classList.remove('camera-flash');
-                    }, 500);
-                }, index * 200);
+        if (titleLeft && !titleLeft.classList.contains('revealed')) {
+            titleLeft.classList.add('revealed');
+        }
+        if (titleRight && !titleRight.classList.contains('revealed')) {
+            titleRight.classList.add('revealed');
+        }
+        if (subtitle && !subtitle.classList.contains('revealed')) {
+            subtitle.classList.add('revealed');
+        }
+        if (titleLine && !titleLine.classList.contains('revealed')) {
+            titleLine.classList.add('revealed');
+        }
+    }
+    
+    function initHeroTitleScrollReveal() {
+        if (heroTitleObserver) {
+            heroTitleObserver.disconnect();
+        }
+        
+        const heroSection = document.getElementById('home-hero-section');
+        
+        if (!heroSection) {
+            setTimeout(initHeroTitleScrollReveal, 500);
+            return;
+        }
+        
+        resetHeroTitleElements();
+        
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealHeroTitleElements();
+                } else {
+                    resetHeroTitleElements();
+                }
+            });
+        };
+        
+        heroTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
+        heroTitleObserver.observe(heroSection);
+        
+        const titleContainer = document.querySelector('.title-word-left-hero')?.closest('.text-center');
+        if (titleContainer) {
+            heroTitleObserver.observe(titleContainer);
+        }
+        
+        setTimeout(() => {
+            if (heroSection && isElementInViewport(heroSection, 100)) {
+                revealHeroTitleElements();
             }
-        });
+        }, 300);
         
-        console.log('Efecto cámara flash inicializado en', newsCards.length, 'tarjetas');
+        console.log('Scroll reveal para título del hero (estilo torneos) inicializado');
     }
+    
+    // ============================================
+    // SECCIÓN 6.7: EFECTOS MEJORADOS PARA NOTICIAS
+    // ============================================
     
     function initParticleEffectOnNewsCards() {
         const newsCards = document.querySelectorAll('.news-card-enhanced');
@@ -469,7 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6.7: EFECTOS MEJORADOS PARA TORNEOS
+    // SECCIÓN 6.8: EFECTOS MEJORADOS PARA TORNEOS
     // ============================================
     
     function initTournamentCameraFlash() {
@@ -537,7 +846,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6.8: FUNCIONES PARA EL TÍTULO DE TORNEOS ANTERIORES
+    // SECCIÓN 6.9: FUNCIONES PARA EL TÍTULO DE TORNEOS ANTERIORES
     // ============================================
     
     function resetTournamentsTitleElements() {
@@ -629,7 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6.9: FUNCIONES PARA EL TÍTULO HEADER DE TORNEOS
+    // SECCIÓN 6.10: FUNCIONES PARA EL TÍTULO HEADER DE TORNEOS
     // ============================================
     
     function resetTournamentsHeaderTitleElements() {
@@ -721,7 +1030,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6.10: FUNCIONES PARA EL TÍTULO DE ORGANIGRAMA CON SCROLL REVEAL
+    // SECCIÓN 6.11: FUNCIONES PARA EL TÍTULO DE ORGANIGRAMA CON SCROLL REVEAL
     // ============================================
     
     function resetOrganigramaTitleElements() {
@@ -813,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6.11: FUNCIONES PARA LOS TÍTULOS DE SECCIÓN DEL ORGANIGRAMA
+    // SECCIÓN 6.12: FUNCIONES PARA LOS TÍTULOS DE SECCIÓN DEL ORGANIGRAMA
     // ============================================
     
     function initOrganigramaSectionTitlesScrollReveal() {
@@ -982,7 +1291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 9: SISTEMA DE CONTADORES MEJORADO
+    // SECCIÓN 9: SISTEMA DE CONTADORES MEJORADO CON EVENTO PERSONALIZADO
     // ============================================
     class CounterManager {
         constructor() {
@@ -1015,10 +1324,51 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             console.log('Contadores inicializados:', this.counters.length);
+            return this.counters.length > 0;
+        }
+        
+        // Función para activar el glitch directamente
+        triggerGlitchEffect() {
+            // Llamar a la función global para activar el glitch
+            if (typeof window.triggerCompetitivoGlitch === 'function') {
+                window.triggerCompetitivoGlitch();
+            } else {
+                // Fallback: intentar encontrar y activar directamente
+                let competitivoWord = document.getElementById('competitivo-word');
+                if (!competitivoWord) {
+                    const possibleElements = document.querySelectorAll('.hero-title-line2');
+                    for (let el of possibleElements) {
+                        if (el.textContent.trim() === 'COMPETITIVO') {
+                            competitivoWord = el;
+                            break;
+                        }
+                    }
+                }
+                if (competitivoWord) {
+                    competitivoWord.style.animation = 'none';
+                    void competitivoWord.offsetWidth;
+                    competitivoWord.style.animation = 'heroGlitch 0.3s ease-in-out';
+                    setTimeout(() => {
+                        if (competitivoWord) {
+                            competitivoWord.style.animation = '';
+                        }
+                    }, 300);
+                    console.log('Glitch activado directamente desde CounterManager');
+                }
+            }
         }
         
         async animateAll(force = false) {
             this.stop();
+            
+            // Si no hay contadores, intentar inicializar nuevamente
+            if (this.counters.length === 0) {
+                const hasCounters = this.init();
+                if (!hasCounters) {
+                    console.log('No hay contadores para animar');
+                    return;
+                }
+            }
             
             if (!force) {
                 const countersToAnimate = this.counters.filter(counter => {
@@ -1034,6 +1384,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
+            // ACTIVAR GLITCH CADA VEZ QUE COMIENZA LA ANIMACIÓN DE CONTADORES
+            this.triggerGlitchEffect();
+            
+            // Resetear todos los contadores a 0
             this.counters.forEach(counter => {
                 counter.currentValue = 0;
                 counter.element.textContent = '0';
@@ -1145,6 +1499,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (counter.parentCard) {
                     this.hasAnimated.set(counter.parentCard, false);
                 }
+                counter.currentValue = 0;
+                counter.element.textContent = '0';
             });
             console.log('Todos los contadores reseteados para nueva animación');
         }
@@ -1158,13 +1514,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         startLoop(intervalTime = 30000) {
+            // Detener loop anterior si existe
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+                this.countdownInterval = null;
+            }
+            
+            // Iniciar nueva animación
             this.resetAllCounters();
             this.animateAll(true);
             
-            if (this.countdownInterval) {
-                clearInterval(this.countdownInterval);
-            }
-            
+            // Configurar nuevo intervalo
             this.countdownInterval = setInterval(() => {
                 console.log('Ciclo de 30 segundos: reiniciando contadores');
                 this.resetAllCounters();
@@ -1210,9 +1570,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const el = entry.target;
                 
                 if (entry.isIntersecting) {
-                    el.classList.remove('opacity-0', 'translate-y-[-30px]', 'translate-x-[-50px]', 
-                                      'translate-x-[50px]', 'translate-y-[30px]');
-                    el.classList.add('visible');
+                    // No resetear los elementos que ya fueron animados en el inicio
+                    if (!el.classList.contains('animate-from-left') && 
+                        !el.classList.contains('animate-from-right') && 
+                        !el.classList.contains('animate-from-bottom')) {
+                        el.classList.remove('opacity-0', 'translate-y-[-30px]', 'translate-x-[-50px]', 
+                                          'translate-x-[50px]', 'translate-y-[30px]');
+                        el.classList.add('visible');
+                    }
                     
                     if (el.classList.contains('stats-card')) {
                         el.classList.add('neon-border');
@@ -1266,41 +1631,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         el.classList.contains('animate-from-right') || 
                         el.classList.contains('animate-from-bottom')) {
                         
-                        el.style.animation = 'none';
-                        el.offsetHeight;
-                        
-                        if (el.classList.contains('animate-from-left')) {
-                            el.style.animation = 'slideFromLeft 0.6s ease-out forwards';
-                        } else if (el.classList.contains('animate-from-right')) {
-                            el.style.animation = 'slideFromRight 0.6s ease-out forwards';
-                        } else if (el.classList.contains('animate-from-bottom')) {
-                            el.style.animation = 'slideFromBottom 0.6s ease-out forwards';
+                        // Solo animar si no está ya visible
+                        if (!el.classList.contains('visible')) {
+                            el.style.animation = 'none';
+                            el.offsetHeight;
+                            
+                            if (el.classList.contains('animate-from-left')) {
+                                el.style.animation = 'slideFromLeft 0.6s ease-out forwards';
+                            } else if (el.classList.contains('animate-from-right')) {
+                                el.style.animation = 'slideFromRight 0.6s ease-out forwards';
+                            } else if (el.classList.contains('animate-from-bottom')) {
+                                el.style.animation = 'slideFromBottom 0.6s ease-out forwards';
+                            }
+                            
+                            el.classList.add('visible');
                         }
                     }
                     
                 } else {
-                    if (el.classList.contains('animate-from-left') || 
-                        el.classList.contains('animate-from-right') || 
-                        el.classList.contains('animate-from-bottom') ||
-                        el.classList.contains('stats-card') ||
-                        el.classList.contains('news-card') ||
-                        el.classList.contains('tournament-card-enhanced') ||
-                        el.classList.contains('staff-card')) {
-                        
-                        el.style.animation = '';
-                        el.classList.remove('visible');
-                        
-                        if (el.classList.contains('animate-from-left')) {
-                            el.classList.add('opacity-0', 'translate-x-[-50px]');
-                        }
-                        if (el.classList.contains('animate-from-right')) {
-                            el.classList.add('opacity-0', 'translate-x-[50px]');
-                        }
-                        if (el.classList.contains('animate-from-bottom')) {
-                            el.classList.add('opacity-0', 'translate-y-[30px]');
-                        }
-                        if (el.classList.contains('stats-card') || el.classList.contains('news-card') || 
-                            el.classList.contains('tournament-card-enhanced') || el.classList.contains('staff-card')) {
+                    // Solo resetear elementos que no son del hero principal
+                    if (!el.classList.contains('animate-from-left') && 
+                        !el.classList.contains('animate-from-right') && 
+                        !el.classList.contains('animate-from-bottom')) {
+                        if (el.classList.contains('stats-card') ||
+                            el.classList.contains('news-card') ||
+                            el.classList.contains('tournament-card-enhanced') ||
+                            el.classList.contains('staff-card')) {
+                            
+                            el.style.animation = '';
+                            el.classList.remove('visible');
                             el.classList.add('opacity-0', 'translate-y-[30px]');
                         }
                     }
@@ -1423,6 +1782,11 @@ document.addEventListener('DOMContentLoaded', () => {
             newsTitleObserver = null;
         }
         
+        if (heroTitleObserver) {
+            heroTitleObserver.disconnect();
+            heroTitleObserver = null;
+        }
+        
         if (window.tournamentsTitleObserver) {
             window.tournamentsTitleObserver.disconnect();
             window.tournamentsTitleObserver = null;
@@ -1449,6 +1813,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.organigramaCardObserver = null;
         }
         
+        // Limpiar observer de flash en noticias
+        cleanupNewsCardsFlashObserver();
+        
         content.style.opacity = '0';
         
         try {
@@ -1470,18 +1837,103 @@ document.addEventListener('DOMContentLoaded', () => {
                         initEnhancedScrollReveal();
                         initTitleEffects();
                         initNewsTitleScrollReveal();
+                        initHeroTitleScrollReveal(); // NUEVO: Inicializar scroll reveal del título hero
                         unifyStatsCardsHover();
-                        initCameraFlashEffect();
                         initParticleEffectOnNewsCards();
                         initDataBlastEffect();
+                        // NUEVO: Inicializar efecto flash al hacer scroll en tarjetas de noticias
+                        initNewsCardsFlashOnScroll();
                         
+                        // RE-ANIMAR LOS TÍTULOS Y CONTADORES DESPUÉS DE CARGAR EL HOME
                         setTimeout(() => {
-                            applyNeonEffectToStatsCards();
-                            if (window.counterManager) {
-                                window.counterManager.resetAllCounters();
-                                window.counterManager.animateAll(true);
+                            // Forzar animación del título principal (nuevo estilo)
+                            const titleLeft = document.querySelector('.title-word-left-hero');
+                            const titleRight = document.querySelector('.title-word-right-hero');
+                            const subtitle = document.querySelector('.subtitle-hero');
+                            const titleLine = document.querySelector('.title-line-hero');
+                            
+                            if (titleLeft) {
+                                titleLeft.classList.add('revealed');
+                                titleLeft.style.opacity = '1';
+                                titleLeft.style.transform = 'translateX(0)';
                             }
-                        }, 300);
+                            
+                            if (titleRight) {
+                                setTimeout(() => {
+                                    titleRight.classList.add('revealed');
+                                    titleRight.style.opacity = '1';
+                                    titleRight.style.transform = 'translateX(0)';
+                                }, 150);
+                            }
+                            
+                            if (subtitle) {
+                                setTimeout(() => {
+                                    subtitle.classList.add('revealed');
+                                    subtitle.style.opacity = '1';
+                                    subtitle.style.transform = 'translateY(0)';
+                                }, 400);
+                            }
+                            
+                            if (titleLine) {
+                                setTimeout(() => {
+                                    titleLine.classList.add('revealed');
+                                    titleLine.style.transform = 'scaleX(1)';
+                                }, 600);
+                            }
+                            
+                            // Animar botones
+                            const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
+                            setTimeout(() => {
+                                buttons.forEach((btn, index) => {
+                                    setTimeout(() => {
+                                        btn.classList.remove('opacity-0', 'translate-y-[30px]');
+                                        btn.classList.add('visible');
+                                        btn.style.opacity = '1';
+                                        btn.style.transform = 'translateY(0)';
+                                    }, index * 150);
+                                });
+                            }, 800);
+                            
+                            // Animar stats cards
+                            const statsCards = document.querySelectorAll('.stats-card');
+                            statsCards.forEach((card, index) => {
+                                setTimeout(() => {
+                                    card.classList.remove('opacity-0', 'translate-y-[30px]');
+                                    card.classList.add('visible');
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0)';
+                                    
+                                    // Aplicar efecto neon
+                                    card.classList.add('neon-border');
+                                    setTimeout(() => {
+                                        card.classList.remove('neon-border');
+                                    }, 1000);
+                                }, 800 + (index * 100));
+                            });
+                            
+                            applyNeonEffectToStatsCards();
+                            
+                            // Usar CounterManager existente o crear uno nuevo
+                            if (!window.counterManager) {
+                                window.counterManager = new CounterManager();
+                            }
+                            window.counterManager.init();
+                            window.counterManager.resetAllCounters();
+                            
+                            // Configurar loop si no está activo
+                            if (!window.counterManager.countdownInterval) {
+                                const loopInterval = isTouchDevice ? 45000 : 30000;
+                                window.counterManager.startLoop(loopInterval);
+                            }
+                            
+                            // ANIMAR UNA SOLA VEZ DESPUÉS DE CARGAR
+                            setTimeout(() => {
+                                if (window.counterManager) {
+                                    window.counterManager.animateAll(true);
+                                }
+                            }, 150);
+                            
+                        }, 100);
                     }, 100);
                 } else if (page === 'organigrama') {
                     setTimeout(() => {
@@ -1557,17 +2009,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function initHomePage() {
         console.log('Home page initialized');
         
-        const counterManager = new CounterManager();
-        counterManager.init();
+        // Usar el CounterManager global existente en lugar de crear uno nuevo
+        if (!window.counterManager) {
+            window.counterManager = new CounterManager();
+        }
+        window.counterManager.init();
         
         const loopInterval = isTouchDevice ? 45000 : 30000;
-        counterManager.startLoop(loopInterval);
+        // Solo iniciar el loop si no está activo
+        if (!window.counterManager.countdownInterval) {
+            window.counterManager.startLoop(loopInterval);
+        }
         
-        window.counterManager = counterManager;
+        // ANIMAR UNA SOLA VEZ AL CARGAR HOME
+        setTimeout(() => {
+            if (window.counterManager) {
+                window.counterManager.animateAll(true);
+            }
+        }, 150);
         
         return () => {
+            // No destruir aquí, solo detener si es necesario
             if (window.counterManager) {
-                window.counterManager.destroy();
+                // No destruimos completamente para mantener el estado
+                window.counterManager.stop();
             }
         };
     }
@@ -2007,7 +2472,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 13: INICIALIZACIÓN Y EVENTOS GLOBALES
+    // SECCIÓN 13: FUNCIÓN AUXILIAR IS ELEMENT IN VIEWPORT
+    // ============================================
+    function isElementInViewport(el, offset = 100) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top <= windowHeight - offset;
+    }
+    
+    // ============================================
+    // SECCIÓN 14: EXPONER FUNCIÓN GLOBAL PARA GLITCH
+    // ============================================
+    window.triggerCompetitivoGlitch = triggerCompetitivoGlitch;
+    
+    // ============================================
+    // SECCIÓN 15: INICIALIZACIÓN Y EVENTOS GLOBALES
     // ============================================
     
     assignNavLinkListeners();
@@ -2024,7 +2503,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// SECCIÓN 14: SPLASH SCREEN - ACTUALIZACIÓN DE MARCADORES
+// SECCIÓN 16: SPLASH SCREEN - ACTUALIZACIÓN DE MARCADORES
 // ============================================
 function initSplashProgress() {
     const progressFill = document.getElementById('progressFill');
@@ -2048,17 +2527,17 @@ function initSplashProgress() {
                             if (markers.init) markers.init.classList.add('active');
                             if (markers.load) markers.load.classList.remove('active');
                             if (markers.ready) markers.ready.classList.remove('active');
-                            if (loadingStatus) loadingStatus.textContent = 'INICIALIZANDO SISTEMA';
+                            if (loadingStatus) loadingStatus.textContent = 'INICIALIZANDO';
                         } else if (percent < 80) {
                             if (markers.init) markers.init.classList.remove('active');
                             if (markers.load) markers.load.classList.add('active');
                             if (markers.ready) markers.ready.classList.remove('active');
-                            if (loadingStatus) loadingStatus.textContent = 'CARGANDO RECURSOS';
+                            if (loadingStatus) loadingStatus.textContent = 'CARGANDO';
                         } else {
                             if (markers.init) markers.init.classList.remove('active');
                             if (markers.load) markers.load.classList.remove('active');
                             if (markers.ready) markers.ready.classList.add('active');
-                            if (loadingStatus) loadingStatus.textContent = 'PREPARANDO ARENA';
+                            if (loadingStatus) loadingStatus.textContent = 'LISTO';
                         }
                     }
                 }
@@ -2090,4 +2569,9 @@ window.addEventListener('beforeunload', () => {
         window.sectionTitleObservers.forEach(observer => observer.disconnect());
         window.sectionTitleObservers = [];
     }
+    if (heroTitleObserver) {
+        heroTitleObserver.disconnect();
+        heroTitleObserver = null;
+    }
+    cleanupNewsCardsFlashObserver();
 });
