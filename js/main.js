@@ -6,6 +6,7 @@
 // NUEVO: EVENTO PERSONALIZADO PARA ACTIVAR GLITCH EN COMPETITIVO CUANDO SE REINICIAN LOS CONTADORES
 // NUEVO: EFECTO FLASH AL HACER SCROLL EN TARJETAS DE NOTICIAS (REPETIBLE Y CON MEJOR VISIBILIDAD)
 // MODIFICADO: CORRECCIÓN DE DOBLE REINICIO DE CONTADORES
+// MODIFICADO: ORGANIGRAMA CON EFECTOS UNIFICADOS (STAFF-CARD-ENHANCED)
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -71,36 +72,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Configurar observer para detectar cuando las tarjetas entran al viewport
-        // threshold: 0.9 significa que se activa cuando el 90% de la tarjeta es visible
-        // Esto asegura que el flash ocurra cuando la tarjeta está casi completamente visible
         const observerOptions = {
-            threshold: 0.85, // Activado cuando el 85% de la tarjeta está visible (casi completamente)
-            rootMargin: '0px 0px 0px 0px' // Sin margen adicional
+            threshold: 0.85,
+            rootMargin: '0px 0px 0px 0px'
         };
         
         const observerCallback = (entries) => {
             entries.forEach(entry => {
-                // Si la tarjeta está entrando al viewport (visible con el threshold establecido)
                 if (entry.isIntersecting) {
                     const card = entry.target;
-                    
-                    // Buscar el elemento flash dentro de la tarjeta
                     const flashElement = card.querySelector('.camera-flash');
                     if (flashElement) {
-                        // Remover clase anterior para reiniciar animación
                         flashElement.classList.remove('camera-flash');
-                        // Forzar reflow para reiniciar la animación
                         void flashElement.offsetWidth;
-                        // Agregar clase para activar animación
                         flashElement.classList.add('camera-flash');
-                        // Limpiar clase después de que termine la animación
                         setTimeout(() => {
                             if (flashElement) {
                                 flashElement.classList.remove('camera-flash');
                             }
                         }, 500);
                     }
-                    
                     console.log('Flash activado en tarjeta de noticias al hacer scroll');
                 }
             });
@@ -108,18 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         
-        // Observar cada tarjeta
         newsCards.forEach(card => {
             observer.observe(card);
         });
         
-        console.log('Flash on scroll inicializado en', newsCards.length, 'tarjetas de noticias (repetible, activación al 85% visible)');
+        console.log('Flash on scroll inicializado en', newsCards.length, 'tarjetas de noticias');
         
-        // Guardar referencia para limpiar después
         window.newsCardsFlashObserver = observer;
     }
     
-    // Función para limpiar el observer de flash
     function cleanupNewsCardsFlashObserver() {
         if (window.newsCardsFlashObserver) {
             window.newsCardsFlashObserver.disconnect();
@@ -128,33 +116,91 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Función para ejecutar todas las animaciones después del splash
+    // ============================================
+    // FUNCIÓN PARA ACTIVAR FLASH EN TARJETAS DE ORGANIGRAMA
+    // ============================================
+    function initOrganigramaCardsFlashOnScroll() {
+        const staffCards = document.querySelectorAll('.staff-card-enhanced');
+        
+        if (staffCards.length === 0) return;
+        
+        const observerOptions = {
+            threshold: 0.7,
+            rootMargin: '0px 0px -30px 0px'
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.hasAttribute('data-flash-played')) {
+                    const card = entry.target;
+                    const flashElement = card.querySelector('.camera-flash');
+                    if (flashElement) {
+                        flashElement.classList.remove('camera-flash');
+                        void flashElement.offsetWidth;
+                        flashElement.classList.add('camera-flash');
+                        setTimeout(() => {
+                            if (flashElement) {
+                                flashElement.classList.remove('camera-flash');
+                            }
+                        }, 500);
+                    }
+                    card.setAttribute('data-flash-played', 'true');
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        
+        staffCards.forEach(card => {
+            observer.observe(card);
+        });
+        
+        window.organigramaFlashObserver = observer;
+        console.log('Flash on scroll inicializado en', staffCards.length, 'tarjetas de organigrama');
+    }
+    
+    // ============================================
+    // FUNCIÓN PARA EFECTO DE PARTÍCULAS EN TARJETAS DE ORGANIGRAMA
+    // ============================================
+    function initOrganigramaParticleEffect() {
+        const staffCards = document.querySelectorAll('.staff-card-enhanced');
+        
+        staffCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--x', `${x}%`);
+                card.style.setProperty('--y', `${y}%`);
+            });
+        });
+        
+        console.log('Efecto de partículas inicializado en', staffCards.length, 'tarjetas de organigrama');
+    }
+    
+    // ============================================
+    // FUNCIÓN PARA EJECUTAR TODAS LAS ANIMACIONES DESPUÉS DEL SPLASH
+    // ============================================
     function executeAnimations() {
         if (animationsExecuted) return;
         animationsExecuted = true;
         
-        // Asegurar que el main content está visible antes de animar
         mainContent.classList.add('visible');
-        
-        // FORZAR REFLOW para asegurar que los elementos estén listos
         void document.body.offsetHeight;
         
-        // ACTIVAR TODAS LAS ANIMACIONES DE ENTRADA DEL HERO
         setTimeout(() => {
-            // Animación para las palabras del título "DOMINA EL COMPETITIVO" (nuevo estilo)
+            // Animación para las palabras del título "DOMINA EL COMPETITIVO"
             const titleLeft = document.querySelector('.title-word-left-hero');
             const titleRight = document.querySelector('.title-word-right-hero');
             const subtitle = document.querySelector('.subtitle-hero');
             const titleLine = document.querySelector('.title-line-hero');
             
-            // Animar el título izquierdo (DOMINA EL)
             if (titleLeft) {
                 titleLeft.classList.add('revealed');
                 titleLeft.style.opacity = '1';
                 titleLeft.style.transform = 'translateX(0)';
             }
             
-            // Animar el título derecho (COMPETITIVO) con delay
             setTimeout(() => {
                 if (titleRight) {
                     titleRight.classList.add('revealed');
@@ -163,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 150);
             
-            // Animar el subtítulo (párrafo)
             setTimeout(() => {
                 if (subtitle) {
                     subtitle.classList.add('revealed');
@@ -172,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 400);
             
-            // Animar la línea decorativa
             setTimeout(() => {
                 if (titleLine) {
                     titleLine.classList.add('revealed');
@@ -201,8 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.classList.add('visible', 'animate-stats-card');
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
-                    
-                    // Aplicar efecto neon
                     card.classList.add('neon-border');
                     setTimeout(() => {
                         card.classList.remove('neon-border');
@@ -210,49 +252,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 800 + (index * 100));
             });
             
-            // Activar clase que dispara las animaciones CSS
             document.body.classList.add('animate-ready');
             
-            // Inicializar contadores (SOLO INICIALIZAR, NO ANIMAR AÚN)
             setTimeout(() => {
                 if (window.counterManager) {
-                    window.counterManager.init(); // Reinicializar contadores
-                    // IMPORTANTE: NO llamamos a animateAll aquí para evitar doble animación
-                    // La animación se ejecutará en initHomePage cuando la página esté completamente cargada
+                    window.counterManager.init();
                 }
             }, 1200);
             
-            // Inicializar scroll reveal mejorado
             initEnhancedScrollReveal();
-            
-            // Inicializar efectos interactivos del título
             initTitleEffects();
-            
-            // Inicializar scroll reveal para el título de noticias
             initNewsTitleScrollReveal();
-            
-            // NUEVO: Inicializar scroll reveal para el título del hero (estilo torneos)
             initHeroTitleScrollReveal();
-            
-            // NUEVO: Inicializar efecto flash al hacer scroll en tarjetas de noticias
             initNewsCardsFlashOnScroll();
-            
-            // Inicializar efecto de partículas en noticias
             initParticleEffectOnNewsCards();
-            
-            // Aplicar efecto unificado a las stats cards
             unifyStatsCardsHover();
             
-        }, 100); // Pequeño delay para asegurar que el DOM está listo
+        }, 100);
     }
     
-    // Función para ocultar el splash screen
     function hideSplashScreen() {
-        // Asegurar que main content está visible pero con opacidad 0
         mainContent.classList.add('visible');
         splashScreen.classList.add('hidden');
         
-        // Ejecutar animaciones después de que el splash desaparezca
         setTimeout(() => {
             executeAnimations();
         }, 50);
@@ -262,14 +284,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     }
     
-    // Configuración del splash
     const minSplashTime = 2500;
     const startTime = Date.now();
     
     window.addEventListener('load', () => {
         const elapsedTime = Date.now() - startTime;
         const remainingTime = Math.max(0, minSplashTime - elapsedTime);
-        
         setTimeout(hideSplashScreen, remainingTime);
     });
     
@@ -286,60 +306,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const menuBtn = document.getElementById('menuBtn');
     
-    // Estado de la página actual
     let currentPage = 'home';
-    
-    // Variable para almacenar intervalos
     let activeIntervals = [];
-    
-    // Variable para el observer de scroll reveal mejorado
     let enhancedScrollObserver = null;
-    
-    // Variable para el intervalo de contadores (30 segundos)
     let counterLoopInterval = null;
-    
-    // Variable para el observer del título de noticias
     let newsTitleObserver = null;
-    
-    // NUEVO: Variable para el observer del título del hero
     let heroTitleObserver = null;
     
-    // Variable para el observer del título de torneos anteriores
     window.tournamentsTitleObserver = null;
-    
-    // Variable para el observer del título header de torneos
     window.tournamentsHeaderTitleObserver = null;
-    
-    // Variable para el observer del título de organigrama
     window.organigramaTitleObserver = null;
-    
-    // Variables para observers de organigrama
     window.sectionTitleObservers = [];
     window.organigramaCardObserver = null;
+    window.organigramaFlashObserver = null;
     
     // ============================================
     // SECCIÓN 3: FUNCIÓN PARA ASIGNAR EVENT LISTENERS A NAVIGATION
     // ============================================
     function assignNavLinkListeners() {
-        // Seleccionar TODOS los elementos con clase nav-link
         const navLinks = document.querySelectorAll('.nav-link');
-        
         navLinks.forEach(link => {
-            // Remover event listeners previos para evitar duplicados
             link.removeEventListener('click', handleNavClick);
-            // Agregar nuevo event listener
             link.addEventListener('click', handleNavClick);
         });
-        
         console.log('Event listeners asignados a', navLinks.length, 'nav-links');
     }
     
-    // Manejador de clic para navegación
     function handleNavClick(e) {
         e.preventDefault();
         const page = e.currentTarget.dataset.page;
         
-        // Cerrar menú móvil si está abierto
         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
             mobileMenu.classList.remove('mobile-menu-enter');
@@ -359,24 +355,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('mobile-menu-enter');
             } else {
                 mobileMenu.classList.remove('mobile-menu-enter');
             }
-            
             const icon = menuBtn.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
         });
     }
     
-    // Cerrar menú móvil al hacer click fuera
     document.addEventListener('click', (e) => {
         if (mobileMenu && !mobileMenu.classList.contains('hidden') && 
-            !mobileMenu.contains(e.target) && 
-            !menuBtn.contains(e.target)) {
+            !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
             mobileMenu.classList.add('hidden');
             mobileMenu.classList.remove('mobile-menu-enter');
             const icon = menuBtn.querySelector('i');
@@ -385,7 +377,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Manejar resize
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 768 && mobileMenu) {
             if (!mobileMenu.classList.contains('hidden')) {
@@ -401,21 +392,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // SECCIÓN 5: FUNCIONES UTILITARIAS
     // ============================================
-    
-    // Limpiar intervalos
     function clearAllIntervals() {
         activeIntervals.forEach(interval => {
             clearInterval(interval);
         });
         activeIntervals = [];
-        
         if (counterLoopInterval) {
             clearInterval(counterLoopInterval);
             counterLoopInterval = null;
         }
     }
     
-    // Actualizar título de la página
     function updatePageTitle(page) {
         const titles = {
             'home': 'LKE E-SPORTS | Inicio',
@@ -428,15 +415,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = titles[page] || 'LKE E-SPORTS';
     }
     
-    // Obtener página desde el hash de la URL
     function getPageFromHash() {
-        const hash = window.location.hash.substring(1); // Remover el #
+        const hash = window.location.hash.substring(1);
         const validPages = ['home', 'team', 'tournaments', 'organigrama', 'news', 'contact'];
-        // Si no hay hash o es inválido, devolver 'home'
         return validPages.includes(hash) ? hash : 'home';
     }
     
-    // Actualizar clases de navegación activas
     function updateActiveNavLinks(page) {
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
@@ -454,40 +438,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // SECCIÓN 6: FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME
     // ============================================
     function resetHomeElements() {
-        // Resetear hero elements (nuevo estilo)
         const titleLeft = document.querySelector('.title-word-left-hero');
         const titleRight = document.querySelector('.title-word-right-hero');
         const subtitle = document.querySelector('.subtitle-hero');
         const titleLine = document.querySelector('.title-line-hero');
         
-        // Resetear título izquierdo
         if (titleLeft) {
             titleLeft.classList.remove('revealed');
             titleLeft.style.opacity = '0';
             titleLeft.style.transform = 'translateX(-30px)';
         }
-        
-        // Resetear título derecho
         if (titleRight) {
             titleRight.classList.remove('revealed');
             titleRight.style.opacity = '0';
             titleRight.style.transform = 'translateX(30px)';
         }
-        
-        // Resetear párrafo
         if (subtitle) {
             subtitle.classList.remove('revealed');
             subtitle.style.opacity = '0';
             subtitle.style.transform = 'translateY(20px)';
         }
-        
-        // Resetear línea decorativa
         if (titleLine) {
             titleLine.classList.remove('revealed');
             titleLine.style.transform = 'scaleX(0)';
         }
         
-        // Resetear botones
         const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
         buttons.forEach(btn => {
             btn.classList.remove('visible', 'animate-enter-bottom');
@@ -496,55 +471,31 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.transform = 'translateY(30px)';
         });
         
-        // Resetear stats cards - NO ELIMINAR LAS CLASES, SOLO RESETEAR LOS ESTILOS INLINE
         const statsCards = document.querySelectorAll('.stats-card');
         statsCards.forEach(card => {
-            // Remover clases de visibilidad pero mantener las clases base
             card.classList.remove('visible', 'animate-stats-card');
-            // Agregar clases de estado inicial
             card.classList.add('opacity-0', 'translate-y-[30px]');
-            // Resetear estilos inline
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
-            // Limpiar cualquier estilo inline residual
             card.style.transition = '';
         });
         
-        // Resetear los valores de los contadores a 0
         const counters = document.querySelectorAll('.counter');
         counters.forEach(counter => {
             counter.textContent = '0';
         });
         
-        // Resetear títulos de sección
-        const sectionTitles = document.querySelectorAll('h2 span.animate-from-left, h2 span.animate-from-right, p.animate-from-bottom');
-        sectionTitles.forEach(title => {
-            title.classList.add('opacity-0');
-            if (title.classList.contains('animate-from-left')) {
-                title.classList.add('translate-x-[-50px]');
-            }
-            if (title.classList.contains('animate-from-right')) {
-                title.classList.add('translate-x-[50px]');
-            }
-            if (title.classList.contains('animate-from-bottom')) {
-                title.classList.add('translate-y-[30px]');
-            }
-        });
-        
-        // Resetear news cards
         const newsCards = document.querySelectorAll('.news-card');
         newsCards.forEach(card => {
             card.classList.add('opacity-0', 'translate-y-[30px]');
         });
         
-        // Resetear título de noticias
         resetNewsTitleElements();
-        
         console.log('Elementos del home reseteados');
     }
     
     // ============================================
-    // SECCIÓN 6.5: FUNCIONES PARA EL TÍTULO DE NOTICIAS CON SCROLL REVEAL
+    // SECCIÓN 6.5: FUNCIONES PARA EL TÍTULO DE NOTICIAS
     // ============================================
     function resetNewsTitleElements() {
         const titleLeft = document.querySelector('.title-word-left-news');
@@ -599,7 +550,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const newsSection = document.getElementById('news-section');
-        
         if (!newsSection) {
             setTimeout(initNewsTitleScrollReveal, 500);
             return;
@@ -607,11 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resetNewsTitleElements();
         
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
         const observerCallback = (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -625,11 +571,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newsTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
         newsTitleObserver.observe(newsSection);
         
-        const titleContainer = document.querySelector('.title-word-left-news')?.closest('.text-center');
-        if (titleContainer) {
-            newsTitleObserver.observe(titleContainer);
-        }
-        
         setTimeout(() => {
             if (newsSection && isElementInViewport(newsSection, 100)) {
                 revealNewsTitleElements();
@@ -640,7 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6.6: NUEVA FUNCIÓN PARA EL TÍTULO DEL HERO ESTILO TORNEOS
+    // SECCIÓN 6.6: FUNCIÓN PARA EL TÍTULO DEL HERO
     // ============================================
     function resetHeroTitleElements() {
         const titleLeft = document.querySelector('.title-word-left-hero');
@@ -695,7 +636,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const heroSection = document.getElementById('home-hero-section');
-        
         if (!heroSection) {
             setTimeout(initHeroTitleScrollReveal, 500);
             return;
@@ -703,11 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resetHeroTitleElements();
         
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
         const observerCallback = (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -721,27 +657,20 @@ document.addEventListener('DOMContentLoaded', () => {
         heroTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
         heroTitleObserver.observe(heroSection);
         
-        const titleContainer = document.querySelector('.title-word-left-hero')?.closest('.text-center');
-        if (titleContainer) {
-            heroTitleObserver.observe(titleContainer);
-        }
-        
         setTimeout(() => {
             if (heroSection && isElementInViewport(heroSection, 100)) {
                 revealHeroTitleElements();
             }
         }, 300);
         
-        console.log('Scroll reveal para título del hero (estilo torneos) inicializado');
+        console.log('Scroll reveal para título del hero inicializado');
     }
     
     // ============================================
     // SECCIÓN 6.7: EFECTOS MEJORADOS PARA NOTICIAS
     // ============================================
-    
     function initParticleEffectOnNewsCards() {
         const newsCards = document.querySelectorAll('.news-card-enhanced');
-        
         newsCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -751,13 +680,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.setProperty('--y', `${y}%`);
             });
         });
-        
         console.log('Efecto de partículas inicializado en', newsCards.length, 'tarjetas');
     }
     
     function initDataBlastEffect() {
         const newsLinks = document.querySelectorAll('.news-card-enhanced .nav-link');
-        
         newsLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const arrowIcon = link.querySelector('.news-arrow-icon');
@@ -773,17 +700,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        
         console.log('Efecto Data Blast inicializado en', newsLinks.length, 'enlaces');
     }
     
     // ============================================
     // SECCIÓN 6.8: EFECTOS MEJORADOS PARA TORNEOS
     // ============================================
-    
     function initTournamentCameraFlash() {
         const tournamentCards = document.querySelectorAll('.tournament-card-enhanced');
-        
         tournamentCards.forEach((card, index) => {
             const flashElement = card.querySelector('.camera-flash');
             if (flashElement) {
@@ -797,13 +721,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, index * 200);
             }
         });
-        
         console.log('Efecto cámara flash inicializado en', tournamentCards.length, 'tarjetas de torneos');
     }
     
     function initTournamentParticleEffect() {
         const tournamentCards = document.querySelectorAll('.tournament-card-enhanced');
-        
         tournamentCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -813,13 +735,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.setProperty('--y', `${y}%`);
             });
         });
-        
         console.log('Efecto de partículas inicializado en', tournamentCards.length, 'tarjetas de torneos');
     }
     
     function initTournamentDataBlast() {
         const tournamentLinks = document.querySelectorAll('.tournament-card-enhanced .nav-link');
-        
         tournamentLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const arrowIcon = link.querySelector('.tournament-arrow-icon');
@@ -835,7 +755,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        
         console.log('Efecto Data Blast inicializado en', tournamentLinks.length, 'enlaces de torneos');
     }
     
@@ -848,7 +767,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // SECCIÓN 6.9: FUNCIONES PARA EL TÍTULO DE TORNEOS ANTERIORES
     // ============================================
-    
     function resetTournamentsTitleElements() {
         const titleLeft = document.querySelector('.title-word-left-tournaments');
         const titleRight = document.querySelector('.title-word-right-tournaments');
@@ -902,7 +820,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const tournamentsPastSection = document.getElementById('tournaments-past-section');
-        
         if (!tournamentsPastSection) {
             setTimeout(initTournamentsTitleScrollReveal, 500);
             return;
@@ -910,11 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resetTournamentsTitleElements();
         
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
         const observerCallback = (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -940,7 +853,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // SECCIÓN 6.10: FUNCIONES PARA EL TÍTULO HEADER DE TORNEOS
     // ============================================
-    
     function resetTournamentsHeaderTitleElements() {
         const titleLeft = document.querySelector('.title-word-left-tournaments-header');
         const titleRight = document.querySelector('.title-word-right-tournaments-header');
@@ -994,7 +906,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const tournamentsHeaderSection = document.getElementById('tournaments-header-section');
-        
         if (!tournamentsHeaderSection) {
             setTimeout(initTournamentsHeaderTitleScrollReveal, 500);
             return;
@@ -1002,11 +913,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resetTournamentsHeaderTitleElements();
         
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
         const observerCallback = (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1030,9 +937,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 6.11: FUNCIONES PARA EL TÍTULO DE ORGANIGRAMA CON SCROLL REVEAL
+    // SECCIÓN 6.11: FUNCIONES PARA EL TÍTULO DE ORGANIGRAMA
     // ============================================
-    
     function resetOrganigramaTitleElements() {
         const titleLeft = document.querySelector('.title-word-left-organigrama');
         const titleRight = document.querySelector('.title-word-right-organigrama');
@@ -1086,7 +992,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const organigramaHeaderSection = document.getElementById('organigrama-header-section');
-        
         if (!organigramaHeaderSection) {
             setTimeout(initOrganigramaTitleScrollReveal, 500);
             return;
@@ -1094,11 +999,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resetOrganigramaTitleElements();
         
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
         const observerCallback = (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1124,15 +1025,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // SECCIÓN 6.12: FUNCIONES PARA LOS TÍTULOS DE SECCIÓN DEL ORGANIGRAMA
     // ============================================
-    
     function initOrganigramaSectionTitlesScrollReveal() {
-        // Limpiar observers anteriores
         if (window.sectionTitleObservers) {
             window.sectionTitleObservers.forEach(observer => observer.disconnect());
             window.sectionTitleObservers = [];
         }
         
-        // Lista de todas las secciones con sus respectivos elementos de título
         const sections = [
             { id: 'ceo-section', leftClass: '.section-title-left-ceo', rightClass: '.section-title-right-ceo', lineClass: '.section-title-line-ceo' },
             { id: 'asistentes-section', leftClass: '.section-title-left-asistentes', rightClass: '.section-title-right-asistentes', lineClass: '.section-title-line-asistentes' },
@@ -1153,7 +1051,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!leftElement && !rightElement && !lineElement) return;
             
-            // Resetear elementos
             if (leftElement) {
                 leftElement.classList.remove('revealed');
                 leftElement.style.opacity = '0';
@@ -1169,16 +1066,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 lineElement.style.transform = 'scaleX(0)';
             }
             
-            // Configurar observer
-            const observerOptions = {
-                threshold: 0.3,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
+            const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
             const observerCallback = (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Revelar los elementos
                         if (leftElement && !leftElement.classList.contains('revealed')) {
                             leftElement.classList.add('revealed');
                         }
@@ -1189,7 +1080,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             lineElement.classList.add('revealed');
                         }
                     } else {
-                        // Resetear cuando sale del viewport
                         if (leftElement) {
                             leftElement.classList.remove('revealed');
                             leftElement.style.opacity = '0';
@@ -1210,7 +1100,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const observer = new IntersectionObserver(observerCallback, observerOptions);
             observer.observe(sectionElement);
-            
             window.sectionTitleObservers.push(observer);
         });
         
@@ -1222,7 +1111,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     function applyNeonEffectToStatsCards() {
         const allStatsCards = document.querySelectorAll('.stats-card');
-        
         allStatsCards.forEach((card, index) => {
             setTimeout(() => {
                 card.classList.add('neon-border');
@@ -1231,7 +1119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1000);
             }, index * 150);
         });
-        
         console.log('Efecto neon aplicado a', allStatsCards.length, 'stats cards');
     }
     
@@ -1240,14 +1127,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     function unifyStatsCardsHover() {
         const statsCards = document.querySelectorAll('.stats-card');
-        
         statsCards.forEach(card => {
             card.removeEventListener('mouseenter', handleStatsCardHover);
             card.removeEventListener('mouseleave', handleStatsCardLeave);
             card.addEventListener('mouseenter', handleStatsCardHover);
             card.addEventListener('mouseleave', handleStatsCardLeave);
         });
-        
         console.log('Hover unificado aplicado a', statsCards.length, 'stats cards');
     }
     
@@ -1291,7 +1176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 9: SISTEMA DE CONTADORES MEJORADO CON EVENTO PERSONALIZADO
+    // SECCIÓN 9: SISTEMA DE CONTADORES MEJORADO
     // ============================================
     class CounterManager {
         constructor() {
@@ -1327,13 +1212,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return this.counters.length > 0;
         }
         
-        // Función para activar el glitch directamente
         triggerGlitchEffect() {
-            // Llamar a la función global para activar el glitch
             if (typeof window.triggerCompetitivoGlitch === 'function') {
                 window.triggerCompetitivoGlitch();
             } else {
-                // Fallback: intentar encontrar y activar directamente
                 let competitivoWord = document.getElementById('competitivo-word');
                 if (!competitivoWord) {
                     const possibleElements = document.querySelectorAll('.hero-title-line2');
@@ -1361,7 +1243,6 @@ document.addEventListener('DOMContentLoaded', () => {
         async animateAll(force = false) {
             this.stop();
             
-            // Si no hay contadores, intentar inicializar nuevamente
             if (this.counters.length === 0) {
                 const hasCounters = this.init();
                 if (!hasCounters) {
@@ -1384,10 +1265,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            // ACTIVAR GLITCH CADA VEZ QUE COMIENZA LA ANIMACIÓN DE CONTADORES
             this.triggerGlitchEffect();
             
-            // Resetear todos los contadores a 0
             this.counters.forEach(counter => {
                 counter.currentValue = 0;
                 counter.element.textContent = '0';
@@ -1514,17 +1393,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         startLoop(intervalTime = 30000) {
-            // Detener loop anterior si existe
             if (this.countdownInterval) {
                 clearInterval(this.countdownInterval);
                 this.countdownInterval = null;
             }
             
-            // Iniciar nueva animación
             this.resetAllCounters();
             this.animateAll(true);
             
-            // Configurar nuevo intervalo
             this.countdownInterval = setInterval(() => {
                 console.log('Ciclo de 30 segundos: reiniciando contadores');
                 this.resetAllCounters();
@@ -1552,10 +1428,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const animatedElements = document.querySelectorAll(
-            '.stats-card, .news-card, .tournament-card-enhanced, .staff-card, ' +
+            '.stats-card, .news-card, .tournament-card-enhanced, .staff-card-enhanced, ' +
             '.animate-from-left, .animate-from-right, .animate-from-bottom, ' +
-            '.glow-text, h1 span, p, ' +
-            'h2 span.animate-from-left, h2 span.animate-from-right'
+            '.glow-text, h1 span, p'
         );
         
         console.log('Elementos a observar:', animatedElements.length);
@@ -1570,7 +1445,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const el = entry.target;
                 
                 if (entry.isIntersecting) {
-                    // No resetear los elementos que ya fueron animados en el inicio
                     if (!el.classList.contains('animate-from-left') && 
                         !el.classList.contains('animate-from-right') && 
                         !el.classList.contains('animate-from-bottom')) {
@@ -1590,7 +1464,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                     
-                    if (el.classList.contains('staff-card') && !el.classList.contains('revealed')) {
+                    if (el.classList.contains('staff-card-enhanced') && !el.classList.contains('revealed')) {
                         setTimeout(() => {
                             el.classList.add('revealed');
                             const flashElement = el.querySelector('.camera-flash');
@@ -1631,7 +1505,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         el.classList.contains('animate-from-right') || 
                         el.classList.contains('animate-from-bottom')) {
                         
-                        // Solo animar si no está ya visible
                         if (!el.classList.contains('visible')) {
                             el.style.animation = 'none';
                             el.offsetHeight;
@@ -1649,14 +1522,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     
                 } else {
-                    // Solo resetear elementos que no son del hero principal
                     if (!el.classList.contains('animate-from-left') && 
                         !el.classList.contains('animate-from-right') && 
                         !el.classList.contains('animate-from-bottom')) {
                         if (el.classList.contains('stats-card') ||
                             el.classList.contains('news-card') ||
                             el.classList.contains('tournament-card-enhanced') ||
-                            el.classList.contains('staff-card')) {
+                            el.classList.contains('staff-card-enhanced')) {
                             
                             el.style.animation = '';
                             el.classList.remove('visible');
@@ -1713,13 +1585,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 900);
         
-        const newsCards = document.querySelectorAll('.news-card');
-        newsCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'all 0.3s ease';
-            });
-        });
-        
         function revealCardsOnScroll() {
             const revealCards = document.querySelectorAll('.scroll-reveal-card');
             
@@ -1748,7 +1613,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         setTimeout(revealCardsOnScroll, 500);
-        
         window.addEventListener('load', function() {
             setTimeout(revealCardsOnScroll, 300);
         });
@@ -1802,7 +1666,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.organigramaTitleObserver = null;
         }
         
-        // Limpiar observers de organigrama
         if (window.sectionTitleObservers) {
             window.sectionTitleObservers.forEach(observer => observer.disconnect());
             window.sectionTitleObservers = [];
@@ -1813,7 +1676,11 @@ document.addEventListener('DOMContentLoaded', () => {
             window.organigramaCardObserver = null;
         }
         
-        // Limpiar observer de flash en noticias
+        if (window.organigramaFlashObserver) {
+            window.organigramaFlashObserver.disconnect();
+            window.organigramaFlashObserver = null;
+        }
+        
         cleanupNewsCardsFlashObserver();
         
         content.style.opacity = '0';
@@ -1837,16 +1704,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         initEnhancedScrollReveal();
                         initTitleEffects();
                         initNewsTitleScrollReveal();
-                        initHeroTitleScrollReveal(); // NUEVO: Inicializar scroll reveal del título hero
+                        initHeroTitleScrollReveal();
                         unifyStatsCardsHover();
                         initParticleEffectOnNewsCards();
                         initDataBlastEffect();
-                        // NUEVO: Inicializar efecto flash al hacer scroll en tarjetas de noticias
                         initNewsCardsFlashOnScroll();
                         
-                        // RE-ANIMAR LOS TÍTULOS Y CONTADORES DESPUÉS DE CARGAR EL HOME
                         setTimeout(() => {
-                            // Forzar animación del título principal (nuevo estilo)
                             const titleLeft = document.querySelector('.title-word-left-hero');
                             const titleRight = document.querySelector('.title-word-right-hero');
                             const subtitle = document.querySelector('.subtitle-hero');
@@ -1881,7 +1745,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }, 600);
                             }
                             
-                            // Animar botones
                             const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
                             setTimeout(() => {
                                 buttons.forEach((btn, index) => {
@@ -1894,7 +1757,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                             }, 800);
                             
-                            // Animar stats cards
                             const statsCards = document.querySelectorAll('.stats-card');
                             statsCards.forEach((card, index) => {
                                 setTimeout(() => {
@@ -1902,8 +1764,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     card.classList.add('visible');
                                     card.style.opacity = '1';
                                     card.style.transform = 'translateY(0)';
-                                    
-                                    // Aplicar efecto neon
                                     card.classList.add('neon-border');
                                     setTimeout(() => {
                                         card.classList.remove('neon-border');
@@ -1913,20 +1773,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             applyNeonEffectToStatsCards();
                             
-                            // Usar CounterManager existente o crear uno nuevo
                             if (!window.counterManager) {
                                 window.counterManager = new CounterManager();
                             }
                             window.counterManager.init();
                             window.counterManager.resetAllCounters();
                             
-                            // Configurar loop si no está activo
                             if (!window.counterManager.countdownInterval) {
                                 const loopInterval = isTouchDevice ? 45000 : 30000;
                                 window.counterManager.startLoop(loopInterval);
                             }
                             
-                            // ANIMAR UNA SOLA VEZ DESPUÉS DE CARGAR
                             setTimeout(() => {
                                 if (window.counterManager) {
                                     window.counterManager.animateAll(true);
@@ -1941,6 +1798,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         initEnhancedScrollReveal();
                         initOrganigramaTitleScrollReveal();
                         initOrganigramaSectionTitlesScrollReveal();
+                        initOrganigramaParticleEffect();
+                        initOrganigramaCardsFlashOnScroll();
                     }, 100);
                 } else {
                     initializePageScripts(page);
@@ -1948,10 +1807,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 updateActiveNavLinks(page);
-                
-                // ACTUALIZAR EL HASH EN LA URL
                 window.location.hash = page;
-                
                 updatePageTitle(page);
                 
                 window.scrollTo({
@@ -2009,19 +1865,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function initHomePage() {
         console.log('Home page initialized');
         
-        // Usar el CounterManager global existente en lugar de crear uno nuevo
         if (!window.counterManager) {
             window.counterManager = new CounterManager();
         }
         window.counterManager.init();
         
         const loopInterval = isTouchDevice ? 45000 : 30000;
-        // Solo iniciar el loop si no está activo
         if (!window.counterManager.countdownInterval) {
             window.counterManager.startLoop(loopInterval);
         }
         
-        // ANIMAR UNA SOLA VEZ AL CARGAR HOME
         setTimeout(() => {
             if (window.counterManager) {
                 window.counterManager.animateAll(true);
@@ -2029,9 +1882,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
         
         return () => {
-            // No destruir aquí, solo detener si es necesario
             if (window.counterManager) {
-                // No destruimos completamente para mantener el estado
                 window.counterManager.stop();
             }
         };
@@ -2204,11 +2055,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        if (!countdownElement.parentNode) {
-            console.log('Elemento .countdown no está en el DOM');
-            return;
-        }
-        
         const targetDate = new Date('2026-03-23T22:00:00-04:00');
         
         if (isNaN(targetDate.getTime())) {
@@ -2285,19 +2131,15 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Countdown iniciado correctamente');
     }
     
-    // ==================== ORGANIGRAMA ====================
+    // ==================== ORGANIGRAMA (ACTUALIZADO) ====================
     function initOrganigramaPage() {
         console.log('Organigrama page initialized');
         
-        // Inicializar scroll reveal para el título principal de organigrama
         initOrganigramaTitleScrollReveal();
-        
-        // Inicializar scroll reveal para los títulos de sección
         initOrganigramaSectionTitlesScrollReveal();
         
-        const staffCards = document.querySelectorAll('.staff-card');
+        const staffCards = document.querySelectorAll('.staff-card-enhanced');
         
-        // Configurar observer para las fichas (scroll reveal como en Últimas Noticias)
         const observerOptions = {
             threshold: 0.2,
             rootMargin: '0px 0px -30px 0px'
@@ -2329,16 +2171,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         window.organigramaCardObserver = new IntersectionObserver(revealCallback, observerOptions);
         
-        // Agregar clase scroll-reveal-card y configurar eventos
         staffCards.forEach((card, index) => {
             card.classList.add('scroll-reveal-card');
             card.style.opacity = '0';
             card.style.transform = 'translateY(40px)';
-            
-            // Observar la tarjeta
             window.organigramaCardObserver.observe(card);
             
-            // Verificar si ya está visible al cargar
             if (isElementInViewport(card, 120)) {
                 setTimeout(() => {
                     card.classList.add('revealed');
@@ -2352,10 +2190,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, index * 100);
             }
             
-            // Eventos hover (sin inclinación - solo zoom centrado)
+            // Eventos hover
             card.addEventListener('mouseenter', () => {
                 card.classList.add('shadow-2xl', 'shadow-cyan-500/20');
-                card.style.transform = 'scale(1.03) translateY(-5px)';
+                card.style.transform = 'translateY(-5px) scale(1.02)';
                 
                 const icon = card.querySelector('.rounded-full');
                 if (icon) {
@@ -2363,25 +2201,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     icon.style.transition = 'all 0.3s ease';
                 }
                 
-                const ceoImage = card.querySelector('img');
-                if (ceoImage) {
-                    ceoImage.style.transform = 'scale(1.1)';
-                    ceoImage.style.transition = 'all 0.3s ease';
+                const image = card.querySelector('img');
+                if (image) {
+                    image.style.transform = 'scale(1.1)';
+                    image.style.transition = 'all 0.3s ease';
                 }
             });
             
             card.addEventListener('mouseleave', () => {
                 card.classList.remove('shadow-2xl', 'shadow-cyan-500/20');
-                card.style.transform = 'scale(1) translateY(0)';
+                card.style.transform = 'translateY(0) scale(1)';
                 
                 const icon = card.querySelector('.rounded-full');
                 if (icon) {
                     icon.style.transform = 'scale(1)';
                 }
                 
-                const ceoImage = card.querySelector('img');
-                if (ceoImage) {
-                    ceoImage.style.transform = 'scale(1)';
+                const image = card.querySelector('img');
+                if (image) {
+                    image.style.transform = 'scale(1)';
                 }
             });
         });
@@ -2390,14 +2228,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const roleBadges = document.querySelectorAll('.role-badge');
         roleBadges.forEach(badge => {
             badge.addEventListener('mouseenter', () => {
-                badge.style.transform = 'scale(1.1)';
-                badge.style.backgroundColor = 'rgba(6, 182, 212, 0.3)';
+                badge.style.transform = 'scale(1.05)';
                 badge.style.transition = 'all 0.2s ease';
             });
             
             badge.addEventListener('mouseleave', () => {
                 badge.style.transform = 'scale(1)';
-                badge.style.backgroundColor = 'transparent';
             });
         });
         
@@ -2472,7 +2308,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 13: FUNCIÓN AUXILIAR IS ELEMENT IN VIEWPORT
+    // SECCIÓN 13: FUNCIÓN AUXILIAR
     // ============================================
     function isElementInViewport(el, offset = 100) {
         const rect = el.getBoundingClientRect();
@@ -2481,29 +2317,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 14: EXPONER FUNCIÓN GLOBAL PARA GLITCH
+    // SECCIÓN 14: EXPONER FUNCIÓN GLOBAL
     // ============================================
     window.triggerCompetitivoGlitch = triggerCompetitivoGlitch;
     
     // ============================================
-    // SECCIÓN 15: INICIALIZACIÓN Y EVENTOS GLOBALES
+    // SECCIÓN 15: INICIALIZACIÓN
     // ============================================
-    
     assignNavLinkListeners();
     
-    // Manejar cambios en el hash (para botones atrás/adelante)
     window.addEventListener('hashchange', () => {
         const page = getPageFromHash();
         navigateTo(page);
     });
     
-    // Cargar página inicial desde el hash
     const initialPage = getPageFromHash();
     navigateTo(initialPage);
 });
 
 // ============================================
-// SECCIÓN 16: SPLASH SCREEN - ACTUALIZACIÓN DE MARCADORES
+// SECCIÓN 16: SPLASH SCREEN
 // ============================================
 function initSplashProgress() {
     const progressFill = document.getElementById('progressFill');
@@ -2564,6 +2397,10 @@ window.addEventListener('beforeunload', () => {
     if (window.organigramaCardObserver) {
         window.organigramaCardObserver.disconnect();
         window.organigramaCardObserver = null;
+    }
+    if (window.organigramaFlashObserver) {
+        window.organigramaFlashObserver.disconnect();
+        window.organigramaFlashObserver = null;
     }
     if (window.sectionTitleObservers) {
         window.sectionTitleObservers.forEach(observer => observer.disconnect());

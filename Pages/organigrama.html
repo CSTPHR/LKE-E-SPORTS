@@ -20,36 +20,47 @@
         <!-- Título de sección con efecto animado -->
         <div class="text-center mb-8 md:mb-12 section-title-container">
             <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
-                <div class="section-title-left-ceo opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                <div class="section-title-left-ceo">
                     <span class="text-white font-black text-2xl md:text-3xl">FUNDADOR &</span>
                 </div>
-                <div class="section-title-right-ceo opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                <div class="section-title-right-ceo">
                     <span class="text-cyan-400 glow-text font-black text-2xl md:text-3xl">CEO</span>
                 </div>
             </div>
-            <div class="section-title-line-ceo w-20 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-3 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+            <div class="section-title-line-ceo w-20 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-3 rounded-full"></div>
         </div>
         
         <div class="max-w-md mx-auto">
-            <div class="staff-card scroll-reveal-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center opacity-0 translate-y-[40px]">
-                <div class="relative w-32 h-32 md:w-36 md:h-36 mx-auto mb-4">
-                    <div class="w-full h-full rounded-full overflow-hidden border-4 border-cyan-500/50 group-hover:border-cyan-400 transition-all duration-500">
-                        <img src="img/organigrama/wezo.png" alt="WEZOPLAY - Fundador y CEO de LKE E-SPORTS" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+            <div class="staff-card-enhanced scroll-reveal-card relative rounded-2xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center opacity-0 translate-y-[40px]">
+                <!-- Fondo con gradiente dinámico -->
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                
+                <!-- Efecto de reflejo de luz (scanline) -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
+                
+                <!-- Contenido principal -->
+                <div class="relative z-10 p-6 md:p-8">
+                    <div class="relative w-32 h-32 md:w-36 md:h-36 mx-auto mb-4">
+                        <div class="w-full h-full rounded-full overflow-hidden border-4 border-cyan-500/50 group-hover:border-cyan-400 transition-all duration-500">
+                            <img src="img/organigrama/wezo.png" alt="WEZOPLAY - Fundador y CEO de LKE E-SPORTS" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
                         </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-3 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">WEZOPLAY</h3>
+                    <!-- Fundador & CEO - primera línea -->
+                    <p class="text-cyan-400 text-center mb-2 text-base md:text-lg font-semibold">Fundador & CEO</p>
+                    <!-- Coach & Analista - segunda línea -->
+                    <p class="text-purple-400 text-center text-sm md:text-base">Coach & Analista</p>
+                    <!-- Iconos de redes sociales -->
+                    <div class="flex justify-center space-x-4 mt-4">
+                        <a href="https://www.tiktok.com/@wezoplay" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-xl md:text-2xl"></i></a>
+                        <a href="https://www.instagram.com/wezoplay" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-xl md:text-2xl"></i></a>
                     </div>
                 </div>
-                <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-2 group-hover:text-cyan-400 transition-colors duration-300">WEZOPLAY</h3>
-                <p class="text-cyan-400 text-center mb-4 role-badge text-base md:text-lg" data-role="Fundador y CEO">Fundador & CEO</p>
-                <p class="text-purple-400 text-center text-sm md:text-base role-badge mb-4" data-role="Coach & Analista">Coach & Analista</p>
-                <div class="flex justify-center space-x-4 mt-2">
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-xl md:text-2xl"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-xl md:text-2xl"></i></a>
-                </div>
-                <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-                    <div class="data-stream opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                </div>
+                
+                <!-- Efecto de destello (cámara flash) -->
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
         </div>
@@ -61,49 +72,59 @@
         <div class="organigrama-section" id="asistentes-section">
             <div class="text-center mb-6 md:mb-8 section-title-container">
                 <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
-                    <div class="section-title-left-asistentes opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <div class="section-title-left-asistentes">
                         <span class="text-white font-black text-xl md:text-2xl">ASISTENTES</span>
                     </div>
-                    <div class="section-title-right-asistentes opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <div class="section-title-right-asistentes">
                         <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">EJECUTIVAS</span>
                     </div>
                 </div>
-                <div class="section-title-line-asistentes w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+                <div class="section-title-line-asistentes w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 <!-- Andrea -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/andrea.png" alt="Andrea - Asistente Ejecutiva" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-5 md:p-6 text-center">
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/andrea.png" alt="Andrea - Asistente Ejecutiva" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Andrea</h3>
+                        <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
+                        <div class="flex justify-center space-x-3 mt-1">
+                            <a href="https://www.tiktok.com/@andreaseco08" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                            <a href="https://www.instagram.com/andrea.seco08" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Andrea</h3>
-                    <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
-                    <div class="flex justify-center space-x-3 mt-1">
-                        <a href="https://www.tiktok.com/@andreaseco08" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                        <a href="https://www.instagram.com/andrea.seco08" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Mafy -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/mafy.png" alt="Mafy - Asistente Ejecutiva" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-5 md:p-6 text-center">
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/mafy.png" alt="Mafy - Asistente Ejecutiva" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Mafy</h3>
+                        <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
+                        <div class="flex justify-center space-x-3 mt-1">
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Mafy</h3>
-                    <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Asistente Ejecutiva">Asistente Ejecutiva</p>
-                    <div class="flex justify-center space-x-3 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
@@ -113,49 +134,59 @@
         <div class="organigrama-section" id="directoras-section">
             <div class="text-center mb-6 md:mb-8 section-title-container">
                 <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
-                    <div class="section-title-left-directoras opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <div class="section-title-left-directoras">
                         <span class="text-white font-black text-xl md:text-2xl">DIRECTORAS DE</span>
                     </div>
-                    <div class="section-title-right-directoras opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <div class="section-title-right-directoras">
                         <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">OPERACIONES</span>
                     </div>
                 </div>
-                <div class="section-title-line-directoras w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+                <div class="section-title-line-directoras w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 <!-- Paola -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/paola.png" alt="Paola - Directora de Operaciones" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-5 md:p-6 text-center">
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/paola.jpg" alt="Paola - Directora de Operaciones" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Paola</h3>
+                        <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Directora de Operaciones">Directora de Operaciones</p>
+                        <div class="flex justify-center space-x-3 mt-1">
+                            <a href="https://www.tiktok.com/@paolavillsmil_" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                            <a href="https://www.instagram.com/paolavillsmil" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Paola</h3>
-                    <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Directora de Operaciones">Directora de Operaciones</p>
-                    <div class="flex justify-center space-x-3 mt-1">
-                        <a href="https://www.tiktok.com/@paolavillsmil_" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                        <a href="https://www.instagram.com/paolavillsmil" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Priss -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/priss.png" alt="Priss - Directora de Operaciones" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-5 md:p-6 text-center">
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/priss.png" alt="Priss - Directora de Operaciones" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Priss</h3>
+                        <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Directora de Operaciones">Directora de Operaciones</p>
+                        <div class="flex justify-center space-x-3 mt-1">
+                            <a href="https://www.tiktok.com/@priscilaagod" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                            <a href="https://www.instagram.com/priscilaagod" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Priss</h3>
-                    <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Directora de Operaciones">Directora de Operaciones</p>
-                    <div class="flex justify-center space-x-3 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
@@ -168,67 +199,82 @@
         <div class="organigrama-section mb-10 md:mb-12" id="coaches-section">
             <div class="text-center mb-6 md:mb-8 section-title-container">
                 <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
-                    <div class="section-title-left-coaches opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <div class="section-title-left-coaches">
                         <span class="text-white font-black text-xl md:text-2xl">COACHES &</span>
                     </div>
-                    <div class="section-title-right-coaches opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <div class="section-title-right-coaches">
                         <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">ANALISTAS</span>
                     </div>
                 </div>
-                <div class="section-title-line-coaches w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+                <div class="section-title-line-coaches w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <!-- Jimenez -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/jimenez.png" alt="Jimenez - Coach / Analista" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-5 md:p-6 text-center">
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/jimenez.png" alt="Jimenez - Coach / Analista" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Jimenez</h3>
+                        <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Coach / Analista">Coach / Analista</p>
+                        <div class="flex justify-center space-x-3 mt-1">
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Jimenez</h3>
-                    <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Coach / Analista">Coach / Analista</p>
-                    <div class="flex justify-center space-x-3 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- P57 -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/p57.png" alt="P57 - Coach / Analista" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-5 md:p-6 text-center">
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/p57.jpg" alt="P57 - Coach / Analista" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">P57</h3>
+                        <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Coach / Analista">Coach / Analista</p>
+                        <div class="flex justify-center space-x-3 mt-1">
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">P57</h3>
-                    <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Coach / Analista">Coach / Analista</p>
-                    <div class="flex justify-center space-x-3 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Anubis -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/anubis.png" alt="Anubis - Coach / Analista" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-5 md:p-6 text-center">
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/anubis.png" alt="Anubis - Coach / Analista" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Anubis</h3>
+                        <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Coach / Analista">Coach / Analista</p>
+                        <div class="flex justify-center space-x-3 mt-1">
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Anubis</h3>
-                    <p class="text-cyan-400 text-xs md:text-sm role-badge mb-3" data-role="Coach / Analista">Coach / Analista</p>
-                    <div class="flex justify-center space-x-3 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
@@ -238,85 +284,105 @@
         <div class="organigrama-section" id="managers-section">
             <div class="text-center mb-6 md:mb-8 section-title-container">
                 <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
-                    <div class="section-title-left-managers opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <div class="section-title-left-managers">
                         <span class="text-white font-black text-xl md:text-2xl">MANAGERS</span>
                     </div>
-                    <div class="section-title-right-managers opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <div class="section-title-right-managers">
                         <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">POR EQUIPO</span>
                     </div>
                 </div>
-                <div class="section-title-line-managers w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+                <div class="section-title-line-managers w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                 <!-- Paola (Manager) -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/paola.png" alt="Paola - Manager LKE E-SPORTS" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-3 md:p-4 text-center">
+                        <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/paola.jpg" alt="Paola - Manager LKE E-SPORTS" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Paola</h3>
+                        <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager LKE">LKE E-SPORTS</p>
+                        <div class="flex justify-center space-x-2 mt-1">
+                            <a href="https://www.tiktok.com/@paolavillsmil_" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                            <a href="https://www.instagram.com/paolavillsmil" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Paola</h3>
-                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager LKE">LKE E-SPORTS</p>
-                    <div class="flex justify-center space-x-2 mt-1">
-                        <a href="https://www.tiktok.com/@paolavillsmil_" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                        <a href="https://www.instagram.com/paolavillsmil" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Mafy (Manager Legacy) -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/mafy-manager.png" alt="Mafy - Manager LKE Legacy" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-3 md:p-4 text-center">
+                        <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/mafy.png" alt="Mafy - Manager LKE Legacy" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Mafy</h3>
+                        <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager Legacy">LKE Legacy</p>
+                        <div class="flex justify-center space-x-2 mt-1">
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                            <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Mafy</h3>
-                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager Legacy">LKE Legacy</p>
-                    <div class="flex justify-center space-x-2 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Priss (Manager NOVA) -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/priss-manager.png" alt="Priss - Manager LKE NOVA" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-3 md:p-4 text-center">
+                        <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/priss.png" alt="Priss - Manager LKE NOVA" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Priss</h3>
+                        <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager NOVA">LKE NOVA</p>
+                        <div class="flex justify-center space-x-2 mt-1">
+                            <a href="https://www.tiktok.com/@priscilaagod" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                            <a href="https://www.instagram.com/priscilaagod" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Priss</h3>
-                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager NOVA">LKE NOVA</p>
-                    <div class="flex justify-center space-x-2 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
                 
                 <!-- Kloux -->
-                <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                            <img src="img/organigrama/kloux.png" alt="Kloux - Manager LKE Secret" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                    </div>
+                    <div class="relative z-10 p-3 md:p-4 text-center">
+                        <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                                <img src="img/organigrama/kloux.png" alt="Kloux - Manager LKE Secret" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                         </div>
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                        <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Kloux</h3>
+                        <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager Secret">LKE Secret</p>
+                        <div class="flex justify-center space-x-2 mt-1">
+                            <a href="https://www.tiktok.com/@klouxcodm" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                            <a href="https://www.instagram.com/lf_medina18" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                        </div>
                     </div>
-                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Kloux</h3>
-                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Manager Secret">LKE Secret</p>
-                    <div class="flex justify-center space-x-2 mt-1">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                     <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
                 </div>
             </div>
@@ -327,30 +393,35 @@
     <div class="organigrama-section mb-12 md:mb-16" id="audiovisual-section">
         <div class="text-center mb-6 md:mb-8 section-title-container">
             <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
-                <div class="section-title-left-audiovisual opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                <div class="section-title-left-audiovisual">
                     <span class="text-white font-black text-xl md:text-2xl">DIRECCIÓN</span>
                 </div>
-                <div class="section-title-right-audiovisual opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                <div class="section-title-right-audiovisual">
                     <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">AUDIOVISUAL</span>
                 </div>
             </div>
-            <div class="section-title-line-audiovisual w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+            <div class="section-title-line-audiovisual w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
         </div>
         <div class="max-w-sm mx-auto">
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-5 md:p-6 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                <div class="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-3 md:mb-4">
-                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                        <img src="img/organigrama/hxpe.png" alt="Hxpe - Director Audiovisual" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+            <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 cursor-pointer group min-h-[280px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
+                <div class="relative z-10 p-5 md:p-6 text-center">
+                    <div class="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-3 md:mb-4">
+                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                            <img src="img/organigrama/hxpe.png" alt="Hxpe - Director Audiovisual" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Hxpe</h3>
+                    <p class="text-cyan-400 text-sm md:text-base role-badge mb-3" data-role="Director Audiovisual">Director Audiovisual</p>
+                    <div class="flex justify-center space-x-3 mt-1">
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+                    </div>
                 </div>
-                <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Hxpe</h3>
-                <p class="text-cyan-400 text-sm md:text-base role-badge mb-3" data-role="Director Audiovisual">Director Audiovisual</p>
-                <div class="flex justify-center space-x-3 mt-1">
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-lg md:text-xl"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
-                </div>
-                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
         </div>
@@ -360,113 +431,163 @@
     <div class="organigrama-section" id="creadores-section">
         <div class="text-center mb-6 md:mb-8 section-title-container">
             <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
-                <div class="section-title-left-creadores opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                <div class="section-title-left-creadores">
                     <span class="text-white font-black text-xl md:text-2xl">CREADORES DE</span>
                 </div>
-                <div class="section-title-right-creadores opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                <div class="section-title-right-creadores">
                     <span class="text-cyan-400 glow-text font-black text-xl md:text-2xl">CONTENIDO</span>
                 </div>
             </div>
-            <div class="section-title-line-creadores w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
+            <div class="section-title-line-creadores w-16 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
             <!-- Izu -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                        <img src="img/organigrama/izu.png" alt="Izu - Creador de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+            <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
+                <div class="relative z-10 p-3 md:p-4 text-center">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                            <img src="img/organigrama/izu.png" alt="Izu - Creador de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Izu</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creador">Creador</p>
+                    <div class="flex justify-center space-x-2 mt-1">
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                    </div>
                 </div>
-                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Izu</h3>
-                <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creador">Creador</p>
-                <div class="flex justify-center space-x-2 mt-1">
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                </div>
-                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- Jucxxo -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                        <img src="img/organigrama/jucxxo.png" alt="Jucxxo - Creador de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+            <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
+                <div class="relative z-10 p-3 md:p-4 text-center">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                            <img src="img/organigrama/jucxxo.png" alt="Jucxxo - Creador de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Jucxxo</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creador">Caster</p>
+                    <div class="flex justify-center space-x-2 mt-1">
+                        <a href="https://youtube.com/@jucxxo" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-youtube text-sm md:text-base"></i></a>
+                        <a href="https://www.tiktok.com/@jucxxo_" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                        <a href="https://www.instagram.com/jucxxo" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                    </div>
                 </div>
-                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Jucxxo</h3>
-                <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creador">Caster</p>
-                <div class="flex justify-center space-x-2 mt-1">
-                    <a href="https://youtube.com/@jucxxo" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-youtube text-sm md:text-base"></i></a>
-                    <a href="https://www.tiktok.com/@jucxxo_" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                    <a href="https://www.instagram.com/jucxxo" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                </div>
-                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- Samantha -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                        <img src="img/organigrama/samantha.png" alt="Samantha - Creadora de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+            <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
+                <div class="relative z-10 p-3 md:p-4 text-center">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                            <img src="img/organigrama/samantha.png" alt="Samantha - Creadora de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Samantha</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creadora">Creadora</p>
+                    <div class="flex justify-center space-x-2 mt-1">
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                    </div>
                 </div>
-                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Samantha</h3>
-                <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creadora">Creadora</p>
-                <div class="flex justify-center space-x-2 mt-1">
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                </div>
-                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- Lizz -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                        <img src="img/organigrama/lizz.png" alt="Lizz - Creadora de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+            <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
+                <div class="relative z-10 p-3 md:p-4 text-center">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                            <img src="img/organigrama/lizz.png" alt="Lizz - Creadora de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">Lizz</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creadora">Creadora</p>
+                    <div class="flex justify-center space-x-2 mt-1">
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
+                    </div>
                 </div>
-                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Lizz</h3>
-                <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creadora">Creadora</p>
-                <div class="flex justify-center space-x-2 mt-1">
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-instagram text-sm md:text-base"></i></a>
-                </div>
-                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
             <!-- ALFA -->
-            <div class="staff-card bg-white/5 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px]">
-                <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
-                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
-                        <img src="img/organigrama/alfa.png" alt="ALFA - Creador de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+            <div class="staff-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group min-h-[260px] flex flex-col justify-center scroll-reveal-card opacity-0 translate-y-[40px] relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-cyan-500/10 group-hover:to-purple-500/5 transition-all duration-500"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                </div>
+                <div class="relative z-10 p-3 md:p-4 text-center">
+                    <div class="relative w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500">
+                            <img src="img/organigrama/alfa.png" alt="ALFA - Creador de Contenido" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     </div>
-                    <div class="absolute inset-0 rounded-full bg-cyan-400/0 group-hover:bg-cyan-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300 staff-name-glitch">ALFA</h3>
+                    <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creador">Humorista</p>
+                    <div class="flex justify-center space-x-2 mt-1">
+                        <a href="https://www.tiktok.com/@alfaaa_codm" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
+                    </div>
                 </div>
-                <h3 class="text-sm md:text-base font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">ALFA</h3>
-                <p class="text-cyan-400 text-[10px] md:text-xs role-badge mb-2" data-role="Creador">Humorista</p>
-                <div class="flex justify-center space-x-2 mt-1">
-                    <a href="https://www.tiktok.com/@alfaaa_codm" target="_blank" class="text-gray-400 hover:text-cyan-400 hover:scale-125 transition-all duration-300"><i class="fab fa-tiktok text-sm md:text-base"></i></a>
-                    
-                </div>
-                <div class="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-xl transition-all duration-300 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Estilos específicos para la página de Organigrama con efectos de scroll reveal y títulos animados -->
+<!-- Estilos específicos para la página de Organigrama con efectos unificados -->
 <style>
     /* ===== ESTILOS PARA EL TÍTULO HEADER DE ORGANIGRAMA ===== */
+    .title-word-left-organigrama,
+    .title-word-right-organigrama,
+    .subtitle-organigrama,
+    .title-line-organigrama {
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .title-word-left-organigrama {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    
+    .title-word-right-organigrama {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    
+    .subtitle-organigrama {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    .title-line-organigrama {
+        transform: scaleX(0);
+    }
+    
     .title-word-left-organigrama.revealed,
     .title-word-right-organigrama.revealed,
     .subtitle-organigrama.revealed {
@@ -490,32 +611,66 @@
         transform: scaleX(1) !important;
     }
     
-    /* ===== ESTILOS PARA LOS TÍTULOS DE SECCIÓN (EFECTO ARMONIZADO) ===== */
-    .section-title-left-ceo.revealed,
-    .section-title-right-ceo.revealed,
-    .section-title-line-ceo.revealed,
-    .section-title-left-asistentes.revealed,
-    .section-title-right-asistentes.revealed,
-    .section-title-line-asistentes.revealed,
-    .section-title-left-directoras.revealed,
-    .section-title-right-directoras.revealed,
-    .section-title-line-directoras.revealed,
-    .section-title-left-coaches.revealed,
-    .section-title-right-coaches.revealed,
-    .section-title-line-coaches.revealed,
-    .section-title-left-managers.revealed,
-    .section-title-right-managers.revealed,
-    .section-title-line-managers.revealed,
-    .section-title-left-audiovisual.revealed,
-    .section-title-right-audiovisual.revealed,
-    .section-title-line-audiovisual.revealed,
-    .section-title-left-creadores.revealed,
-    .section-title-right-creadores.revealed,
-    .section-title-line-creadores.revealed {
-        opacity: 1 !important;
-        transform: translateX(0) !important;
+    /* ===== ESTILOS PARA LOS TÍTULOS DE SECCIÓN DEL ORGANIGRAMA ===== */
+    .section-title-left-ceo,
+    .section-title-right-ceo,
+    .section-title-left-asistentes,
+    .section-title-right-asistentes,
+    .section-title-left-directoras,
+    .section-title-right-directoras,
+    .section-title-left-coaches,
+    .section-title-right-coaches,
+    .section-title-left-managers,
+    .section-title-right-managers,
+    .section-title-left-audiovisual,
+    .section-title-right-audiovisual,
+    .section-title-left-creadores,
+    .section-title-right-creadores,
+    .section-title-line-ceo,
+    .section-title-line-asistentes,
+    .section-title-line-directoras,
+    .section-title-line-coaches,
+    .section-title-line-managers,
+    .section-title-line-audiovisual,
+    .section-title-line-creadores {
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
+    /* Estado inicial - oculto */
+    .section-title-left-ceo,
+    .section-title-left-asistentes,
+    .section-title-left-directoras,
+    .section-title-left-coaches,
+    .section-title-left-managers,
+    .section-title-left-audiovisual,
+    .section-title-left-creadores {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    
+    .section-title-right-ceo,
+    .section-title-right-asistentes,
+    .section-title-right-directoras,
+    .section-title-right-coaches,
+    .section-title-right-managers,
+    .section-title-right-audiovisual,
+    .section-title-right-creadores {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    
+    .section-title-line-ceo,
+    .section-title-line-asistentes,
+    .section-title-line-directoras,
+    .section-title-line-coaches,
+    .section-title-line-managers,
+    .section-title-line-audiovisual,
+    .section-title-line-creadores {
+        transform: scaleX(0);
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+    }
+    
+    /* Estado revelado - visible */
     .section-title-left-ceo.revealed,
     .section-title-left-asistentes.revealed,
     .section-title-left-directoras.revealed,
@@ -523,6 +678,7 @@
     .section-title-left-managers.revealed,
     .section-title-left-audiovisual.revealed,
     .section-title-left-creadores.revealed {
+        opacity: 1 !important;
         transform: translateX(0) !important;
     }
     
@@ -533,6 +689,7 @@
     .section-title-right-managers.revealed,
     .section-title-right-audiovisual.revealed,
     .section-title-right-creadores.revealed {
+        opacity: 1 !important;
         transform: translateX(0) !important;
     }
     
@@ -546,103 +703,47 @@
         transform: scaleX(1) !important;
     }
     
-    /* ===== ESTILOS UNIFORMES PARA TODAS LAS FICHAS ===== */
-    .staff-card {
+    /* ===== ESTILOS UNIFICADOS PARA LAS FICHAS ===== */
+    .staff-card-enhanced {
         position: relative;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
         backdrop-filter: blur(12px);
     }
     
-    /* Alturas uniformes por categoría */
-    .staff-card:not(.staff-card-ceo) {
-        min-height: 280px;
+    /* Efecto de borde neón pulsante al hover */
+    .staff-card-enhanced:hover {
+        border-color: #22d3ee;
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+        transform: translateY(-5px) scale(1.02);
     }
     
-    /* Para las tarjetas pequeñas de managers */
-    .grid-cols-5 .staff-card,
-    .grid-cols-4 .staff-card,
-    .grid-cols-6 .staff-card {
-        min-height: 220px;
+    /* Efecto glitch en el nombre al hover */
+    .staff-name-glitch {
+        position: relative;
+        transition: all 0.3s ease;
     }
     
-    /* Para las tarjetas de creadores de contenido */
-    .grid-cols-5 .staff-card {
-        min-height: 200px;
+    .staff-card-enhanced:hover .staff-name-glitch {
+        animation: staffGlitchText 0.3s ease-in-out;
     }
     
-    /* ===== EFECTO DE ESCANEO LÁSER ===== */
-    .staff-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.15), transparent);
-        transform: translateX(-100%);
-        transition: transform 0.6s ease;
-        pointer-events: none;
-        z-index: 5;
-    }
-    
-    .staff-card:hover::before {
-        transform: translateX(100%);
-    }
-    
-    /* ===== EFECTO DE BRILLO PULSANTE EN EL BORDE ===== */
-    .staff-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        padding: 2px;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0), rgba(168, 85, 247, 0), rgba(6, 182, 212, 0));
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        pointer-events: none;
-    }
-    
-    .staff-card:hover::after {
-        opacity: 1;
-        background: linear-gradient(135deg, #06b6d4, #a855f7, #06b6d4);
-        animation: borderPulse 1.5s ease-in-out infinite;
-    }
-    
-    @keyframes borderPulse {
-        0%, 100% {
-            opacity: 0.6;
-        }
-        50% {
-            opacity: 1;
-        }
-    }
-    
-    /* ===== EFECTO DE GLITCH EN EL NOMBRE ===== */
-    .staff-card:hover h3 {
-        animation: glitchText 0.3s ease-in-out;
-    }
-    
-    @keyframes glitchText {
+    @keyframes staffGlitchText {
         0% {
-            text-shadow: -1px 0 cyan, 1px 0 magenta;
+            text-shadow: -2px 0 cyan, 2px 0 magenta;
             transform: skew(0deg);
         }
         25% {
-            text-shadow: -2px 0 cyan, 2px 0 magenta;
-            transform: skew(1deg);
+            text-shadow: -3px 0 cyan, 3px 0 magenta;
+            transform: skew(2deg);
         }
         50% {
             text-shadow: -1px 0 cyan, 1px 0 magenta;
-            transform: skew(-0.5deg);
+            transform: skew(-1deg);
         }
         75% {
             text-shadow: -2px 0 cyan, 2px 0 magenta;
-            transform: skew(0.5deg);
+            transform: skew(1deg);
         }
         100% {
             text-shadow: 0 0 cyan, 0 0 magenta;
@@ -650,138 +751,48 @@
         }
     }
     
-    /* ===== EFECTO DE DATA STREAM (SOLO PARA EL CEO) ===== */
-    .data-stream {
+    /* Efecto de gradiente animado en el borde al hover */
+    .staff-card-enhanced:hover {
+        animation: staffBorderPulse 1s ease-in-out infinite;
+    }
+    
+    @keyframes staffBorderPulse {
+        0%, 100% {
+            border-color: rgba(34, 211, 238, 0.5);
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+        }
+        50% {
+            border-color: rgba(34, 211, 238, 1);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.6);
+        }
+    }
+    
+    /* Efecto de partículas al hover */
+    .staff-card-enhanced::before {
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background: repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 20px,
-            rgba(6, 182, 212, 0.05) 20px,
-            rgba(168, 85, 247, 0.05) 40px
-        );
-        animation: dataStreamMove 3s linear infinite;
-    }
-    
-    @keyframes dataStreamMove {
-        0% {
-            transform: translateY(-100%);
-        }
-        100% {
-            transform: translateY(100%);
-        }
-    }
-    
-    /* ===== ZOOM CENTRADO PARA ÍCONOS E IMÁGENES ===== */
-    .staff-card .relative .rounded-full {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .staff-card:hover .relative .rounded-full {
-        transform: scale(1.1);
-    }
-    
-    .staff-card-ceo:hover .relative .rounded-full img {
-        transform: scale(1.1);
-    }
-    
-    /* Efecto de pulso de energía alrededor del ícono */
-    .staff-card .relative .rounded-full::after {
-        content: '';
-        position: absolute;
-        inset: -4px;
-        border-radius: 50%;
-        background: radial-gradient(circle at center, rgba(6, 182, 212, 0.3), transparent 70%);
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(34, 211, 238, 0.1) 0%, transparent 50%);
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: none;
+        z-index: 2;
+        border-radius: inherit;
     }
     
-    .staff-card:hover .relative .rounded-full::after {
+    .staff-card-enhanced:hover::before {
         opacity: 1;
-        animation: energyPulse 1s ease-out infinite;
     }
     
-    @keyframes energyPulse {
-        0% {
-            transform: scale(1);
-            opacity: 0.6;
-        }
-        100% {
-            transform: scale(1.5);
-            opacity: 0;
-        }
-    }
-    
-    /* ===== FONDO CON GRADIENTE DINÁMICO ===== */
-    .staff-card {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-    }
-    
-    .staff-card:hover {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(168, 85, 247, 0.05));
-    }
-    
-    /* ===== EFECTO DE SOMBRA FLOTANTE ===== */
-    .staff-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.3);
-    }
-    
-    /* ===== EFECTO DE BRILLO EN EL TEXTO DEL ROL ===== */
-    .role-badge {
-        transition: all 0.3s ease;
-        display: inline-block;
-        position: relative;
-    }
-    
-    .staff-card:hover .role-badge {
-        text-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
-        letter-spacing: 0.5px;
-    }
-    
-    /* ===== EFECTO DE ESCALA EN EL ÍCONO ===== */
-    .staff-card .relative .rounded-full i {
-        transition: transform 0.3s ease;
-    }
-    
-    .staff-card:hover .relative .rounded-full i {
-        transform: scale(1.05);
-    }
-    
-    /* ===== EFECTO DE TEXTO CON GRADIENTE ===== */
-    .staff-card:hover h3 {
-        background: linear-gradient(135deg, #fff, #06b6d4);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        transition: all 0.3s ease;
-    }
-    
-    .staff-card h3 {
-        transition: all 0.3s ease;
-    }
-    
-    /* ===== SCROLL REVEAL PARA LAS FICHAS (EFECTO COMO EN ÚLTIMAS NOTICIAS) ===== */
-    .scroll-reveal-card {
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .scroll-reveal-card.revealed {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-    
-    /* ===== EFECTO DE CÁMARA FLASH AL REVELAR ===== */
+    /* Efecto de destello de cámara al revelar */
     .camera-flash {
-        animation: cameraFlashEffect 0.5s ease-out forwards;
+        animation: staffCameraFlash 0.5s ease-out forwards;
     }
     
-    @keyframes cameraFlashEffect {
+    @keyframes staffCameraFlash {
         0% {
             opacity: 0;
             background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
@@ -800,31 +811,103 @@
         }
     }
     
-    /* ===== EFECTO GLOW PARA EL TEXTO ===== */
+    /* Zoom centrado en la imagen al hover */
+    .staff-card-enhanced .relative .rounded-full img {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .staff-card-enhanced:hover .relative .rounded-full img {
+        transform: scale(1.1);
+    }
+    
+    /* Efecto de pulso de energía alrededor del ícono */
+    .staff-card-enhanced .relative .rounded-full {
+        position: relative;
+    }
+    
+    .staff-card-enhanced:hover .relative .rounded-full::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, rgba(6, 182, 212, 0.3), transparent 70%);
+        animation: staffEnergyPulse 1s ease-out;
+        pointer-events: none;
+    }
+    
+    @keyframes staffEnergyPulse {
+        0% {
+            transform: scale(1);
+            opacity: 0.6;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+    
+    /* Efecto de brillo en el texto del rol */
+    .role-badge {
+        transition: all 0.3s ease;
+        display: inline-block;
+        position: relative;
+    }
+    
+    .staff-card-enhanced:hover .role-badge {
+        text-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+        letter-spacing: 0.5px;
+    }
+    
+    /* Efecto de texto con gradiente en el nombre al hover */
+    .staff-card-enhanced:hover h3 {
+        background: linear-gradient(135deg, #fff, #06b6d4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+    }
+    
+    /* SCROLL REVEAL PARA LAS FICHAS */
+    .scroll-reveal-card {
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .scroll-reveal-card.revealed {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    
+    /* Efecto glow para el texto */
     .glow-text {
         text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         display: inline-block;
         word-break: break-word;
     }
     
-    /* ===== RESPONSIVE AJUSTES ===== */
+    /* Alturas uniformes */
+    .staff-card-enhanced {
+        min-height: 280px;
+    }
+    
+    /* Para las tarjetas pequeñas de managers y creadores */
+    .grid-cols-4 .staff-card-enhanced,
+    .grid-cols-5 .staff-card-enhanced {
+        min-height: 240px;
+    }
+    
+    /* RESPONSIVE AJUSTES */
     @media (max-width: 768px) {
-        .staff-card:not(.staff-card-ceo) {
+        .staff-card-enhanced {
             min-height: 260px;
         }
         
-        .grid-cols-5 .staff-card,
-        .grid-cols-4 .staff-card,
-        .grid-cols-6 .staff-card {
-            min-height: 200px;
+        .grid-cols-4 .staff-card-enhanced,
+        .grid-cols-5 .staff-card-enhanced {
+            min-height: 220px;
         }
         
-        .staff-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .staff-card:hover .relative .rounded-full {
-            transform: scale(1.05);
+        .staff-card-enhanced:hover {
+            transform: translateY(-3px) scale(1.01);
         }
         
         .section-title-left-ceo span,
@@ -851,22 +934,17 @@
             font-size: 2rem !important;
         }
         
-        .staff-card:not(.staff-card-ceo) {
+        .staff-card-enhanced {
             min-height: 240px;
         }
         
-        .grid-cols-5 .staff-card,
-        .grid-cols-4 .staff-card,
-        .grid-cols-6 .staff-card {
-            min-height: 180px;
+        .grid-cols-4 .staff-card-enhanced,
+        .grid-cols-5 .staff-card-enhanced {
+            min-height: 200px;
         }
         
-        .staff-card:hover {
+        .staff-card-enhanced:hover {
             transform: translateY(-3px);
-        }
-        
-        .staff-card:hover .relative .rounded-full {
-            transform: scale(1.03);
         }
         
         .section-title-left-ceo span,
@@ -897,14 +975,13 @@
             gap: 0.5rem;
         }
         
-        .staff-card:not(.staff-card-ceo) {
+        .staff-card-enhanced {
             min-height: 220px;
         }
         
-        .grid-cols-5 .staff-card,
-        .grid-cols-4 .staff-card,
-        .grid-cols-6 .staff-card {
-            min-height: 160px;
+        .grid-cols-4 .staff-card-enhanced,
+        .grid-cols-5 .staff-card-enhanced {
+            min-height: 180px;
         }
         
         .section-title-left-ceo span,
