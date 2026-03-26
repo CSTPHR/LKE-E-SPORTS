@@ -1,109 +1,400 @@
-<div class="container mx-auto px-4 py-16">
-    <div class="text-center mb-16">
-        <h1 class="text-5xl md:text-6xl font-black mb-4">
-            <span class="text-white">ÚLTIMAS</span>
-            <span class="text-cyan-400">NOTICIAS</span>
-        </h1>
-        <p class="text-gray-400 text-xl max-w-3xl mx-auto">
+<div class="container mx-auto px-4 py-8 sm:py-12 md:py-16">
+    <!-- ===== HEADER CON EFECTO SCROLL REVEAL ===== -->
+    <div class="text-center mb-12 md:mb-16" id="news-header-section">
+        <div class="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
+            <div class="title-word-left-news-header opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                <span class="text-white font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl">ÚLTIMAS</span>
+            </div>
+            <div class="title-word-right-news-header opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                <span class="text-cyan-400 glow-text font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl">NOTICIAS</span>
+            </div>
+        </div>
+        <p class="subtitle-news-header text-gray-400 text-sm sm:text-base md:text-lg max-w-3xl mx-auto px-4 mt-4 opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);">
             Todo lo que necesitas saber sobre LKE E-SPORTS y la escena competitiva de CODM
         </p>
+        <div class="title-line-news-header w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-4 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div>
     </div>
     
-    <!-- Filtros -->
-    <div class="flex flex-wrap justify-center gap-4 mb-12">
-        <button class="px-6 py-2 bg-cyan-500 text-white rounded-full font-semibold">Todas</button>
-        <button class="px-6 py-2 bg-white/5 text-gray-300 hover:bg-cyan-500/20 rounded-full font-semibold transition-colors">Torneos</button>
-        <button class="px-6 py-2 bg-white/5 text-gray-300 hover:bg-cyan-500/20 rounded-full font-semibold transition-colors">Equipo</button>
-        <button class="px-6 py-2 bg-white/5 text-gray-300 hover:bg-cyan-500/20 rounded-full font-semibold transition-colors">Actualizaciones</button>
-        <button class="px-6 py-2 bg-white/5 text-gray-300 hover:bg-cyan-500/20 rounded-full font-semibold transition-colors">Comunidad</button>
+    <!-- ===== FILTROS CON EFECTOS MEJORADOS ===== -->
+    <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 md:mb-12">
+        <button class="filter-btn px-5 md:px-6 py-2 bg-cyan-500 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30">Todas</button>
+        <button class="filter-btn px-5 md:px-6 py-2 bg-white/5 text-gray-300 hover:bg-cyan-500/20 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20">Torneos</button>
+        <button class="filter-btn px-5 md:px-6 py-2 bg-white/5 text-gray-300 hover:bg-purple-500/20 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20">Equipo</button>
+        <button class="filter-btn px-5 md:px-6 py-2 bg-white/5 text-gray-300 hover:bg-green-500/20 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20">Actualizaciones</button>
+        <button class="filter-btn px-5 md:px-6 py-2 bg-white/5 text-gray-300 hover:bg-pink-500/20 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/20">Comunidad</button>
     </div>
     
-    <!-- Grid de noticias -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- ===== GRID DE NOTICIAS CON EFECTOS MEJORADOS ===== -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
         <!-- Noticia 1 - Destacada -->
-        <div class="lg:col-span-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-lg rounded-2xl overflow-hidden border border-cyan-400">
-            <div class="p-8">
-                <span class="bg-cyan-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">DESTACADO</span>
-                <h2 class="text-3xl font-bold text-white mb-3">LKE E-SPORTS gana la Xylon League</h2>
-                <p class="text-gray-300 mb-4">Después de una increíble final, nuestro equipo asegura el campeonato.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400"><i class="far fa-clock mr-2"></i>Hace 3 horas</span>
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold">Leer más →</a>
-                </div>
+        <div class="lg:col-span-2 news-card-enhanced bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-lg rounded-2xl overflow-hidden border border-cyan-400 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-500/30 cursor-pointer relative group opacity-0 translate-y-[40px]">
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-400/10 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
             </div>
+            <div class="p-5 md:p-6 lg:p-8 relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <span class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-bold inline-block animate-pulse shadow-lg">DESTACADO</span>
+                    <span class="text-gray-400 text-xs md:text-sm"><i class="far fa-clock mr-1"></i>Hace 3 horas</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300 news-title-glitch">LKE E-SPORTS gana la Xylon League</h2>
+                <p class="text-gray-300 text-sm md:text-base mb-4">Después de una increíble final, nuestro equipo asegura el campeonato demostrando todo su potencial en la competencia más importante del semestre.</p>
+                <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2">
+                    Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
+                </a>
+            </div>
+            <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-2xl"></div>
         </div>
         
         <!-- Noticia 2 -->
-        <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30">
-            <div class="p-6">
-                <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold mb-3 inline-block">EQUIPO</span>
-                <h3 class="text-xl font-bold text-white mb-2">Mejoramos los accesorios</h3>
-                <p class="text-gray-400 mb-4">Hemos optimizado con accesesorios para la eficiencia de los jugadores de LKE E-SPORTS.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400 text-sm"><i class="far fa-clock mr-2"></i>hace 1 hora</span>
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300">Leer más →</a>
-                </div>
+        <div class="news-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer relative group opacity-0 translate-y-[40px]">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-pink-500/5 transition-all duration-500 rounded-xl"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-xl"></div>
             </div>
+            <div class="p-5 md:p-6 relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <span class="bg-purple-500/20 text-purple-400 px-2 md:px-3 py-1 rounded-full text-xs font-bold inline-block border border-purple-500/30">EQUIPO</span>
+                    <span class="text-gray-400 text-xs"><i class="far fa-clock mr-1"></i>hace 1 hora</span>
+                </div>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300 news-title-glitch">Mejoramos los accesorios</h3>
+                <p class="text-gray-400 text-sm md:text-base mb-3">Hemos optimizado con accesorios para la eficiencia de los jugadores de LKE E-SPORTS.</p>
+                <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2 text-sm">
+                    Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
+                </a>
+            </div>
+            <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-xl"></div>
         </div>
         
         <!-- Noticia 3 -->
-        <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30">
-            <div class="p-6">
-                <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold mb-3 inline-block">COMUNIDAD</span>
-                <h3 class="text-xl font-bold text-white mb-2">Salas para este fin de semana</h3>
-                <p class="text-gray-400 mb-4">No te pierdes las salas internas que se realizará este fin de semana.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400 text-sm"><i class="far fa-clock mr-2"></i>Hace 2 horas</span>
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300">Leer más →</a>
-                </div>
+        <div class="news-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-green-500/20 cursor-pointer relative group opacity-0 translate-y-[40px]">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-teal-500/5 transition-all duration-500 rounded-xl"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-xl"></div>
             </div>
+            <div class="p-5 md:p-6 relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <span class="bg-green-500/20 text-green-400 px-2 md:px-3 py-1 rounded-full text-xs font-bold inline-block border border-green-500/30">COMUNIDAD</span>
+                    <span class="text-gray-400 text-xs"><i class="far fa-clock mr-1"></i>Hace 2 horas</span>
+                </div>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors duration-300 news-title-glitch">Salas para este fin de semana</h3>
+                <p class="text-gray-400 text-sm md:text-base mb-3">No te pierdas las salas internas que se realizarán este fin de semana con premios exclusivos.</p>
+                <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2 text-sm">
+                    Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
+                </a>
+            </div>
+            <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-xl"></div>
         </div>
         
         <!-- Noticia 4 -->
-        <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30">
-            <div class="p-6">
-                <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-bold mb-3 inline-block">ACTUALIZACIÓN</span>
-                <h3 class="text-xl font-bold text-white mb-2">Nuevas estrategias para la temporada</h3>
-                <p class="text-gray-400 mb-4">El coach P57 nos explica los nuevos planteamientos tácticos del equipo.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400 text-sm"><i class="far fa-clock mr-2"></i>Hace 3 horas</span>
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300">Leer más →</a>
-                </div>
+        <div class="news-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-yellow-500/20 cursor-pointer relative group opacity-0 translate-y-[40px]">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-orange-500/5 transition-all duration-500 rounded-xl"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-xl"></div>
             </div>
+            <div class="p-5 md:p-6 relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <span class="bg-yellow-500/20 text-yellow-400 px-2 md:px-3 py-1 rounded-full text-xs font-bold inline-block border border-yellow-500/30">ACTUALIZACIÓN</span>
+                    <span class="text-gray-400 text-xs"><i class="far fa-clock mr-1"></i>Hace 3 horas</span>
+                </div>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300 news-title-glitch">Nuevas estrategias para la temporada</h3>
+                <p class="text-gray-400 text-sm md:text-base mb-3">El coach P57 nos explica los nuevos planteamientos tácticos del equipo para la temporada competitiva.</p>
+                <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2 text-sm">
+                    Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
+                </a>
+            </div>
+            <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-xl"></div>
         </div>
         
         <!-- Noticia 5 -->
-        <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30">
-            <div class="p-6">
-                <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm font-bold mb-3 inline-block">TORNEO</span>
-                <h3 class="text-xl font-bold text-white mb-2">Proximamente</h3>
-                <p class="text-gray-400 mb-4">A la espera de la apertura del torneo.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400 text-sm"><i class="far fa-clock mr-2"></i>Hace 5 días</span>
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300">Leer más →</a>
-                </div>
+        <div class="news-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-500/20 cursor-pointer relative group opacity-0 translate-y-[40px]">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-rose-500/5 transition-all duration-500 rounded-xl"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-xl"></div>
             </div>
+            <div class="p-5 md:p-6 relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <span class="bg-red-500/20 text-red-400 px-2 md:px-3 py-1 rounded-full text-xs font-bold inline-block border border-red-500/30">TORNEO</span>
+                    <span class="text-gray-400 text-xs"><i class="far fa-clock mr-1"></i>Hace 5 días</span>
+                </div>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors duration-300 news-title-glitch">Próximamente nuevo torneo</h3>
+                <p class="text-gray-400 text-sm md:text-base mb-3">A la espera de la apertura del torneo. ¡Prepárate para la nueva competencia!</p>
+                <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2 text-sm">
+                    Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
+                </a>
+            </div>
+            <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-xl"></div>
         </div>
         
         <!-- Noticia 6 -->
-        <div class="bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30">
-            <div class="p-6">
-                <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold mb-3 inline-block">REUNIÓN</span>
-                <h3 class="text-xl font-bold text-white mb-2">Fin de semana de reunión</h3>
-                <p class="text-gray-400 mb-4">Este fin de semana el CEO de LKE tiene prevista una reunión con todo el staff</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400 text-sm"><i class="far fa-clock mr-2"></i>Hace 3 horas</span>
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300">Leer más →</a>
-                </div>
+        <div class="news-card-enhanced bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer relative group opacity-0 translate-y-[40px]">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-blue-500/10 group-hover:to-cyan-500/5 transition-all duration-500 rounded-xl"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-xl"></div>
             </div>
+            <div class="p-5 md:p-6 relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <span class="bg-blue-500/20 text-blue-400 px-2 md:px-3 py-1 rounded-full text-xs font-bold inline-block border border-blue-500/30">REUNIÓN</span>
+                    <span class="text-gray-400 text-xs"><i class="far fa-clock mr-1"></i>Hace 3 horas</span>
+                </div>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300 news-title-glitch">Fin de semana de reunión</h3>
+                <p class="text-gray-400 text-sm md:text-base mb-3">Este fin de semana el CEO de LKE tiene prevista una reunión con todo el staff para planificar la temporada.</p>
+                <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center transition-all duration-300 group-hover:gap-3 gap-2 text-sm">
+                    Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
+                </a>
+            </div>
+            <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-xl"></div>
         </div>
     </div>
     
-    <!-- Paginación -->
-    <div class="flex justify-center mt-12 space-x-2">
-        <button class="w-10 h-10 bg-cyan-500 text-white rounded-lg">1</button>
-        <button class="w-10 h-10 bg-white/5 text-gray-400 hover:bg-cyan-500/20 rounded-lg transition-colors">2</button>
-        <button class="w-10 h-10 bg-white/5 text-gray-400 hover:bg-cyan-500/20 rounded-lg transition-colors">3</button>
-        <button class="w-10 h-10 bg-white/5 text-gray-400 hover:bg-cyan-500/20 rounded-lg transition-colors">...</button>
+    <!-- ===== PAGINACIÓN CON EFECTOS ===== -->
+    <div class="flex justify-center mt-10 md:mt-12 space-x-2">
+        <button class="pagination-btn w-9 h-9 md:w-10 md:h-10 bg-cyan-500 text-white rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/30">1</button>
+        <button class="pagination-btn w-9 h-9 md:w-10 md:h-10 bg-white/5 text-gray-400 hover:bg-cyan-500/20 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg">2</button>
+        <button class="pagination-btn w-9 h-9 md:w-10 md:h-10 bg-white/5 text-gray-400 hover:bg-cyan-500/20 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg">3</button>
+        <button class="pagination-btn w-9 h-9 md:w-10 md:h-10 bg-white/5 text-gray-400 hover:bg-cyan-500/20 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg">...</button>
     </div>
 </div>
+
+<style>
+/* ===== ESTILOS PARA EL HEADER DE NOTICIAS ===== */
+.title-word-left-news-header,
+.title-word-right-news-header,
+.subtitle-news-header,
+.title-line-news-header {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.title-word-left-news-header {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.title-word-right-news-header {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.subtitle-news-header {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.title-line-news-header {
+    transform: scaleX(0);
+}
+
+.title-word-left-news-header.revealed,
+.title-word-right-news-header.revealed,
+.subtitle-news-header.revealed {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.subtitle-news-header.revealed {
+    transform: translateY(0) !important;
+}
+
+.title-line-news-header.revealed {
+    transform: scaleX(1) !important;
+}
+
+/* ===== ESTILOS PARA LAS TARJETAS DE NOTICIAS ===== */
+.news-card-enhanced {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* Efecto de borde neón pulsante al hover */
+.news-card-enhanced:hover {
+    border-color: #22d3ee;
+    transform: translateY(-5px) scale(1.02);
+}
+
+.news-card-enhanced:hover {
+    animation: newsBorderPulse 1s ease-in-out infinite;
+}
+
+@keyframes newsBorderPulse {
+    0%, 100% {
+        border-color: rgba(34, 211, 238, 0.5);
+        box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+    }
+    50% {
+        border-color: rgba(34, 211, 238, 1);
+        box-shadow: 0 0 25px rgba(34, 211, 238, 0.6);
+    }
+}
+
+/* Efecto glitch en el título al hover */
+.news-title-glitch {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.news-card-enhanced:hover .news-title-glitch {
+    animation: newsGlitchText 0.3s ease-in-out;
+}
+
+@keyframes newsGlitchText {
+    0% {
+        text-shadow: -2px 0 cyan, 2px 0 magenta;
+        transform: skew(0deg);
+    }
+    25% {
+        text-shadow: -3px 0 cyan, 3px 0 magenta;
+        transform: skew(2deg);
+    }
+    50% {
+        text-shadow: -1px 0 cyan, 1px 0 magenta;
+        transform: skew(-1deg);
+    }
+    75% {
+        text-shadow: -2px 0 cyan, 2px 0 magenta;
+        transform: skew(1deg);
+    }
+    100% {
+        text-shadow: 0 0 cyan, 0 0 magenta;
+        transform: skew(0deg);
+    }
+}
+
+/* Efecto de eco en la flecha al hacer hover */
+.news-arrow-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.news-card-enhanced .nav-link:hover .news-arrow-icon,
+.news-card-enhanced a:hover .news-arrow-icon {
+    animation: newsArrowEcho 0.6s ease-out;
+}
+
+@keyframes newsArrowEcho {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(5px);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translateX(-2px);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(3px);
+        opacity: 1;
+    }
+}
+
+/* Efecto de destello de cámara */
+.camera-flash {
+    animation: newsCameraFlash 0.5s ease-out forwards;
+}
+
+@keyframes newsCameraFlash {
+    0% {
+        opacity: 0;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+    30% {
+        opacity: 0.8;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+    }
+    70% {
+        opacity: 0.3;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 70%, rgba(255, 255, 255, 0) 100%);
+    }
+    100% {
+        opacity: 0;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+}
+
+/* Efecto de brillo pulsante en los badges */
+.news-card-enhanced span.bg-gradient-to-r,
+.news-card-enhanced span.bg-cyan-500\/20,
+.news-card-enhanced span.bg-purple-500\/20,
+.news-card-enhanced span.bg-green-500\/20,
+.news-card-enhanced span.bg-yellow-500\/20,
+.news-card-enhanced span.bg-red-500\/20,
+.news-card-enhanced span.bg-blue-500\/20 {
+    animation: newsBadgePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes newsBadgePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        transform: scale(1.02);
+    }
+}
+
+/* Efecto de partículas al hover */
+.news-card-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(34, 211, 238, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: inherit;
+}
+
+.news-card-enhanced:hover::before {
+    opacity: 1;
+}
+
+/* Efecto hover para filtros */
+.filter-btn {
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Efecto hover para paginación */
+.pagination-btn {
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .title-word-left-news-header span,
+    .title-word-right-news-header span {
+        font-size: 2rem !important;
+    }
+    
+    .news-card-enhanced:hover {
+        transform: translateY(-3px) scale(1.01);
+    }
+}
+
+@media (max-width: 480px) {
+    .title-word-left-news-header span,
+    .title-word-right-news-header span {
+        font-size: 1.5rem !important;
+    }
+    
+    .filter-btn {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        font-size: 0.75rem;
+    }
+}
+</style>

@@ -1,603 +1,1124 @@
 <div class="container mx-auto px-3 sm:px-4 py-8 sm:py-12">
-    <!-- Header - Optimizado para móvil -->
-    <div class="text-center mb-8 sm:mb-12">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-2 sm:mb-4 px-2">
-            <span class="text-white block sm:inline">EQUIPOS</span>
-            <span class="text-cyan-400 block sm:inline sm:ml-3">COMPETITIVOS</span>
-        </h1>
-        <p class="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto px-4">
+    <!-- ===== HEADER CON EFECTO SCROLL REVEAL (COLOR CYAN) ===== -->
+    <div class="text-center mb-8 sm:mb-12" id="team-header-section">
+        <div class="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
+            <div class="title-word-left-team opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                <span class="text-white font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl">EQUIPOS</span>
+            </div>
+            <div class="title-word-right-team opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                <span class="text-cyan-400 glow-text font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl">COMPETITIVOS</span>
+            </div>
+        </div>
+        <p class="subtitle-team text-gray-400 text-sm sm:text-base md:text-lg max-w-3xl mx-auto px-4 mt-4 opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);">
             Conoce a nuestros jugadores que dominan el campo de batalla
         </p>
+        <div class="title-line-team w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-4 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div>
     </div>
 
-    <!-- Selector rápido de equipos (NUEVO) -->
+    <!-- ===== SELECTOR RÁPIDO DE EQUIPOS CON EFECTOS ===== -->
     <div class="flex flex-wrap justify-center gap-2 mb-8 sm:mb-12 px-2">
-        <a href="#main-team" class="team-quick-link bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-cyan-500/30">
-            <i class="fas fa-star mr-1"></i> LKE E-SPORTS
+        <a href="#main-team" class="team-quick-link bg-red-500/10 hover:bg-red-500/20 text-red-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-red-500/30 hover:scale-105 hover:shadow-lg hover:shadow-red-500/20 flex items-center gap-2">
+            <img src="img/logos/lke-esports.png" alt="LKE E-SPORTS" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
+            LKE E-SPORTS
         </a>
-        <a href="#legacy" class="team-quick-link bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-purple-500/30">
-            <i class="fas fa-crown mr-1"></i> LKE Legacy
+        <a href="#legacy" class="team-quick-link bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-yellow-500/30 hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/20 flex items-center gap-2">
+            <img src="img/logos/lke-legacy.png" alt="LKE Legacy" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
+            LKE Legacy
         </a>
-        <a href="#nova" class="team-quick-link bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-pink-500/30">
-            <i class="fas fa-venus mr-1"></i> LKE NOVA
+        <a href="#nova" class="team-quick-link bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-purple-500/30 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20 flex items-center gap-2">
+            <img src="img/logos/lke-nova.png" alt="LKE NOVA" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
+            LKE NOVA
         </a>
-        <a href="#secret" class="team-quick-link bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-yellow-500/30">
-            <i class="fas fa-mask mr-1"></i> LKE Secret
+        <a href="#secret" class="team-quick-link bg-green-500/10 hover:bg-green-500/20 text-green-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border border-green-500/30 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 flex items-center gap-2">
+            <img src="img/logos/lke-secret.png" alt="LKE Secret" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
+            LKE Secret
         </a>
     </div>
 
-    <!-- LKE E-SPORTS (Equipo Principal) -->
+    <!-- ===== SECCIÓN LKE E-SPORTS (ROJO OSCURO - CON HOVER ROJO) ===== -->
     <div id="main-team" class="mb-12 sm:mb-16 scroll-mt-24">
-        <div class="text-center mb-6 sm:mb-8">
-            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-1">LKE E-SPORTS</h3>
-            <p class="text-cyan-400 text-sm sm:text-base">Equipo Principal - Junior</p>
-            <p class="text-gray-400 text-xs sm:text-sm mt-1">Managers: Paola & Virginia</p>
+        <div class="text-center mb-6 sm:mb-8 section-title-container">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                <div class="section-title-left-main-team opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-2xl sm:text-3xl">LKE</span>
+                </div>
+                <div class="section-title-right-main-team opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-red-500 font-black text-2xl sm:text-3xl">E-SPORTS</span>
+                </div>
+            </div>
+            <p class="text-red-400 text-sm sm:text-base mt-2">Equipo Principal - Amateur</p>
+            <p class="text-gray-400 text-xs sm:text-sm">Manager: Paola</p>
+            <div class="section-title-line-main-team w-16 h-0.5 bg-gradient-to-r from-red-500 to-red-700 mx-auto mt-3 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
         </div>
         
-        <!-- Grid responsive: 2 columnas en móvil, más en desktop -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6">
-            <!-- Jugador 1 -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-cyan-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Lithium -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="red">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-red-700/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Lithium</h3>
-                <p class="text-cyan-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.8</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 65%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-red-600 to-red-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-red-400/0 group-hover:bg-red-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-red-400 transition-colors duration-300 player-name-glitch">Lithium</h3>
+                    <p class="text-red-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-red-500/20 rounded-full text-[10px] sm:text-xs text-red-400 group-hover:bg-red-500/40 transition-all">K/D 1.8</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400 group-hover:bg-purple-500/40 transition-all">HS 65%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
             
-            <!-- Jugador 2 -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-cyan-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Uzi -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="red">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-red-700/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Uzi</h3>
-                <p class="text-cyan-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 2.1</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 78%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-red-600 to-red-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-red-400/0 group-hover:bg-red-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-red-400 transition-colors duration-300 player-name-glitch">Uzi</h3>
+                    <p class="text-red-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-red-500/20 rounded-full text-[10px] sm:text-xs text-red-400 group-hover:bg-red-500/40 transition-all">K/D 2.1</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400 group-hover:bg-purple-500/40 transition-all">HS 78%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
             
-            <!-- Jugador 3 -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-cyan-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Ban -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="red">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-red-700/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Ban</h3>
-                <p class="text-cyan-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.5</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-red-600 to-red-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-red-400/0 group-hover:bg-red-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-red-400 transition-colors duration-300 player-name-glitch">Ban</h3>
+                    <p class="text-red-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-red-500/20 rounded-full text-[10px] sm:text-xs text-red-400 group-hover:bg-red-500/40 transition-all">K/D 1.5</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400 group-hover:bg-purple-500/40 transition-all">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
             
-            <!-- Jugador 4 -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-cyan-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Izu -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="red">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-red-700/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Izu</h3>
-                <p class="text-cyan-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 40%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-red-600 to-red-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-red-400/0 group-hover:bg-red-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-red-400 transition-colors duration-300 player-name-glitch">Izu</h3>
+                    <p class="text-red-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-red-500/20 rounded-full text-[10px] sm:text-xs text-red-400 group-hover:bg-red-500/40 transition-all">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400 group-hover:bg-purple-500/40 transition-all">HS 40%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 5 -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-cyan-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Hysteria -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="red">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-red-700/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Hysteria</h3>
-                <p class="text-cyan-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.6</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 52%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-red-600 to-red-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-red-400/0 group-hover:bg-red-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-red-400 transition-colors duration-300 player-name-glitch">Hysteria</h3>
+                    <p class="text-red-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-red-500/20 rounded-full text-[10px] sm:text-xs text-red-400 group-hover:bg-red-500/40 transition-all">K/D 1.6</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400 group-hover:bg-purple-500/40 transition-all">HS 52%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 6 -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-cyan-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Fabián -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="red">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-red-700/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Fabián</h3>
-                <p class="text-cyan-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.9</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 58%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-red-600 to-red-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-red-400/0 group-hover:bg-red-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-red-400 transition-colors duration-300 player-name-glitch">Fabián</h3>
+                    <p class="text-red-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-red-500/20 rounded-full text-[10px] sm:text-xs text-red-400 group-hover:bg-red-500/40 transition-all">K/D 1.9</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400 group-hover:bg-purple-500/40 transition-all">HS 58%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 7 -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-cyan-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Ñao -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="red">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-red-500/10 group-hover:to-red-700/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Ñao</h3>
-                <p class="text-cyan-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.4</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 48%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-red-600 to-red-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-red-400/0 group-hover:bg-red-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-red-400 transition-colors duration-300 player-name-glitch">Ñao</h3>
+                    <p class="text-red-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-red-500/20 rounded-full text-[10px] sm:text-xs text-red-400 group-hover:bg-red-500/40 transition-all">K/D 1.4</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400 group-hover:bg-purple-500/40 transition-all">HS 48%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
         </div>
     </div>
 
-    <!-- LKE Legacy -->
+    <!-- ===== LKE LEGACY (AMARILLO - CON HOVER AMARILLO) ===== -->
     <div id="legacy" class="mb-12 sm:mb-16 scroll-mt-24">
-        <div class="text-center mb-6 sm:mb-8">
-            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-1">LKE Legacy</h3>
-            <p class="text-purple-400 text-sm sm:text-base">Beginner</p>
-            <p class="text-gray-400 text-xs sm:text-sm mt-1">Manager: Mafy</p>
+        <div class="text-center mb-6 sm:mb-8 section-title-container">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                <div class="section-title-left-legacy opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-2xl sm:text-3xl">LKE</span>
+                </div>
+                <div class="section-title-right-legacy opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-yellow-400 font-black text-2xl sm:text-3xl">LEGACY</span>
+                </div>
+            </div>
+            <p class="text-yellow-400 text-sm sm:text-base mt-2">Beginner</p>
+            <p class="text-gray-400 text-xs sm:text-sm">Manager: Mafy</p>
+            <div class="section-title-line-legacy w-16 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-600 mx-auto mt-3 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
         </div>
         
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6">
-            <!-- Jugador 1 Legacy -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Wuo -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="yellow">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-yellow-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Wuo</h3>
-                <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.5</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 60%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-yellow-400 transition-colors duration-300 player-name-glitch">Wuo</h3>
+                    <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.5</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 60%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
             
-            <!-- Jugador 2 Legacy -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Victor -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="yellow">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-yellow-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Victor</h3>
-                <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.8</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 70%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-yellow-400 transition-colors duration-300 player-name-glitch">Victor</h3>
+                    <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.8</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 70%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
             
-            <!-- Jugador 3 Legacy -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Malenia -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="yellow">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-yellow-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Malenia</h3>
-                <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.4</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 55%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-yellow-400 transition-colors duration-300 player-name-glitch">Malenia</h3>
+                    <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.4</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 55%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
             
-            <!-- Jugador 4 Legacy -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Klay -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="yellow">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-yellow-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Klay</h3>
-                <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.2</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 42%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-yellow-400 transition-colors duration-300 player-name-glitch">Klay</h3>
+                    <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.2</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 42%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 5 Legacy -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Nobody -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="yellow">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-yellow-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Nobody</h3>
-                <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.6</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 58%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-yellow-400 transition-colors duration-300 player-name-glitch">Nobody</h3>
+                    <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.6</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 58%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 6 Legacy -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Omega -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="yellow">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-yellow-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Omega</h3>
-                <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.7</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 62%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-yellow-400 transition-colors duration-300 player-name-glitch">Omega</h3>
+                    <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.7</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 62%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 7 Legacy -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Orien -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="yellow">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-yellow-500/10 group-hover:to-yellow-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Orien</h3>
-                <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-yellow-600 to-yellow-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-yellow-400/0 group-hover:bg-yellow-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-yellow-400 transition-colors duration-300 player-name-glitch">Orien</h3>
+                    <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
         </div>
     </div>
 
-    <!-- LKE NOVA -->
+    <!-- ===== LKE NOVA (MORADO - CON HOVER MORADO) ===== -->
     <div id="nova" class="mb-12 sm:mb-16 scroll-mt-24">
-        <div class="text-center mb-6 sm:mb-8">
-            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-1">LKE NOVA</h3>
-            <p class="text-pink-400 text-sm sm:text-base">Equipo Femenino</p>
-            <p class="text-gray-400 text-xs sm:text-sm mt-1">Manager: Priss</p>
+        <div class="text-center mb-6 sm:mb-8 section-title-container">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                <div class="section-title-left-nova opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-2xl sm:text-3xl">LKE</span>
+                </div>
+                <div class="section-title-right-nova opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-purple-400 font-black text-2xl sm:text-3xl">NOVA</span>
+                </div>
+            </div>
+            <p class="text-purple-400 text-sm sm:text-base mt-2">Equipo Femenino</p>
+            <p class="text-gray-400 text-xs sm:text-sm">Manager: Priss</p>
+            <div class="section-title-line-nova w-16 h-0.5 bg-gradient-to-r from-purple-500 to-purple-600 mx-auto mt-3 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
         </div>
         
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6">
-            <!-- Jugadora 1 NOVA -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-pink-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Priss -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="purple">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Priss</h3>
-                <p class="text-pink-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.5</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-pink-500/20 rounded-full text-[10px] sm:text-xs text-pink-400">HS 60%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-purple-400/0 group-hover:bg-purple-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-purple-400 transition-colors duration-300 player-name-glitch">Priss</h3>
+                    <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.5</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 60%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugadora 2 NOVA -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-pink-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Merme -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="purple">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Merme</h3>
-                <p class="text-pink-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-pink-500/20 rounded-full text-[10px] sm:text-xs text-pink-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-purple-400/0 group-hover:bg-purple-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-purple-400 transition-colors duration-300 player-name-glitch">Merme</h3>
+                    <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugadora 3 NOVA -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-pink-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Titi -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="purple">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Titi</h3>
-                <p class="text-pink-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-pink-500/20 rounded-full text-[10px] sm:text-xs text-pink-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-purple-400/0 group-hover:bg-purple-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-purple-400 transition-colors duration-300 player-name-glitch">Titi</h3>
+                    <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugadora 4 NOVA -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-pink-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Mari -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="purple">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Mari</h3>
-                <p class="text-pink-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-pink-500/20 rounded-full text-[10px] sm:text-xs text-pink-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-purple-400/0 group-hover:bg-purple-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-purple-400 transition-colors duration-300 player-name-glitch">Mari</h3>
+                    <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugadora 5 NOVA -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-pink-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Scarlett -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="purple">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Scarlett</h3>
-                <p class="text-pink-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-pink-500/20 rounded-full text-[10px] sm:text-xs text-pink-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-purple-400/0 group-hover:bg-purple-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-purple-400 transition-colors duration-300 player-name-glitch">Scarlett</h3>
+                    <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugadora 6 NOVA -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-pink-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Mori -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="purple">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Mori</h3>
-                <p class="text-pink-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-pink-500/20 rounded-full text-[10px] sm:text-xs text-pink-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-purple-400/0 group-hover:bg-purple-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-purple-400 transition-colors duration-300 player-name-glitch">Mori</h3>
+                    <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugadora 7 NOVA -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-pink-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Alys -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="purple">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Alys</h3>
-                <p class="text-pink-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-pink-500/20 rounded-full text-[10px] sm:text-xs text-pink-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-purple-400/0 group-hover:bg-purple-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-purple-400 transition-colors duration-300 player-name-glitch">Alys</h3>
+                    <p class="text-purple-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 rounded-full text-[10px] sm:text-xs text-purple-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
         </div>
     </div>
 
-    <!-- LKE Secret -->
+    <!-- ===== LKE SECRET (VERDE - CON HOVER VERDE) ===== -->
     <div id="secret" class="mb-8 sm:mb-12 scroll-mt-24">
-        <div class="text-center mb-6 sm:mb-8">
-            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-1">LKE Secret</h3>
-            <p class="text-yellow-400 text-sm sm:text-base">Rookie</p>
-            <p class="text-gray-400 text-xs sm:text-sm mt-1">Manager: Kloux</p>
+        <div class="text-center mb-6 sm:mb-8 section-title-container">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 flex-wrap">
+                <div class="section-title-left-secret opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-2xl sm:text-3xl">LKE</span>
+                </div>
+                <div class="section-title-right-secret opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-green-400 font-black text-2xl sm:text-3xl">SECRET</span>
+                </div>
+            </div>
+            <p class="text-green-400 text-sm sm:text-base mt-2">Rookie</p>
+            <p class="text-gray-400 text-xs sm:text-sm">Manager: Kloux</p>
+            <div class="section-title-line-secret w-16 h-0.5 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-3 rounded-full transform scale-x-0 transition-transform duration-700 delay-400"></div>
         </div>
         
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6">
-            <!-- Jugador 1 Secret -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Cook -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="green">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-green-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Cook</h3>
-                <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.8</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 75%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-green-400/0 group-hover:bg-green-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-green-400 transition-colors duration-300 player-name-glitch">Cook</h3>
+                    <p class="text-green-400 text-xs sm:text-sm text-center mb-2 truncate px-1">IGL / Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.8</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-green-500/20 rounded-full text-[10px] sm:text-xs text-green-400">HS 75%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 2 Secret -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Leo -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="green">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-green-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Leo</h3>
-                <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-green-400/0 group-hover:bg-green-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-green-400 transition-colors duration-300 player-name-glitch">Leo</h3>
+                    <p class="text-green-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-green-500/20 rounded-full text-[10px] sm:text-xs text-green-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 3 Secret -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Mr.buu -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="green">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-green-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Mr.buu</h3>
-                <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-green-400/0 group-hover:bg-green-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-green-400 transition-colors duration-300 player-name-glitch">Mr.buu</h3>
+                    <p class="text-green-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-green-500/20 rounded-full text-[10px] sm:text-xs text-green-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 4 Secret -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Pixel -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="green">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-green-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Pixel</h3>
-                <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-green-400/0 group-hover:bg-green-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-green-400 transition-colors duration-300 player-name-glitch">Pixel</h3>
+                    <p class="text-green-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-green-500/20 rounded-full text-[10px] sm:text-xs text-green-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 5 Secret -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Snchzzz -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="green">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-green-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Snchzzz</h3>
-                <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-green-400/0 group-hover:bg-green-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-green-400 transition-colors duration-300 player-name-glitch">Snchzzz</h3>
+                    <p class="text-green-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-green-500/20 rounded-full text-[10px] sm:text-xs text-green-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 6 Secret -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Carlos -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="green">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-green-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Carlos</h3>
-                <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-green-400/0 group-hover:bg-green-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-green-400 transition-colors duration-300 player-name-glitch">Carlos</h3>
+                    <p class="text-green-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-green-500/20 rounded-full text-[10px] sm:text-xs text-green-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
 
-            <!-- Jugador 7 Secret -->
-            <div class="player-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30 transition-all hover:scale-105 cursor-pointer">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+            <!-- Marie -->
+            <div class="player-card-enhanced scroll-reveal-card bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30 transition-all duration-500 hover:scale-105 cursor-pointer relative group opacity-0 translate-y-[40px]" data-team-color="green">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-green-500/10 group-hover:to-green-600/5 transition-all duration-500 rounded-lg sm:rounded-xl"></div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-lg sm:rounded-xl"></div>
                 </div>
-                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1">Marie</h3>
-                <p class="text-yellow-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
-                    <span class="px-1.5 sm:px-2 py-0.5 bg-yellow-500/20 rounded-full text-[10px] sm:text-xs text-yellow-400">HS 45%</span>
+                <div class="relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto mb-2 sm:mb-3">
+                        <div class="w-full h-full rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/50">
+                            <i class="fas fa-user text-2xl sm:text-3xl md:text-4xl text-white"></i>
+                        </div>
+                        <div class="absolute inset-0 rounded-full bg-green-400/0 group-hover:bg-green-400/20 transition-all duration-500 scale-0 group-hover:scale-100"></div>
+                    </div>
+                    <h3 class="text-base sm:text-lg md:text-xl font-bold text-white text-center mb-1 group-hover:text-green-400 transition-colors duration-300 player-name-glitch">Marie</h3>
+                    <p class="text-green-400 text-xs sm:text-sm text-center mb-2 truncate px-1">Armas</p>
+                    <div class="flex flex-wrap justify-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-cyan-500/20 rounded-full text-[10px] sm:text-xs text-cyan-400">K/D 1.3</span>
+                        <span class="px-1.5 sm:px-2 py-0.5 bg-green-500/20 rounded-full text-[10px] sm:text-xs text-green-400">HS 45%</span>
+                    </div>
+                    <div class="flex justify-center space-x-2 sm:space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-xs sm:text-sm transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="flex justify-center space-x-2 sm:space-x-3">
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitch"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm"><i class="fab fa-instagram"></i></a>
-                </div>
+                <div class="absolute inset-0 pointer-events-none camera-flash opacity-0 rounded-lg sm:rounded-xl"></div>
             </div>
         </div>
     </div>
 
-    <!-- Botón flotante para volver arriba (NUEVO) -->
+    <!-- Botón flotante para volver arriba -->
     <button id="scrollTopBtn" class="fixed bottom-6 right-6 bg-cyan-500 hover:bg-cyan-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all opacity-0 invisible z-50">
         <i class="fas fa-arrow-up text-xl"></i>
     </button>
 </div>
 
 <style>
-/* Estilos adicionales para mejor responsive */
+/* ===== ESTILOS PARA EL HEADER DE TEAM ===== */
+.title-word-left-team,
+.title-word-right-team,
+.subtitle-team,
+.title-line-team {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.title-word-left-team {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.title-word-right-team {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.subtitle-team {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.title-line-team {
+    transform: scaleX(0);
+}
+
+.title-word-left-team.revealed,
+.title-word-right-team.revealed,
+.subtitle-team.revealed {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.subtitle-team.revealed {
+    transform: translateY(0) !important;
+}
+
+.title-line-team.revealed {
+    transform: scaleX(1) !important;
+}
+
+/* ===== ESTILOS PARA LOS TÍTULOS DE SECCIÓN ===== */
+.section-title-left-main-team,
+.section-title-right-main-team,
+.section-title-left-legacy,
+.section-title-right-legacy,
+.section-title-left-nova,
+.section-title-right-nova,
+.section-title-left-secret,
+.section-title-right-secret,
+.section-title-line-main-team,
+.section-title-line-legacy,
+.section-title-line-nova,
+.section-title-line-secret {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title-left-main-team,
+.section-title-left-legacy,
+.section-title-left-nova,
+.section-title-left-secret {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.section-title-right-main-team,
+.section-title-right-legacy,
+.section-title-right-nova,
+.section-title-right-secret {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.section-title-line-main-team,
+.section-title-line-legacy,
+.section-title-line-nova,
+.section-title-line-secret {
+    transform: scaleX(0);
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+
+.section-title-left-main-team.revealed,
+.section-title-left-legacy.revealed,
+.section-title-left-nova.revealed,
+.section-title-left-secret.revealed {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.section-title-right-main-team.revealed,
+.section-title-right-legacy.revealed,
+.section-title-right-nova.revealed,
+.section-title-right-secret.revealed {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.section-title-line-main-team.revealed,
+.section-title-line-legacy.revealed,
+.section-title-line-nova.revealed,
+.section-title-line-secret.revealed {
+    transform: scaleX(1) !important;
+}
+
+/* ===== ESTILOS PARA LAS TARJETAS DE JUGADORES CON HOVER POR EQUIPO ===== */
+.player-card-enhanced {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+}
+
+.player-card-enhanced:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Hover específico para cada equipo */
+.player-card-enhanced[data-team-color="red"]:hover {
+    box-shadow: 0 10px 30px -10px rgba(239, 68, 68, 0.5);
+}
+
+.player-card-enhanced[data-team-color="yellow"]:hover {
+    box-shadow: 0 10px 30px -10px rgba(234, 179, 8, 0.5);
+}
+
+.player-card-enhanced[data-team-color="purple"]:hover {
+    box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.5);
+}
+
+.player-card-enhanced[data-team-color="green"]:hover {
+    box-shadow: 0 10px 30px -10px rgba(34, 197, 94, 0.5);
+}
+
+/* Efecto glitch en el nombre al hover */
+.player-name-glitch {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.player-card-enhanced:hover .player-name-glitch {
+    animation: playerGlitchText 0.3s ease-in-out;
+}
+
+@keyframes playerGlitchText {
+    0% {
+        text-shadow: -2px 0 cyan, 2px 0 magenta;
+        transform: skew(0deg);
+    }
+    25% {
+        text-shadow: -3px 0 cyan, 3px 0 magenta;
+        transform: skew(2deg);
+    }
+    50% {
+        text-shadow: -1px 0 cyan, 1px 0 magenta;
+        transform: skew(-1deg);
+    }
+    75% {
+        text-shadow: -2px 0 cyan, 2px 0 magenta;
+        transform: skew(1deg);
+    }
+    100% {
+        text-shadow: 0 0 cyan, 0 0 magenta;
+        transform: skew(0deg);
+    }
+}
+
+/* Efecto de destello de cámara */
+.camera-flash {
+    animation: playerCameraFlash 0.5s ease-out forwards;
+}
+
+@keyframes playerCameraFlash {
+    0% {
+        opacity: 0;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+    30% {
+        opacity: 0.8;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+    }
+    70% {
+        opacity: 0.3;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 70%, rgba(255, 255, 255, 0) 100%);
+    }
+    100% {
+        opacity: 0;
+        background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+}
+
+/* Efecto de partículas al hover */
+.player-card-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(34, 211, 238, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: inherit;
+}
+
+.player-card-enhanced:hover::before {
+    opacity: 1;
+}
+
+/* SCROLL REVEAL */
 .scroll-mt-24 {
     scroll-margin-top: 6rem;
 }
 
-/* Efecto hover mejorado para tarjetas */
-.player-card {
-    transition: all 0.3s ease;
-}
-
-.player-card:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.3);
-}
-
-/* Animación para el botón de scroll */
+/* Botón de scroll */
 #scrollTopBtn {
     transition: all 0.3s ease;
 }
@@ -607,27 +1128,48 @@
     visibility: visible;
 }
 
-/* Ajustes para texto truncado */
-.truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+#scrollTopBtn:hover {
+    transform: scale(1.1);
 }
 
-/* Mejora para enlaces rápidos */
-.team-quick-link {
-    transition: all 0.2s ease;
-}
-
-.team-quick-link:hover {
-    transform: translateY(-2px);
-}
-
-/* Responsive para títulos */
+/* Responsive */
 @media (max-width: 640px) {
-    h1 span {
-        font-size: 1.75rem;
-        line-height: 2rem;
+    .title-word-left-team span,
+    .title-word-right-team span {
+        font-size: 2rem !important;
+    }
+    
+    .section-title-left-main-team span,
+    .section-title-right-main-team span,
+    .section-title-left-legacy span,
+    .section-title-right-legacy span,
+    .section-title-left-nova span,
+    .section-title-right-nova span,
+    .section-title-left-secret span,
+    .section-title-right-secret span {
+        font-size: 1.5rem !important;
+    }
+    
+    .player-card-enhanced:hover {
+        transform: translateY(-3px) scale(1.02);
+    }
+}
+
+@media (max-width: 480px) {
+    .title-word-left-team span,
+    .title-word-right-team span {
+        font-size: 1.5rem !important;
+    }
+    
+    .section-title-left-main-team span,
+    .section-title-right-main-team span,
+    .section-title-left-legacy span,
+    .section-title-right-legacy span,
+    .section-title-left-nova span,
+    .section-title-right-nova span,
+    .section-title-left-secret span,
+    .section-title-right-secret span {
+        font-size: 1.2rem !important;
     }
 }
 </style>

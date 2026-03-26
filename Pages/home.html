@@ -10,30 +10,24 @@
     <div class="container mx-auto px-4 sm:px-6 relative z-10">
         <!-- Grid que se comporta como columna en tablets y dos columnas en desktop (desde 1024px) -->
         <div class="flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
-            <!-- Columna izquierda - Texto con NUEVO EFECTO DE TÍTULO ESTILO TORNEOS -->
+            <!-- Columna izquierda - Texto -->
             <div class="text-center lg:text-left w-full">
-                <!-- TÍTULO PRINCIPAL CON EFECTO ARMONIZADO ESTILO TORNEOS (SCROLL REVEAL) -->
-                <div class="mb-2 md:mb-3"> <!-- MODIFICADO: antes mb-6 md:mb-8 -->
-                    <!-- Primera línea: DOMINA EL (animación desde izquierda) -->
+                <div class="mb-2 md:mb-3">
                     <div class="title-word-left-hero opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
-                        <span class="text-white font-black block text-center lg:text-left hero-title-line1 leading-tight">DOMINA EL</span> <!-- MODIFICADO: agregado leading-tight -->
+                        <span class="text-white font-black block text-center lg:text-left hero-title-line1 leading-tight">DOMINA EL</span>
                     </div>
-                    <!-- Segunda línea: COMPETITIVO (animación desde derecha con efecto glow) -->
-                    <div class="title-word-right-hero opacity-0 transition-all duration-700 delay-200 -mt-1 md:-mt-2" style="transform: translateX(30px);"> <!-- MODIFICADO: agregado margen negativo -->
-                        <span class="text-cyan-400 glow-text font-black block text-center lg:text-left hero-title-line2 whitespace-nowrap lg:whitespace-normal break-words leading-tight" id="competitivo-word">COMPETITIVO</span> <!-- MODIFICADO: agregado leading-tight -->
+                    <div class="title-word-right-hero opacity-0 transition-all duration-700 delay-200 -mt-1 md:-mt-2" style="transform: translateX(30px);">
+                        <span class="text-cyan-400 glow-text font-black block text-center lg:text-left hero-title-line2 whitespace-nowrap lg:whitespace-normal break-words leading-tight" id="competitivo-word">COMPETITIVO</span>
                     </div>
                 </div>
                 
-                <!-- Línea decorativa inferior (estilo torneos) -->
-                <div class="title-line-hero w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto lg:mx-0 mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div> <!-- MODIFICADO: antes mt-4 -->
+                <div class="title-line-hero w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto lg:mx-0 mt-2 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div>
                 
-                <!-- Párrafo con animación desde abajo -->
-                <p class="subtitle-hero text-gray-300 text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 px-4 sm:px-6 lg:px-0 mt-4 mb-6 md:mb-8 opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);"> <!-- MODIFICADO: antes mt-6 -->
+                <p class="subtitle-hero text-gray-300 text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 px-4 sm:px-6 lg:px-0 mt-4 mb-6 md:mb-8 opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);">
                     LKE E-SPORTS es una organización Competitiva en Multijugador de Call of Duty: Mobile. 
                     Competimos al más alto nivel y formamos a los mejores jugadores.
                 </p>
                 
-                <!-- Botones -->
                 <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start px-4 sm:px-0">
                     <a href="#" data-page="team" class="nav-link bg-cyan-500 hover:bg-cyan-600 text-white px-5 md:px-8 py-2.5 md:py-4 rounded-lg font-bold transition-all transform hover:scale-105 text-sm sm:text-base text-center">
                         CONOCE AL EQUIPO
@@ -47,7 +41,6 @@
             <!-- Columna derecha - Estadísticas -->
             <div class="w-full mt-8 md:mt-10 lg:mt-0">
                 <div class="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 max-w-md mx-auto lg:max-w-none">
-                    <!-- TARJETA 1: TORNEOS -->
                     <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="15">0</span>
@@ -55,7 +48,6 @@
                         <div class="text-gray-300 text-xs sm:text-sm">Torneos</div>
                     </div>
                     
-                    <!-- TARJETA 2: JUGADORES -->
                     <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             <span class="counter" data-target="89">0</span>
@@ -63,7 +55,6 @@
                         <div class="text-gray-300 text-xs sm:text-sm">Jugadores</div>
                     </div>
                     
-                    <!-- TARJETA 3: TÍTULOS -->
                     <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="10">0</span>
@@ -71,7 +62,6 @@
                         <div class="text-gray-300 text-xs sm:text-sm">Títulos</div>
                     </div>
                     
-                    <!-- TARJETA 4: SEGUIDORES -->
                     <div class="stats-card bg-white/5 backdrop-blur-lg p-4 sm:p-5 rounded-xl border border-cyan-500/30 text-center hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 opacity-0 translate-y-[30px]">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-1">
                             +<span class="counter" data-target="2">0</span><span class="counter-suffix">K</span>
@@ -84,11 +74,238 @@
     </div>
 </section>
 
+<!-- ===== SECCIÓN: CREADORES DE CONTENIDO - VERSIÓN INTERACTIVA PREMIUM ===== -->
+<section id="creadores-home-section" class="py-8 md:py-12 lg:py-20 overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6">
+        <!-- Título con efecto de entrada -->
+        <div class="text-center mb-8 md:mb-12 lg:mb-16">
+            <div class="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
+                <div class="title-word-left-creadores-home opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
+                    <span class="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl">CREADORES DE</span>
+                </div>
+                <div class="title-word-right-creadores-home opacity-0 transition-all duration-700 delay-200" style="transform: translateX(30px);">
+                    <span class="text-cyan-400 glow-text font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl">CONTENIDO</span>
+                </div>
+            </div>
+            <p class="subtitle-creadores-home text-gray-400 text-sm sm:text-base md:text-lg mt-2 max-w-2xl mx-auto opacity-0 transition-all duration-700 delay-400" style="transform: translateY(20px);">
+                Talento, entretenimiento y comunidad. Conoce a las estrellas que dan vida a LKE.
+            </p>
+            <div class="title-line-creadores-home w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-4 rounded-full transform scale-x-0 transition-transform duration-700 delay-600"></div>
+        </div>
 
-<!-- ===== Últimas noticias - CON EFECTOS SORPRENDENTES MEJORADOS ===== -->
+        <!-- Grid de creadores - ORDEN: Over, ALFA, JUCXXO, SAMANTHA, LIZZ -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 md:gap-7 lg:gap-8">
+            
+            <!-- Creador 1: Over -->
+            <div class="creator-card-premium group relative cursor-pointer" data-creator="over">
+                <div class="relative bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm rounded-2xl p-4 md:p-5 transition-all duration-500 border border-cyan-500/20 hover:border-cyan-400/60 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20">
+                    <div class="creator-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 211, 238, 0.3) 0%, transparent 70%);"></div>
+                    
+                    <div class="relative mb-3 md:mb-4">
+                        <div class="avatar-container relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto">
+                            <div class="absolute inset-0 rounded-full border-2 border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-500 animate-pulse-slow group-hover:animate-none"></div>
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                            <div class="relative w-full h-full rounded-full overflow-hidden ring-2 ring-cyan-500/30 group-hover:ring-cyan-400 transition-all duration-500 shadow-xl">
+                                <img src="img/organigrama/over.jpg" alt="Over - Creador de Contenido LKE" 
+                                    class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-3">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            </div>
+                            <div class="creator-particles absolute inset-0 pointer-events-none">
+                                <div class="particle particle-1 absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 0%; left: 20%;"></div>
+                                <div class="particle particle-2 absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 10%; right: 5%;"></div>
+                                <div class="particle particle-3 absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="bottom: 5%; left: 15%;"></div>
+                                <div class="particle particle-4 absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 40%; right: -5%;"></div>
+                                <div class="particle particle-5 absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="bottom: 30%; left: -5%;"></div>
+                            </div>
+                        </div>
+                        <div class="role-badge absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] md:text-xs font-bold text-cyan-400 border border-cyan-500/50 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                            <i class="fas fa-star text-[8px] mr-1"></i> Creador
+                        </div>
+                    </div>
+                    
+                    <h3 class="creator-name text-center text-white font-bold text-base md:text-lg lg:text-xl mt-4 mb-1 transition-all duration-300 group-hover:text-cyan-400 group-hover:tracking-wider">
+                        OVER
+                    </h3>
+                    
+                    <p class="creator-specialty text-center text-gray-400 text-xs md:text-sm transition-all duration-300 group-hover:text-cyan-300">
+                        🎮 Gameplay & Montajes
+                    </p>
+                    
+                    <div class="creator-social flex justify-center space-x-3 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="#" target="_blank" class="social-icon text-gray-400 hover:text-cyan-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:rotate-12 inline-block">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" target="_blank" class="social-icon text-gray-400 hover:text-cyan-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:-rotate-12 inline-block">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" class="social-icon text-gray-400 hover:text-cyan-400 text-sm md:text-base transition-all duration-300 hover:scale-125 inline-block">
+                            <i class="fab fa-twitch"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="creator-line w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-500"></div>
+                </div>
+            </div>
+            
+            <!-- Creador 2: ALFA (segunda posición) -->
+            <div class="creator-card-premium group relative cursor-pointer" data-creator="alfa">
+                <div class="relative bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm rounded-2xl p-4 md:p-5 transition-all duration-500 border border-yellow-500/20 hover:border-yellow-400/60 shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20">
+                    <div class="creator-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 200, 0, 0.3) 0%, transparent 70%);"></div>
+                    <div class="relative mb-3 md:mb-4">
+                        <div class="avatar-container relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto">
+                            <div class="absolute inset-0 rounded-full border-2 border-yellow-500/30 group-hover:border-yellow-400 transition-all duration-500 animate-pulse-slow group-hover:animate-none"></div>
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                            <div class="relative w-full h-full rounded-full overflow-hidden ring-2 ring-yellow-500/30 group-hover:ring-yellow-400 transition-all duration-500 shadow-xl">
+                                <img src="img/organigrama/alfa.jpg" alt="ALFA - Humorista LKE" 
+                                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:-rotate-3">
+                            </div>
+                            <div class="creator-particles absolute inset-0 pointer-events-none">
+                                <div class="particle particle-1 absolute w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 0%; left: 20%;"></div>
+                                <div class="particle particle-2 absolute w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 10%; right: 5%;"></div>
+                            </div>
+                        </div>
+                        <div class="role-badge absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] md:text-xs font-bold text-yellow-400 border border-yellow-500/50 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                            <i class="fas fa-laugh-beam text-[8px] mr-1"></i> Humorista
+                        </div>
+                    </div>
+                    <h3 class="creator-name text-center text-white font-bold text-base md:text-lg lg:text-xl mt-4 mb-1 transition-all duration-300 group-hover:text-yellow-400 group-hover:tracking-wider">
+                        ALFA
+                    </h3>
+                    <p class="creator-specialty text-center text-gray-400 text-xs md:text-sm transition-all duration-300 group-hover:text-yellow-300">
+                        😂 Humor & Gameplay
+                    </p>
+                    <div class="creator-social flex justify-center space-x-3 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="https://www.tiktok.com/@alfaaa_codm" target="_blank" class="social-icon text-gray-400 hover:text-yellow-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:rotate-12 inline-block"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="creator-line w-0 h-0.5 bg-gradient-to-r from-yellow-500 to-orange-500 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-500"></div>
+                </div>
+            </div>
+            
+            <!-- Creador 3: JUCXXO (posición CENTRAL - con efecto rojo/rosa) -->
+            <div class="creator-card-premium group relative cursor-pointer" data-creator="jucxxo">
+                <div class="relative bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm rounded-2xl p-4 md:p-5 transition-all duration-500 border border-red-500/20 hover:border-red-500/60 shadow-lg hover:shadow-2xl hover:shadow-red-500/30">
+                    <div class="creator-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(239, 68, 68, 0.4) 0%, rgba(236, 72, 153, 0.2) 50%, transparent 80%);"></div>
+                    <div class="relative mb-3 md:mb-4">
+                        <div class="avatar-container relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto">
+                            <div class="absolute inset-0 rounded-full border-2 border-red-500/40 group-hover:border-red-500 transition-all duration-500 animate-pulse-slow group-hover:animate-none"></div>
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-500/30 to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                            <div class="relative w-full h-full rounded-full overflow-hidden ring-2 ring-red-500/40 group-hover:ring-red-500 transition-all duration-500 shadow-xl">
+                                <img src="img/organigrama/jucxxo.jpg" alt="Jucxxo - Caster LKE" 
+                                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-3">
+                            </div>
+                            <div class="creator-particles absolute inset-0 pointer-events-none">
+                                <div class="particle particle-1 absolute w-1 h-1 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 0%; left: 20%;"></div>
+                                <div class="particle particle-2 absolute w-1 h-1 bg-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 10%; right: 5%;"></div>
+                                <div class="particle particle-3 absolute w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="bottom: 5%; left: 15%;"></div>
+                                <div class="particle particle-4 absolute w-1 h-1 bg-rose-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 40%; right: -5%;"></div>
+                            </div>
+                        </div>
+                        <div class="role-badge absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] md:text-xs font-bold text-red-400 border border-red-500/50 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                            <i class="fas fa-microphone-alt text-[8px] mr-1"></i> Caster
+                        </div>
+                    </div>
+                    <h3 class="creator-name text-center text-white font-bold text-base md:text-lg lg:text-xl mt-4 mb-1 transition-all duration-300 group-hover:text-red-400 group-hover:tracking-wider">
+                        JUCXXO
+                    </h3>
+                    <p class="creator-specialty text-center text-gray-400 text-xs md:text-sm transition-all duration-300 group-hover:text-red-300">
+                        🎙️ Caster & Streamer
+                    </p>
+                    <div class="creator-social flex justify-center space-x-3 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="https://youtube.com/@jucxxo" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:rotate-12 inline-block"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@jucxxo_" target="_blank" class="social-icon text-gray-400 hover:text-red-400 text-sm md:text-base transition-all duration-300 hover:scale-125 inline-block"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/jucxxo" target="_blank" class="social-icon text-gray-400 hover:text-red-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:-rotate-12 inline-block"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="creator-line w-0 h-0.5 bg-gradient-to-r from-red-500 to-pink-500 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-500"></div>
+                </div>
+            </div>
+            
+            <!-- Creador 4: Samantha -->
+            <div class="creator-card-premium group relative cursor-pointer" data-creator="samantha">
+                <div class="relative bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm rounded-2xl p-4 md:p-5 transition-all duration-500 border border-purple-500/20 hover:border-purple-400/60 shadow-lg hover:shadow-2xl hover:shadow-purple-500/20">
+                    <div class="creator-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(168, 85, 247, 0.3) 0%, transparent 70%);"></div>
+                    <div class="relative mb-3 md:mb-4">
+                        <div class="avatar-container relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto">
+                            <div class="absolute inset-0 rounded-full border-2 border-purple-500/30 group-hover:border-purple-400 transition-all duration-500 animate-pulse-slow group-hover:animate-none"></div>
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                            <div class="relative w-full h-full rounded-full overflow-hidden ring-2 ring-purple-500/30 group-hover:ring-purple-400 transition-all duration-500 shadow-xl">
+                                <img src="img/organigrama/samantha.jpg" alt="Samantha - Creadora de Contenido LKE" 
+                                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-3">
+                            </div>
+                            <div class="creator-particles absolute inset-0 pointer-events-none">
+                                <div class="particle particle-1 absolute w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 0%; left: 20%;"></div>
+                                <div class="particle particle-2 absolute w-1 h-1 bg-pink-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 10%; right: 5%;"></div>
+                            </div>
+                        </div>
+                        <div class="role-badge absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] md:text-xs font-bold text-purple-400 border border-purple-500/50 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                            <i class="fas fa-heart text-[8px] mr-1"></i> Creadora
+                        </div>
+                    </div>
+                    <h3 class="creator-name text-center text-white font-bold text-base md:text-lg lg:text-xl mt-4 mb-1 transition-all duration-300 group-hover:text-purple-400 group-hover:tracking-wider">
+                        SAMANTHA
+                    </h3>
+                    <p class="creator-specialty text-center text-gray-400 text-xs md:text-sm transition-all duration-300 group-hover:text-purple-300">
+                        ✨ Lifestyle & Gaming
+                    </p>
+                    <div class="creator-social flex justify-center space-x-3 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="#" target="_blank" class="social-icon text-gray-400 hover:text-purple-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:-rotate-12 inline-block"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" target="_blank" class="social-icon text-gray-400 hover:text-purple-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:rotate-12 inline-block"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="creator-line w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-500"></div>
+                </div>
+            </div>
+            
+            <!-- Creador 5: Lizz -->
+            <div class="creator-card-premium group relative cursor-pointer" data-creator="lizz">
+                <div class="relative bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm rounded-2xl p-4 md:p-5 transition-all duration-500 border border-green-500/20 hover:border-green-400/60 shadow-lg hover:shadow-2xl hover:shadow-green-500/20">
+                    <div class="creator-glow absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 197, 94, 0.3) 0%, transparent 70%);"></div>
+                    <div class="relative mb-3 md:mb-4">
+                        <div class="avatar-container relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto">
+                            <div class="absolute inset-0 rounded-full border-2 border-green-500/30 group-hover:border-green-400 transition-all duration-500 animate-pulse-slow group-hover:animate-none"></div>
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                            <div class="relative w-full h-full rounded-full overflow-hidden ring-2 ring-green-500/30 group-hover:ring-green-400 transition-all duration-500 shadow-xl">
+                                <img src="img/organigrama/lizz.jpg" alt="Lizz - Creadora de Contenido LKE" 
+                                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:-rotate-3">
+                            </div>
+                            <div class="creator-particles absolute inset-0 pointer-events-none">
+                                <div class="particle particle-1 absolute w-1 h-1 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 0%; left: 20%;"></div>
+                                <div class="particle particle-2 absolute w-1 h-1 bg-emerald-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style="top: 10%; right: 5%;"></div>
+                            </div>
+                        </div>
+                        <div class="role-badge absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] md:text-xs font-bold text-green-400 border border-green-500/50 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                            <i class="fas fa-crown text-[8px] mr-1"></i> Creadora
+                        </div>
+                    </div>
+                    <h3 class="creator-name text-center text-white font-bold text-base md:text-lg lg:text-xl mt-4 mb-1 transition-all duration-300 group-hover:text-green-400 group-hover:tracking-wider">
+                        LIZZ
+                    </h3>
+                    <p class="creator-specialty text-center text-gray-400 text-xs md:text-sm transition-all duration-300 group-hover:text-green-300">
+                        🎨 Edición & Gameplay
+                    </p>
+                    <div class="creator-social flex justify-center space-x-3 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="#" target="_blank" class="social-icon text-gray-400 hover:text-green-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:rotate-12 inline-block"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" target="_blank" class="social-icon text-gray-400 hover:text-green-400 text-sm md:text-base transition-all duration-300 hover:scale-125 hover:-rotate-12 inline-block"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="creator-line w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-500"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Llamada a la acción - SIN MOVIMIENTO AL HOVER SOBRE TARJETAS -->
+        <div class="text-center mt-12 md:mt-16 lg:mt-20 relative" style="z-index: 5;">
+    <a href="#" data-page="organigrama" class="nav-link group relative inline-block overflow-hidden border-2 border-cyan-500 text-cyan-400 hover:text-white px-8 md:px-10 py-3 md:py-4 rounded-lg font-bold transition-all duration-500 text-sm md:text-base hover:scale-105 transform cta-button-stable" style="z-index: 5;">
+        <span class="relative z-10 inline-flex items-center gap-2">
+            Conoce a todo el equipo 
+            <i class="fas fa-arrow-right transition-all duration-300 group-hover:translate-x-2 group-hover:-translate-y-0.5"></i>
+        </span>
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+    </a>
+</div>
+    </div>
+</section>
+
+<!-- ===== Últimas noticias ===== -->
 <section id="news-section" class="py-8 md:py-12 lg:py-16">
     <div class="container mx-auto px-4 sm:px-6">
-        <!-- Título con efecto de entrada - AMBAS PALABRAS EN LA MISMA LÍNEA -->
         <div class="text-center mb-6 md:mb-8 lg:mb-10">
             <div class="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
                 <div class="title-word-left-news opacity-0 transition-all duration-700" style="transform: translateX(-30px);">
@@ -105,20 +322,13 @@
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
-            <!-- NOTICIA 1: CAMPEONES XYLON LEAGUE - CON EFECTOS SORPRENDENTES -->
+            <!-- NOTICIA 1 -->
             <div class="news-card scroll-reveal-card relative rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 opacity-0 translate-y-[40px] group cursor-pointer news-card-enhanced" data-news="1" data-page="news" role="link" tabindex="0">
-                <!-- Imagen de fondo con efecto de zoom al hover -->
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('../img/win-xylon-lke.jpg');"></div>
-                
-                <!-- Capa de gradiente mejorada con efecto de luz al hover -->
                 <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60 group-hover:from-black/85 group-hover:via-black/70 group-hover:to-black/50 transition-all duration-500"></div>
-                
-                <!-- Efecto de reflejo de luz (scanline) que aparece al hover -->
                 <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
                 </div>
-                
-                <!-- Contenido de la tarjeta -->
                 <div class="relative z-10 h-full flex flex-col justify-end p-4 sm:p-5 md:p-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px]">
                     <div class="text-cyan-400 text-xs sm:text-sm mb-2 font-semibold flex items-center gap-2">
                         <i class="fas fa-trophy text-yellow-400 animate-pulse"></i>
@@ -134,26 +344,19 @@
                         Leer más <i class="fas fa-arrow-right text-xs transition-all duration-300 news-arrow-icon"></i>
                     </a>
                 </div>
-                
-                <!-- Badge con efecto de brillo mejorado -->
                 <div class="absolute top-2 right-2 z-20 bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
                     🏆 CAMPEÓN
                 </div>
-                
-                <!-- Efecto de destello al cargar (cámara flash) -->
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
-            <!-- NOTICIA 2: WEZOPLAY SPONSOR OFICIAL - CON EFECTOS SORPRENDENTES -->
+            <!-- NOTICIA 2 -->
             <div class="news-card scroll-reveal-card relative rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 opacity-0 translate-y-[40px] delay-100 group cursor-pointer news-card-enhanced" data-news="2" data-page="news" role="link" tabindex="0">
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('../img/xg-wezoplay.png');"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60 group-hover:from-black/85 group-hover:via-black/70 group-hover:to-black/50 transition-all duration-500"></div>
-                
-                <!-- Efecto de reflejo de luz -->
                 <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
                 </div>
-                
                 <div class="relative z-10 h-full flex flex-col justify-end p-4 sm:p-5 md:p-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px]">
                     <div class="text-cyan-400 text-xs sm:text-sm mb-2 font-semibold flex items-center gap-2">
                         <i class="fas fa-bolt text-yellow-400"></i>
@@ -182,16 +385,13 @@
                 <div class="absolute inset-0 pointer-events-none camera-flash opacity-0"></div>
             </div>
             
-            <!-- NOTICIA 3: PRÓXIMO TORNEO XYLON LEAGUE - CON EFECTOS SORPRENDENTES -->
+            <!-- NOTICIA 3 -->
             <div class="news-card scroll-reveal-card relative rounded-xl overflow-hidden border border-cyan-500/30 transition-all duration-500 opacity-0 translate-y-[40px] delay-200 sm:col-span-2 lg:col-span-1 group cursor-pointer news-card-enhanced" data-news="3" data-page="news" role="link" tabindex="0">
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('../img/xylon-season2.jpg');"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60 group-hover:from-black/85 group-hover:via-black/70 group-hover:to-black/50 transition-all duration-500"></div>
-                
-                <!-- Efecto de reflejo de luz -->
                 <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
                 </div>
-                
                 <div class="relative z-10 h-full flex flex-col justify-end p-4 sm:p-5 md:p-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px]">
                     <div class="text-cyan-400 text-xs sm:text-sm mb-2 font-semibold flex items-center gap-2">
                         <i class="fas fa-calendar-alt text-green-400"></i>
@@ -223,9 +423,9 @@
 </section>
 
 <style>
-    /* ===== ESTILOS PARA EL NUEVO EFECTO DE TÍTULO ESTILO TORNEOS EN HERO ===== */
+    /* ===== ESTILOS COMPLETOS ===== */
     
-    /* Animaciones para el título del hero (estilo torneos) */
+    /* Animaciones para el título del hero */
     .title-word-left-hero.revealed,
     .title-word-right-hero.revealed,
     .subtitle-hero.revealed {
@@ -249,56 +449,274 @@
         transform: scaleX(1) !important;
     }
     
-    /* Ajuste adicional para reducir espacio entre DOMINA EL y COMPETITIVO */
     .hero-title-line1,
     .hero-title-line2 {
-        line-height: 1.1 !important; /* Reduce la altura de línea para acercar las palabras */
+        line-height: 1.1 !important;
     }
     
-    /* Ajuste responsive para móviles */
     @media (max-width: 768px) {
         .title-word-right-hero {
-            margin-top: -0.25rem !important; /* Margen negativo sutil en móvil */
+            margin-top: -0.25rem !important;
         }
     }
     
-    /* Efecto glitch en el título al hover (estilo torneos) */
     .hero-title-line2 {
         position: relative;
         transition: all 0.3s ease;
         display: inline-block;
     }
     
-    /* Animación glitch para activación automática */
     @keyframes heroGlitch {
-        0% {
-            text-shadow: -2px 0 cyan, 2px 0 magenta;
-            transform: skew(0deg);
-        }
-        25% {
-            text-shadow: -3px 0 cyan, 3px 0 magenta;
-            transform: skew(2deg);
-        }
-        50% {
-            text-shadow: -1px 0 cyan, 1px 0 magenta;
-            transform: skew(-1deg);
-        }
-        75% {
-            text-shadow: -2px 0 cyan, 2px 0 magenta;
-            transform: skew(1deg);
-        }
-        100% {
-            text-shadow: 0 0 cyan, 0 0 magenta;
-            transform: skew(0deg);
-        }
+        0% { text-shadow: -2px 0 cyan, 2px 0 magenta; transform: skew(0deg); }
+        25% { text-shadow: -3px 0 cyan, 3px 0 magenta; transform: skew(2deg); }
+        50% { text-shadow: -1px 0 cyan, 1px 0 magenta; transform: skew(-1deg); }
+        75% { text-shadow: -2px 0 cyan, 2px 0 magenta; transform: skew(1deg); }
+        100% { text-shadow: 0 0 cyan, 0 0 magenta; transform: skew(0deg); }
     }
     
-    /* Efecto hover también mantiene el glitch */
     .title-word-right-hero:hover .hero-title-line2 {
         animation: heroGlitch 0.3s ease-in-out;
     }
     
-    /* ===== ESTILOS EXISTENTES (se mantienen) ===== */
+    /* Estilos para títulos de creadores */
+    .title-word-left-creadores-home.revealed,
+    .title-word-right-creadores-home.revealed,
+    .subtitle-creadores-home.revealed {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
+    
+    .title-word-left-creadores-home.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .title-word-right-creadores-home.revealed {
+        transform: translateX(0) !important;
+    }
+    
+    .subtitle-creadores-home.revealed {
+        transform: translateY(0) !important;
+    }
+    
+    .title-line-creadores-home.revealed {
+        transform: scaleX(1) !important;
+    }
+    
+    /* Estilos premium para tarjetas de creadores */
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+    }
+    
+    .animate-pulse-slow {
+        animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    .creator-card-premium {
+        transform-style: preserve-3d;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .creator-card-premium:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+    
+    .creator-glow {
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+    
+    .creator-particles .particle {
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .creator-card-premium:hover .particle-1 {
+        transform: translate(8px, -12px) scale(1.5);
+        opacity: 1 !important;
+    }
+    
+    .creator-card-premium:hover .particle-2 {
+        transform: translate(-6px, -10px) scale(1.3);
+        opacity: 1 !important;
+    }
+    
+    .creator-card-premium:hover .particle-3 {
+        transform: translate(10px, 8px) scale(1.4);
+        opacity: 1 !important;
+    }
+    
+    .creator-card-premium:hover .particle-4 {
+        transform: translate(-8px, 12px) scale(1.2);
+        opacity: 1 !important;
+    }
+    
+    .creator-card-premium:hover .particle-5 {
+        transform: translate(5px, -15px) scale(1.6);
+        opacity: 1 !important;
+    }
+    
+    @keyframes glitchName {
+        0% { text-shadow: -2px 0 cyan, 2px 0 magenta; transform: skew(0deg); }
+        25% { text-shadow: -3px 0 cyan, 3px 0 magenta; transform: skew(2deg); }
+        50% { text-shadow: -1px 0 cyan, 1px 0 magenta; transform: skew(-1deg); }
+        75% { text-shadow: -2px 0 cyan, 2px 0 magenta; transform: skew(1deg); }
+        100% { text-shadow: 0 0 cyan, 0 0 magenta; transform: skew(0deg); }
+    }
+    
+    .creator-card-premium:hover .creator-name {
+        animation: glitchName 0.3s ease-in-out;
+    }
+    
+    /* CORRECCIÓN: Especialidad centrada y sin desbordamiento */
+    .creator-specialty {
+        text-align: center !important;
+        display: block !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
+    }
+    
+    .creator-card-premium:hover .creator-specialty {
+        animation: none !important;
+        white-space: normal !important;
+        display: block !important;
+        text-align: center !important;
+    }
+    
+    @keyframes springBounce {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.3); }
+        50% { transform: scale(0.95); }
+        70% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    .creator-card-premium:hover .social-icon {
+        animation: springBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .social-icon {
+        display: inline-block;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    @keyframes avatarGlow {
+        0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+    }
+    
+    .creator-card-premium:hover .rounded-full {
+        animation: avatarGlow 1s ease-out;
+    }
+    
+    @keyframes cardReveal {
+        0% { opacity: 0; transform: translateY(50px) rotateX(-10deg); }
+        100% { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+    
+    .creator-card-premium.revealed {
+        animation: cardReveal 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    
+    @keyframes rippleEffect {
+        0% { width: 0px; height: 0px; opacity: 0.8; }
+        100% { width: 200px; height: 200px; opacity: 0; }
+    }
+    
+    .avatar-container {
+        transition: transform 0.3s ease;
+    }
+    
+    .creator-card-premium:hover .avatar-container {
+        transform: scale(1.02);
+    }
+    
+    .role-badge {
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .creator-card-premium:hover .role-badge {
+        box-shadow: 0 0 15px currentColor;
+    }
+    
+    .creator-card-premium:hover .creator-name {
+        background: linear-gradient(135deg, #fff, #06b6d4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .creator-card-premium:hover > div {
+        box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(34, 211, 238, 0.3);
+    }
+    
+    .creator-line {
+        transition: width 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    /* BOTÓN ESTABLE - No se ve afectado por hover en otras tarjetas */
+    .cta-button-stable {
+        position: relative;
+        z-index: 50;
+        display: inline-block;
+    }
+    
+    .cta-button-stable:hover {
+        transform: scale(1.05);
+    }
+    
+    /* Responsive para la sección de creadores */
+    @media (max-width: 640px) {
+        .creator-specialty {
+            font-size: 10px !important;
+            line-height: 1.3 !important;
+        }
+        
+        .role-badge {
+            font-size: 8px !important;
+            padding: 0.125rem 0.5rem !important;
+            bottom: -4px !important;
+        }
+        
+        .creator-name {
+            font-size: 0.875rem !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        .creator-social {
+            margin-top: 0.5rem !important;
+        }
+        
+        .creator-line {
+            margin-top: 0.5rem !important;
+        }
+        
+        .creator-card-premium .relative.mb-3 {
+            margin-bottom: 0.75rem !important;
+        }
+    }
+    
+    @media (min-width: 641px) and (max-width: 768px) {
+        .creator-specialty {
+            font-size: 11px !important;
+        }
+        
+        .role-badge {
+            font-size: 9px !important;
+        }
+        
+        .creator-name {
+            font-size: 1rem !important;
+        }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1023px) {
+        .creator-specialty {
+            font-size: 0.75rem !important;
+        }
+    }
+    
+    /* Estilos existentes para noticias y stats */
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -327,7 +745,6 @@
         word-break: break-word;
     }
     
-    /* Estilos para las animaciones del título de noticias */
     .title-word-left-news.revealed,
     .title-word-right-news.revealed,
     .subtitle-news.revealed {
@@ -335,23 +752,11 @@
         transform: translateX(0) !important;
     }
     
-    .title-word-left-news.revealed {
-        transform: translateX(0) !important;
-    }
+    .title-word-left-news.revealed { transform: translateX(0) !important; }
+    .title-word-right-news.revealed { transform: translateX(0) !important; }
+    .subtitle-news.revealed { transform: translateY(0) !important; }
+    .title-line-news.revealed { transform: scaleX(1) !important; }
     
-    .title-word-right-news.revealed {
-        transform: translateX(0) !important;
-    }
-    
-    .subtitle-news.revealed {
-        transform: translateY(0) !important;
-    }
-    
-    .title-line-news.revealed {
-        transform: scaleX(1) !important;
-    }
-    
-    /* Estilo unificado para hover de stats cards */
     .stats-card {
         transition: all 0.3s ease-in-out;
         position: relative;
@@ -370,25 +775,19 @@
         text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
     }
     
-    /* ============================================ */
-    /* EFECTOS SORPRENDENTES PARA TARJETAS DE NOTICIAS */
-    /* ============================================ */
-    
-    /* Tarjeta base mejorada */
+    /* Efectos para tarjetas de noticias */
     .news-card-enhanced {
         position: relative;
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
     }
     
-    /* Efecto de borde neón pulsante al hover */
     .news-card-enhanced:hover {
         border-color: #22d3ee;
         box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
         transform: translateY(-5px) scale(1.02);
     }
     
-    /* Efecto glitch en el título al hover */
     .news-title-glitch {
         position: relative;
         transition: all 0.3s ease;
@@ -399,29 +798,13 @@
     }
     
     @keyframes glitchText {
-        0% {
-            text-shadow: -2px 0 cyan, 2px 0 magenta;
-            transform: skew(0deg);
-        }
-        25% {
-            text-shadow: -3px 0 cyan, 3px 0 magenta;
-            transform: skew(2deg);
-        }
-        50% {
-            text-shadow: -1px 0 cyan, 1px 0 magenta;
-            transform: skew(-1deg);
-        }
-        75% {
-            text-shadow: -2px 0 cyan, 2px 0 magenta;
-            transform: skew(1deg);
-        }
-        100% {
-            text-shadow: 0 0 cyan, 0 0 magenta;
-            transform: skew(0deg);
-        }
+        0% { text-shadow: -2px 0 cyan, 2px 0 magenta; transform: skew(0deg); }
+        25% { text-shadow: -3px 0 cyan, 3px 0 magenta; transform: skew(2deg); }
+        50% { text-shadow: -1px 0 cyan, 1px 0 magenta; transform: skew(-1deg); }
+        75% { text-shadow: -2px 0 cyan, 2px 0 magenta; transform: skew(1deg); }
+        100% { text-shadow: 0 0 cyan, 0 0 magenta; transform: skew(0deg); }
     }
     
-    /* Efecto de eco en la flecha al hacer hover sobre el enlace */
     .news-arrow-icon {
         position: relative;
         display: inline-block;
@@ -432,105 +815,52 @@
     }
     
     @keyframes arrowEcho {
-        0% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        50% {
-            transform: translateX(5px);
-            opacity: 0.7;
-        }
-        75% {
-            transform: translateX(-2px);
-            opacity: 0.9;
-        }
-        100% {
-            transform: translateX(3px);
-            opacity: 1;
-        }
+        0% { transform: translateX(0); opacity: 1; }
+        50% { transform: translateX(5px); opacity: 0.7; }
+        75% { transform: translateX(-2px); opacity: 0.9; }
+        100% { transform: translateX(3px); opacity: 1; }
     }
     
-    /* Efecto de data blast (múltiples flechas) al hacer click */
     .news-card-enhanced .nav-link:active .news-arrow-icon {
         animation: dataBlast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     
     @keyframes dataBlast {
-        0% {
-            transform: translateX(0) scale(1);
-            opacity: 1;
-        }
-        30% {
-            transform: translateX(10px) scale(1.3);
-            opacity: 0;
-        }
-        60% {
-            transform: translateX(-5px) scale(0.8);
-            opacity: 0;
-        }
-        100% {
-            transform: translateX(3px) scale(1);
-            opacity: 1;
-        }
+        0% { transform: translateX(0) scale(1); opacity: 1; }
+        30% { transform: translateX(10px) scale(1.3); opacity: 0; }
+        60% { transform: translateX(-5px) scale(0.8); opacity: 0; }
+        100% { transform: translateX(3px) scale(1); opacity: 1; }
     }
     
-    /* Efecto de destello de cámara al cargar la tarjeta */
     .camera-flash {
         animation: cameraFlash 0.5s ease-out forwards;
     }
     
     @keyframes cameraFlash {
-        0% {
-            opacity: 0;
-            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
-        }
-        30% {
-            opacity: 0.8;
-            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
-        }
-        70% {
-            opacity: 0.3;
-            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 70%, rgba(255, 255, 255, 0) 100%);
-        }
-        100% {
-            opacity: 0;
-            background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
-        }
+        0% { opacity: 0; background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100%); }
+        30% { opacity: 0.8; background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); }
+        70% { opacity: 0.3; background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 70%, rgba(255,255,255,0) 100%); }
+        100% { opacity: 0; background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100%); }
     }
     
-    /* Efecto de brillo pulsante en los badges */
     .news-card-enhanced .absolute.top-2.right-2 {
         animation: badgePulse 1.5s ease-in-out infinite;
     }
     
     @keyframes badgePulse {
-        0%, 100% {
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-            transform: scale(1);
-        }
-        50% {
-            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); transform: scale(1); }
+        50% { box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.2); transform: scale(1.05); }
     }
     
-    /* Efecto de gradiente animado en el borde al hover */
     .news-card-enhanced:hover {
         animation: borderPulse 1s ease-in-out infinite;
     }
     
     @keyframes borderPulse {
-        0%, 100% {
-            border-color: rgba(34, 211, 238, 0.5);
-            box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
-        }
-        50% {
-            border-color: rgba(34, 211, 238, 1);
-            box-shadow: 0 0 25px rgba(34, 211, 238, 0.6);
-        }
+        0%, 100% { border-color: rgba(34, 211, 238, 0.5); box-shadow: 0 0 10px rgba(34, 211, 238, 0.3); }
+        50% { border-color: rgba(34, 211, 238, 1); box-shadow: 0 0 25px rgba(34, 211, 238, 0.6); }
     }
     
-    /* Efecto de partículas al hover (opcional) */
     .news-card-enhanced::before {
         content: '';
         position: absolute;
@@ -550,7 +880,6 @@
         opacity: 1;
     }
     
-    /* Estilos para tarjetas de noticias base */
     .news-card.relative {
         position: relative;
         background-size: cover;
@@ -561,15 +890,6 @@
         cursor: pointer;
     }
     
-    .news-card.relative .absolute.inset-0.bg-gradient-to-t {
-        transition: all 0.3s ease;
-    }
-    
-    .news-card.relative:hover .absolute.inset-0.bg-gradient-to-t {
-        background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.4), rgba(0,0,0,0.2));
-    }
-    
-    /* SCROLL REVEAL ANIMATIONS SOLO PARA TARJETAS */
     .scroll-reveal-card {
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -579,218 +899,85 @@
         transform: translateY(0) !important;
     }
     
-    /* Animaciones para los elementos iniciales del hero */
-    .animate-from-left.visible,
-    .animate-from-right.visible,
-    .animate-from-bottom.visible {
-        opacity: 1;
-        transform: translate(0);
-    }
-    
-    .animate-from-left {
-        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .animate-from-right {
-        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .animate-from-bottom {
-        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    /* ============================================ */
-    /* TAMAÑOS DE FUENTE RESPONSIVOS PARA EL TÍTULO */
-    /* ============================================ */
-    
-    /* Mobile pequeño (hasta 480px) */
+    /* Responsive general */
     @media (max-width: 480px) {
-        .hero-title-line1 {
-            font-size: 1.75rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 2rem !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.125rem !important;
-        }
+        .hero-title-line1 { font-size: 1.75rem !important; }
+        .hero-title-line2 { font-size: 2rem !important; }
+        .title-word-right-hero { margin-top: -0.125rem !important; }
+        .title-word-left-news span, .title-word-right-news span { font-size: 1.5rem !important; }
+        .title-word-left-creadores-home span, .title-word-right-creadores-home span { font-size: 1.5rem !important; }
+        .news-card-enhanced:hover { transform: translateY(-3px) scale(1.01); }
     }
     
-    /* Mobile (481px - 640px) */
     @media (min-width: 481px) and (max-width: 640px) {
-        .hero-title-line1 {
-            font-size: 2rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 2.5rem !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.25rem !important;
-        }
+        .hero-title-line1 { font-size: 2rem !important; }
+        .hero-title-line2 { font-size: 2.5rem !important; }
+        .title-word-right-hero { margin-top: -0.25rem !important; }
     }
     
-    /* Tablets portrait (641px - 768px) */
     @media (min-width: 641px) and (max-width: 768px) {
-        .hero-title-line1 {
-            font-size: 2.5rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 3rem !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.375rem !important;
-        }
+        .hero-title-line1 { font-size: 2.5rem !important; }
+        .hero-title-line2 { font-size: 3rem !important; }
+        .title-word-right-hero { margin-top: -0.375rem !important; }
+        .title-word-left-creadores-home span, .title-word-right-creadores-home span { font-size: 2rem !important; }
     }
     
-    /* Tablets landscape (769px - 1023px) */
     @media (min-width: 769px) and (max-width: 1023px) {
-        .hero-title-line1 {
-            font-size: 3rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 3.5rem !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.5rem !important;
-        }
+        .hero-title-line1 { font-size: 3rem !important; }
+        .hero-title-line2 { font-size: 3.5rem !important; }
+        .title-word-right-hero { margin-top: -0.5rem !important; }
     }
     
-    /* Desktop pequeño (1024px - 1279px) - Aquí se activa el grid de dos columnas */
     @media (min-width: 1024px) and (max-width: 1279px) {
-        .hero-title-line1 {
-            font-size: 3rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 3.5rem !important;
-            white-space: normal !important;
-            word-break: keep-all !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.5rem !important;
-        }
-        /* Ajuste para que las stats cards no sean demasiado grandes */
-        .stats-card {
-            padding: 1rem !important;
-        }
-        .stats-card .text-cyan-400 {
-            font-size: 1.75rem !important;
-        }
+        .hero-title-line1 { font-size: 3rem !important; }
+        .hero-title-line2 { font-size: 3.5rem !important; white-space: normal !important; }
+        .title-word-right-hero { margin-top: -0.5rem !important; }
+        .stats-card { padding: 1rem !important; }
+        .stats-card .text-cyan-400 { font-size: 1.75rem !important; }
     }
     
-    /* Desktop mediano (1280px - 1439px) */
     @media (min-width: 1280px) and (max-width: 1439px) {
-        .hero-title-line1 {
-            font-size: 3.5rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 4rem !important;
-            white-space: nowrap !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.5rem !important;
-        }
-        .stats-card {
-            padding: 1.25rem !important;
-        }
-        .stats-card .text-cyan-400 {
-            font-size: 2rem !important;
-        }
+        .hero-title-line1 { font-size: 3.5rem !important; }
+        .hero-title-line2 { font-size: 4rem !important; white-space: nowrap !important; }
+        .title-word-right-hero { margin-top: -0.5rem !important; }
+        .stats-card { padding: 1.25rem !important; }
+        .stats-card .text-cyan-400 { font-size: 2rem !important; }
     }
     
-    /* Desktop grande (1440px - 1919px) */
     @media (min-width: 1440px) and (max-width: 1919px) {
-        .hero-title-line1 {
-            font-size: 4rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 4.5rem !important;
-            white-space: nowrap !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.5rem !important;
-        }
-        .stats-card {
-            padding: 1.5rem !important;
-        }
-        .stats-card .text-cyan-400 {
-            font-size: 2.25rem !important;
-        }
+        .hero-title-line1 { font-size: 4rem !important; }
+        .hero-title-line2 { font-size: 4.5rem !important; white-space: nowrap !important; }
+        .title-word-right-hero { margin-top: -0.5rem !important; }
+        .stats-card { padding: 1.5rem !important; }
+        .stats-card .text-cyan-400 { font-size: 2.25rem !important; }
     }
     
-    /* Desktop extra grande (1920px en adelante) */
     @media (min-width: 1920px) {
-        .hero-title-line1 {
-            font-size: 5rem !important;
-        }
-        .hero-title-line2 {
-            font-size: 5.5rem !important;
-            white-space: nowrap !important;
-        }
-        .title-word-right-hero {
-            margin-top: -0.75rem !important;
-        }
-        .stats-card {
-            padding: 1.75rem !important;
-        }
-        .stats-card .text-cyan-400 {
-            font-size: 2.5rem !important;
-        }
+        .hero-title-line1 { font-size: 5rem !important; }
+        .hero-title-line2 { font-size: 5.5rem !important; white-space: nowrap !important; }
+        .title-word-right-hero { margin-top: -0.75rem !important; }
+        .stats-card { padding: 1.75rem !important; }
+        .stats-card .text-cyan-400 { font-size: 2.5rem !important; }
     }
     
-    /* Ajustes para las stats cards en todos los tamaños */
     @media (max-width: 640px) {
-        .stats-card {
-            padding: 0.75rem !important;
-        }
-        .stats-card .text-cyan-400 {
-            font-size: 1.25rem !important;
-        }
-        .news-card.relative {
-            min-height: 200px;
-        }
-        .min-h-\[90vh\] {
-            min-height: 85vh;
-        }
+        .stats-card { padding: 0.75rem !important; }
+        .stats-card .text-cyan-400 { font-size: 1.25rem !important; }
+        .news-card.relative { min-height: 200px; }
+        .min-h-\[90vh\] { min-height: 85vh; }
     }
     
     @media (min-width: 641px) and (max-width: 768px) {
-        .stats-card {
-            padding: 1rem !important;
-        }
-        .stats-card .text-cyan-400 {
-            font-size: 1.5rem !important;
-        }
+        .stats-card { padding: 1rem !important; }
+        .stats-card .text-cyan-400 { font-size: 1.5rem !important; }
     }
     
     @media (min-width: 769px) and (max-width: 1023px) {
-        .stats-card {
-            padding: 1.25rem !important;
-        }
-        .stats-card .text-cyan-400 {
-            font-size: 1.75rem !important;
-        }
+        .stats-card { padding: 1.25rem !important; }
+        .stats-card .text-cyan-400 { font-size: 1.75rem !important; }
     }
     
     @media (min-width: 768px) and (max-width: 1023px) {
-        .min-h-\[85vh\] {
-            min-height: 80vh;
-        }
+        .min-h-\[85vh\] { min-height: 80vh; }
     }
-    
-    /* Ajuste para que en móviles no se desborde */
-    @media (max-width: 480px) {
-        .flex.justify-center.items-center {
-            gap: 0.5rem;
-        }
-        
-        .title-word-left-news span,
-        .title-word-right-news span {
-            font-size: 1.5rem !important;
-        }
-        
-        .news-card-enhanced:hover {
-            transform: translateY(-3px) scale(1.01);
-        }
-    }
-    
 </style>

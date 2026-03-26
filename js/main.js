@@ -1,12 +1,6 @@
 // ============================================
 // MAIN.JS - SISTEMA DE NAVEGACIÓN DINÁMICA PARA LKE E-SPORTS
-// VERSIÓN DEFINITIVA - CON HASH ROUTING Y EFECTOS COMPLETOS
-// INCLUYE ORGANIGRAMA CON EFECTOS DE TÍTULO ARMONIZADOS Y SCROLL REVEAL
-// NUEVO: EFECTO DE TÍTULO ESTILO TORNEOS PARA EL HERO (DOMINA EL COMPETITIVO)
-// NUEVO: EVENTO PERSONALIZADO PARA ACTIVAR GLITCH EN COMPETITIVO CUANDO SE REINICIAN LOS CONTADORES
-// NUEVO: EFECTO FLASH AL HACER SCROLL EN TARJETAS DE NOTICIAS (REPETIBLE Y CON MEJOR VISIBILIDAD)
-// MODIFICADO: CORRECCIÓN DE DOBLE REINICIO DE CONTADORES
-// MODIFICADO: ORGANIGRAMA CON EFECTOS UNIFICADOS (STAFF-CARD-ENHANCED)
+// VERSIÓN DEFINITIVA - CON SECCIÓN DE CREADORES INTERACTIVA PREMIUM
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,20 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const splashScreen = document.getElementById('splash-screen');
     const mainContent = document.getElementById('main-content');
     
-    // Variable para controlar si las animaciones ya se ejecutaron
     let animationsExecuted = false;
-    
-    // Detectar si es dispositivo táctil para optimizar animaciones
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     
     // ============================================
     // FUNCIÓN PARA ACTIVAR GLITCH EN LA PALABRA COMPETITIVO
     // ============================================
     function triggerCompetitivoGlitch() {
-        // Buscar el elemento por ID o por clase si no tiene ID
         let competitivoWord = document.getElementById('competitivo-word');
         
-        // Si no encuentra por ID, buscar por la clase y el texto
         if (!competitivoWord) {
             const possibleElements = document.querySelectorAll('.hero-title-line2');
             for (let el of possibleElements) {
@@ -41,131 +30,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         if (competitivoWord) {
-            // Remover cualquier animación previa
             competitivoWord.style.animation = 'none';
-            // Forzar reflow
             void competitivoWord.offsetWidth;
-            // Aplicar la animación glitch
             competitivoWord.style.animation = 'heroGlitch 0.3s ease-in-out';
-            // Limpiar después de que termine
             setTimeout(() => {
                 if (competitivoWord) {
                     competitivoWord.style.animation = '';
                 }
             }, 300);
-            console.log('Glitch activado en COMPETITIVO');
-        } else {
-            console.log('Elemento COMPETITIVO no encontrado para glitch');
         }
     }
     
     // ============================================
-    // FUNCIÓN PARA ACTIVAR FLASH EN TARJETAS DE NOTICIAS AL HACER SCROLL
-    // MODIFICADA: Flash cuando la tarjeta está completamente visible y repetible
+    // FUNCIÓN PARA ACTIVAR FLASH EN TARJETAS (UNIFICADA)
     // ============================================
-    function initNewsCardsFlashOnScroll() {
-        const newsCards = document.querySelectorAll('.news-card-enhanced');
-        
-        if (newsCards.length === 0) {
-            console.log('No se encontraron tarjetas de noticias para el efecto flash');
-            return;
-        }
-        
-        // Configurar observer para detectar cuando las tarjetas entran al viewport
-        const observerOptions = {
-            threshold: 0.85,
-            rootMargin: '0px 0px 0px 0px'
-        };
-        
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const flashElement = card.querySelector('.camera-flash');
-                    if (flashElement) {
-                        flashElement.classList.remove('camera-flash');
-                        void flashElement.offsetWidth;
-                        flashElement.classList.add('camera-flash');
-                        setTimeout(() => {
-                            if (flashElement) {
-                                flashElement.classList.remove('camera-flash');
-                            }
-                        }, 500);
-                    }
-                    console.log('Flash activado en tarjeta de noticias al hacer scroll');
+    function triggerCardFlash(card) {
+        const flashElement = card.querySelector('.camera-flash');
+        if (flashElement && !card.hasAttribute('data-flash-played')) {
+            flashElement.classList.remove('camera-flash');
+            void flashElement.offsetWidth;
+            flashElement.classList.add('camera-flash');
+            setTimeout(() => {
+                if (flashElement) {
+                    flashElement.classList.remove('camera-flash');
                 }
-            });
-        };
-        
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        
-        newsCards.forEach(card => {
-            observer.observe(card);
-        });
-        
-        console.log('Flash on scroll inicializado en', newsCards.length, 'tarjetas de noticias');
-        
-        window.newsCardsFlashObserver = observer;
-    }
-    
-    function cleanupNewsCardsFlashObserver() {
-        if (window.newsCardsFlashObserver) {
-            window.newsCardsFlashObserver.disconnect();
-            window.newsCardsFlashObserver = null;
-            console.log('Observer de flash en noticias limpiado');
+            }, 500);
+            card.setAttribute('data-flash-played', 'true');
         }
     }
     
     // ============================================
-    // FUNCIÓN PARA ACTIVAR FLASH EN TARJETAS DE ORGANIGRAMA
+    // FUNCIÓN PARA EFECTO DE PARTÍCULAS EN TARJETAS
     // ============================================
-    function initOrganigramaCardsFlashOnScroll() {
-        const staffCards = document.querySelectorAll('.staff-card-enhanced');
-        
-        if (staffCards.length === 0) return;
-        
-        const observerOptions = {
-            threshold: 0.7,
-            rootMargin: '0px 0px -30px 0px'
-        };
-        
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.hasAttribute('data-flash-played')) {
-                    const card = entry.target;
-                    const flashElement = card.querySelector('.camera-flash');
-                    if (flashElement) {
-                        flashElement.classList.remove('camera-flash');
-                        void flashElement.offsetWidth;
-                        flashElement.classList.add('camera-flash');
-                        setTimeout(() => {
-                            if (flashElement) {
-                                flashElement.classList.remove('camera-flash');
-                            }
-                        }, 500);
-                    }
-                    card.setAttribute('data-flash-played', 'true');
-                }
-            });
-        };
-        
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        
-        staffCards.forEach(card => {
-            observer.observe(card);
-        });
-        
-        window.organigramaFlashObserver = observer;
-        console.log('Flash on scroll inicializado en', staffCards.length, 'tarjetas de organigrama');
-    }
-    
-    // ============================================
-    // FUNCIÓN PARA EFECTO DE PARTÍCULAS EN TARJETAS DE ORGANIGRAMA
-    // ============================================
-    function initOrganigramaParticleEffect() {
-        const staffCards = document.querySelectorAll('.staff-card-enhanced');
-        
-        staffCards.forEach(card => {
+    function initParticleEffect(cardSelector) {
+        const cards = document.querySelectorAll(cardSelector);
+        cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -174,8 +73,97 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.setProperty('--y', `${y}%`);
             });
         });
+    }
+    
+    // ============================================
+    // FUNCIÓN PARA EFECTO DE LUZ DINÁMICA EN TARJETAS DE CREADORES
+    // ============================================
+    function initCreatorDynamicLight() {
+        const creatorCards = document.querySelectorAll('.creator-card-premium');
         
-        console.log('Efecto de partículas inicializado en', staffCards.length, 'tarjetas de organigrama');
+        creatorCards.forEach(card => {
+            const glowElement = card.querySelector('.creator-glow');
+            
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                if (glowElement) {
+                    glowElement.style.setProperty('--mouse-x', `${x}%`);
+                    glowElement.style.setProperty('--mouse-y', `${y}%`);
+                }
+                
+                // Efecto de parallax en la imagen
+                const img = card.querySelector('img');
+                if (img) {
+                    const moveX = (e.clientX - rect.left - rect.width / 2) / 30;
+                    const moveY = (e.clientY - rect.top - rect.height / 2) / 30;
+                    img.style.transform = `scale(1.1) translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const img = card.querySelector('img');
+                if (img) {
+                    img.style.transform = 'scale(1) translate(0, 0)';
+                }
+                if (glowElement) {
+                    glowElement.style.setProperty('--mouse-x', '50%');
+                    glowElement.style.setProperty('--mouse-y', '50%');
+                }
+            });
+            
+            // Efecto de clic con onda
+            card.addEventListener('click', (e) => {
+                const ripple = document.createElement('div');
+                ripple.className = 'creator-ripple';
+                ripple.style.position = 'absolute';
+                ripple.style.left = `${e.clientX - card.getBoundingClientRect().left}px`;
+                ripple.style.top = `${e.clientY - card.getBoundingClientRect().top}px`;
+                ripple.style.width = '0px';
+                ripple.style.height = '0px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(34, 211, 238, 0.5)';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.animation = 'rippleEffect 0.6s ease-out forwards';
+                ripple.style.zIndex = '100';
+                
+                const cardInner = card.querySelector('.relative');
+                if (cardInner) {
+                    cardInner.style.position = 'relative';
+                    cardInner.style.overflow = 'hidden';
+                    cardInner.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                }
+            });
+        });
+    }
+    
+    // ============================================
+    // FUNCIÓN PARA HAPTIC FEEDBACK EN MÓVILES
+    // ============================================
+    function initCreatorHapticFeedback() {
+        const creatorCards = document.querySelectorAll('.creator-card-premium');
+        
+        creatorCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Efecto visual de vibración sutil
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+                
+                // Si es dispositivo móvil, se puede agregar vibración
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(50);
+                }
+            });
+        });
     }
     
     // ============================================
@@ -230,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 buttons.forEach((btn, index) => {
                     setTimeout(() => {
                         btn.classList.remove('opacity-0', 'translate-y-[30px]');
-                        btn.classList.add('visible', 'animate-enter-bottom');
+                        btn.classList.add('visible');
                         btn.style.opacity = '1';
                         btn.style.transform = 'translateY(0)';
                     }, index * 150);
@@ -242,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
             statsCards.forEach((card, index) => {
                 setTimeout(() => {
                     card.classList.remove('opacity-0', 'translate-y-[30px]');
-                    card.classList.add('visible', 'animate-stats-card');
+                    card.classList.add('visible');
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
                     card.classList.add('neon-border');
@@ -262,9 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             initEnhancedScrollReveal();
             initTitleEffects();
-            initNewsTitleScrollReveal();
-            initHeroTitleScrollReveal();
-            initNewsCardsFlashOnScroll();
+            initAllTitleScrollReveal();
             initParticleEffectOnNewsCards();
             unifyStatsCardsHover();
             
@@ -309,16 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 'home';
     let activeIntervals = [];
     let enhancedScrollObserver = null;
-    let counterLoopInterval = null;
-    let newsTitleObserver = null;
-    let heroTitleObserver = null;
-    
-    window.tournamentsTitleObserver = null;
-    window.tournamentsHeaderTitleObserver = null;
-    window.organigramaTitleObserver = null;
-    window.sectionTitleObservers = [];
-    window.organigramaCardObserver = null;
-    window.organigramaFlashObserver = null;
+    let titleObservers = [];
     
     // ============================================
     // SECCIÓN 3: FUNCIÓN PARA ASIGNAR EVENT LISTENERS A NAVIGATION
@@ -329,7 +306,6 @@ document.addEventListener('DOMContentLoaded', () => {
             link.removeEventListener('click', handleNavClick);
             link.addEventListener('click', handleNavClick);
         });
-        console.log('Event listeners asignados a', navLinks.length, 'nav-links');
     }
     
     function handleNavClick(e) {
@@ -397,10 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(interval);
         });
         activeIntervals = [];
-        if (counterLoopInterval) {
-            clearInterval(counterLoopInterval);
-            counterLoopInterval = null;
-        }
     }
     
     function updatePageTitle(page) {
@@ -434,623 +406,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ============================================
-    // SECCIÓN 6: FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME
-    // ============================================
-    function resetHomeElements() {
-        const titleLeft = document.querySelector('.title-word-left-hero');
-        const titleRight = document.querySelector('.title-word-right-hero');
-        const subtitle = document.querySelector('.subtitle-hero');
-        const titleLine = document.querySelector('.title-line-hero');
-        
-        if (titleLeft) {
-            titleLeft.classList.remove('revealed');
-            titleLeft.style.opacity = '0';
-            titleLeft.style.transform = 'translateX(-30px)';
-        }
-        if (titleRight) {
-            titleRight.classList.remove('revealed');
-            titleRight.style.opacity = '0';
-            titleRight.style.transform = 'translateX(30px)';
-        }
-        if (subtitle) {
-            subtitle.classList.remove('revealed');
-            subtitle.style.opacity = '0';
-            subtitle.style.transform = 'translateY(20px)';
-        }
-        if (titleLine) {
-            titleLine.classList.remove('revealed');
-            titleLine.style.transform = 'scaleX(0)';
-        }
-        
-        const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
-        buttons.forEach(btn => {
-            btn.classList.remove('visible', 'animate-enter-bottom');
-            btn.classList.add('opacity-0', 'translate-y-[30px]');
-            btn.style.opacity = '0';
-            btn.style.transform = 'translateY(30px)';
-        });
-        
-        const statsCards = document.querySelectorAll('.stats-card');
-        statsCards.forEach(card => {
-            card.classList.remove('visible', 'animate-stats-card');
-            card.classList.add('opacity-0', 'translate-y-[30px]');
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = '';
-        });
-        
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(counter => {
-            counter.textContent = '0';
-        });
-        
-        const newsCards = document.querySelectorAll('.news-card');
-        newsCards.forEach(card => {
-            card.classList.add('opacity-0', 'translate-y-[30px]');
-        });
-        
-        resetNewsTitleElements();
-        console.log('Elementos del home reseteados');
+    function isElementInViewport(el, offset = 100) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top <= windowHeight - offset;
     }
     
     // ============================================
-    // SECCIÓN 6.5: FUNCIONES PARA EL TÍTULO DE NOTICIAS
+    // SECCIÓN 6: FUNCIONES PARA TÍTULOS DE SECCIÓN (UNIFICADAS)
     // ============================================
-    function resetNewsTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-news');
-        const titleRight = document.querySelector('.title-word-right-news');
-        const subtitle = document.querySelector('.subtitle-news');
-        const titleLine = document.querySelector('.title-line-news');
-        
-        if (titleLeft) {
-            titleLeft.classList.remove('revealed');
-            titleLeft.style.opacity = '0';
-            titleLeft.style.transform = 'translateX(-30px)';
-        }
-        if (titleRight) {
-            titleRight.classList.remove('revealed');
-            titleRight.style.opacity = '0';
-            titleRight.style.transform = 'translateX(30px)';
-        }
-        if (subtitle) {
-            subtitle.classList.remove('revealed');
-            subtitle.style.opacity = '0';
-            subtitle.style.transform = 'translateY(20px)';
-        }
-        if (titleLine) {
-            titleLine.classList.remove('revealed');
-            titleLine.style.transform = 'scaleX(0)';
-        }
-    }
-    
-    function revealNewsTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-news');
-        const titleRight = document.querySelector('.title-word-right-news');
-        const subtitle = document.querySelector('.subtitle-news');
-        const titleLine = document.querySelector('.title-line-news');
-        
-        if (titleLeft && !titleLeft.classList.contains('revealed')) {
-            titleLeft.classList.add('revealed');
-        }
-        if (titleRight && !titleRight.classList.contains('revealed')) {
-            titleRight.classList.add('revealed');
-        }
-        if (subtitle && !subtitle.classList.contains('revealed')) {
-            subtitle.classList.add('revealed');
-        }
-        if (titleLine && !titleLine.classList.contains('revealed')) {
-            titleLine.classList.add('revealed');
-        }
-    }
-    
-    function initNewsTitleScrollReveal() {
-        if (newsTitleObserver) {
-            newsTitleObserver.disconnect();
-        }
-        
-        const newsSection = document.getElementById('news-section');
-        if (!newsSection) {
-            setTimeout(initNewsTitleScrollReveal, 500);
-            return;
-        }
-        
-        resetNewsTitleElements();
-        
-        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    revealNewsTitleElements();
-                } else {
-                    resetNewsTitleElements();
-                }
-            });
-        };
-        
-        newsTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
-        newsTitleObserver.observe(newsSection);
-        
-        setTimeout(() => {
-            if (newsSection && isElementInViewport(newsSection, 100)) {
-                revealNewsTitleElements();
-            }
-        }, 300);
-        
-        console.log('Scroll reveal para título de noticias inicializado');
-    }
-    
-    // ============================================
-    // SECCIÓN 6.6: FUNCIÓN PARA EL TÍTULO DEL HERO
-    // ============================================
-    function resetHeroTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-hero');
-        const titleRight = document.querySelector('.title-word-right-hero');
-        const subtitle = document.querySelector('.subtitle-hero');
-        const titleLine = document.querySelector('.title-line-hero');
-        
-        if (titleLeft) {
-            titleLeft.classList.remove('revealed');
-            titleLeft.style.opacity = '0';
-            titleLeft.style.transform = 'translateX(-30px)';
-        }
-        if (titleRight) {
-            titleRight.classList.remove('revealed');
-            titleRight.style.opacity = '0';
-            titleRight.style.transform = 'translateX(30px)';
-        }
-        if (subtitle) {
-            subtitle.classList.remove('revealed');
-            subtitle.style.opacity = '0';
-            subtitle.style.transform = 'translateY(20px)';
-        }
-        if (titleLine) {
-            titleLine.classList.remove('revealed');
-            titleLine.style.transform = 'scaleX(0)';
-        }
-    }
-    
-    function revealHeroTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-hero');
-        const titleRight = document.querySelector('.title-word-right-hero');
-        const subtitle = document.querySelector('.subtitle-hero');
-        const titleLine = document.querySelector('.title-line-hero');
-        
-        if (titleLeft && !titleLeft.classList.contains('revealed')) {
-            titleLeft.classList.add('revealed');
-        }
-        if (titleRight && !titleRight.classList.contains('revealed')) {
-            titleRight.classList.add('revealed');
-        }
-        if (subtitle && !subtitle.classList.contains('revealed')) {
-            subtitle.classList.add('revealed');
-        }
-        if (titleLine && !titleLine.classList.contains('revealed')) {
-            titleLine.classList.add('revealed');
-        }
-    }
-    
-    function initHeroTitleScrollReveal() {
-        if (heroTitleObserver) {
-            heroTitleObserver.disconnect();
-        }
-        
-        const heroSection = document.getElementById('home-hero-section');
-        if (!heroSection) {
-            setTimeout(initHeroTitleScrollReveal, 500);
-            return;
-        }
-        
-        resetHeroTitleElements();
-        
-        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    revealHeroTitleElements();
-                } else {
-                    resetHeroTitleElements();
-                }
-            });
-        };
-        
-        heroTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
-        heroTitleObserver.observe(heroSection);
-        
-        setTimeout(() => {
-            if (heroSection && isElementInViewport(heroSection, 100)) {
-                revealHeroTitleElements();
-            }
-        }, 300);
-        
-        console.log('Scroll reveal para título del hero inicializado');
-    }
-    
-    // ============================================
-    // SECCIÓN 6.7: EFECTOS MEJORADOS PARA NOTICIAS
-    // ============================================
-    function initParticleEffectOnNewsCards() {
-        const newsCards = document.querySelectorAll('.news-card-enhanced');
-        newsCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                card.style.setProperty('--x', `${x}%`);
-                card.style.setProperty('--y', `${y}%`);
-            });
-        });
-        console.log('Efecto de partículas inicializado en', newsCards.length, 'tarjetas');
-    }
-    
-    function initDataBlastEffect() {
-        const newsLinks = document.querySelectorAll('.news-card-enhanced .nav-link');
-        newsLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const arrowIcon = link.querySelector('.news-arrow-icon');
-                if (arrowIcon) {
-                    arrowIcon.style.animation = 'none';
-                    void arrowIcon.offsetWidth;
-                    arrowIcon.style.animation = 'dataBlast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                    setTimeout(() => {
-                        if (arrowIcon) {
-                            arrowIcon.style.animation = '';
-                        }
-                    }, 400);
-                }
-            });
-        });
-        console.log('Efecto Data Blast inicializado en', newsLinks.length, 'enlaces');
-    }
-    
-    // ============================================
-    // SECCIÓN 6.8: EFECTOS MEJORADOS PARA TORNEOS
-    // ============================================
-    function initTournamentCameraFlash() {
-        const tournamentCards = document.querySelectorAll('.tournament-card-enhanced');
-        tournamentCards.forEach((card, index) => {
-            const flashElement = card.querySelector('.camera-flash');
-            if (flashElement) {
-                flashElement.classList.remove('camera-flash');
-                void flashElement.offsetWidth;
-                setTimeout(() => {
-                    flashElement.classList.add('camera-flash');
-                    setTimeout(() => {
-                        flashElement.classList.remove('camera-flash');
-                    }, 500);
-                }, index * 200);
-            }
-        });
-        console.log('Efecto cámara flash inicializado en', tournamentCards.length, 'tarjetas de torneos');
-    }
-    
-    function initTournamentParticleEffect() {
-        const tournamentCards = document.querySelectorAll('.tournament-card-enhanced');
-        tournamentCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                card.style.setProperty('--x', `${x}%`);
-                card.style.setProperty('--y', `${y}%`);
-            });
-        });
-        console.log('Efecto de partículas inicializado en', tournamentCards.length, 'tarjetas de torneos');
-    }
-    
-    function initTournamentDataBlast() {
-        const tournamentLinks = document.querySelectorAll('.tournament-card-enhanced .nav-link');
-        tournamentLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const arrowIcon = link.querySelector('.tournament-arrow-icon');
-                if (arrowIcon) {
-                    arrowIcon.style.animation = 'none';
-                    void arrowIcon.offsetWidth;
-                    arrowIcon.style.animation = 'tournamentDataBlast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                    setTimeout(() => {
-                        if (arrowIcon) {
-                            arrowIcon.style.animation = '';
-                        }
-                    }, 400);
-                }
-            });
-        });
-        console.log('Efecto Data Blast inicializado en', tournamentLinks.length, 'enlaces de torneos');
-    }
-    
-    function initTournamentEffects() {
-        initTournamentCameraFlash();
-        initTournamentParticleEffect();
-        initTournamentDataBlast();
-    }
-    
-    // ============================================
-    // SECCIÓN 6.9: FUNCIONES PARA EL TÍTULO DE TORNEOS ANTERIORES
-    // ============================================
-    function resetTournamentsTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-tournaments');
-        const titleRight = document.querySelector('.title-word-right-tournaments');
-        const subtitle = document.querySelector('.subtitle-tournaments');
-        const titleLine = document.querySelector('.title-line-tournaments');
-        
-        if (titleLeft) {
-            titleLeft.classList.remove('revealed');
-            titleLeft.style.opacity = '0';
-            titleLeft.style.transform = 'translateX(-30px)';
-        }
-        if (titleRight) {
-            titleRight.classList.remove('revealed');
-            titleRight.style.opacity = '0';
-            titleRight.style.transform = 'translateX(30px)';
-        }
-        if (subtitle) {
-            subtitle.classList.remove('revealed');
-            subtitle.style.opacity = '0';
-            subtitle.style.transform = 'translateY(20px)';
-        }
-        if (titleLine) {
-            titleLine.classList.remove('revealed');
-            titleLine.style.transform = 'scaleX(0)';
-        }
-    }
-    
-    function revealTournamentsTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-tournaments');
-        const titleRight = document.querySelector('.title-word-right-tournaments');
-        const subtitle = document.querySelector('.subtitle-tournaments');
-        const titleLine = document.querySelector('.title-line-tournaments');
-        
-        if (titleLeft && !titleLeft.classList.contains('revealed')) {
-            titleLeft.classList.add('revealed');
-        }
-        if (titleRight && !titleRight.classList.contains('revealed')) {
-            titleRight.classList.add('revealed');
-        }
-        if (subtitle && !subtitle.classList.contains('revealed')) {
-            subtitle.classList.add('revealed');
-        }
-        if (titleLine && !titleLine.classList.contains('revealed')) {
-            titleLine.classList.add('revealed');
-        }
-    }
-    
-    function initTournamentsTitleScrollReveal() {
-        if (window.tournamentsTitleObserver) {
-            window.tournamentsTitleObserver.disconnect();
-        }
-        
-        const tournamentsPastSection = document.getElementById('tournaments-past-section');
-        if (!tournamentsPastSection) {
-            setTimeout(initTournamentsTitleScrollReveal, 500);
-            return;
-        }
-        
-        resetTournamentsTitleElements();
-        
-        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    revealTournamentsTitleElements();
-                } else {
-                    resetTournamentsTitleElements();
-                }
-            });
-        };
-        
-        window.tournamentsTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
-        window.tournamentsTitleObserver.observe(tournamentsPastSection);
-        
-        setTimeout(() => {
-            if (tournamentsPastSection && isElementInViewport(tournamentsPastSection, 100)) {
-                revealTournamentsTitleElements();
-            }
-        }, 300);
-        
-        console.log('Scroll reveal para título de torneos anteriores inicializado');
-    }
-    
-    // ============================================
-    // SECCIÓN 6.10: FUNCIONES PARA EL TÍTULO HEADER DE TORNEOS
-    // ============================================
-    function resetTournamentsHeaderTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-tournaments-header');
-        const titleRight = document.querySelector('.title-word-right-tournaments-header');
-        const subtitle = document.querySelector('.subtitle-tournaments-header');
-        const titleLine = document.querySelector('.title-line-tournaments-header');
-        
-        if (titleLeft) {
-            titleLeft.classList.remove('revealed');
-            titleLeft.style.opacity = '0';
-            titleLeft.style.transform = 'translateX(-30px)';
-        }
-        if (titleRight) {
-            titleRight.classList.remove('revealed');
-            titleRight.style.opacity = '0';
-            titleRight.style.transform = 'translateX(30px)';
-        }
-        if (subtitle) {
-            subtitle.classList.remove('revealed');
-            subtitle.style.opacity = '0';
-            subtitle.style.transform = 'translateY(20px)';
-        }
-        if (titleLine) {
-            titleLine.classList.remove('revealed');
-            titleLine.style.transform = 'scaleX(0)';
-        }
-    }
-    
-    function revealTournamentsHeaderTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-tournaments-header');
-        const titleRight = document.querySelector('.title-word-right-tournaments-header');
-        const subtitle = document.querySelector('.subtitle-tournaments-header');
-        const titleLine = document.querySelector('.title-line-tournaments-header');
-        
-        if (titleLeft && !titleLeft.classList.contains('revealed')) {
-            titleLeft.classList.add('revealed');
-        }
-        if (titleRight && !titleRight.classList.contains('revealed')) {
-            titleRight.classList.add('revealed');
-        }
-        if (subtitle && !subtitle.classList.contains('revealed')) {
-            subtitle.classList.add('revealed');
-        }
-        if (titleLine && !titleLine.classList.contains('revealed')) {
-            titleLine.classList.add('revealed');
-        }
-    }
-    
-    function initTournamentsHeaderTitleScrollReveal() {
-        if (window.tournamentsHeaderTitleObserver) {
-            window.tournamentsHeaderTitleObserver.disconnect();
-        }
-        
-        const tournamentsHeaderSection = document.getElementById('tournaments-header-section');
-        if (!tournamentsHeaderSection) {
-            setTimeout(initTournamentsHeaderTitleScrollReveal, 500);
-            return;
-        }
-        
-        resetTournamentsHeaderTitleElements();
-        
-        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    revealTournamentsHeaderTitleElements();
-                } else {
-                    resetTournamentsHeaderTitleElements();
-                }
-            });
-        };
-        
-        window.tournamentsHeaderTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
-        window.tournamentsHeaderTitleObserver.observe(tournamentsHeaderSection);
-        
-        setTimeout(() => {
-            if (tournamentsHeaderSection && isElementInViewport(tournamentsHeaderSection, 100)) {
-                revealTournamentsHeaderTitleElements();
-            }
-        }, 300);
-        
-        console.log('Scroll reveal para título header de torneos inicializado');
-    }
-    
-    // ============================================
-    // SECCIÓN 6.11: FUNCIONES PARA EL TÍTULO DE ORGANIGRAMA
-    // ============================================
-    function resetOrganigramaTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-organigrama');
-        const titleRight = document.querySelector('.title-word-right-organigrama');
-        const subtitle = document.querySelector('.subtitle-organigrama');
-        const titleLine = document.querySelector('.title-line-organigrama');
-        
-        if (titleLeft) {
-            titleLeft.classList.remove('revealed');
-            titleLeft.style.opacity = '0';
-            titleLeft.style.transform = 'translateX(-30px)';
-        }
-        if (titleRight) {
-            titleRight.classList.remove('revealed');
-            titleRight.style.opacity = '0';
-            titleRight.style.transform = 'translateX(30px)';
-        }
-        if (subtitle) {
-            subtitle.classList.remove('revealed');
-            subtitle.style.opacity = '0';
-            subtitle.style.transform = 'translateY(20px)';
-        }
-        if (titleLine) {
-            titleLine.classList.remove('revealed');
-            titleLine.style.transform = 'scaleX(0)';
-        }
-    }
-    
-    function revealOrganigramaTitleElements() {
-        const titleLeft = document.querySelector('.title-word-left-organigrama');
-        const titleRight = document.querySelector('.title-word-right-organigrama');
-        const subtitle = document.querySelector('.subtitle-organigrama');
-        const titleLine = document.querySelector('.title-line-organigrama');
-        
-        if (titleLeft && !titleLeft.classList.contains('revealed')) {
-            titleLeft.classList.add('revealed');
-        }
-        if (titleRight && !titleRight.classList.contains('revealed')) {
-            titleRight.classList.add('revealed');
-        }
-        if (subtitle && !subtitle.classList.contains('revealed')) {
-            subtitle.classList.add('revealed');
-        }
-        if (titleLine && !titleLine.classList.contains('revealed')) {
-            titleLine.classList.add('revealed');
-        }
-    }
-    
-    function initOrganigramaTitleScrollReveal() {
-        if (window.organigramaTitleObserver) {
-            window.organigramaTitleObserver.disconnect();
-        }
-        
-        const organigramaHeaderSection = document.getElementById('organigrama-header-section');
-        if (!organigramaHeaderSection) {
-            setTimeout(initOrganigramaTitleScrollReveal, 500);
-            return;
-        }
-        
-        resetOrganigramaTitleElements();
-        
-        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    revealOrganigramaTitleElements();
-                } else {
-                    resetOrganigramaTitleElements();
-                }
-            });
-        };
-        
-        window.organigramaTitleObserver = new IntersectionObserver(observerCallback, observerOptions);
-        window.organigramaTitleObserver.observe(organigramaHeaderSection);
-        
-        setTimeout(() => {
-            if (organigramaHeaderSection && isElementInViewport(organigramaHeaderSection, 100)) {
-                revealOrganigramaTitleElements();
-            }
-        }, 300);
-        
-        console.log('Scroll reveal para título de organigrama inicializado');
-    }
-    
-    // ============================================
-    // SECCIÓN 6.12: FUNCIONES PARA LOS TÍTULOS DE SECCIÓN DEL ORGANIGRAMA
-    // ============================================
-    function initOrganigramaSectionTitlesScrollReveal() {
-        if (window.sectionTitleObservers) {
-            window.sectionTitleObservers.forEach(observer => observer.disconnect());
-            window.sectionTitleObservers = [];
-        }
-        
-        const sections = [
-            { id: 'ceo-section', leftClass: '.section-title-left-ceo', rightClass: '.section-title-right-ceo', lineClass: '.section-title-line-ceo' },
-            { id: 'asistentes-section', leftClass: '.section-title-left-asistentes', rightClass: '.section-title-right-asistentes', lineClass: '.section-title-line-asistentes' },
-            { id: 'directoras-section', leftClass: '.section-title-left-directoras', rightClass: '.section-title-right-directoras', lineClass: '.section-title-line-directoras' },
-            { id: 'coaches-section', leftClass: '.section-title-left-coaches', rightClass: '.section-title-right-coaches', lineClass: '.section-title-line-coaches' },
-            { id: 'managers-section', leftClass: '.section-title-left-managers', rightClass: '.section-title-right-managers', lineClass: '.section-title-line-managers' },
-            { id: 'audiovisual-section', leftClass: '.section-title-left-audiovisual', rightClass: '.section-title-right-audiovisual', lineClass: '.section-title-line-audiovisual' },
-            { id: 'creadores-section', leftClass: '.section-title-left-creadores', rightClass: '.section-title-right-creadores', lineClass: '.section-title-line-creadores' }
-        ];
-        
-        sections.forEach(section => {
-            const sectionElement = document.getElementById(section.id);
+    function initTitleScrollReveal(titleConfigs) {
+        titleConfigs.forEach(config => {
+            const sectionElement = document.getElementById(config.sectionId);
             if (!sectionElement) return;
             
-            const leftElement = document.querySelector(section.leftClass);
-            const rightElement = document.querySelector(section.rightClass);
-            const lineElement = document.querySelector(section.lineClass);
+            const leftElement = document.querySelector(config.leftClass);
+            const rightElement = document.querySelector(config.rightClass);
+            const subtitleElement = config.subtitleClass ? document.querySelector(config.subtitleClass) : null;
+            const lineElement = document.querySelector(config.lineClass);
             
-            if (!leftElement && !rightElement && !lineElement) return;
+            if (!leftElement && !rightElement && !subtitleElement && !lineElement) return;
             
+            // Resetear estado inicial
             if (leftElement) {
                 leftElement.classList.remove('revealed');
                 leftElement.style.opacity = '0';
@@ -1060,6 +437,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 rightElement.classList.remove('revealed');
                 rightElement.style.opacity = '0';
                 rightElement.style.transform = 'translateX(30px)';
+            }
+            if (subtitleElement) {
+                subtitleElement.classList.remove('revealed');
+                subtitleElement.style.opacity = '0';
+                subtitleElement.style.transform = 'translateY(20px)';
             }
             if (lineElement) {
                 lineElement.classList.remove('revealed');
@@ -1076,6 +458,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (rightElement && !rightElement.classList.contains('revealed')) {
                             rightElement.classList.add('revealed');
                         }
+                        if (subtitleElement && !subtitleElement.classList.contains('revealed')) {
+                            subtitleElement.classList.add('revealed');
+                        }
                         if (lineElement && !lineElement.classList.contains('revealed')) {
                             lineElement.classList.add('revealed');
                         }
@@ -1090,6 +475,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             rightElement.style.opacity = '0';
                             rightElement.style.transform = 'translateX(30px)';
                         }
+                        if (subtitleElement) {
+                            subtitleElement.classList.remove('revealed');
+                            subtitleElement.style.opacity = '0';
+                            subtitleElement.style.transform = 'translateY(20px)';
+                        }
                         if (lineElement) {
                             lineElement.classList.remove('revealed');
                             lineElement.style.transform = 'scaleX(0)';
@@ -1100,30 +490,90 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const observer = new IntersectionObserver(observerCallback, observerOptions);
             observer.observe(sectionElement);
-            window.sectionTitleObservers.push(observer);
+            titleObservers.push(observer);
         });
+    }
+    
+    function initAllTitleScrollReveal() {
+        // Limpiar observadores anteriores
+        titleObservers.forEach(observer => observer.disconnect());
+        titleObservers = [];
         
-        console.log('Scroll reveal para títulos de sección de organigrama inicializado');
+        // Configuraciones para todas las vistas
+        const titleConfigs = [
+            // HOME
+            { sectionId: 'home-hero-section', leftClass: '.title-word-left-hero', rightClass: '.title-word-right-hero', subtitleClass: '.subtitle-hero', lineClass: '.title-line-hero' },
+            { sectionId: 'creadores-home-section', leftClass: '.title-word-left-creadores-home', rightClass: '.title-word-right-creadores-home', subtitleClass: '.subtitle-creadores-home', lineClass: '.title-line-creadores-home' },
+            { sectionId: 'news-section', leftClass: '.title-word-left-news', rightClass: '.title-word-right-news', subtitleClass: '.subtitle-news', lineClass: '.title-line-news' },
+            
+            // TEAM
+            { sectionId: 'team-header-section', leftClass: '.title-word-left-team', rightClass: '.title-word-right-team', subtitleClass: '.subtitle-team', lineClass: '.title-line-team' },
+            { sectionId: 'main-team', leftClass: '.section-title-left-main-team', rightClass: '.section-title-right-main-team', subtitleClass: null, lineClass: '.section-title-line-main-team' },
+            { sectionId: 'legacy', leftClass: '.section-title-left-legacy', rightClass: '.section-title-right-legacy', subtitleClass: null, lineClass: '.section-title-line-legacy' },
+            { sectionId: 'nova', leftClass: '.section-title-left-nova', rightClass: '.section-title-right-nova', subtitleClass: null, lineClass: '.section-title-line-nova' },
+            { sectionId: 'secret', leftClass: '.section-title-left-secret', rightClass: '.section-title-right-secret', subtitleClass: null, lineClass: '.section-title-line-secret' },
+            
+            // TOURNAMENTS
+            { sectionId: 'tournaments-header-section', leftClass: '.title-word-left-tournaments-header', rightClass: '.title-word-right-tournaments-header', subtitleClass: '.subtitle-tournaments-header', lineClass: '.title-line-tournaments-header' },
+            { sectionId: 'tournaments-past-section', leftClass: '.title-word-left-tournaments', rightClass: '.title-word-right-tournaments', subtitleClass: '.subtitle-tournaments', lineClass: '.title-line-tournaments' },
+            
+            // ORGANIGRAMA
+            { sectionId: 'organigrama-header-section', leftClass: '.title-word-left-organigrama', rightClass: '.title-word-right-organigrama', subtitleClass: '.subtitle-organigrama', lineClass: '.title-line-organigrama' },
+            { sectionId: 'ceo-section', leftClass: '.section-title-left-ceo', rightClass: '.section-title-right-ceo', subtitleClass: null, lineClass: '.section-title-line-ceo' },
+            { sectionId: 'asistentes-section', leftClass: '.section-title-left-asistentes', rightClass: '.section-title-right-asistentes', subtitleClass: null, lineClass: '.section-title-line-asistentes' },
+            { sectionId: 'directoras-section', leftClass: '.section-title-left-directoras', rightClass: '.section-title-right-directoras', subtitleClass: null, lineClass: '.section-title-line-directoras' },
+            { sectionId: 'coaches-section', leftClass: '.section-title-left-coaches', rightClass: '.section-title-right-coaches', subtitleClass: null, lineClass: '.section-title-line-coaches' },
+            { sectionId: 'managers-section', leftClass: '.section-title-left-managers', rightClass: '.section-title-right-managers', subtitleClass: null, lineClass: '.section-title-line-managers' },
+            { sectionId: 'audiovisual-section', leftClass: '.section-title-left-audiovisual', rightClass: '.section-title-right-audiovisual', subtitleClass: null, lineClass: '.section-title-line-audiovisual' },
+            { sectionId: 'creadores-section', leftClass: '.section-title-left-creadores', rightClass: '.section-title-right-creadores', subtitleClass: null, lineClass: '.section-title-line-creadores' },
+            
+            // NEWS
+            { sectionId: 'news-header-section', leftClass: '.title-word-left-news-header', rightClass: '.title-word-right-news-header', subtitleClass: '.subtitle-news-header', lineClass: '.title-line-news-header' },
+            
+            // CONTACT
+            { sectionId: 'contact-header-section', leftClass: '.title-word-left-contact', rightClass: '.title-word-right-contact', subtitleClass: '.subtitle-contact', lineClass: '.title-line-contact' }
+        ];
+        
+        initTitleScrollReveal(titleConfigs);
     }
     
     // ============================================
-    // SECCIÓN 7: FUNCIÓN PARA APLICAR EFECTO NEON A STATS CARDS
+    // SECCIÓN 7: EFECTOS MEJORADOS PARA NOTICIAS Y TARJETAS
     // ============================================
-    function applyNeonEffectToStatsCards() {
-        const allStatsCards = document.querySelectorAll('.stats-card');
-        allStatsCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add('neon-border');
-                setTimeout(() => {
-                    card.classList.remove('neon-border');
-                }, 1000);
-            }, index * 150);
+    function initParticleEffectOnNewsCards() {
+        const cards = document.querySelectorAll('.news-card-enhanced, .player-card-enhanced, .contact-card, .tournament-card-enhanced, .staff-card-enhanced, .creator-card-mini, .creator-card-premium');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--x', `${x}%`);
+                card.style.setProperty('--y', `${y}%`);
+            });
         });
-        console.log('Efecto neon aplicado a', allStatsCards.length, 'stats cards');
+    }
+    
+    function initDataBlastEffect() {
+        const newsLinks = document.querySelectorAll('.news-card-enhanced a, .tournament-card-enhanced a');
+        newsLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const arrowIcon = link.querySelector('.news-arrow-icon, .tournament-arrow-icon');
+                if (arrowIcon) {
+                    arrowIcon.style.animation = 'none';
+                    void arrowIcon.offsetWidth;
+                    arrowIcon.style.animation = 'dataBlast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    setTimeout(() => {
+                        if (arrowIcon) {
+                            arrowIcon.style.animation = '';
+                        }
+                    }, 400);
+                }
+            });
+        });
     }
     
     // ============================================
-    // SECCIÓN 8: FUNCIÓN PARA UNIFICAR COMPORTAMIENTO HOVER
+    // SECCIÓN 8: FUNCIÓN PARA UNIFICAR COMPORTAMIENTO HOVER STATS CARDS
     // ============================================
     function unifyStatsCardsHover() {
         const statsCards = document.querySelectorAll('.stats-card');
@@ -1133,7 +583,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('mouseenter', handleStatsCardHover);
             card.addEventListener('mouseleave', handleStatsCardLeave);
         });
-        console.log('Hover unificado aplicado a', statsCards.length, 'stats cards');
     }
     
     function handleStatsCardHover(e) {
@@ -1184,7 +633,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.animationDuration = 2000;
             this.isRunning = false;
             this.animationId = null;
-            this.countdownInterval = null;
             this.hasAnimated = new WeakMap();
         }
         
@@ -1207,48 +655,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.hasAnimated.set(parentCard, false);
                 }
             });
-            
-            console.log('Contadores inicializados:', this.counters.length);
-            return this.counters.length > 0;
         }
         
         triggerGlitchEffect() {
-            if (typeof window.triggerCompetitivoGlitch === 'function') {
-                window.triggerCompetitivoGlitch();
-            } else {
-                let competitivoWord = document.getElementById('competitivo-word');
-                if (!competitivoWord) {
-                    const possibleElements = document.querySelectorAll('.hero-title-line2');
-                    for (let el of possibleElements) {
-                        if (el.textContent.trim() === 'COMPETITIVO') {
-                            competitivoWord = el;
-                            break;
-                        }
-                    }
-                }
-                if (competitivoWord) {
-                    competitivoWord.style.animation = 'none';
-                    void competitivoWord.offsetWidth;
-                    competitivoWord.style.animation = 'heroGlitch 0.3s ease-in-out';
-                    setTimeout(() => {
-                        if (competitivoWord) {
-                            competitivoWord.style.animation = '';
-                        }
-                    }, 300);
-                    console.log('Glitch activado directamente desde CounterManager');
-                }
-            }
+            triggerCompetitivoGlitch();
         }
         
         async animateAll(force = false) {
             this.stop();
             
             if (this.counters.length === 0) {
-                const hasCounters = this.init();
-                if (!hasCounters) {
-                    console.log('No hay contadores para animar');
-                    return;
-                }
+                this.init();
+                if (this.counters.length === 0) return;
             }
             
             if (!force) {
@@ -1259,10 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return true;
                 });
                 
-                if (countersToAnimate.length === 0) {
-                    console.log('Todos los contadores ya fueron animados en este ciclo');
-                    return;
-                }
+                if (countersToAnimate.length === 0) return;
             }
             
             this.triggerGlitchEffect();
@@ -1310,7 +725,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!allFinished) {
                         this.animationId = requestAnimationFrame(animate);
                     } else {
-                        console.log('Contadores finalizados');
                         resolve();
                     }
                 };
@@ -1319,21 +733,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        resetCounterForCard(card) {
-            this.hasAnimated.set(card, false);
-            const countersInCard = this.counters.filter(counter => counter.parentCard === card);
+        animateCardCounters(card) {
+            if (this.hasAnimated.get(card)) return;
             
-            countersInCard.forEach(counter => {
-                counter.currentValue = 0;
-                counter.element.textContent = '0';
-            });
+            const countersToAnimate = this.counters.filter(counter => counter.parentCard === card);
             
-            if (countersInCard.length > 0) {
-                this.animateCounters(countersInCard);
+            if (countersToAnimate.length > 0) {
+                this.animateSpecificCounters(countersToAnimate);
+                this.hasAnimated.set(card, true);
             }
         }
         
-        animateCounters(countersToAnimate) {
+        animateSpecificCounters(countersToAnimate) {
             const startTime = performance.now();
             
             const animate = (currentTime) => {
@@ -1359,9 +770,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         allFinished = false;
                     } else {
                         counter.element.textContent = counter.target;
-                        if (counter.parentCard) {
-                            this.hasAnimated.set(counter.parentCard, true);
-                        }
                     }
                 });
                 
@@ -1373,17 +781,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.animationId = requestAnimationFrame(animate);
         }
         
-        resetAllCounters() {
-            this.counters.forEach(counter => {
-                if (counter.parentCard) {
-                    this.hasAnimated.set(counter.parentCard, false);
-                }
-                counter.currentValue = 0;
-                counter.element.textContent = '0';
-            });
-            console.log('Todos los contadores reseteados para nueva animación');
-        }
-        
         stop() {
             this.isRunning = false;
             if (this.animationId) {
@@ -1392,35 +789,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        startLoop(intervalTime = 30000) {
-            if (this.countdownInterval) {
-                clearInterval(this.countdownInterval);
-                this.countdownInterval = null;
-            }
-            
-            this.resetAllCounters();
-            this.animateAll(true);
-            
-            this.countdownInterval = setInterval(() => {
-                console.log('Ciclo de 30 segundos: reiniciando contadores');
-                this.resetAllCounters();
-                this.animateAll(true);
-            }, intervalTime);
-            
-            console.log('Loop de contadores iniciado cada', intervalTime / 1000, 'segundos');
-        }
-        
         destroy() {
             this.stop();
-            if (this.countdownInterval) {
-                clearInterval(this.countdownInterval);
-                this.countdownInterval = null;
-            }
         }
     }
     
     // ============================================
-    // SECCIÓN 10: SCROLL REVEAL MEJORADO
+    // SECCIÓN 10: SCROLL REVEAL MEJORADO (UNIFICADO)
     // ============================================
     function initEnhancedScrollReveal() {
         if (enhancedScrollObserver) {
@@ -1429,11 +804,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const animatedElements = document.querySelectorAll(
             '.stats-card, .news-card, .tournament-card-enhanced, .staff-card-enhanced, ' +
+            '.player-card-enhanced, .news-card-enhanced, .contact-card, ' +
             '.animate-from-left, .animate-from-right, .animate-from-bottom, ' +
-            '.glow-text, h1 span, p'
+            '.glow-text, h1 span, p, .creator-card-mini, .creator-card-premium'
         );
-        
-        console.log('Elementos a observar:', animatedElements.length);
         
         const observerOptions = {
             threshold: isTouchDevice ? 0.15 : 0.2,
@@ -1445,6 +819,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const el = entry.target;
                 
                 if (entry.isIntersecting) {
+                    // Manejar elementos genéricos
                     if (!el.classList.contains('animate-from-left') && 
                         !el.classList.contains('animate-from-right') && 
                         !el.classList.contains('animate-from-bottom')) {
@@ -1453,6 +828,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         el.classList.add('visible');
                     }
                     
+                    // Manejar stats cards y contadores
                     if (el.classList.contains('stats-card')) {
                         el.classList.add('neon-border');
                         setTimeout(() => {
@@ -1460,54 +836,78 @@ document.addEventListener('DOMContentLoaded', () => {
                         }, 1000);
                         
                         if (window.counterManager) {
-                            window.counterManager.resetCounterForCard(el);
+                            window.counterManager.animateCardCounters(el);
                         }
                     }
                     
-                    if (el.classList.contains('staff-card-enhanced') && !el.classList.contains('revealed')) {
+                    // Manejar player cards (team)
+                    if (el.classList.contains('player-card-enhanced') && !el.hasAttribute('data-flash-played')) {
                         setTimeout(() => {
+                            triggerCardFlash(el);
                             el.classList.add('revealed');
-                            const flashElement = el.querySelector('.camera-flash');
-                            if (flashElement) {
-                                flashElement.classList.add('camera-flash');
-                                setTimeout(() => {
-                                    flashElement.classList.remove('camera-flash');
-                                }, 500);
-                            }
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
                         }, 100);
                     }
                     
-                    if (el.classList.contains('news-card-enhanced') && !el.classList.contains('revealed')) {
-                        const flashElement = el.querySelector('.camera-flash');
-                        if (flashElement) {
-                            setTimeout(() => {
-                                flashElement.classList.add('camera-flash');
-                                setTimeout(() => {
-                                    flashElement.classList.remove('camera-flash');
-                                }, 500);
-                            }, 200);
-                        }
+                    // Manejar staff cards (organigrama)
+                    if (el.classList.contains('staff-card-enhanced') && !el.hasAttribute('data-flash-played')) {
+                        setTimeout(() => {
+                            triggerCardFlash(el);
+                            el.classList.add('revealed');
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, 100);
                     }
                     
-                    if (el.classList.contains('tournament-card-enhanced') && !el.classList.contains('revealed')) {
-                        const flashElement = el.querySelector('.camera-flash');
-                        if (flashElement) {
-                            setTimeout(() => {
-                                flashElement.classList.add('camera-flash');
-                                setTimeout(() => {
-                                    flashElement.classList.remove('camera-flash');
-                                }, 500);
-                            }, 200);
-                        }
+                    // Manejar creator cards premium (home)
+                    if (el.classList.contains('creator-card-premium') && !el.hasAttribute('data-flash-played')) {
+                        setTimeout(() => {
+                            triggerCardFlash(el);
+                            el.classList.add('revealed');
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0) rotateX(0)';
+                        }, 100);
                     }
                     
+                    // Manejar news cards
+                    if (el.classList.contains('news-card-enhanced') && !el.hasAttribute('data-flash-played')) {
+                        setTimeout(() => {
+                            triggerCardFlash(el);
+                            el.classList.add('revealed');
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                    
+                    // Manejar contact cards
+                    if (el.classList.contains('contact-card') && !el.hasAttribute('data-flash-played')) {
+                        setTimeout(() => {
+                            triggerCardFlash(el);
+                            el.classList.add('revealed');
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                    
+                    // Manejar tournament cards
+                    if (el.classList.contains('tournament-card-enhanced') && !el.hasAttribute('data-flash-played')) {
+                        setTimeout(() => {
+                            triggerCardFlash(el);
+                            el.classList.add('revealed');
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                    
+                    // Manejar elementos con animaciones personalizadas
                     if (el.classList.contains('animate-from-left') || 
                         el.classList.contains('animate-from-right') || 
                         el.classList.contains('animate-from-bottom')) {
                         
                         if (!el.classList.contains('visible')) {
                             el.style.animation = 'none';
-                            el.offsetHeight;
+                            void el.offsetHeight;
                             
                             if (el.classList.contains('animate-from-left')) {
                                 el.style.animation = 'slideFromLeft 0.6s ease-out forwards';
@@ -1522,17 +922,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     
                 } else {
+                    // Resetear elementos cuando salen del viewport (opcional)
                     if (!el.classList.contains('animate-from-left') && 
                         !el.classList.contains('animate-from-right') && 
                         !el.classList.contains('animate-from-bottom')) {
                         if (el.classList.contains('stats-card') ||
                             el.classList.contains('news-card') ||
                             el.classList.contains('tournament-card-enhanced') ||
-                            el.classList.contains('staff-card-enhanced')) {
+                            el.classList.contains('staff-card-enhanced') ||
+                            el.classList.contains('player-card-enhanced') ||
+                            el.classList.contains('news-card-enhanced') ||
+                            el.classList.contains('contact-card') ||
+                            el.classList.contains('creator-card-mini') ||
+                            el.classList.contains('creator-card-premium')) {
                             
                             el.style.animation = '';
-                            el.classList.remove('visible');
-                            el.classList.add('opacity-0', 'translate-y-[30px]');
+                            el.classList.remove('visible', 'revealed');
                         }
                     }
                 }
@@ -1548,57 +953,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, 100);
-        
-        console.log('Scroll reveal mejorado inicializado con', animatedElements.length, 'elementos');
     }
     
     // ============================================
-    // SECCIÓN 10.5: EFECTOS INTERACTIVOS DEL TÍTULO
+    // SECCIÓN 11: EFECTOS INTERACTIVOS DEL TÍTULO
     // ============================================
     function initTitleEffects() {
-        const titleLeft = document.querySelector('.title-word-left');
-        const titleRight = document.querySelector('.title-word-right');
-        const subtitle = document.querySelector('.subtitle-text');
-        const titleLine = document.querySelector('.title-line');
-        
-        setTimeout(() => {
-            if (titleLeft) {
-                titleLeft.classList.add('opacity-100', 'translate-x-0');
-                titleLeft.classList.remove('opacity-0', 'translate-x-[-30px]');
-            }
-            if (titleRight) {
-                titleRight.classList.add('opacity-100', 'translate-x-0');
-                titleRight.classList.remove('opacity-0', 'translate-x-[30px]');
-            }
-        }, 200);
-        
-        setTimeout(() => {
-            if (subtitle) {
-                subtitle.classList.add('opacity-100', 'translate-y-0');
-                subtitle.classList.remove('opacity-0', 'translate-y-[20px]');
-            }
-        }, 600);
-        
-        setTimeout(() => {
-            if (titleLine) {
-                titleLine.classList.add('animated');
-            }
-        }, 900);
-        
         function revealCardsOnScroll() {
-            const revealCards = document.querySelectorAll('.scroll-reveal-card');
+            const revealCards = document.querySelectorAll('.scroll-reveal-card, .player-card-enhanced, .staff-card-enhanced, .news-card-enhanced, .contact-card, .tournament-card-enhanced, .creator-card-mini, .creator-card-premium');
             
             revealCards.forEach((el, index) => {
-                if (isElementInViewport(el, 120) && !el.classList.contains('revealed')) {
+                if (isElementInViewport(el, 120) && !el.classList.contains('revealed') && !el.hasAttribute('data-flash-played')) {
                     setTimeout(() => {
+                        triggerCardFlash(el);
                         el.classList.add('revealed');
-                        const flashElement = el.querySelector('.camera-flash');
-                        if (flashElement) {
-                            flashElement.classList.add('camera-flash');
-                            setTimeout(() => {
-                                flashElement.classList.remove('camera-flash');
-                            }, 500);
-                        }
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
                     }, index * 150);
                 }
             });
@@ -1619,229 +989,129 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================
-    // SECCIÓN 11: FUNCIÓN PRINCIPAL DE NAVEGACIÓN
+    // SECCIÓN 12: FUNCIÓN PARA RESETEAR ELEMENTOS DEL HOME
     // ============================================
-    async function navigateTo(page) {
-        console.log('Navegando a:', page);
+    function resetHomeElements() {
+        const titleLeft = document.querySelector('.title-word-left-hero');
+        const titleRight = document.querySelector('.title-word-right-hero');
+        const subtitle = document.querySelector('.subtitle-hero');
+        const titleLine = document.querySelector('.title-line-hero');
         
-        clearAllIntervals();
-        
-        if (window.counterManager) {
-            window.counterManager.destroy();
-            window.counterManager = null;
+        if (titleLeft) {
+            titleLeft.classList.remove('revealed');
+            titleLeft.style.opacity = '0';
+            titleLeft.style.transform = 'translateX(-30px)';
+        }
+        if (titleRight) {
+            titleRight.classList.remove('revealed');
+            titleRight.style.opacity = '0';
+            titleRight.style.transform = 'translateX(30px)';
+        }
+        if (subtitle) {
+            subtitle.classList.remove('revealed');
+            subtitle.style.opacity = '0';
+            subtitle.style.transform = 'translateY(20px)';
+        }
+        if (titleLine) {
+            titleLine.classList.remove('revealed');
+            titleLine.style.transform = 'scaleX(0)';
         }
         
-        if (window.currentPageCleanup) {
-            window.currentPageCleanup();
-            window.currentPageCleanup = null;
+        // Resetear títulos de la sección de creadores
+        const creatorsTitleLeft = document.querySelector('.title-word-left-creadores-home');
+        const creatorsTitleRight = document.querySelector('.title-word-right-creadores-home');
+        const creatorsSubtitle = document.querySelector('.subtitle-creadores-home');
+        const creatorsTitleLine = document.querySelector('.title-line-creadores-home');
+        
+        if (creatorsTitleLeft) {
+            creatorsTitleLeft.classList.remove('revealed');
+            creatorsTitleLeft.style.opacity = '0';
+            creatorsTitleLeft.style.transform = 'translateX(-30px)';
+        }
+        if (creatorsTitleRight) {
+            creatorsTitleRight.classList.remove('revealed');
+            creatorsTitleRight.style.opacity = '0';
+            creatorsTitleRight.style.transform = 'translateX(30px)';
+        }
+        if (creatorsSubtitle) {
+            creatorsSubtitle.classList.remove('revealed');
+            creatorsSubtitle.style.opacity = '0';
+            creatorsSubtitle.style.transform = 'translateY(20px)';
+        }
+        if (creatorsTitleLine) {
+            creatorsTitleLine.classList.remove('revealed');
+            creatorsTitleLine.style.transform = 'scaleX(0)';
         }
         
-        if (enhancedScrollObserver) {
-            enhancedScrollObserver.disconnect();
-            enhancedScrollObserver = null;
+        const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
+        buttons.forEach(btn => {
+            btn.classList.remove('visible');
+            btn.classList.add('opacity-0', 'translate-y-[30px]');
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(30px)';
+        });
+        
+        const statsCards = document.querySelectorAll('.stats-card');
+        statsCards.forEach(card => {
+            card.classList.remove('visible');
+            card.classList.add('opacity-0', 'translate-y-[30px]');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+        });
+        
+        // Resetear tarjetas de creadores premium
+        const creatorCards = document.querySelectorAll('.creator-card-premium');
+        creatorCards.forEach(card => {
+            card.classList.remove('visible', 'revealed');
+            card.classList.add('opacity-0', 'translate-y-[30px]');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+        });
+        
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            counter.textContent = '0';
+        });
+        
+        const newsCards = document.querySelectorAll('.news-card');
+        newsCards.forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-[30px]');
+        });
+        
+        // Resetear títulos de noticias
+        const newsTitleLeft = document.querySelector('.title-word-left-news');
+        const newsTitleRight = document.querySelector('.title-word-right-news');
+        const newsSubtitle = document.querySelector('.subtitle-news');
+        const newsTitleLine = document.querySelector('.title-line-news');
+        
+        if (newsTitleLeft) {
+            newsTitleLeft.classList.remove('revealed');
+            newsTitleLeft.style.opacity = '0';
+            newsTitleLeft.style.transform = 'translateX(-30px)';
         }
-        
-        if (newsTitleObserver) {
-            newsTitleObserver.disconnect();
-            newsTitleObserver = null;
+        if (newsTitleRight) {
+            newsTitleRight.classList.remove('revealed');
+            newsTitleRight.style.opacity = '0';
+            newsTitleRight.style.transform = 'translateX(30px)';
         }
-        
-        if (heroTitleObserver) {
-            heroTitleObserver.disconnect();
-            heroTitleObserver = null;
+        if (newsSubtitle) {
+            newsSubtitle.classList.remove('revealed');
+            newsSubtitle.style.opacity = '0';
+            newsSubtitle.style.transform = 'translateY(20px)';
         }
-        
-        if (window.tournamentsTitleObserver) {
-            window.tournamentsTitleObserver.disconnect();
-            window.tournamentsTitleObserver = null;
-        }
-        
-        if (window.tournamentsHeaderTitleObserver) {
-            window.tournamentsHeaderTitleObserver.disconnect();
-            window.tournamentsHeaderTitleObserver = null;
-        }
-        
-        if (window.organigramaTitleObserver) {
-            window.organigramaTitleObserver.disconnect();
-            window.organigramaTitleObserver = null;
-        }
-        
-        if (window.sectionTitleObservers) {
-            window.sectionTitleObservers.forEach(observer => observer.disconnect());
-            window.sectionTitleObservers = [];
-        }
-        
-        if (window.organigramaCardObserver) {
-            window.organigramaCardObserver.disconnect();
-            window.organigramaCardObserver = null;
-        }
-        
-        if (window.organigramaFlashObserver) {
-            window.organigramaFlashObserver.disconnect();
-            window.organigramaFlashObserver = null;
-        }
-        
-        cleanupNewsCardsFlashObserver();
-        
-        content.style.opacity = '0';
-        
-        try {
-            const response = await fetch(`pages/${page}.html`);
-            if (!response.ok) throw new Error('Página no encontrada');
-            const html = await response.text();
-            
-            setTimeout(() => {
-                content.innerHTML = html;
-                content.style.opacity = '1';
-                currentPage = page;
-                
-                assignNavLinkListeners();
-                
-                if (page === 'home') {
-                    setTimeout(() => {
-                        resetHomeElements();
-                        initializePageScripts(page);
-                        initEnhancedScrollReveal();
-                        initTitleEffects();
-                        initNewsTitleScrollReveal();
-                        initHeroTitleScrollReveal();
-                        unifyStatsCardsHover();
-                        initParticleEffectOnNewsCards();
-                        initDataBlastEffect();
-                        initNewsCardsFlashOnScroll();
-                        
-                        setTimeout(() => {
-                            const titleLeft = document.querySelector('.title-word-left-hero');
-                            const titleRight = document.querySelector('.title-word-right-hero');
-                            const subtitle = document.querySelector('.subtitle-hero');
-                            const titleLine = document.querySelector('.title-line-hero');
-                            
-                            if (titleLeft) {
-                                titleLeft.classList.add('revealed');
-                                titleLeft.style.opacity = '1';
-                                titleLeft.style.transform = 'translateX(0)';
-                            }
-                            
-                            if (titleRight) {
-                                setTimeout(() => {
-                                    titleRight.classList.add('revealed');
-                                    titleRight.style.opacity = '1';
-                                    titleRight.style.transform = 'translateX(0)';
-                                }, 150);
-                            }
-                            
-                            if (subtitle) {
-                                setTimeout(() => {
-                                    subtitle.classList.add('revealed');
-                                    subtitle.style.opacity = '1';
-                                    subtitle.style.transform = 'translateY(0)';
-                                }, 400);
-                            }
-                            
-                            if (titleLine) {
-                                setTimeout(() => {
-                                    titleLine.classList.add('revealed');
-                                    titleLine.style.transform = 'scaleX(1)';
-                                }, 600);
-                            }
-                            
-                            const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
-                            setTimeout(() => {
-                                buttons.forEach((btn, index) => {
-                                    setTimeout(() => {
-                                        btn.classList.remove('opacity-0', 'translate-y-[30px]');
-                                        btn.classList.add('visible');
-                                        btn.style.opacity = '1';
-                                        btn.style.transform = 'translateY(0)';
-                                    }, index * 150);
-                                });
-                            }, 800);
-                            
-                            const statsCards = document.querySelectorAll('.stats-card');
-                            statsCards.forEach((card, index) => {
-                                setTimeout(() => {
-                                    card.classList.remove('opacity-0', 'translate-y-[30px]');
-                                    card.classList.add('visible');
-                                    card.style.opacity = '1';
-                                    card.style.transform = 'translateY(0)';
-                                    card.classList.add('neon-border');
-                                    setTimeout(() => {
-                                        card.classList.remove('neon-border');
-                                    }, 1000);
-                                }, 800 + (index * 100));
-                            });
-                            
-                            applyNeonEffectToStatsCards();
-                            
-                            if (!window.counterManager) {
-                                window.counterManager = new CounterManager();
-                            }
-                            window.counterManager.init();
-                            window.counterManager.resetAllCounters();
-                            
-                            if (!window.counterManager.countdownInterval) {
-                                const loopInterval = isTouchDevice ? 45000 : 30000;
-                                window.counterManager.startLoop(loopInterval);
-                            }
-                            
-                            setTimeout(() => {
-                                if (window.counterManager) {
-                                    window.counterManager.animateAll(true);
-                                }
-                            }, 150);
-                            
-                        }, 100);
-                    }, 100);
-                } else if (page === 'organigrama') {
-                    setTimeout(() => {
-                        initializePageScripts(page);
-                        initEnhancedScrollReveal();
-                        initOrganigramaTitleScrollReveal();
-                        initOrganigramaSectionTitlesScrollReveal();
-                        initOrganigramaParticleEffect();
-                        initOrganigramaCardsFlashOnScroll();
-                    }, 100);
-                } else {
-                    initializePageScripts(page);
-                    initEnhancedScrollReveal();
-                }
-                
-                updateActiveNavLinks(page);
-                window.location.hash = page;
-                updatePageTitle(page);
-                
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                
-            }, 300);
-            
-        } catch (error) {
-            console.error('Error cargando la página:', error);
-            content.innerHTML = `
-                <div class="container mx-auto px-4 py-20 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-red-500 mb-4">Error 404</h2>
-                    <p class="text-gray-400 mb-8 text-lg">La página que buscas no existe</p>
-                    <a href="#" data-page="home" class="nav-link bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
-                        Volver al inicio
-                    </a>
-                </div>
-            `;
-            content.style.opacity = '1';
-            assignNavLinkListeners();
-            initEnhancedScrollReveal();
-            window.location.hash = 'home';
+        if (newsTitleLine) {
+            newsTitleLine.classList.remove('revealed');
+            newsTitleLine.style.transform = 'scaleX(0)';
         }
     }
     
     // ============================================
-    // SECCIÓN 12: INICIALIZADORES DE PÁGINAS
+    // SECCIÓN 13: INICIALIZADORES DE PÁGINAS
     // ============================================
     function initializePageScripts(page) {
         switch(page) {
             case 'home':
-                window.currentPageCleanup = initHomePage();
+                initHomePage();
                 break;
             case 'team':
                 initTeamPage();
@@ -1863,53 +1133,107 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ==================== HOME ====================
     function initHomePage() {
-        console.log('Home page initialized');
-        
         if (!window.counterManager) {
             window.counterManager = new CounterManager();
         }
         window.counterManager.init();
         
-        const loopInterval = isTouchDevice ? 45000 : 30000;
-        if (!window.counterManager.countdownInterval) {
-            window.counterManager.startLoop(loopInterval);
-        }
-        
+        // Animar contadores después de un breve delay
         setTimeout(() => {
             if (window.counterManager) {
                 window.counterManager.animateAll(true);
             }
         }, 150);
         
-        return () => {
-            if (window.counterManager) {
-                window.counterManager.stop();
+        // Inicializar tarjetas de creadores premium
+        const creatorCards = document.querySelectorAll('.creator-card-premium');
+        creatorCards.forEach((card, index) => {
+            card.classList.add('scroll-reveal-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px) rotateX(-10deg)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            
+            if (isElementInViewport(card, 120)) {
+                setTimeout(() => {
+                    triggerCardFlash(card);
+                    card.classList.add('revealed');
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0) rotateX(0)';
+                }, index * 100);
             }
-        };
+        });
+        
+        // Inicializar efectos dinámicos para creadores
+        initCreatorDynamicLight();
+        initCreatorHapticFeedback();
+        
+        // Efectos hover mejorados para tarjetas de creadores
+        creatorCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const imgContainer = card.querySelector('.avatar-container');
+                if (imgContainer) {
+                    imgContainer.style.transform = 'scale(1.02)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const imgContainer = card.querySelector('.avatar-container');
+                if (imgContainer) {
+                    imgContainer.style.transform = 'scale(1)';
+                }
+                
+                const img = card.querySelector('img');
+                if (img) {
+                    img.style.transform = 'scale(1) translate(0, 0)';
+                }
+            });
+        });
     }
     
     // ==================== TEAM ====================
     function initTeamPage() {
-        console.log('Team page initialized');
+        initParticleEffectOnNewsCards();
         
-        const playerCards = document.querySelectorAll('.player-card');
-        playerCards.forEach(card => {
+        const playerCards = document.querySelectorAll('.player-card-enhanced');
+        
+        console.log('Tarjetas de jugadores encontradas:', playerCards.length);
+        
+        playerCards.forEach((card, index) => {
+            card.classList.add('scroll-reveal-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            if (isElementInViewport(card, 120)) {
+                setTimeout(() => {
+                    triggerCardFlash(card);
+                    card.classList.add('revealed');
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            }
+            
             card.addEventListener('mouseenter', () => {
-                card.classList.add('neon-border', 'scale-105');
-                card.style.transition = 'all 0.3s ease';
-                card.style.zIndex = '10';
+                const image = card.querySelector('.rounded-full');
+                if (image) {
+                    image.style.transform = 'scale(1.1)';
+                    image.style.transition = 'all 0.3s ease';
+                }
             });
             
             card.addEventListener('mouseleave', () => {
-                card.classList.remove('neon-border', 'scale-105');
-                card.style.zIndex = '1';
+                const image = card.querySelector('.rounded-full');
+                if (image) {
+                    image.style.transform = 'scale(1)';
+                }
             });
         });
         
         initScrollTopButton();
         initTeamQuickLinks();
-        animateTeamCards();
         handleTeamHash();
+        
+        console.log('Team page inicializada con', playerCards.length, 'tarjetas de jugadores');
     }
     
     function initScrollTopButton() {
@@ -1974,21 +1298,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    function animateTeamCards() {
-        const cards = document.querySelectorAll('.player-card');
-        
-        cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                card.style.transition = 'all 0.5s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 100 + (index * 50));
-        });
-    }
-    
     function handleTeamHash() {
         const hash = window.location.hash;
         
@@ -2011,54 +1320,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ==================== TORNEOS ====================
     function initTournamentsPage() {
-        console.log('Tournaments page initialized');
-        
         setTimeout(() => {
             startCountdown();
         }, 100);
         
         setTimeout(() => {
-            initTournamentsHeaderTitleScrollReveal();
-        }, 200);
-        
-        setTimeout(() => {
-            initTournamentsTitleScrollReveal();
-        }, 250);
-        
-        setTimeout(() => {
             initTournamentEffects();
-            
-            const tournamentRevealCards = document.querySelectorAll('.scroll-reveal-card');
-            tournamentRevealCards.forEach((card, index) => {
-                if (isElementInViewport(card, 120) && !card.classList.contains('revealed')) {
-                    setTimeout(() => {
-                        card.classList.add('revealed');
-                        
-                        const flashElement = card.querySelector('.camera-flash');
-                        if (flashElement) {
-                            flashElement.classList.add('camera-flash');
-                            setTimeout(() => {
-                                flashElement.classList.remove('camera-flash');
-                            }, 500);
-                        }
-                    }, index * 150);
-                }
-            });
         }, 300);
     }
     
     function startCountdown() {
         const countdownElement = document.querySelector('.countdown');
-        
-        if (!countdownElement) {
-            console.log('Elemento .countdown no encontrado');
-            return;
-        }
+        if (!countdownElement) return;
         
         const targetDate = new Date('2026-03-23T22:00:00-04:00');
         
         if (isNaN(targetDate.getTime())) {
-            console.error('Fecha objetivo inválida');
             countdownElement.innerHTML = '<span class="text-red-400 font-bold">FECHA NO DISPONIBLE</span>';
             return;
         }
@@ -2124,82 +1401,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         updateCountdown();
-        
         window.countdownIntervalId = setInterval(updateCountdown, 1000);
         activeIntervals.push(window.countdownIntervalId);
-        
-        console.log('Countdown iniciado correctamente');
     }
     
-    // ==================== ORGANIGRAMA (ACTUALIZADO) ====================
+    function initTournamentEffects() {
+        const tournamentCards = document.querySelectorAll('.tournament-card-enhanced');
+        tournamentCards.forEach((card, index) => {
+            setTimeout(() => {
+                triggerCardFlash(card);
+                card.classList.add('revealed');
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+        
+        initParticleEffectOnNewsCards();
+        initDataBlastEffect();
+    }
+    
+    // ==================== ORGANIGRAMA ====================
     function initOrganigramaPage() {
-        console.log('Organigrama page initialized');
-        
-        initOrganigramaTitleScrollReveal();
-        initOrganigramaSectionTitlesScrollReveal();
-        
         const staffCards = document.querySelectorAll('.staff-card-enhanced');
-        
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -30px 0px'
-        };
-        
-        const revealCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
-                    const card = entry.target;
-                    const index = Array.from(staffCards).indexOf(card);
-                    
-                    setTimeout(() => {
-                        card.classList.add('revealed');
-                        const flashElement = card.querySelector('.camera-flash');
-                        if (flashElement) {
-                            flashElement.classList.add('camera-flash');
-                            setTimeout(() => {
-                                flashElement.classList.remove('camera-flash');
-                            }, 500);
-                        }
-                    }, index * 100);
-                }
-            });
-        };
-        
-        if (window.organigramaCardObserver) {
-            window.organigramaCardObserver.disconnect();
-        }
-        
-        window.organigramaCardObserver = new IntersectionObserver(revealCallback, observerOptions);
         
         staffCards.forEach((card, index) => {
             card.classList.add('scroll-reveal-card');
             card.style.opacity = '0';
             card.style.transform = 'translateY(40px)';
-            window.organigramaCardObserver.observe(card);
+            card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
             
             if (isElementInViewport(card, 120)) {
                 setTimeout(() => {
+                    triggerCardFlash(card);
                     card.classList.add('revealed');
-                    const flashElement = card.querySelector('.camera-flash');
-                    if (flashElement) {
-                        flashElement.classList.add('camera-flash');
-                        setTimeout(() => {
-                            flashElement.classList.remove('camera-flash');
-                        }, 500);
-                    }
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
                 }, index * 100);
             }
             
-            // Eventos hover
             card.addEventListener('mouseenter', () => {
                 card.classList.add('shadow-2xl', 'shadow-cyan-500/20');
                 card.style.transform = 'translateY(-5px) scale(1.02)';
-                
-                const icon = card.querySelector('.rounded-full');
-                if (icon) {
-                    icon.style.transform = 'scale(1.1)';
-                    icon.style.transition = 'all 0.3s ease';
-                }
                 
                 const image = card.querySelector('img');
                 if (image) {
@@ -2212,11 +1454,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.classList.remove('shadow-2xl', 'shadow-cyan-500/20');
                 card.style.transform = 'translateY(0) scale(1)';
                 
-                const icon = card.querySelector('.rounded-full');
-                if (icon) {
-                    icon.style.transform = 'scale(1)';
-                }
-                
                 const image = card.querySelector('img');
                 if (image) {
                     image.style.transform = 'scale(1)';
@@ -2224,55 +1461,62 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        // Efectos para role badges
-        const roleBadges = document.querySelectorAll('.role-badge');
-        roleBadges.forEach(badge => {
-            badge.addEventListener('mouseenter', () => {
-                badge.style.transform = 'scale(1.05)';
-                badge.style.transition = 'all 0.2s ease';
-            });
-            
-            badge.addEventListener('mouseleave', () => {
-                badge.style.transform = 'scale(1)';
-            });
-        });
-        
-        console.log('Organigrama page initialized with', staffCards.length, 'staff cards');
+        initParticleEffectOnNewsCards();
     }
     
     // ==================== NOTICIAS ====================
     function initNewsPage() {
-        console.log('News page initialized');
+        const newsCards = document.querySelectorAll('.news-card-enhanced');
         
-        const newsCards = document.querySelectorAll('.news-card');
         newsCards.forEach((card, index) => {
+            card.classList.add('scroll-reveal-card');
             card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
             
             setTimeout(() => {
-                card.style.transition = 'all 0.5s ease';
+                triggerCardFlash(card);
+                card.classList.add('revealed');
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
-                
-                const flashElement = card.querySelector('.camera-flash');
-                if (flashElement) {
-                    setTimeout(() => {
-                        flashElement.classList.add('camera-flash');
-                        setTimeout(() => {
-                            flashElement.classList.remove('camera-flash');
-                        }, 500);
-                    }, 200);
-                }
             }, 100 * index);
         });
         
         initParticleEffectOnNewsCards();
         initDataBlastEffect();
+        
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-cyan-500', 'text-white');
+                    b.classList.add('bg-white/5', 'text-gray-300');
+                });
+                this.classList.remove('bg-white/5', 'text-gray-300');
+                this.classList.add('bg-cyan-500', 'text-white');
+            });
+        });
     }
     
     // ==================== CONTACTO ====================
     function initContactPage() {
-        console.log('Contact page initialized');
+        const contactCards = document.querySelectorAll('.contact-card');
+        
+        contactCards.forEach((card, index) => {
+            card.classList.add('scroll-reveal-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            setTimeout(() => {
+                triggerCardFlash(card);
+                card.classList.add('revealed');
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+        
+        initParticleEffectOnNewsCards();
         
         const form = document.querySelector('form');
         if (form) {
@@ -2293,36 +1537,226 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        const inputs = document.querySelectorAll('input, textarea');
+        const inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
         inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                if (input.value.length > 0) {
-                    input.classList.add('border-green-500');
-                    input.classList.remove('border-red-500');
-                } else {
-                    input.classList.remove('border-green-500');
-                    input.classList.add('border-red-500');
-                }
+            input.addEventListener('focus', () => {
+                input.style.transform = 'scale(1.02)';
+            });
+            input.addEventListener('blur', () => {
+                input.style.transform = 'scale(1)';
             });
         });
     }
     
     // ============================================
-    // SECCIÓN 13: FUNCIÓN AUXILIAR
+    // SECCIÓN 14: FUNCIÓN PRINCIPAL DE NAVEGACIÓN
     // ============================================
-    function isElementInViewport(el, offset = 100) {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top <= windowHeight - offset;
+    async function navigateTo(page) {
+        clearAllIntervals();
+        
+        if (window.counterManager) {
+            window.counterManager.destroy();
+            window.counterManager = null;
+        }
+        
+        if (enhancedScrollObserver) {
+            enhancedScrollObserver.disconnect();
+            enhancedScrollObserver = null;
+        }
+        
+        if (window.countdownIntervalId) {
+            clearInterval(window.countdownIntervalId);
+            window.countdownIntervalId = null;
+        }
+        
+        content.style.opacity = '0';
+        
+        try {
+            const response = await fetch(`pages/${page}.html`);
+            if (!response.ok) throw new Error('Página no encontrada');
+            const html = await response.text();
+            
+            setTimeout(() => {
+                content.innerHTML = html;
+                content.style.opacity = '1';
+                currentPage = page;
+                
+                assignNavLinkListeners();
+                
+                if (page === 'home') {
+                    setTimeout(() => {
+                        resetHomeElements();
+                        initializePageScripts(page);
+                        
+                        const titleLeft = document.querySelector('.title-word-left-hero');
+                        const titleRight = document.querySelector('.title-word-right-hero');
+                        const subtitle = document.querySelector('.subtitle-hero');
+                        const titleLine = document.querySelector('.title-line-hero');
+                        
+                        if (titleLeft) {
+                            titleLeft.classList.add('revealed');
+                            titleLeft.style.opacity = '1';
+                            titleLeft.style.transform = 'translateX(0)';
+                        }
+                        
+                        if (titleRight) {
+                            setTimeout(() => {
+                                titleRight.classList.add('revealed');
+                                titleRight.style.opacity = '1';
+                                titleRight.style.transform = 'translateX(0)';
+                            }, 150);
+                        }
+                        
+                        if (subtitle) {
+                            setTimeout(() => {
+                                subtitle.classList.add('revealed');
+                                subtitle.style.opacity = '1';
+                                subtitle.style.transform = 'translateY(0)';
+                            }, 400);
+                        }
+                        
+                        if (titleLine) {
+                            setTimeout(() => {
+                                titleLine.classList.add('revealed');
+                                titleLine.style.transform = 'scaleX(1)';
+                            }, 600);
+                        }
+                        
+                        // Animar títulos de la sección de creadores
+                        const creatorsTitleLeft = document.querySelector('.title-word-left-creadores-home');
+                        const creatorsTitleRight = document.querySelector('.title-word-right-creadores-home');
+                        const creatorsSubtitle = document.querySelector('.subtitle-creadores-home');
+                        const creatorsTitleLine = document.querySelector('.title-line-creadores-home');
+                        
+                        if (creatorsTitleLeft) {
+                            setTimeout(() => {
+                                creatorsTitleLeft.classList.add('revealed');
+                                creatorsTitleLeft.style.opacity = '1';
+                                creatorsTitleLeft.style.transform = 'translateX(0)';
+                            }, 200);
+                        }
+                        
+                        if (creatorsTitleRight) {
+                            setTimeout(() => {
+                                creatorsTitleRight.classList.add('revealed');
+                                creatorsTitleRight.style.opacity = '1';
+                                creatorsTitleRight.style.transform = 'translateX(0)';
+                            }, 350);
+                        }
+                        
+                        if (creatorsSubtitle) {
+                            setTimeout(() => {
+                                creatorsSubtitle.classList.add('revealed');
+                                creatorsSubtitle.style.opacity = '1';
+                                creatorsSubtitle.style.transform = 'translateY(0)';
+                            }, 500);
+                        }
+                        
+                        if (creatorsTitleLine) {
+                            setTimeout(() => {
+                                creatorsTitleLine.classList.add('revealed');
+                                creatorsTitleLine.style.transform = 'scaleX(1)';
+                            }, 650);
+                        }
+                        
+                        const buttons = document.querySelectorAll('.flex.flex-col.sm\\:flex-row a');
+                        setTimeout(() => {
+                            buttons.forEach((btn, index) => {
+                                setTimeout(() => {
+                                    btn.classList.remove('opacity-0', 'translate-y-[30px]');
+                                    btn.classList.add('visible');
+                                    btn.style.opacity = '1';
+                                    btn.style.transform = 'translateY(0)';
+                                }, index * 150);
+                            });
+                        }, 800);
+                        
+                        const statsCards = document.querySelectorAll('.stats-card');
+                        statsCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.remove('opacity-0', 'translate-y-[30px]');
+                                card.classList.add('visible');
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                                card.classList.add('neon-border');
+                                setTimeout(() => {
+                                    card.classList.remove('neon-border');
+                                }, 1000);
+                            }, 800 + (index * 100));
+                        });
+                        
+                        // Animar tarjetas de creadores premium
+                        const creatorCards = document.querySelectorAll('.creator-card-premium');
+                        creatorCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.remove('opacity-0', 'translate-y-[30px]');
+                                card.classList.add('visible', 'revealed');
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0) rotateX(0)';
+                                triggerCardFlash(card);
+                            }, 900 + (index * 80));
+                        });
+                        
+                        if (!window.counterManager) {
+                            window.counterManager = new CounterManager();
+                        }
+                        window.counterManager.init();
+                        
+                        setTimeout(() => {
+                            if (window.counterManager) {
+                                window.counterManager.animateAll(true);
+                            }
+                        }, 150);
+                        
+                        // Inicializar efectos dinámicos
+                        initCreatorDynamicLight();
+                        initCreatorHapticFeedback();
+                        
+                    }, 100);
+                } else {
+                    initializePageScripts(page);
+                }
+                
+                initEnhancedScrollReveal();
+                initAllTitleScrollReveal();
+                initParticleEffectOnNewsCards();
+                
+                updateActiveNavLinks(page);
+                window.location.hash = page;
+                updatePageTitle(page);
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+            }, 300);
+            
+        } catch (error) {
+            console.error('Error cargando la página:', error);
+            content.innerHTML = `
+                <div class="container mx-auto px-4 py-20 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-red-500 mb-4">Error 404</h2>
+                    <p class="text-gray-400 mb-8 text-lg">La página que buscas no existe</p>
+                    <a href="#" data-page="home" class="nav-link bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+                        Volver al inicio
+                    </a>
+                </div>
+            `;
+            content.style.opacity = '1';
+            assignNavLinkListeners();
+            initEnhancedScrollReveal();
+            window.location.hash = 'home';
+        }
     }
     
     // ============================================
-    // SECCIÓN 14: EXPONER FUNCIÓN GLOBAL
+    // SECCIÓN 15: EXPONER FUNCIÓN GLOBAL
     // ============================================
     window.triggerCompetitivoGlitch = triggerCompetitivoGlitch;
     
     // ============================================
-    // SECCIÓN 15: INICIALIZACIÓN
+    // SECCIÓN 16: INICIALIZACIÓN
     // ============================================
     assignNavLinkListeners();
     
@@ -2336,7 +1770,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// SECCIÓN 16: SPLASH SCREEN
+// SECCIÓN 17: SPLASH SCREEN
 // ============================================
 function initSplashProgress() {
     const progressFill = document.getElementById('progressFill');
@@ -2394,21 +1828,4 @@ window.addEventListener('beforeunload', () => {
         clearInterval(window.countdownIntervalId);
         window.countdownIntervalId = null;
     }
-    if (window.organigramaCardObserver) {
-        window.organigramaCardObserver.disconnect();
-        window.organigramaCardObserver = null;
-    }
-    if (window.organigramaFlashObserver) {
-        window.organigramaFlashObserver.disconnect();
-        window.organigramaFlashObserver = null;
-    }
-    if (window.sectionTitleObservers) {
-        window.sectionTitleObservers.forEach(observer => observer.disconnect());
-        window.sectionTitleObservers = [];
-    }
-    if (heroTitleObserver) {
-        heroTitleObserver.disconnect();
-        heroTitleObserver = null;
-    }
-    cleanupNewsCardsFlashObserver();
 });
