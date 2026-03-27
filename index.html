@@ -693,6 +693,73 @@
             50% { transform: scale(1.2); color: #a855f7; }
             100% { transform: scale(1); color: #22d3ee; }
         }
+
+        
+    /* ===== MEJORAS DE ACCESIBILIDAD - ALTO CONTRASTE ===== */
+    
+    /* Mejorar contraste de textos grises en fondos oscuros */
+    .text-gray-300 {
+        color: #d1d5db !important; /* Gris más claro (contraste ~7:1) */
+    }
+    
+    .text-gray-400 {
+        color: #9ca3af !important; /* Mantener pero asegurar fondo oscuro */
+    }
+    
+    /* Asegurar que los textos pequeños tengan suficiente contraste */
+    .text-xs, .text-sm {
+        color: #e5e7eb; /* Gris más claro para textos pequeños */
+    }
+    
+    /* Mejorar contraste en los marcadores de progreso del splash */
+    .progress-markers {
+        color: #9ca3af;
+    }
+    
+    .progress-marker {
+        color: #9ca3af;
+    }
+    
+    .progress-marker.active {
+        color: #06b6d4;
+        text-shadow: 0 0 4px rgba(6, 182, 212, 0.5);
+    }
+    
+    /* Mejorar contraste en los textos de los creadores */
+    .creator-specialty {
+        color: #9ca3af !important;
+    }
+    
+    /* Asegurar que los textos en tarjetas con fondo oscuro sean legibles */
+    .bg-white\/5, .bg-white\/10 {
+        background-color: rgba(0, 0, 0, 0.6) !important;
+    }
+    
+    /* Mejorar contraste en textos de footer */
+    footer .text-gray-400 {
+        color: #b0b0b0 !important;
+    }
+    
+    /* Ajustar opacidad de fondos para mejor legibilidad */
+    .backdrop-blur-md {
+        background-color: rgba(0, 0, 0, 0.7) !important;
+    }
+    
+    /* Mejorar contraste en placeholders de inputs */
+    input::placeholder, textarea::placeholder {
+        color: #9ca3af !important;
+        opacity: 0.8;
+    }
+    
+    /* Asegurar que los textos en botones hover sean legibles */
+    .hover\:text-cyan-400:hover {
+        color: #22d3ee !important;
+    }
+    
+    /* Scroll Reveal para elementos con mejor contraste */
+    .stats-card .text-gray-300 {
+        color: #e5e7eb !important;
+    }
     </style>
 </head>
 <body class="bg-gradient-custom min-h-screen text-white">
